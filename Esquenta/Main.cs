@@ -19,14 +19,16 @@ namespace Esquenta
             new Caixa().ShowDialog();
         }
 
-        private void btnCadastro_Click(object sender, EventArgs e)
-        {
-            new ListaProduto().ShowDialog();
-        }
+
 
         private void bntRelatorio_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Relatórios");
+        }
+
+        private void btnCadastroProdutos_Click(object sender, EventArgs e)
+        {
+            new ListaProduto().ShowDialog();
         }
     }
 }

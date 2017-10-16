@@ -95,10 +95,6 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mappings\ComandaMapping.cs" />
-    <Compile Include="Mappings\ItemVendaMapping.cs" />
-    <Compile Include="Mappings\VendaMapping.cs" />
-    <Compile Include="Mappings\ProdutoMapping.cs" />
     <Compile Include="Entities\Produto.cs" />
     <Compile Include="Forms\Produto\AddProduto.cs">
       <SubType>Form</SubType>

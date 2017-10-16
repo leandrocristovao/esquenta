@@ -33,27 +33,31 @@
             this.btnGravar = new System.Windows.Forms.Button();
             this.txtProduto = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtComand = new System.Windows.Forms.TextBox();
+            this.txtComanda = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataVendaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.valorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vendaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAdicionar = new System.Windows.Forms.Button();
+            this.lblValorTotal = new System.Windows.Forms.Label();
+            this.produtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.itemVendaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.produtoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemVendaBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lblValorTotal);
+            this.panel1.Controls.Add(this.btnAdicionar);
             this.panel1.Controls.Add(this.btnGravar);
             this.panel1.Controls.Add(this.txtProduto);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.txtComand);
+            this.panel1.Controls.Add(this.txtComanda);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -65,11 +69,11 @@
             // 
             this.btnGravar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGravar.Location = new System.Drawing.Point(3, 103);
+            this.btnGravar.Location = new System.Drawing.Point(3, 163);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(278, 23);
             this.btnGravar.TabIndex = 4;
-            this.btnGravar.Text = "Gravar";
+            this.btnGravar.Text = "Fechar Conta";
             this.btnGravar.UseVisualStyleBackColor = true;
             this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
             // 
@@ -91,14 +95,14 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Produto";
             // 
-            // txtComand
+            // txtComanda
             // 
-            this.txtComand.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtComanda.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtComand.Location = new System.Drawing.Point(3, 25);
-            this.txtComand.Name = "txtComand";
-            this.txtComand.Size = new System.Drawing.Size(281, 20);
-            this.txtComand.TabIndex = 1;
+            this.txtComanda.Location = new System.Drawing.Point(3, 25);
+            this.txtComanda.Name = "txtComanda";
+            this.txtComanda.Size = new System.Drawing.Size(281, 20);
+            this.txtComanda.TabIndex = 1;
             // 
             // label1
             // 
@@ -122,14 +126,10 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
-            this.dataVendaDataGridViewTextBoxColumn,
-            this.valorDataGridViewTextBoxColumn,
-            this.vendaDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.itemVendaBindingSource;
+            this.Nome,
+            this.Valor});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
@@ -137,37 +137,51 @@
             this.dataGridView1.Size = new System.Drawing.Size(337, 441);
             this.dataGridView1.TabIndex = 0;
             // 
-            // idDataGridViewTextBoxColumn
+            // btnAdicionar
             // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.btnAdicionar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdicionar.Location = new System.Drawing.Point(3, 90);
+            this.btnAdicionar.Name = "btnAdicionar";
+            this.btnAdicionar.Size = new System.Drawing.Size(278, 23);
+            this.btnAdicionar.TabIndex = 5;
+            this.btnAdicionar.Text = "Adicionar";
+            this.btnAdicionar.UseVisualStyleBackColor = true;
+            this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
             // 
-            // dataVendaDataGridViewTextBoxColumn
+            // lblValorTotal
             // 
-            this.dataVendaDataGridViewTextBoxColumn.DataPropertyName = "DataVenda";
-            this.dataVendaDataGridViewTextBoxColumn.HeaderText = "DataVenda";
-            this.dataVendaDataGridViewTextBoxColumn.Name = "dataVendaDataGridViewTextBoxColumn";
-            this.dataVendaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.lblValorTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblValorTotal.Location = new System.Drawing.Point(3, 290);
+            this.lblValorTotal.Name = "lblValorTotal";
+            this.lblValorTotal.Size = new System.Drawing.Size(278, 142);
+            this.lblValorTotal.TabIndex = 6;
+            this.lblValorTotal.Text = "R$ 0,00";
+            this.lblValorTotal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // valorDataGridViewTextBoxColumn
+            // produtoBindingSource
             // 
-            this.valorDataGridViewTextBoxColumn.DataPropertyName = "Valor";
-            this.valorDataGridViewTextBoxColumn.HeaderText = "Valor";
-            this.valorDataGridViewTextBoxColumn.Name = "valorDataGridViewTextBoxColumn";
-            this.valorDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // vendaDataGridViewTextBoxColumn
-            // 
-            this.vendaDataGridViewTextBoxColumn.DataPropertyName = "Venda";
-            this.vendaDataGridViewTextBoxColumn.HeaderText = "Venda";
-            this.vendaDataGridViewTextBoxColumn.Name = "vendaDataGridViewTextBoxColumn";
-            this.vendaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.produtoBindingSource.DataSource = typeof(Esquenta.Entities.Produto);
             // 
             // itemVendaBindingSource
             // 
             this.itemVendaBindingSource.DataSource = typeof(Esquenta.Entities.ItemVenda);
+            // 
+            // Nome
+            // 
+            this.Nome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Nome.DataPropertyName = "Nome";
+            this.Nome.HeaderText = "Produto";
+            this.Nome.Name = "Nome";
+            this.Nome.ReadOnly = true;
+            // 
+            // Valor
+            // 
+            this.Valor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Valor.HeaderText = "Valor";
+            this.Valor.Name = "Valor";
+            this.Valor.ReadOnly = true;
+            this.Valor.Width = 56;
             // 
             // Caixa
             // 
@@ -187,6 +201,7 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.produtoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemVendaBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -197,16 +212,17 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataVendaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn valorDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn vendaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn produtoDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource itemVendaBindingSource;
         private System.Windows.Forms.Button btnGravar;
         private System.Windows.Forms.TextBox txtProduto;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtComand;
+        private System.Windows.Forms.TextBox txtComanda;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnAdicionar;
+        private System.Windows.Forms.BindingSource produtoBindingSource;
+        private System.Windows.Forms.Label lblValorTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
     }
 }
