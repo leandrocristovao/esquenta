@@ -83,6 +83,18 @@
     <Compile Include="Forms\Caixa\Caixa.Designer.cs">
       <DependentUpon>Caixa.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Comandas\AddComanda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Comandas\AddComanda.Designer.cs">
+      <DependentUpon>AddComanda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Comandas\ListaComanda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Comandas\ListaComanda.Designer.cs">
+      <DependentUpon>ListaComanda.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Produto\ListaProduto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,6 +120,9 @@
     <Compile Include="Repository\Interfaces\IBaseRepository.cs" />
     <EmbeddedResource Include="Forms\Caixa\Caixa.resx">
       <DependentUpon>Caixa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Comandas\AddComanda.resx">
+      <DependentUpon>AddComanda.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Produto\ListaProduto.resx">
       <DependentUpon>ListaProduto.cs</DependentUpon>

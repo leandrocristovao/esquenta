@@ -15,7 +15,7 @@ namespace Esquenta
         private static ConnectionService instance = null;
 
         private ISessionFactory sessionFactory = CreateSessionFactory();
-        private const string DbFile = @"C:\Users\leandro\Desktop\DEV\esquenta\esquenta.db";
+        private const string DbFile = @"C:\Users\leandro.cristovao\Desktop\DEV\esquenta.db";
         //private const string DbFile = @"esquenta.db";
 
         public ConnectionService()
@@ -46,18 +46,18 @@ namespace Esquenta
                        .Where(t => t.Namespace == "Esquenta.Entities");
 
             return Fluently.Configure()
-                //.Database(SQLiteConfiguration.Standard
-                //.UsingFile(DbFile))
-                .Database(MsSqlConfiguration.MsSql2008
-                .ShowSql()
-                .ConnectionString(c => c
-                    .Server("localhost")
-                    .Database("esquenta")
-                    .Username("sa")
-                    .Password("$splfiscal10"))
-                   )
+                .Database(SQLiteConfiguration.Standard
+                .UsingFile(DbFile))
+                //.Database(MsSqlConfiguration.MsSql2008
+                //.ShowSql()
+                //.ConnectionString(c => c
+                //    .Server("localhost")
+                //    .Database("esquenta")
+                //    .Username("sa")
+                //    .Password("$splfiscal10"))
+                //   )
                 .Mappings(m => m.AutoMappings.Add(model))
-                //.ExposeConfiguration(BuildSchema)
+                .ExposeConfiguration(BuildSchema)
                 .BuildSessionFactory();
         }
 
