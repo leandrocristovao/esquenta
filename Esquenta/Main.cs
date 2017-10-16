@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Esquenta.Forms.Caixa;
+using Esquenta.Forms.Produto;
+using System;
 using System.Windows.Forms;
 
 namespace Esquenta
@@ -15,16 +10,18 @@ namespace Esquenta
         public Main()
         {
             InitializeComponent();
+
+            new ConnectionService();
         }
 
         private void btnCaixa_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Caixa");
+            new Caixa().ShowDialog();
         }
 
         private void btnCadastro_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Cadastros");
+            new ListaProduto().ShowDialog();
         }
 
         private void bntRelatorio_Click(object sender, EventArgs e)

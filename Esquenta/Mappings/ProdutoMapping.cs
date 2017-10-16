@@ -1,23 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentNHibernate.Automapping;
+﻿using Esquenta.Entities;
 using FluentNHibernate.Automapping.Alterations;
-using Esquenta.Models;
 
 namespace Esquenta.Mappings
 {
-    class ProdutoMapping : IAutoMappingOverride<Produto>
+    public class ProdutoMapping : IAutoMappingOverride<Produto>
     {
-        public void Override(AutoMapping<Produto> mapping)
+        public void Override(FluentNHibernate.Automapping.AutoMapping<Produto> mapping)
         {
-            //mapping.Table("TAcaoRota");
-            //mapping.Id(x => x.IDAcaoRota).GeneratedBy.Native(x => x.AddParam("sequence", "SWS_TAcaoRota_ID"));
-
-            //mapping.Map(x => x.Descricao).UniqueKey("UK_TAcaoRota");
-            //mapping.Map(x => x.RouteAction, "AcaoRota").UniqueKey("UK_TAcaoRota"); ;
+            mapping.Table("Produto");
+            mapping.Id(x => x.Id, "IDProduto").GeneratedBy.Native(x => x.AddParam("sequence", "SWS_Produto_ID"));
         }
     }
 }
