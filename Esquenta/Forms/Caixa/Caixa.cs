@@ -16,6 +16,7 @@ namespace Esquenta.Forms.Caixa
             InitializeComponent();
             service = ConnectionService.GetInstance();
             lblAberturaCaixa.Text = "Data de abertura do caixa: " + Properties.Settings.Default.AberturaCaixa;
+            txtComanda.Focus();
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
@@ -46,6 +47,7 @@ namespace Esquenta.Forms.Caixa
                 service.GetVendaRepository().Save(venda);
 
                 ClearScreen();
+                txtComanda.Focus();
             }
             catch (Exception ex)
             {
@@ -76,6 +78,7 @@ namespace Esquenta.Forms.Caixa
                 lblValorTotal.Text = string.Format("R$ {0}", total);
 
                 dataGridView1.Rows.Add(new String[] { produto.Nome, produto.Valor.ToString() });
+                txtComanda.Focus();
             }
             catch (Exception ex)
             {
@@ -83,15 +86,20 @@ namespace Esquenta.Forms.Caixa
             }
         }
 
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        private void txtComanda_KeyDown(object sender, KeyEventArgs e)
         {
-            // ...
-            if (keyData == (Keys.Escape))
+            if (e.KeyCode == Keys.Enter)
             {
-                Close();
-                return true;
+                txtProduto.Focus();
             }
-            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void txtProduto_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnAdicionar.Focus();
+            }
         }
     }
 }
