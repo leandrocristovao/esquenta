@@ -101,6 +101,7 @@
             this.bntCadastroComandas.TabIndex = 5;
             this.bntCadastroComandas.Text = "Cadastro de Comandas";
             this.bntCadastroComandas.UseVisualStyleBackColor = true;
+            this.bntCadastroComandas.Click += new System.EventHandler(this.bntCadastroComandas_Click);
             // 
             // Main
             // 

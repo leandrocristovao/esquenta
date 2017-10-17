@@ -167,6 +167,8 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddProduto";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Adicionar/Editar Produto";
             this.ResumeLayout(false);

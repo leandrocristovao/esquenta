@@ -153,6 +153,8 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ListaProduto";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "Listagem de Produtos";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.ListaProduto_Load);

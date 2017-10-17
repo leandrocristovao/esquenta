@@ -101,6 +101,12 @@
     <Compile Include="Forms\Produto\ListaProduto.Designer.cs">
       <DependentUpon>ListaProduto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Relatorios\Vendas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Relatorios\Vendas.Designer.cs">
+      <DependentUpon>Vendas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,8 +130,14 @@
     <EmbeddedResource Include="Forms\Comandas\AddComanda.resx">
       <DependentUpon>AddComanda.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Comandas\ListaComanda.resx">
+      <DependentUpon>ListaComanda.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Produto\ListaProduto.resx">
       <DependentUpon>ListaProduto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Relatorios\Vendas.resx">
+      <DependentUpon>Vendas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
@@ -143,6 +155,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Esquenta.Entities.Comanda.datasource" />
     <None Include="Properties\DataSources\Esquenta.Entities.ItemVenda.datasource" />
     <None Include="Properties\DataSources\Esquenta.Entities.Produto.datasource" />
     <None Include="Properties\Settings.settings">

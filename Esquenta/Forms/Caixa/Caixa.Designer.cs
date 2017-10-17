@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblValorTotal = new System.Windows.Forms.Label();
+            this.btnAdicionar = new System.Windows.Forms.Button();
             this.btnGravar = new System.Windows.Forms.Button();
             this.txtProduto = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -37,12 +39,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnAdicionar = new System.Windows.Forms.Button();
-            this.lblValorTotal = new System.Windows.Forms.Label();
-            this.produtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.itemVendaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblAberturaCaixa = new System.Windows.Forms.Label();
+            this.produtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.itemVendaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -64,6 +65,28 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(287, 441);
             this.panel1.TabIndex = 0;
+            // 
+            // lblValorTotal
+            // 
+            this.lblValorTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblValorTotal.Location = new System.Drawing.Point(3, 290);
+            this.lblValorTotal.Name = "lblValorTotal";
+            this.lblValorTotal.Size = new System.Drawing.Size(278, 142);
+            this.lblValorTotal.TabIndex = 6;
+            this.lblValorTotal.Text = "R$ 0,00";
+            this.lblValorTotal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnAdicionar
+            // 
+            this.btnAdicionar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdicionar.Location = new System.Drawing.Point(3, 90);
+            this.btnAdicionar.Name = "btnAdicionar";
+            this.btnAdicionar.Size = new System.Drawing.Size(278, 23);
+            this.btnAdicionar.TabIndex = 5;
+            this.btnAdicionar.Text = "Adicionar";
+            this.btnAdicionar.UseVisualStyleBackColor = true;
+            this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
             // 
             // btnGravar
             // 
@@ -137,36 +160,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(337, 441);
             this.dataGridView1.TabIndex = 0;
             // 
-            // btnAdicionar
-            // 
-            this.btnAdicionar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdicionar.Location = new System.Drawing.Point(3, 90);
-            this.btnAdicionar.Name = "btnAdicionar";
-            this.btnAdicionar.Size = new System.Drawing.Size(278, 23);
-            this.btnAdicionar.TabIndex = 5;
-            this.btnAdicionar.Text = "Adicionar";
-            this.btnAdicionar.UseVisualStyleBackColor = true;
-            this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
-            // 
-            // lblValorTotal
-            // 
-            this.lblValorTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblValorTotal.Location = new System.Drawing.Point(3, 290);
-            this.lblValorTotal.Name = "lblValorTotal";
-            this.lblValorTotal.Size = new System.Drawing.Size(278, 142);
-            this.lblValorTotal.TabIndex = 6;
-            this.lblValorTotal.Text = "R$ 0,00";
-            this.lblValorTotal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // produtoBindingSource
-            // 
-            this.produtoBindingSource.DataSource = typeof(Esquenta.Entities.Produto);
-            // 
-            // itemVendaBindingSource
-            // 
-            this.itemVendaBindingSource.DataSource = typeof(Esquenta.Entities.ItemVenda);
-            // 
             // Nome
             // 
             this.Nome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -183,11 +176,30 @@
             this.Valor.ReadOnly = true;
             this.Valor.Width = 56;
             // 
+            // lblAberturaCaixa
+            // 
+            this.lblAberturaCaixa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblAberturaCaixa.AutoSize = true;
+            this.lblAberturaCaixa.Location = new System.Drawing.Point(12, 383);
+            this.lblAberturaCaixa.Name = "lblAberturaCaixa";
+            this.lblAberturaCaixa.Size = new System.Drawing.Size(196, 13);
+            this.lblAberturaCaixa.TabIndex = 7;
+            this.lblAberturaCaixa.Text = "Data de abertura do caixa: Não definida";
+            // 
+            // produtoBindingSource
+            // 
+            this.produtoBindingSource.DataSource = typeof(Esquenta.Entities.Produto);
+            // 
+            // itemVendaBindingSource
+            // 
+            this.itemVendaBindingSource.DataSource = typeof(Esquenta.Entities.ItemVenda);
+            // 
             // Caixa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 441);
+            this.Controls.Add(this.lblAberturaCaixa);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
@@ -204,6 +216,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.produtoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemVendaBindingSource)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -224,5 +237,6 @@
         private System.Windows.Forms.Label lblValorTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
         private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
+        private System.Windows.Forms.Label lblAberturaCaixa;
     }
 }

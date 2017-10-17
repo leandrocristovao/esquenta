@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.txtProduto = new System.Windows.Forms.TextBox();
+            this.txtNome = new System.Windows.Forms.TextBox();
             this.txtCodigoBarra = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -45,13 +45,14 @@
             this.btnCancelar.TabIndex = 20;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // txtProduto
+            // txtNome
             // 
-            this.txtProduto.Location = new System.Drawing.Point(15, 65);
-            this.txtProduto.Name = "txtProduto";
-            this.txtProduto.Size = new System.Drawing.Size(477, 20);
-            this.txtProduto.TabIndex = 12;
+            this.txtNome.Location = new System.Drawing.Point(15, 65);
+            this.txtNome.Name = "txtNome";
+            this.txtNome.Size = new System.Drawing.Size(477, 20);
+            this.txtNome.TabIndex = 12;
             // 
             // txtCodigoBarra
             // 
@@ -86,6 +87,7 @@
             this.btnSalvar.TabIndex = 19;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // AddComanda
             // 
@@ -95,7 +97,7 @@
             this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(504, 146);
             this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.txtProduto);
+            this.Controls.Add(this.txtNome);
             this.Controls.Add(this.txtCodigoBarra);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -104,6 +106,9 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddComanda";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Adicionar/Editar Comanda";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -113,7 +118,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.TextBox txtProduto;
+        private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.TextBox txtCodigoBarra;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;

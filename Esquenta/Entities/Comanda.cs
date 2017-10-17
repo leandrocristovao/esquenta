@@ -6,5 +6,6 @@ namespace Esquenta.Entities
     {
         public virtual int Id { get; protected set; }
         public virtual string Nome { get; set; }
+        public virtual string CodigoBarras { get; set; }
     }
 }

@@ -15,6 +15,7 @@ namespace Esquenta.Forms.Caixa
         {
             InitializeComponent();
             service = ConnectionService.GetInstance();
+            lblAberturaCaixa.Text = "Data de abertura do caixa: " + Properties.Settings.Default.AberturaCaixa;
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
