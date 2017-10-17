@@ -82,7 +82,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdicionar.Location = new System.Drawing.Point(3, 90);
             this.btnAdicionar.Name = "btnAdicionar";
-            this.btnAdicionar.Size = new System.Drawing.Size(278, 23);
+            this.btnAdicionar.Size = new System.Drawing.Size(281, 23);
             this.btnAdicionar.TabIndex = 5;
             this.btnAdicionar.Text = "Adicionar";
             this.btnAdicionar.UseVisualStyleBackColor = true;
@@ -94,7 +94,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGravar.Location = new System.Drawing.Point(3, 163);
             this.btnGravar.Name = "btnGravar";
-            this.btnGravar.Size = new System.Drawing.Size(278, 23);
+            this.btnGravar.Size = new System.Drawing.Size(281, 23);
             this.btnGravar.TabIndex = 4;
             this.btnGravar.Text = "Fechar Conta";
             this.btnGravar.UseVisualStyleBackColor = true;
@@ -106,8 +106,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtProduto.Location = new System.Drawing.Point(3, 64);
             this.txtProduto.Name = "txtProduto";
-            this.txtProduto.Size = new System.Drawing.Size(278, 20);
+            this.txtProduto.Size = new System.Drawing.Size(281, 20);
             this.txtProduto.TabIndex = 3;
+            this.txtProduto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtProduto_KeyDown);
             // 
             // label2
             // 
@@ -126,6 +127,7 @@
             this.txtComanda.Name = "txtComanda";
             this.txtComanda.Size = new System.Drawing.Size(281, 20);
             this.txtComanda.TabIndex = 1;
+            this.txtComanda.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtComanda_KeyDown);
             // 
             // label1
             // 
