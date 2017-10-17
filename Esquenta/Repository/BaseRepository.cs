@@ -1,15 +1,12 @@
-﻿using Esquenta.Entities;
-using Esquenta.Entities.Interfaces;
-using Esquenta.Repository.Interfaces;
+﻿using Esquenta.Repository.Interfaces;
 using NHibernate;
 using NHibernate.Linq;
-using NHibernate.Util;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Esquenta.Repository
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T : IBaseEntity
+    public class BaseRepository<T> : IBaseRepository<T> where T : class, new()
     {
         protected IBaseRepository<T> _baseElement;
         protected ISession _session;
@@ -19,7 +16,7 @@ namespace Esquenta.Repository
             _session = session;
         }
 
-        public void Delete(T entity)
+        public virtual void Delete(T entity)
         {
             using (var tran = _session.BeginTransaction())
             {
@@ -28,55 +25,17 @@ namespace Esquenta.Repository
             }
         }
 
-        public T Get(int id)
+        public virtual T Get(int id)
         {
             return _session.Get<T>(id);
         }
 
-        public List<T> List()
+        public virtual List<T> List()
         {
             return _session.Query<T>().ToList();
         }
 
-        public Venda Teste(Venda entity)
-        {
-            if (!_session.Transaction.IsActive)
-            {
-                using (var transaction = _session.BeginTransaction())
-                {
-                    _session.SaveOrUpdate(entity);
-                    entity.ItemVenda.ForEach(item =>
-                    {
-                        item.DataVenda = entity.DataVenda;
-                        _session.SaveOrUpdate(item);
-                    });
-
-                    ConnectionService service = ConnectionService.GetInstance();
-                    var controller = service.GetService<Produto>();
-                    var itensToUpdate = entity.ItemVenda.GroupBy(x => x.Produto.Id).Select(g => new { IDProduto = g.Key, Count = g.Count() }).ToList();
-                    itensToUpdate.ForEach(itemID =>
-                    {
-
-                        var item = controller.Get(itemID.IDProduto);
-                        item.Quantidade -= itemID.Count;
-                        controller.SaveOrUpdate(item);
-                    });
-
-                    _session.Flush();
-
-                    transaction.Commit();
-                }
-            }
-            else
-            {
-                _session.SaveOrUpdate(entity);
-                _session.Flush();
-            }
-
-            return entity;
-        }
-
-        public void Save(object entity)
+        public virtual void Save(object entity)
         {
             using (var tran = _session.BeginTransaction())
             {
@@ -85,7 +44,7 @@ namespace Esquenta.Repository
             }
         }
 
-        public T SaveOrUpdate(T entity)
+        public virtual T SaveOrUpdate(T entity)
         {
             //using (var tran = _session.BeginTransaction())
             //{
@@ -112,7 +71,7 @@ namespace Esquenta.Repository
             return entity;
         }
 
-        public T Save(T entity)
+        public virtual T Save(T entity)
         {
             using (var tran = _session.BeginTransaction())
             {
@@ -122,7 +81,7 @@ namespace Esquenta.Repository
             }
         }
 
-        public T Update(T entity)
+        public virtual T Update(T entity)
         {
             using (var tran = _session.BeginTransaction())
             {

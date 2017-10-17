@@ -22,7 +22,7 @@ namespace Esquenta.Forms.Comandas
 
         private void ReloadList()
         {
-            lista = service.GetService<Entities.Comanda>().List();
+            lista = service.GetComandaRepository().List();
             dataGridView1.DataSource = lista;
         }
 

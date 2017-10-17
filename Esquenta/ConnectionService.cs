@@ -1,6 +1,4 @@
-﻿using Esquenta.Entities;
-using Esquenta.Entities.Interfaces;
-using Esquenta.Repository;
+﻿using Esquenta.Repository;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
@@ -18,6 +16,11 @@ namespace Esquenta
         private const string DbFile = @"C:\Users\leandro\Desktop\DEV\esquenta.db";
         //private const string DbFile = @"esquenta.db";
 
+        private static ComandaRepository _comandaRepository = null;
+        private static ItemVendaRepository _itemVendaRepository = null;
+        private static ProdutoRepository _produtoRepository = null;
+        private static VendaRepository _vendaRepository = null;
+
         public ConnectionService()
         {
             CreateSessionFactory();
@@ -34,9 +37,41 @@ namespace Esquenta
 
             return instance;
         }
-        public BaseRepository<T> GetService<T>() where T: IBaseEntity
+
+        public ProdutoRepository GetProdutoRepository()
         {
-            return new BaseRepository<T>(sessionFactory.OpenSession());
+            if (_produtoRepository == null)
+            {
+                _produtoRepository = new ProdutoRepository(sessionFactory.OpenSession());
+            }
+            return _produtoRepository;
+        }
+
+        public VendaRepository GetVendaRepository()
+        {
+            if (_vendaRepository == null)
+            {
+                _vendaRepository = new VendaRepository(sessionFactory.OpenSession());
+            }
+            return _vendaRepository;
+        }
+
+        public ComandaRepository GetComandaRepository()
+        {
+            if (_comandaRepository == null)
+            {
+                _comandaRepository = new ComandaRepository(sessionFactory.OpenSession());
+            }
+            return _comandaRepository;
+        }
+
+        public ItemVendaRepository GetItemVendaRepository()
+        {
+            if (_itemVendaRepository == null)
+            {
+                _itemVendaRepository = new ItemVendaRepository(sessionFactory.OpenSession());
+            }
+            return _itemVendaRepository;
         }
 
         private static ISessionFactory CreateSessionFactory()

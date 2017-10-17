@@ -50,11 +50,11 @@ namespace Esquenta.Forms.Produto
 
             if (isNew)
             {
-                _service.GetService<Entities.Produto>().Save(_produto);
+                _service.GetProdutoRepository().Save(_produto);
             }
             else
             {
-                _service.GetService<Entities.Produto>().Update(_produto);
+                _service.GetProdutoRepository().Update(_produto);
             }
 
             Close();

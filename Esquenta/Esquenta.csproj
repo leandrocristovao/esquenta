@@ -122,7 +122,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Interfaces\IItemVendaRepository.cs" />
+    <Compile Include="Repository\Interfaces\IComandaRepository.cs" />
+    <Compile Include="Repository\Interfaces\IVendaRepository.cs" />
+    <Compile Include="Repository\ComandaRepository.cs" />
+    <Compile Include="Repository\ItemVendaRepository.cs" />
+    <Compile Include="Repository\VendaRepository.cs" />
+    <Compile Include="Repository\ProdutoRepository.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
+    <Compile Include="Repository\Interfaces\IProdutoRepository.cs" />
     <Compile Include="Repository\Interfaces\IBaseRepository.cs" />
     <EmbeddedResource Include="Forms\Caixa\Caixa.resx">
       <DependentUpon>Caixa.cs</DependentUpon>

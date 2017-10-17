@@ -52,11 +52,11 @@ namespace Esquenta.Forms.Comandas
 
             if (isNew)
             {
-                _service.GetService<Entities.Comanda>().Save(_comanda);
+                _service.GetComandaRepository().Save(_comanda);
             }
             else
             {
-                _service.GetService<Entities.Comanda>().Update(_comanda);
+                _service.GetComandaRepository().Update(_comanda);
             }
 
             Close();

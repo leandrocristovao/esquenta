@@ -14,15 +14,12 @@ namespace Esquenta
             InitializeComponent();
 
             new ConnectionService();
-            MessageBox.Show(Properties.Settings.Default.AberturaCaixa.ToString());
         }
 
         private void btnCaixa_Click(object sender, EventArgs e)
         {
             new Caixa().ShowDialog();
         }
-
-
 
         private void bntRelatorio_Click(object sender, EventArgs e)
         {

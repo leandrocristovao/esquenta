@@ -28,7 +28,7 @@ namespace Esquenta.Forms.Produto
 
         private void ReloadList()
         {
-            lista = service.GetService<Entities.Produto>().List();
+            lista = service.GetProdutoRepository().List();
             dataGridView1.DataSource = lista;
         }
 
