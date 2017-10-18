@@ -44,6 +44,8 @@
             this.Add = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Produto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtQuantidadeMinima = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -125,7 +127,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(97, 176);
+            this.label5.Location = new System.Drawing.Point(142, 176);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(31, 13);
             this.label5.TabIndex = 9;
@@ -133,10 +135,10 @@
             // 
             // txtValor
             // 
-            this.txtValor.Location = new System.Drawing.Point(100, 192);
+            this.txtValor.Location = new System.Drawing.Point(145, 192);
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(59, 20);
-            this.txtValor.TabIndex = 5;
+            this.txtValor.TabIndex = 6;
             // 
             // btnCancelar
             // 
@@ -180,6 +182,22 @@
             this.Produto.HeaderText = "Produto";
             this.Produto.Name = "Produto";
             // 
+            // txtQuantidadeMinima
+            // 
+            this.txtQuantidadeMinima.Location = new System.Drawing.Point(80, 192);
+            this.txtQuantidadeMinima.Name = "txtQuantidadeMinima";
+            this.txtQuantidadeMinima.Size = new System.Drawing.Size(59, 20);
+            this.txtQuantidadeMinima.TabIndex = 5;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(77, 176);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(42, 13);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Mínimo";
+            // 
             // AddProduto
             // 
             this.AcceptButton = this.btnSalvar;
@@ -187,6 +205,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(504, 540);
+            this.Controls.Add(this.txtQuantidadeMinima);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.txtValor);
@@ -232,5 +252,7 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn Add;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Produto;
+        private System.Windows.Forms.TextBox txtQuantidadeMinima;
+        private System.Windows.Forms.Label label6;
     }
 }

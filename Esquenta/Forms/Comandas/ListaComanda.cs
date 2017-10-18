@@ -20,12 +20,6 @@ namespace Esquenta.Forms.Comandas
             ReloadList();
         }
 
-        private void ReloadList()
-        {
-            lista = service.GetComandaRepository().List();
-            dataGridView1.DataSource = lista;
-        }
-
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             var comanda = lista[e.RowIndex];
@@ -37,6 +31,12 @@ namespace Esquenta.Forms.Comandas
         {
             new AddComanda(service).ShowDialog();
             ReloadList();
+        }
+
+        private void ReloadList()
+        {
+            lista = service.GetComandaRepository().List();
+            dataGridView1.DataSource = lista;
         }
     }
 }

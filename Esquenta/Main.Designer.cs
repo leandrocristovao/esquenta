@@ -31,13 +31,14 @@
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.sistemaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemCaixa = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuItemSair = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemProdutos = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemComandas = new System.Windows.Forms.ToolStripMenuItem();
             this.relatóriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemLivroCaixa = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuItemSair = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemEntradaProduto = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,6 +57,7 @@
             // sistemaToolStripMenuItem
             // 
             this.sistemaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemEntradaProduto,
             this.menuItemCaixa,
             this.toolStripSeparator1,
             this.menuItemSair});
@@ -66,9 +68,20 @@
             // menuItemCaixa
             // 
             this.menuItemCaixa.Name = "menuItemCaixa";
-            this.menuItemCaixa.Size = new System.Drawing.Size(152, 22);
+            this.menuItemCaixa.Size = new System.Drawing.Size(181, 22);
             this.menuItemCaixa.Text = "Caixa";
             this.menuItemCaixa.Click += new System.EventHandler(this.menuItemCaixa_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(178, 6);
+            // 
+            // menuItemSair
+            // 
+            this.menuItemSair.Name = "menuItemSair";
+            this.menuItemSair.Size = new System.Drawing.Size(181, 22);
+            this.menuItemSair.Text = "Sair";
             // 
             // cadastrosToolStripMenuItem
             // 
@@ -108,16 +121,12 @@
             this.menuItemLivroCaixa.Text = "Livro Caixa";
             this.menuItemLivroCaixa.Click += new System.EventHandler(this.menuItemLivroCaixa_Click);
             // 
-            // toolStripSeparator1
+            // menuItemEntradaProduto
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
-            // 
-            // menuItemSair
-            // 
-            this.menuItemSair.Name = "menuItemSair";
-            this.menuItemSair.Size = new System.Drawing.Size(152, 22);
-            this.menuItemSair.Text = "Sair";
+            this.menuItemEntradaProduto.Name = "menuItemEntradaProduto";
+            this.menuItemEntradaProduto.Size = new System.Drawing.Size(181, 22);
+            this.menuItemEntradaProduto.Text = "Entrada de Produtos";
+            this.menuItemEntradaProduto.Click += new System.EventHandler(this.menuItemEntradaProduto_Click);
             // 
             // Main
             // 
@@ -148,5 +157,6 @@
         private System.Windows.Forms.ToolStripMenuItem menuItemComandas;
         private System.Windows.Forms.ToolStripMenuItem relatóriosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuItemLivroCaixa;
+        private System.Windows.Forms.ToolStripMenuItem menuItemEntradaProduto;
     }
 }

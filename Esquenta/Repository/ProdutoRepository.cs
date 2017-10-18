@@ -11,11 +11,6 @@ namespace Esquenta.Repository
         {
         }
 
-        public override Produto Save(Produto entity)
-        {
-            return this.SaveOrUpdate(entity);
-        }
-
         public override Produto SaveOrUpdate(Produto entity)
         {
             ConnectionService service = ConnectionService.GetInstance();
@@ -56,11 +51,6 @@ namespace Esquenta.Repository
             }
 
             return entity;
-        }
-
-        public override Produto Update(Produto entity)
-        {
-            return this.SaveOrUpdate(entity);
         }
     }
 }

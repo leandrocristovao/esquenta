@@ -53,13 +53,6 @@ namespace Esquenta.Repository
 
         public virtual T SaveOrUpdate(T entity)
         {
-            //using (var tran = _session.BeginTransaction())
-            //{
-            //    _session.SaveOrUpdate(entity);
-            //    tran.Commit();
-            //    return entity;
-            //}
-
             if (!_session.Transaction.IsActive)
             {
                 using (var transaction = _session.BeginTransaction())
@@ -80,22 +73,24 @@ namespace Esquenta.Repository
 
         public virtual T Save(T entity)
         {
-            using (var tran = _session.BeginTransaction())
-            {
-                _session.Save(entity);
-                tran.Commit();
-                return entity;
-            }
+            //using (var tran = _session.BeginTransaction())
+            //{
+            //    _session.Save(entity);
+            //    tran.Commit();
+            //    return entity;
+            //}
+            return this.SaveOrUpdate(entity);
         }
 
         public virtual T Update(T entity)
         {
-            using (var tran = _session.BeginTransaction())
-            {
-                _session.Update(entity);
-                tran.Commit();
-                return entity;
-            }
+            //using (var tran = _session.BeginTransaction())
+            //{
+            //    _session.Update(entity);
+            //    tran.Commit();
+            //    return entity;
+            //}
+            return this.SaveOrUpdate(entity);
         }
     }
 }

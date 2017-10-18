@@ -97,6 +97,18 @@
     <Compile Include="Forms\Comandas\ListaComanda.Designer.cs">
       <DependentUpon>ListaComanda.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\EntradaProduto\AddEntradaProduto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EntradaProduto\AddEntradaProduto.Designer.cs">
+      <DependentUpon>AddEntradaProduto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EntradaProduto\ListaEntradaProduto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EntradaProduto\ListaEntradaProduto.Designer.cs">
+      <DependentUpon>ListaEntradaProduto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Produto\ListaProduto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +136,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Interfaces\IEntradaProdutoRepository.cs" />
     <Compile Include="Repository\ProdutoItemRepository.cs" />
     <Compile Include="Repository\Interfaces\IProdutoItem.cs" />
     <Compile Include="Repository\Interfaces\IItemVendaRepository.cs" />
@@ -131,6 +144,7 @@
     <Compile Include="Repository\Interfaces\IVendaRepository.cs" />
     <Compile Include="Repository\ComandaRepository.cs" />
     <Compile Include="Repository\ItemVendaRepository.cs" />
+    <Compile Include="Repository\EntradaProdutoRepository.cs" />
     <Compile Include="Repository\VendaRepository.cs" />
     <Compile Include="Repository\ProdutoRepository.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
@@ -144,6 +158,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Comandas\ListaComanda.resx">
       <DependentUpon>ListaComanda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EntradaProduto\AddEntradaProduto.resx">
+      <DependentUpon>AddEntradaProduto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EntradaProduto\ListaEntradaProduto.resx">
+      <DependentUpon>ListaEntradaProduto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Produto\ListaProduto.resx">
       <DependentUpon>ListaProduto.cs</DependentUpon>

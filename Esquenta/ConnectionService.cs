@@ -21,7 +21,8 @@ namespace Esquenta
         private static ItemVendaRepository _itemVendaRepository = null;
         private static ProdutoRepository _produtoRepository = null;
         private static VendaRepository _vendaRepository = null;
-        private static ProdutoItemRepository _produtoItemRepository = null; 
+        private static ProdutoItemRepository _produtoItemRepository = null;
+        private static EntradaProdutoRepository _entradaProdutoRepository = null;
 
         public ConnectionService()
         {
@@ -83,6 +84,15 @@ namespace Esquenta
                 _produtoItemRepository = new ProdutoItemRepository(sessionFactory.OpenSession());
             }
             return _produtoItemRepository;
+        }
+
+        public EntradaProdutoRepository GetEntradaProdutoRepository()
+        {
+            if (_entradaProdutoRepository == null)
+            {
+                _entradaProdutoRepository = new EntradaProdutoRepository(sessionFactory.OpenSession());
+            }
+            return _entradaProdutoRepository;
         }
 
         private static ISessionFactory CreateSessionFactory()

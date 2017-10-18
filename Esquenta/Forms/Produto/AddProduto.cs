@@ -54,6 +54,7 @@ namespace Esquenta.Forms.Produto
             _produto.Descricao = txtDescricao.Text;
             _produto.Nome = txtProduto.Text;
             _produto.Quantidade = int.Parse(txtQuantidade.Text);
+            _produto.QuantidadeMinima = int.Parse(txtQuantidadeMinima.Text);
             _produto.Valor = decimal.Parse(txtValor.Text);
 
             var counter = dataGridView1.Rows.Count;
