@@ -5,6 +5,7 @@ using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
+using System.IO;
 
 namespace Esquenta
 {
@@ -13,13 +14,14 @@ namespace Esquenta
         private static ConnectionService instance = null;
 
         private ISessionFactory sessionFactory = CreateSessionFactory();
-        private const string DbFile = @"C:\Users\leandro.cristovao\Desktop\DEV\esquenta.db";
-        //private const string DbFile = @"esquenta.db";
+        //private const string DbFile = @"C:\Users\leandro.cristovao\Desktop\DEV\esquenta.db";
+        private const string DbFile = @"esquenta.db";
 
         private static ComandaRepository _comandaRepository = null;
         private static ItemVendaRepository _itemVendaRepository = null;
         private static ProdutoRepository _produtoRepository = null;
         private static VendaRepository _vendaRepository = null;
+        private static ProdutoItemRepository _produtoItemRepository = null; 
 
         public ConnectionService()
         {
@@ -74,6 +76,15 @@ namespace Esquenta
             return _itemVendaRepository;
         }
 
+        public ProdutoItemRepository GetProdutoItemRepository()
+        {
+            if (_produtoItemRepository == null)
+            {
+                _produtoItemRepository = new ProdutoItemRepository(sessionFactory.OpenSession());
+            }
+            return _produtoItemRepository;
+        }
+
         private static ISessionFactory CreateSessionFactory()
         {
             AutoPersistenceModel model = AutoMap
@@ -82,18 +93,18 @@ namespace Esquenta
 
             return Fluently.Configure()
 
-                .Database(SQLiteConfiguration.Standard
-                .UsingFile(DbFile))
-                .ExposeConfiguration(BuildSchema)
+                //.Database(SQLiteConfiguration.Standard
+                //.UsingFile(DbFile))
+                //.ExposeConfiguration(BuildSchema)
 
-                //.Database(MsSqlConfiguration.MsSql2008
-                //.ShowSql()
-                //.ConnectionString(c => c
-                //    .Server("localhost")
-                //    .Database("esquenta")
-                //    .Username("sa")
-                //    .Password("$splfiscal10"))
-                //   )
+                .Database(MsSqlConfiguration.MsSql2008
+                .ShowSql()
+                .ConnectionString(c => c
+                    .Server("localhost")
+                    .Database("esquenta")
+                    .Username("sa")
+                    .Password("$splfiscal10"))
+                   )
 
                 .Mappings(m => m.AutoMappings.Add(model))
                 .BuildSessionFactory();

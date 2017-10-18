@@ -149,14 +149,10 @@
             this.ClientSize = new System.Drawing.Size(624, 441);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "ListaProduto";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "Listagem de Produtos";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.ListaProduto_Load);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);

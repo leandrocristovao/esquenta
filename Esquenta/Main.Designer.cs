@@ -28,101 +28,125 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnCaixa = new System.Windows.Forms.Button();
-            this.bntRelatorio = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnCadastroProdutos = new System.Windows.Forms.Button();
-            this.bntCadastroComandas = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.mainMenu = new System.Windows.Forms.MenuStrip();
+            this.sistemaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemCaixa = new System.Windows.Forms.ToolStripMenuItem();
+            this.cadastrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemProdutos = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemComandas = new System.Windows.Forms.ToolStripMenuItem();
+            this.relatóriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemLivroCaixa = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuItemSair = new System.Windows.Forms.ToolStripMenuItem();
+            this.mainMenu.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnCaixa
+            // mainMenu
             // 
-            this.btnCaixa.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCaixa.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCaixa.Location = new System.Drawing.Point(3, 213);
-            this.btnCaixa.Name = "btnCaixa";
-            this.btnCaixa.Size = new System.Drawing.Size(306, 204);
-            this.btnCaixa.TabIndex = 0;
-            this.btnCaixa.Text = "Caixa";
-            this.btnCaixa.UseVisualStyleBackColor = true;
-            this.btnCaixa.Click += new System.EventHandler(this.btnCaixa_Click);
+            this.mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sistemaToolStripMenuItem,
+            this.cadastrosToolStripMenuItem,
+            this.relatóriosToolStripMenuItem});
+            this.mainMenu.Location = new System.Drawing.Point(0, 0);
+            this.mainMenu.Name = "mainMenu";
+            this.mainMenu.Size = new System.Drawing.Size(624, 24);
+            this.mainMenu.TabIndex = 5;
+            this.mainMenu.Text = "menuStrip1";
             // 
-            // bntRelatorio
+            // sistemaToolStripMenuItem
             // 
-            this.bntRelatorio.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bntRelatorio.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bntRelatorio.Location = new System.Drawing.Point(315, 213);
-            this.bntRelatorio.Name = "bntRelatorio";
-            this.bntRelatorio.Size = new System.Drawing.Size(306, 204);
-            this.bntRelatorio.TabIndex = 2;
-            this.bntRelatorio.Text = "Relatórios";
-            this.bntRelatorio.UseVisualStyleBackColor = true;
-            this.bntRelatorio.Click += new System.EventHandler(this.bntRelatorio_Click);
+            this.sistemaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemCaixa,
+            this.toolStripSeparator1,
+            this.menuItemSair});
+            this.sistemaToolStripMenuItem.Name = "sistemaToolStripMenuItem";
+            this.sistemaToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.sistemaToolStripMenuItem.Text = "Sistema";
             // 
-            // tableLayoutPanel1
+            // menuItemCaixa
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.btnCadastroProdutos, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.bntRelatorio, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.bntCadastroComandas, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnCaixa, 0, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(624, 441);
-            this.tableLayoutPanel1.TabIndex = 4;
+            this.menuItemCaixa.Name = "menuItemCaixa";
+            this.menuItemCaixa.Size = new System.Drawing.Size(152, 22);
+            this.menuItemCaixa.Text = "Caixa";
+            this.menuItemCaixa.Click += new System.EventHandler(this.menuItemCaixa_Click);
             // 
-            // btnCadastroProdutos
+            // cadastrosToolStripMenuItem
             // 
-            this.btnCadastroProdutos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCadastroProdutos.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCadastroProdutos.Location = new System.Drawing.Point(3, 3);
-            this.btnCadastroProdutos.Name = "btnCadastroProdutos";
-            this.btnCadastroProdutos.Size = new System.Drawing.Size(306, 204);
-            this.btnCadastroProdutos.TabIndex = 2;
-            this.btnCadastroProdutos.Text = "Cadastro de Produtos";
-            this.btnCadastroProdutos.UseVisualStyleBackColor = true;
-            this.btnCadastroProdutos.Click += new System.EventHandler(this.btnCadastroProdutos_Click);
+            this.cadastrosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemProdutos,
+            this.menuItemComandas});
+            this.cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
+            this.cadastrosToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.cadastrosToolStripMenuItem.Text = "Cadastros";
             // 
-            // bntCadastroComandas
+            // menuItemProdutos
             // 
-            this.bntCadastroComandas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bntCadastroComandas.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bntCadastroComandas.Location = new System.Drawing.Point(315, 3);
-            this.bntCadastroComandas.Name = "bntCadastroComandas";
-            this.bntCadastroComandas.Size = new System.Drawing.Size(306, 204);
-            this.bntCadastroComandas.TabIndex = 5;
-            this.bntCadastroComandas.Text = "Cadastro de Comandas";
-            this.bntCadastroComandas.UseVisualStyleBackColor = true;
-            this.bntCadastroComandas.Click += new System.EventHandler(this.bntCadastroComandas_Click);
+            this.menuItemProdutos.Name = "menuItemProdutos";
+            this.menuItemProdutos.Size = new System.Drawing.Size(152, 22);
+            this.menuItemProdutos.Text = "Produtos";
+            this.menuItemProdutos.Click += new System.EventHandler(this.menuItemProdutos_Click);
+            // 
+            // menuItemComandas
+            // 
+            this.menuItemComandas.Name = "menuItemComandas";
+            this.menuItemComandas.Size = new System.Drawing.Size(152, 22);
+            this.menuItemComandas.Text = "Comandas";
+            this.menuItemComandas.Click += new System.EventHandler(this.menuItemComandas_Click);
+            // 
+            // relatóriosToolStripMenuItem
+            // 
+            this.relatóriosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemLivroCaixa});
+            this.relatóriosToolStripMenuItem.Name = "relatóriosToolStripMenuItem";
+            this.relatóriosToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.relatóriosToolStripMenuItem.Text = "Relatórios";
+            // 
+            // menuItemLivroCaixa
+            // 
+            this.menuItemLivroCaixa.Name = "menuItemLivroCaixa";
+            this.menuItemLivroCaixa.Size = new System.Drawing.Size(152, 22);
+            this.menuItemLivroCaixa.Text = "Livro Caixa";
+            this.menuItemLivroCaixa.Click += new System.EventHandler(this.menuItemLivroCaixa_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // menuItemSair
+            // 
+            this.menuItemSair.Name = "menuItemSair";
+            this.menuItemSair.Size = new System.Drawing.Size(152, 22);
+            this.menuItemSair.Text = "Sair";
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 441);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.mainMenu);
+            this.IsMdiContainer = true;
+            this.MainMenuStrip = this.mainMenu;
             this.Name = "Main";
             this.Text = "Esquenta";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.mainMenu.ResumeLayout(false);
+            this.mainMenu.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnCaixa;
-        private System.Windows.Forms.Button bntRelatorio;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button btnCadastroProdutos;
-        private System.Windows.Forms.Button bntCadastroComandas;
+        private System.Windows.Forms.MenuStrip mainMenu;
+        private System.Windows.Forms.ToolStripMenuItem sistemaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuItemCaixa;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem menuItemSair;
+        private System.Windows.Forms.ToolStripMenuItem cadastrosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuItemProdutos;
+        private System.Windows.Forms.ToolStripMenuItem menuItemComandas;
+        private System.Windows.Forms.ToolStripMenuItem relatóriosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuItemLivroCaixa;
     }
 }

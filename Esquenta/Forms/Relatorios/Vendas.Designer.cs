@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.BtnFecharCaixa = new System.Windows.Forms.Button();
-            this.ValorTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Produto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.lblTotalItens = new System.Windows.Forms.Label();
             this.lblTotalVendas = new System.Windows.Forms.Label();
+            this.lblTotalItens = new System.Windows.Forms.Label();
+            this.BtnFecharCaixa = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Produto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ValorTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estoque = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -55,14 +55,23 @@
             this.panel2.Size = new System.Drawing.Size(624, 45);
             this.panel2.TabIndex = 6;
             // 
-            // panel1
+            // lblTotalVendas
             // 
-            this.panel1.Controls.Add(this.dataGridView1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 45);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(624, 396);
-            this.panel1.TabIndex = 7;
+            this.lblTotalVendas.AutoSize = true;
+            this.lblTotalVendas.Location = new System.Drawing.Point(12, 29);
+            this.lblTotalVendas.Name = "lblTotalVendas";
+            this.lblTotalVendas.Size = new System.Drawing.Size(153, 13);
+            this.lblTotalVendas.TabIndex = 2;
+            this.lblTotalVendas.Text = "Valor total em vendas: R$ 0,00";
+            // 
+            // lblTotalItens
+            // 
+            this.lblTotalItens.AutoSize = true;
+            this.lblTotalItens.Location = new System.Drawing.Point(12, 9);
+            this.lblTotalItens.Name = "lblTotalItens";
+            this.lblTotalItens.Size = new System.Drawing.Size(129, 13);
+            this.lblTotalItens.TabIndex = 1;
+            this.lblTotalItens.Text = "Total de itens vendidos: 0";
             // 
             // BtnFecharCaixa
             // 
@@ -75,30 +84,14 @@
             this.BtnFecharCaixa.UseVisualStyleBackColor = true;
             this.BtnFecharCaixa.Click += new System.EventHandler(this.BtnFecharCaixa_Click);
             // 
-            // ValorTotal
+            // panel1
             // 
-            this.ValorTotal.HeaderText = "Valor Total";
-            this.ValorTotal.Name = "ValorTotal";
-            this.ValorTotal.ReadOnly = true;
-            // 
-            // Valor
-            // 
-            this.Valor.HeaderText = "Valor Unitário";
-            this.Valor.Name = "Valor";
-            this.Valor.ReadOnly = true;
-            // 
-            // Quantidade
-            // 
-            this.Quantidade.HeaderText = "Quantidade";
-            this.Quantidade.Name = "Quantidade";
-            this.Quantidade.ReadOnly = true;
-            // 
-            // Produto
-            // 
-            this.Produto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Produto.HeaderText = "Produto";
-            this.Produto.Name = "Produto";
-            this.Produto.ReadOnly = true;
+            this.panel1.Controls.Add(this.dataGridView1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 45);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(624, 396);
+            this.panel1.TabIndex = 7;
             // 
             // dataGridView1
             // 
@@ -119,23 +112,30 @@
             this.dataGridView1.Size = new System.Drawing.Size(624, 396);
             this.dataGridView1.TabIndex = 1;
             // 
-            // lblTotalItens
+            // Produto
             // 
-            this.lblTotalItens.AutoSize = true;
-            this.lblTotalItens.Location = new System.Drawing.Point(12, 9);
-            this.lblTotalItens.Name = "lblTotalItens";
-            this.lblTotalItens.Size = new System.Drawing.Size(129, 13);
-            this.lblTotalItens.TabIndex = 1;
-            this.lblTotalItens.Text = "Total de itens vendidos: 0";
+            this.Produto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Produto.HeaderText = "Produto";
+            this.Produto.Name = "Produto";
+            this.Produto.ReadOnly = true;
             // 
-            // lblTotalVendas
+            // Quantidade
             // 
-            this.lblTotalVendas.AutoSize = true;
-            this.lblTotalVendas.Location = new System.Drawing.Point(12, 29);
-            this.lblTotalVendas.Name = "lblTotalVendas";
-            this.lblTotalVendas.Size = new System.Drawing.Size(153, 13);
-            this.lblTotalVendas.TabIndex = 2;
-            this.lblTotalVendas.Text = "Valor total em vendas: R$ 0,00";
+            this.Quantidade.HeaderText = "Quantidade";
+            this.Quantidade.Name = "Quantidade";
+            this.Quantidade.ReadOnly = true;
+            // 
+            // Valor
+            // 
+            this.Valor.HeaderText = "Valor Unitário";
+            this.Valor.Name = "Valor";
+            this.Valor.ReadOnly = true;
+            // 
+            // ValorTotal
+            // 
+            this.ValorTotal.HeaderText = "Valor Total";
+            this.ValorTotal.Name = "ValorTotal";
+            this.ValorTotal.ReadOnly = true;
             // 
             // Estoque
             // 
@@ -150,14 +150,11 @@
             this.ClientSize = new System.Drawing.Size(624, 441);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "Vendas";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Relatório de Vendas";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Vendas_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

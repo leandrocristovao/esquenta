@@ -204,13 +204,10 @@
             this.Controls.Add(this.lblAberturaCaixa);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "Caixa";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "Caixa";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

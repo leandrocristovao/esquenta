@@ -27,12 +27,22 @@ namespace Esquenta.Repository
 
                     ConnectionService service = ConnectionService.GetInstance();
                     var controller = service.GetProdutoRepository();
-                    var itensToUpdate = entity.ItemVenda.GroupBy(x => x.Produto.Id).Select(g => new { IDProduto = g.Key, Count = g.Count() }).ToList();
-                    itensToUpdate.ForEach(itemID =>
+                    //var itensToUpdate = entity.ItemVenda.GroupBy(x => x.Produto.Id).Select(g => new { IDProduto = g.Key, Count = g.Count() }).ToList();
+                    //itensToUpdate.ForEach(itemID =>
+                    //{
+                    //    var item = controller.Get(itemID.IDProduto);
+                    //    item.Quantidade -= itemID.Count;
+                    //    controller.SaveOrUpdate(item);
+                    //});
+
+                    entity.ItemVenda.ForEach(item =>
                     {
-                        var item = controller.Get(itemID.IDProduto);
-                        item.Quantidade -= itemID.Count;
-                        controller.SaveOrUpdate(item);
+                        item.Produto.Itens.ForEach(subIten =>
+                        {
+                            var update = controller.Get(subIten.Produto.Id);
+                            update.Quantidade --;
+                            controller.SaveOrUpdate(update);
+                        });
                     });
 
                     _session.Flush();

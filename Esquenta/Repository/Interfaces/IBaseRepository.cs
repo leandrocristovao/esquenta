@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace Esquenta.Repository.Interfaces
 {
@@ -17,5 +19,6 @@ namespace Esquenta.Repository.Interfaces
         T Get(int id);
 
         List<T> List();
+        List<T> List(Expression<Func<T, bool>> filter);
     }
 }

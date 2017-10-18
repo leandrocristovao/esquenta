@@ -1,8 +1,10 @@
 ﻿using Esquenta.Repository.Interfaces;
 using NHibernate;
 using NHibernate.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace Esquenta.Repository
 {
@@ -33,6 +35,11 @@ namespace Esquenta.Repository
         public virtual List<T> List()
         {
             return _session.Query<T>().ToList();
+        }
+
+        public virtual List<T> List(Expression<Func<T, bool>> filter)
+        {
+            return _session.Query<T>().Where(filter).ToList();
         }
 
         public virtual void Save(object entity)
