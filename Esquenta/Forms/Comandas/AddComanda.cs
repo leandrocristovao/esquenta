@@ -40,6 +40,18 @@ namespace Esquenta.Forms.Comandas
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtCodigoBarra.Text))
+            {
+                MessageBox.Show("O codigo de barras deve ser preenchido.");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txtNome.Text))
+            {
+                MessageBox.Show("O nome deve ser preenchido.");
+                return;
+            }
+
             bool isNew = false;
             if (_comanda == null)
             {
@@ -50,6 +62,7 @@ namespace Esquenta.Forms.Comandas
             _comanda.CodigoBarras = txtCodigoBarra.Text;
             _comanda.Nome = txtNome.Text;
 
+            //TODO Leandro: Mudar para SaveOrUpdate
             if (isNew)
             {
                 _service.GetComandaRepository().Save(_comanda);
