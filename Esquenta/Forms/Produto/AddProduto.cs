@@ -17,33 +17,58 @@ namespace Esquenta.Forms.Produto
         public AddProduto(ConnectionService service)
         {
             InitializeComponent();
+
             _service = service;
+            LoadItens();
         }
 
         public AddProduto(ConnectionService service, Entities.Produto produto)
         {
             InitializeComponent();
+
             _service = service;
             _produto = produto;
 
             if (_produto != null)
             {
+                txtCodigoBarra.Text = _produto.CodigoBarras;
                 txtDescricao.Text = _produto.Descricao;
                 txtProduto.Text = _produto.Nome;
+                txtQuantidadeMinima.Text = _produto.QuantidadeMinima.ToString();
                 txtQuantidade.Text = _produto.Quantidade.ToString();
                 txtValor.Text = _produto.Valor.ToString();
             }
 
-            var itens = _service.GetProdutoRepository().List();
-            itens.ForEach(item =>
-            {
-                var selecionado = _produto.Itens.Where(x => x.Produto == item).Count() > 0;
-                dataGridView1.Rows.Add(new object[] { selecionado, item.Id, item.Nome });
-            });
+            LoadItens();
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
+
+            if (string.IsNullOrEmpty(txtCodigoBarra.Text))
+            {
+                MessageBox.Show("O código de barras deve ser preenchido.");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txtProduto.Text))
+            {
+                MessageBox.Show("O nome do produto deve ser preenchido.");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txtQuantidadeMinima.Text))
+            {
+                MessageBox.Show("A quantidade mínima deve ser preenchido.");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txtValor.Text))
+            {
+                MessageBox.Show("O valor deve ser preenchido.");
+                return;
+            }
+
             bool isNew = false;
             if (_produto == null)
             {
@@ -51,9 +76,10 @@ namespace Esquenta.Forms.Produto
                 _produto = new Entities.Produto();
             }
 
+            _produto.CodigoBarras = txtCodigoBarra.Text;
             _produto.Descricao = txtDescricao.Text;
             _produto.Nome = txtProduto.Text;
-            _produto.Quantidade = int.Parse(txtQuantidade.Text);
+            //_produto.Quantidade = int.Parse(txtQuantidade.Text);
             _produto.QuantidadeMinima = int.Parse(txtQuantidadeMinima.Text);
             _produto.Valor = decimal.Parse(txtValor.Text);
 
@@ -70,12 +96,22 @@ namespace Esquenta.Forms.Produto
                     var found = _produto.Itens.FirstOrDefault(x => x.Produto.Id == id);
                     if (found == null)
                     {
+                        var quantidade = 0;
+                        var strQuantidade = dataGridView1.Rows[i].Cells["Quantidade"].Value;
+                        int.TryParse("" + strQuantidade, out quantidade);
+
+                        if (quantidade == 0)
+                        {
+                            MessageBox.Show(string.Format("Necessário preencher a quantidade para o itens {0}", produto));
+                            return;
+                        }
+
                         _produto.Itens.Add(new Entities.ProdutoItem
                         {
                             //Evict??
                             Produto = _service.GetProdutoRepository().Get(id),
                             Parent = _produto,
-                            Quantidade = 1
+                            Quantidade = quantidade
                         });
                     }
                 }
@@ -105,6 +141,27 @@ namespace Esquenta.Forms.Produto
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void LoadItens()
+        {
+            var itens = _service.GetProdutoRepository().List();
+            itens.ForEach(item =>
+            {
+                var selecionado = false;
+                int quantidade = 0;
+                if (_produto != null)
+                {
+                    var produtoItem = _produto.Itens.Where(x => x.Produto == item).FirstOrDefault();
+                    if (produtoItem != null)
+                    {
+                        selecionado = true;
+                        quantidade = produtoItem.Quantidade;
+                    }
+
+                }
+                dataGridView1.Rows.Add(new object[] { selecionado, item.Id, item.Nome, quantidade });
+            });
         }
     }
 }

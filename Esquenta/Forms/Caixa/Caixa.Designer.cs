@@ -42,6 +42,10 @@
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblAberturaCaixa = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtValorPago = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtTroco = new System.Windows.Forms.TextBox();
             this.produtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.itemVendaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
@@ -53,6 +57,11 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lblAberturaCaixa);
+            this.panel1.Controls.Add(this.txtTroco);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.txtValorPago);
+            this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.lblValorTotal);
             this.panel1.Controls.Add(this.btnAdicionar);
             this.panel1.Controls.Add(this.btnGravar);
@@ -69,9 +78,9 @@
             // lblValorTotal
             // 
             this.lblValorTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblValorTotal.Location = new System.Drawing.Point(3, 290);
+            this.lblValorTotal.Location = new System.Drawing.Point(3, 313);
             this.lblValorTotal.Name = "lblValorTotal";
-            this.lblValorTotal.Size = new System.Drawing.Size(278, 142);
+            this.lblValorTotal.Size = new System.Drawing.Size(278, 106);
             this.lblValorTotal.TabIndex = 6;
             this.lblValorTotal.Text = "R$ 0,00";
             this.lblValorTotal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -92,7 +101,7 @@
             // 
             this.btnGravar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGravar.Location = new System.Drawing.Point(3, 163);
+            this.btnGravar.Location = new System.Drawing.Point(3, 119);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(281, 23);
             this.btnGravar.TabIndex = 4;
@@ -182,11 +191,54 @@
             // 
             this.lblAberturaCaixa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblAberturaCaixa.AutoSize = true;
-            this.lblAberturaCaixa.Location = new System.Drawing.Point(12, 383);
+            this.lblAberturaCaixa.Location = new System.Drawing.Point(3, 419);
             this.lblAberturaCaixa.Name = "lblAberturaCaixa";
             this.lblAberturaCaixa.Size = new System.Drawing.Size(196, 13);
             this.lblAberturaCaixa.TabIndex = 7;
             this.lblAberturaCaixa.Text = "Data de abertura do caixa: Não definida";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 145);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(58, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Valor pago";
+            // 
+            // txtValorPago
+            // 
+            this.txtValorPago.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtValorPago.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtValorPago.Location = new System.Drawing.Point(3, 161);
+            this.txtValorPago.Name = "txtValorPago";
+            this.txtValorPago.Size = new System.Drawing.Size(281, 30);
+            this.txtValorPago.TabIndex = 8;
+            this.txtValorPago.TextChanged += new System.EventHandler(this.txtValorPago_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 193);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Troco";
+            // 
+            // txtTroco
+            // 
+            this.txtTroco.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTroco.Enabled = false;
+            this.txtTroco.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTroco.ForeColor = System.Drawing.Color.LightGreen;
+            this.txtTroco.Location = new System.Drawing.Point(3, 209);
+            this.txtTroco.Name = "txtTroco";
+            this.txtTroco.ReadOnly = true;
+            this.txtTroco.Size = new System.Drawing.Size(281, 31);
+            this.txtTroco.TabIndex = 10;
+            this.txtTroco.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // produtoBindingSource
             // 
@@ -201,7 +253,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 441);
-            this.Controls.Add(this.lblAberturaCaixa);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "Caixa";
@@ -215,7 +266,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.produtoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemVendaBindingSource)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -237,5 +287,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
         private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
         private System.Windows.Forms.Label lblAberturaCaixa;
+        private System.Windows.Forms.TextBox txtTroco;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtValorPago;
+        private System.Windows.Forms.Label label3;
     }
 }

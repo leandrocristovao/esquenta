@@ -1,6 +1,7 @@
 ﻿using Esquenta.Entities;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -10,6 +11,7 @@ namespace Esquenta.Forms.Caixa
     {
         private ConnectionService service;
         private List<Entities.Produto> itens = new List<Entities.Produto>();
+        private decimal valorVenda = 0;
 
         public Caixa()
         {
@@ -60,6 +62,7 @@ namespace Esquenta.Forms.Caixa
             dataGridView1.Rows.Clear();
             itens.Clear();
             lblValorTotal.Text = "R$ 0,00";
+            valorVenda = 0;
         }
 
         private void btnAdicionar_Click(object sender, EventArgs e)
@@ -74,8 +77,8 @@ namespace Esquenta.Forms.Caixa
                 }
                 itens.Add(produto);
 
-                var total = itens.Sum(x => x.Valor);
-                lblValorTotal.Text = string.Format("R$ {0}", total);
+                valorVenda = itens.Sum(x => x.Valor);
+                lblValorTotal.Text = string.Format("R$ {0}", valorVenda);
 
                 dataGridView1.Rows.Add(new String[] { produto.Nome, produto.Valor.ToString() });
                 txtComanda.Focus();
@@ -100,6 +103,15 @@ namespace Esquenta.Forms.Caixa
             {
                 btnAdicionar.Focus();
             }
+        }
+
+        private void txtValorPago_TextChanged(object sender, EventArgs e)
+        {
+            var strValue = ((TextBox)sender).Text;
+            decimal decValue = 0;
+            decimal.TryParse(strValue, System.Globalization.NumberStyles.Any, CultureInfo.InvariantCulture, out decValue);
+
+            txtTroco.Text = (decValue - valorVenda).ToString();
         }
     }
 }

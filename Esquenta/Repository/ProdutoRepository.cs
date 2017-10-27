@@ -32,13 +32,13 @@ namespace Esquenta.Repository
                     }
 
                     _session.SaveOrUpdate(entity);
-
                     //Removo da lista, noovs itens que ja estao no sistema
                     entity.Itens.ForEach(itemVenda =>
                     {
-                        controller.SaveOrUpdate(itemVenda);
+                        //controller.SaveOrUpdate(itemVenda);
+                        _session.SaveOrUpdate(itemVenda);
                     });
-
+                    
                     _session.Flush();
 
                     transaction.Commit();
