@@ -32,7 +32,7 @@ namespace Esquenta.Forms.EntradaProduto
 
         private void AddEntradaProduto_Load(object sender, EventArgs e)
         {
-            produtoBindingSource.DataSource = _service.GetProdutoRepository().List();
+            produtoBindingSource.DataSource = _service.GetProdutoRepository().List(x=>x.Itens.Count == 1);
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

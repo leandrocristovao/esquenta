@@ -29,6 +29,7 @@ namespace Esquenta.Forms.EntradaProduto
 
         private void ReloadList()
         {
+            dataGridView1.Rows.Clear();
             lista = service.GetEntradaProdutoRepository().List();
             lista.ForEach(item =>
             {
