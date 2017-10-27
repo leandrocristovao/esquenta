@@ -41,15 +41,18 @@
             this.txtComanda = new System.Windows.Forms.TextBox();
             this.lblStatus = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnCalcular = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.btnCalcularFechar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnCalcular = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.btnCancelarVenda = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             this.produtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.itemVendaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lblNomeComanda = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -59,6 +62,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lblNomeComanda);
             this.panel1.Controls.Add(this.txtDesconto);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.lblAberturaCaixa);
@@ -72,7 +76,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(287, 497);
+            this.panel1.Size = new System.Drawing.Size(287, 511);
             this.panel1.TabIndex = 0;
             // 
             // txtDesconto
@@ -87,6 +91,7 @@
             this.txtDesconto.ReadOnly = true;
             this.txtDesconto.Size = new System.Drawing.Size(246, 30);
             this.txtDesconto.TabIndex = 12;
+            this.txtDesconto.TabStop = false;
             this.txtDesconto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label5
@@ -102,7 +107,7 @@
             // 
             this.lblAberturaCaixa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblAberturaCaixa.AutoSize = true;
-            this.lblAberturaCaixa.Location = new System.Drawing.Point(3, 475);
+            this.lblAberturaCaixa.Location = new System.Drawing.Point(3, 489);
             this.lblAberturaCaixa.Name = "lblAberturaCaixa";
             this.lblAberturaCaixa.Size = new System.Drawing.Size(196, 13);
             this.lblAberturaCaixa.TabIndex = 7;
@@ -120,6 +125,7 @@
             this.txtTroco.ReadOnly = true;
             this.txtTroco.Size = new System.Drawing.Size(246, 31);
             this.txtTroco.TabIndex = 10;
+            this.txtTroco.TabStop = false;
             this.txtTroco.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label4
@@ -143,6 +149,7 @@
             this.txtValorPago.ReadOnly = true;
             this.txtValorPago.Size = new System.Drawing.Size(246, 30);
             this.txtValorPago.TabIndex = 8;
+            this.txtValorPago.TabStop = false;
             this.txtValorPago.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label3
@@ -185,6 +192,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.btnCancelarVenda);
             this.panel2.Controls.Add(this.btnCalcular);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.btnCalcularFechar);
@@ -193,16 +202,36 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(287, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(603, 497);
+            this.panel2.Size = new System.Drawing.Size(721, 511);
             this.panel2.TabIndex = 1;
+            // 
+            // btnCalcular
+            // 
+            this.btnCalcular.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCalcular.Location = new System.Drawing.Point(6, 438);
+            this.btnCalcular.Name = "btnCalcular";
+            this.btnCalcular.Size = new System.Drawing.Size(173, 70);
+            this.btnCalcular.TabIndex = 2;
+            this.btnCalcular.UseVisualStyleBackColor = true;
+            this.btnCalcular.Click += new System.EventHandler(this.btnCalcular_Click);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 422);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(45, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Calcular";
             // 
             // btnCalcularFechar
             // 
             this.btnCalcularFechar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCalcularFechar.Location = new System.Drawing.Point(427, 424);
+            this.btnCalcularFechar.Location = new System.Drawing.Point(545, 438);
             this.btnCalcularFechar.Name = "btnCalcularFechar";
             this.btnCalcularFechar.Size = new System.Drawing.Size(173, 70);
-            this.btnCalcularFechar.TabIndex = 3;
+            this.btnCalcularFechar.TabIndex = 4;
             this.btnCalcularFechar.UseVisualStyleBackColor = true;
             this.btnCalcularFechar.Click += new System.EventHandler(this.btnCalcularFechar_Click);
             // 
@@ -210,7 +239,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(424, 408);
+            this.label1.Location = new System.Drawing.Point(542, 422);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(71, 13);
             this.label1.TabIndex = 1;
@@ -230,8 +259,9 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(603, 388);
+            this.dataGridView1.Size = new System.Drawing.Size(721, 402);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.TabStop = false;
             // 
             // Nome
             // 
@@ -249,25 +279,25 @@
             this.Valor.ReadOnly = true;
             this.Valor.Width = 56;
             // 
-            // btnCalcular
+            // btnCancelarVenda
             // 
-            this.btnCalcular.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCalcular.Location = new System.Drawing.Point(6, 424);
-            this.btnCalcular.Name = "btnCalcular";
-            this.btnCalcular.Size = new System.Drawing.Size(173, 70);
-            this.btnCalcular.TabIndex = 5;
-            this.btnCalcular.UseVisualStyleBackColor = true;
-            this.btnCalcular.Click += new System.EventHandler(this.btnCalcular_Click);
+            this.btnCancelarVenda.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnCancelarVenda.Location = new System.Drawing.Point(275, 438);
+            this.btnCancelarVenda.Name = "btnCancelarVenda";
+            this.btnCancelarVenda.Size = new System.Drawing.Size(173, 70);
+            this.btnCancelarVenda.TabIndex = 3;
+            this.btnCancelarVenda.UseVisualStyleBackColor = true;
+            this.btnCancelarVenda.Click += new System.EventHandler(this.btnCancelarVenda_Click);
             // 
-            // label2
+            // label6
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 408);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Calcular";
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(272, 422);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(83, 13);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "Cancelar Venda";
             // 
             // produtoBindingSource
             // 
@@ -277,13 +307,25 @@
             // 
             this.itemVendaBindingSource.DataSource = typeof(Esquenta.Entities.ItemVenda);
             // 
+            // lblNomeComanda
+            // 
+            this.lblNomeComanda.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblNomeComanda.Location = new System.Drawing.Point(21, 62);
+            this.lblNomeComanda.Name = "lblNomeComanda";
+            this.lblNomeComanda.Size = new System.Drawing.Size(246, 23);
+            this.lblNomeComanda.TabIndex = 13;
+            this.lblNomeComanda.Text = "---";
+            this.lblNomeComanda.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Caixa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(890, 497);
+            this.ClientSize = new System.Drawing.Size(1008, 511);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.MinimumSize = new System.Drawing.Size(1024, 550);
             this.Name = "Caixa";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
@@ -323,5 +365,8 @@
         private System.Windows.Forms.Button btnCalcularFechar;
         private System.Windows.Forms.Button btnCalcular;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnCancelarVenda;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblNomeComanda;
     }
 }

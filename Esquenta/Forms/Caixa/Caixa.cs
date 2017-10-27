@@ -22,10 +22,13 @@ namespace Esquenta.Forms.Caixa
         private decimal valorVenda = 0;
         private decimal valorPago = 0;
         private decimal valorDesconto = 0;
+
         private Comanda _comanda;
         private Entities.Produto _produto;
+
         private string CodigoBarrasCalcular = "8888888888888";
         private string CodigoBarrasFecharVenda = "9999999999994";
+        private string CodigoBarrasCancelarVenda = "7777777777777";
 
         public Caixa()
         {
@@ -38,25 +41,30 @@ namespace Esquenta.Forms.Caixa
 
             BarcodeLib.Barcode b = new BarcodeLib.Barcode();
 
-            Image imgBarCodeCalcular = b.Encode(BarcodeLib.TYPE.EAN13, "8888888888888", Color.Black, Color.White, 100, 25);
-            Image imgBarCodeFecharVenda = b.Encode(BarcodeLib.TYPE.EAN13, "9999999999999", Color.Black, Color.White, 100, 25);
+            Image imgBarCodeCalcular = b.Encode(BarcodeLib.TYPE.EAN13, CodigoBarrasCalcular, Color.Black, Color.White, 100, 50);
+            Image imgBarCodeFecharVenda = b.Encode(BarcodeLib.TYPE.EAN13, CodigoBarrasFecharVenda, Color.Black, Color.White, 100, 50);
+            Image imgBarCodeCancelarVenda = b.Encode(BarcodeLib.TYPE.EAN13, CodigoBarrasCancelarVenda, Color.Black, Color.White, 100, 50);
 
-            btnCalcularFechar.Image= imgBarCodeFecharVenda;
+            btnCalcularFechar.Image = imgBarCodeFecharVenda;
             btnCalcular.Image = imgBarCodeCalcular;
-        }
-
-        private void btnGravar_Click(object sender, EventArgs e)
-        {
-            
+            btnCancelarVenda.Image = imgBarCodeCancelarVenda;
         }
 
         private void ClearScreen()
         {
+            CurrentState = State.AguardandoComanda;
+
             dataGridView1.Rows.Clear();
             itens.Clear();
+
+            _comanda = null;
+            _produto = null;
+
             lblStatus.Text = "Aguardando comanda";
             lblValorTotal.Text = "0,00";
+            lblNomeComanda.Text = "---";
             txtComanda.Text = "";
+            txtComanda.Focus();
             valorDesconto = 0;
             valorPago = 0;
             valorVenda = 0;
@@ -79,9 +87,14 @@ namespace Esquenta.Forms.Caixa
                 return;
             }
 
-            if(comando.Equals(CodigoBarrasCalcular) && itens.Count > 0)
+            if (comando.Equals(CodigoBarrasCalcular) && itens.Count > 0)
             {
                 Calcular();
+                return;
+            }
+            if (comando.Equals(CodigoBarrasCancelarVenda) && itens.Count > 0)
+            {
+                ClearScreen();
                 return;
             }
 
@@ -98,6 +111,7 @@ namespace Esquenta.Forms.Caixa
                     }
                     CurrentState = State.AguardandoProduto;
                     lblStatus.Text = "Aguardando Produto";
+                    lblNomeComanda.Text = _comanda.Nome;
                     txtComanda.Clear();
                     break;
 
@@ -142,6 +156,11 @@ namespace Esquenta.Forms.Caixa
 
         private void FecharVenda()
         {
+            if (this.itens.Count == 0)
+            {
+                return;
+            }
+
             try
             {
                 var venda = new Venda();
@@ -173,11 +192,15 @@ namespace Esquenta.Forms.Caixa
         private void btnCalcularFechar_Click(object sender, EventArgs e)
         {
             FecharVenda();
-            
+
         }
 
         private void Calcular()
         {
+            if (this.itens.Count == 0)
+            {
+                return;
+            }
             using (var form = new Calculo())
             {
                 var result = form.ShowDialog();
@@ -198,6 +221,11 @@ namespace Esquenta.Forms.Caixa
         private void btnCalcular_Click(object sender, EventArgs e)
         {
             Calcular();
+        }
+
+        private void btnCancelarVenda_Click(object sender, EventArgs e)
+        {
+            ClearScreen();
         }
     }
 }
