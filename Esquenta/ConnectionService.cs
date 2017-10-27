@@ -5,7 +5,6 @@ using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
-using System.IO;
 
 namespace Esquenta
 {
@@ -14,6 +13,7 @@ namespace Esquenta
         private static ConnectionService instance = null;
 
         private ISessionFactory sessionFactory = CreateSessionFactory();
+
         //private const string DbFile = @"C:\Users\leandro.cristovao\Desktop\DEV\esquenta.db";
         private const string DbFile = @"esquenta.db";
 
@@ -101,21 +101,14 @@ namespace Esquenta
                        .Assembly(System.Reflection.Assembly.GetCallingAssembly())
                        .Where(t => t.Namespace == "Esquenta.Entities");
 
+            string connectionString = Properties.Settings.Default.ConnectionString;
             return Fluently.Configure()
 
                 //.Database(SQLiteConfiguration.Standard
                 //.UsingFile(DbFile))
                 //.ExposeConfiguration(BuildSchema)
 
-                .Database(MsSqlConfiguration.MsSql2008
-                .ShowSql()
-                .ConnectionString(c => c
-                    .Server("localhost")
-                    .Database("esquenta")
-                    .Username("sa")
-                    .Password("$splfiscal10"))
-                   )
-
+                .Database(MsSqlConfiguration.MsSql2008.ConnectionString(connectionString).ShowSql())
                 .Mappings(m => m.AutoMappings.Add(model))
                 .BuildSessionFactory();
         }

@@ -77,7 +77,7 @@ namespace Esquenta.Forms.Produto
             }
 
             _produto.CodigoBarras = txtCodigoBarra.Text;
-            _produto.Descricao = txtDescricao.Text;
+            _produto.Descricao = txtDescricao.Text.Trim();
             _produto.Nome = txtProduto.Text;
             //_produto.Quantidade = int.Parse(txtQuantidade.Text);
             _produto.QuantidadeMinima = int.Parse(txtQuantidadeMinima.Text);
