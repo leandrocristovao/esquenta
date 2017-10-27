@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Esquenta.Components;
+using System;
 using System.Windows.Forms;
 
 namespace Esquenta.Forms.EntradaProduto
@@ -32,7 +33,7 @@ namespace Esquenta.Forms.EntradaProduto
 
         private void AddEntradaProduto_Load(object sender, EventArgs e)
         {
-            produtoBindingSource.DataSource = _service.GetProdutoRepository().List(x=>x.Itens.Count == 1);
+            produtoBindingSource.DataSource = _service.GetProdutoRepository().List(x => x.Itens.Count == 1);
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -53,6 +54,11 @@ namespace Esquenta.Forms.EntradaProduto
 
             _service.GetEntradaProdutoRepository().Save(entrada);
             Close();
+        }
+
+        private void txtValor_TextChanged(object sender, EventArgs e)
+        {
+            TextBoxEnter.TextChanged(sender, e);
         }
     }
 }

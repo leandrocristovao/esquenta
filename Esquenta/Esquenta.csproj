@@ -78,9 +78,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\TextBoxEnter.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Components\TextBoxEnter.cs" />
     <Compile Include="ConnectionService.cs" />
     <Compile Include="Entities\EntradaProduto.cs" />
     <Compile Include="Entities\Interfaces\IBaseEntity.cs" />
@@ -93,6 +91,12 @@
     </Compile>
     <Compile Include="Forms\Caixa\Caixa.Designer.cs">
       <DependentUpon>Caixa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Caixa\Calculo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Caixa\Calculo.Designer.cs">
+      <DependentUpon>Calculo.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Comandas\AddComanda.cs">
       <SubType>Form</SubType>
@@ -161,6 +165,9 @@
     <Compile Include="Repository\Interfaces\IBaseRepository.cs" />
     <EmbeddedResource Include="Forms\Caixa\Caixa.resx">
       <DependentUpon>Caixa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Caixa\Calculo.resx">
+      <DependentUpon>Calculo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Comandas\AddComanda.resx">
       <DependentUpon>AddComanda.cs</DependentUpon>

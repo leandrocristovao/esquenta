@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Esquenta.Forms.Comandas
@@ -14,6 +7,7 @@ namespace Esquenta.Forms.Comandas
     {
         private ConnectionService _service;
         private Entities.Comanda _comanda;
+
         public AddComanda()
         {
             InitializeComponent();
@@ -78,6 +72,14 @@ namespace Esquenta.Forms.Comandas
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void txtCodigoBarra_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtNome.Focus();
+            }
         }
     }
 }

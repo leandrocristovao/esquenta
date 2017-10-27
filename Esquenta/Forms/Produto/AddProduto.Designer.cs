@@ -102,9 +102,11 @@
             this.txtCodigoBarra.Name = "txtCodigoBarra";
             this.txtCodigoBarra.Size = new System.Drawing.Size(477, 20);
             this.txtCodigoBarra.TabIndex = 1;
+            this.txtCodigoBarra.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCodigoBarra_KeyDown);
             // 
             // txtQuantidade
             // 
+            this.txtQuantidade.Enabled = false;
             this.txtQuantidade.Location = new System.Drawing.Point(15, 192);
             this.txtQuantidade.Name = "txtQuantidade";
             this.txtQuantidade.ReadOnly = true;
@@ -118,6 +120,7 @@
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Size = new System.Drawing.Size(477, 70);
             this.txtDescricao.TabIndex = 3;
+            this.txtDescricao.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCodigoBarra_KeyDown);
             // 
             // txtProduto
             // 
@@ -125,6 +128,7 @@
             this.txtProduto.Name = "txtProduto";
             this.txtProduto.Size = new System.Drawing.Size(477, 20);
             this.txtProduto.TabIndex = 2;
+            this.txtProduto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCodigoBarra_KeyDown);
             // 
             // label5
             // 
@@ -141,6 +145,8 @@
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(59, 20);
             this.txtValor.TabIndex = 6;
+            this.txtValor.TextChanged += new System.EventHandler(this.txtValor_TextChanged);
+            this.txtValor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCodigoBarra_KeyDown);
             // 
             // btnCancelar
             // 
@@ -198,6 +204,8 @@
             this.txtQuantidadeMinima.Name = "txtQuantidadeMinima";
             this.txtQuantidadeMinima.Size = new System.Drawing.Size(59, 20);
             this.txtQuantidadeMinima.TabIndex = 5;
+            this.txtQuantidadeMinima.TextChanged += new System.EventHandler(this.txtValor_TextChanged);
+            this.txtQuantidadeMinima.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCodigoBarra_KeyDown);
             // 
             // label6
             // 

@@ -20,8 +20,11 @@ namespace Esquenta.Forms.Caixa
         private ConnectionService service;
         private List<Entities.Produto> itens = new List<Entities.Produto>();
         private decimal valorVenda = 0;
+        private decimal valorPago = 0;
+        private decimal valorDesconto = 0;
         private Comanda _comanda;
         private Entities.Produto _produto;
+        private string CodigoBarrasCalcular = "8888888888888";
         private string CodigoBarrasFecharVenda = "9999999999994";
 
         public Caixa()
@@ -34,23 +37,29 @@ namespace Esquenta.Forms.Caixa
             txtComanda.Focus();
 
             BarcodeLib.Barcode b = new BarcodeLib.Barcode();
+
+            Image imgBarCodeCalcular = b.Encode(BarcodeLib.TYPE.EAN13, "8888888888888", Color.Black, Color.White, 100, 25);
             Image imgBarCodeFecharVenda = b.Encode(BarcodeLib.TYPE.EAN13, "9999999999999", Color.Black, Color.White, 100, 25);
-            imgFecharConta.Image = imgBarCodeFecharVenda;
+
+            btnCalcularFechar.Image= imgBarCodeFecharVenda;
+            btnCalcular.Image = imgBarCodeCalcular;
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            FecharVenda();
+            
         }
 
         private void ClearScreen()
         {
             dataGridView1.Rows.Clear();
             itens.Clear();
-            lblValorTotal.Text = "R$ 0,00";
-            valorVenda = 0;
-            txtComanda.Text = "";
             lblStatus.Text = "Aguardando comanda";
+            lblValorTotal.Text = "0,00";
+            txtComanda.Text = "";
+            valorDesconto = 0;
+            valorPago = 0;
+            valorVenda = 0;
         }
 
         private void txtComanda_KeyDown(object sender, KeyEventArgs e)
@@ -61,21 +70,18 @@ namespace Esquenta.Forms.Caixa
             }
         }
 
-        private void txtValorPago_TextChanged(object sender, EventArgs e)
-        {
-            var strValue = ((TextBox)sender).Text;
-            decimal decValue = 0;
-            decimal.TryParse(strValue, System.Globalization.NumberStyles.Any, CultureInfo.InvariantCulture, out decValue);
-
-            txtTroco.Text = (decValue - valorVenda).ToString();
-        }
-
         private void ProcessState()
         {
             string comando = txtComanda.Text;
             if (comando.Equals(CodigoBarrasFecharVenda) && itens.Count > 0)
             {
                 FecharVenda();
+                return;
+            }
+
+            if(comando.Equals(CodigoBarrasCalcular) && itens.Count > 0)
+            {
+                Calcular();
                 return;
             }
 
@@ -114,7 +120,7 @@ namespace Esquenta.Forms.Caixa
                     itens.Add(_produto);
 
                     valorVenda = itens.Sum(x => x.Valor);
-                    lblValorTotal.Text = string.Format("R$ {0}", valorVenda);
+                    lblValorTotal.Text = string.Format("{0:N}", valorVenda);
 
                     dataGridView1.Rows.Add(new String[] { _produto.Nome, _produto.Valor.ToString() });
                     //txtComanda.Focus();
@@ -141,6 +147,7 @@ namespace Esquenta.Forms.Caixa
                 var venda = new Venda();
                 venda.Comanda = _comanda;
                 venda.DataVenda = DateTime.Now;
+                venda.ValorDesconto = valorDesconto;
 
                 itens.ForEach(produto =>
                 {
@@ -161,6 +168,36 @@ namespace Esquenta.Forms.Caixa
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void btnCalcularFechar_Click(object sender, EventArgs e)
+        {
+            FecharVenda();
+            
+        }
+
+        private void Calcular()
+        {
+            using (var form = new Calculo())
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    valorDesconto = form.Desconto;
+                    valorPago = form.Valor;
+                    valorVenda -= valorDesconto;
+
+                    txtDesconto.Text = string.Format("{0:N}", valorDesconto);
+                    txtValorPago.Text = string.Format("{0:N}", valorPago);
+                    txtTroco.Text = string.Format("{0:N}", (valorPago - valorVenda));
+                    lblValorTotal.Text = string.Format("{0:N}", (valorVenda - valorDesconto));
+                }
+            }
+        }
+
+        private void btnCalcular_Click(object sender, EventArgs e)
+        {
+            Calcular();
         }
     }
 }

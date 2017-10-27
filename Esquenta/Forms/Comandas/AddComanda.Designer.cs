@@ -60,6 +60,7 @@
             this.txtCodigoBarra.Name = "txtCodigoBarra";
             this.txtCodigoBarra.Size = new System.Drawing.Size(477, 20);
             this.txtCodigoBarra.TabIndex = 10;
+            this.txtCodigoBarra.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCodigoBarra_KeyDown);
             // 
             // label2
             // 

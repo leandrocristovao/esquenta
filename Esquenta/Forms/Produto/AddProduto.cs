@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Esquenta.Components;
+using System;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -44,7 +45,6 @@ namespace Esquenta.Forms.Produto
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-
             if (string.IsNullOrEmpty(txtCodigoBarra.Text))
             {
                 MessageBox.Show("O código de barras deve ser preenchido.");
@@ -158,10 +158,22 @@ namespace Esquenta.Forms.Produto
                         selecionado = true;
                         quantidade = produtoItem.Quantidade;
                     }
-
                 }
                 dataGridView1.Rows.Add(new object[] { selecionado, item.Id, item.Nome, quantidade });
             });
+        }
+
+        private void txtCodigoBarra_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void txtValor_TextChanged(object sender, EventArgs e)
+        {
+            TextBoxEnter.TextChanged(sender, e);
         }
     }
 }

@@ -44,10 +44,9 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(127, 75);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancelar.Location = new System.Drawing.Point(95, 61);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(100, 28);
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 26;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -55,38 +54,35 @@
             // 
             // txtValor
             // 
-            this.txtValor.Location = new System.Drawing.Point(540, 30);
-            this.txtValor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtValor.Location = new System.Drawing.Point(405, 24);
             this.txtValor.Name = "txtValor";
-            this.txtValor.Size = new System.Drawing.Size(132, 22);
+            this.txtValor.Size = new System.Drawing.Size(100, 20);
             this.txtValor.TabIndex = 23;
+            this.txtValor.TextChanged += new System.EventHandler(this.txtValor_TextChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(536, 10);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(402, 8);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 17);
+            this.label2.Size = new System.Drawing.Size(31, 13);
             this.label2.TabIndex = 24;
             this.label2.Text = "Valor";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(9, 7);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 17);
+            this.label1.Size = new System.Drawing.Size(44, 13);
             this.label1.TabIndex = 22;
             this.label1.Text = "Produto";
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(13, 75);
-            this.btnSalvar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSalvar.Location = new System.Drawing.Point(10, 61);
             this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(100, 28);
+            this.btnSalvar.Size = new System.Drawing.Size(75, 23);
             this.btnSalvar.TabIndex = 25;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
@@ -98,10 +94,9 @@
             this.cbProduto.DisplayMember = "Nome";
             this.cbProduto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbProduto.FormattingEnabled = true;
-            this.cbProduto.Location = new System.Drawing.Point(15, 28);
-            this.cbProduto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbProduto.Location = new System.Drawing.Point(11, 23);
             this.cbProduto.Name = "cbProduto";
-            this.cbProduto.Size = new System.Drawing.Size(375, 24);
+            this.cbProduto.Size = new System.Drawing.Size(282, 21);
             this.cbProduto.TabIndex = 27;
             // 
             // produtoBindingSource
@@ -110,29 +105,28 @@
             // 
             // txtQuantidade
             // 
-            this.txtQuantidade.Location = new System.Drawing.Point(399, 30);
-            this.txtQuantidade.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtQuantidade.Location = new System.Drawing.Point(299, 24);
             this.txtQuantidade.Name = "txtQuantidade";
-            this.txtQuantidade.Size = new System.Drawing.Size(132, 22);
+            this.txtQuantidade.Size = new System.Drawing.Size(100, 20);
             this.txtQuantidade.TabIndex = 28;
+            this.txtQuantidade.TextChanged += new System.EventHandler(this.txtValor_TextChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(395, 10);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(296, 8);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(82, 17);
+            this.label3.Size = new System.Drawing.Size(62, 13);
             this.label3.TabIndex = 29;
             this.label3.Text = "Quantidade";
             // 
             // AddEntradaProduto
             // 
             this.AcceptButton = this.btnSalvar;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(687, 118);
+            this.ClientSize = new System.Drawing.Size(515, 96);
             this.Controls.Add(this.txtQuantidade);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cbProduto);
@@ -142,7 +136,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSalvar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddEntradaProduto";

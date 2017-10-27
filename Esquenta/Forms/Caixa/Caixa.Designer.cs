@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtDesconto = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.lblAberturaCaixa = new System.Windows.Forms.Label();
             this.txtTroco = new System.Windows.Forms.TextBox();
@@ -38,28 +38,28 @@
             this.txtValorPago = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lblValorTotal = new System.Windows.Forms.Label();
-            this.btnGravar = new System.Windows.Forms.Button();
             this.txtComanda = new System.Windows.Forms.TextBox();
             this.lblStatus = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnCalcularFechar = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
-            this.imgFecharConta = new System.Windows.Forms.PictureBox();
+            this.btnCalcular = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.produtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.itemVendaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgFecharConta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.produtoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemVendaBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.txtDesconto);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.lblAberturaCaixa);
             this.panel1.Controls.Add(this.txtTroco);
@@ -67,29 +67,32 @@
             this.panel1.Controls.Add(this.txtValorPago);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.lblValorTotal);
-            this.panel1.Controls.Add(this.btnGravar);
             this.panel1.Controls.Add(this.txtComanda);
             this.panel1.Controls.Add(this.lblStatus);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(287, 441);
+            this.panel1.Size = new System.Drawing.Size(287, 497);
             this.panel1.TabIndex = 0;
             // 
-            // textBox1
+            // txtDesconto
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtDesconto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(3, 160);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(281, 30);
-            this.textBox1.TabIndex = 12;
+            this.txtDesconto.Enabled = false;
+            this.txtDesconto.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDesconto.ForeColor = System.Drawing.Color.DarkRed;
+            this.txtDesconto.Location = new System.Drawing.Point(21, 160);
+            this.txtDesconto.Name = "txtDesconto";
+            this.txtDesconto.ReadOnly = true;
+            this.txtDesconto.Size = new System.Drawing.Size(246, 30);
+            this.txtDesconto.TabIndex = 12;
+            this.txtDesconto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 144);
+            this.label5.Location = new System.Drawing.Point(18, 144);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 13);
             this.label5.TabIndex = 11;
@@ -99,7 +102,7 @@
             // 
             this.lblAberturaCaixa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblAberturaCaixa.AutoSize = true;
-            this.lblAberturaCaixa.Location = new System.Drawing.Point(3, 419);
+            this.lblAberturaCaixa.Location = new System.Drawing.Point(3, 475);
             this.lblAberturaCaixa.Name = "lblAberturaCaixa";
             this.lblAberturaCaixa.Size = new System.Drawing.Size(196, 13);
             this.lblAberturaCaixa.TabIndex = 7;
@@ -111,18 +114,18 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTroco.Enabled = false;
             this.txtTroco.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTroco.ForeColor = System.Drawing.Color.LightGreen;
-            this.txtTroco.Location = new System.Drawing.Point(6, 257);
+            this.txtTroco.ForeColor = System.Drawing.Color.Green;
+            this.txtTroco.Location = new System.Drawing.Point(21, 257);
             this.txtTroco.Name = "txtTroco";
             this.txtTroco.ReadOnly = true;
-            this.txtTroco.Size = new System.Drawing.Size(281, 31);
+            this.txtTroco.Size = new System.Drawing.Size(246, 31);
             this.txtTroco.TabIndex = 10;
             this.txtTroco.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 241);
+            this.label4.Location = new System.Drawing.Point(18, 241);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 9;
@@ -132,17 +135,20 @@
             // 
             this.txtValorPago.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtValorPago.Enabled = false;
             this.txtValorPago.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtValorPago.Location = new System.Drawing.Point(6, 209);
+            this.txtValorPago.ForeColor = System.Drawing.Color.Yellow;
+            this.txtValorPago.Location = new System.Drawing.Point(21, 209);
             this.txtValorPago.Name = "txtValorPago";
-            this.txtValorPago.Size = new System.Drawing.Size(281, 30);
+            this.txtValorPago.ReadOnly = true;
+            this.txtValorPago.Size = new System.Drawing.Size(246, 30);
             this.txtValorPago.TabIndex = 8;
-            this.txtValorPago.TextChanged += new System.EventHandler(this.txtValorPago_TextChanged);
+            this.txtValorPago.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 193);
+            this.label3.Location = new System.Drawing.Point(18, 193);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(58, 13);
             this.label3.TabIndex = 7;
@@ -155,35 +161,23 @@
             this.lblValorTotal.Name = "lblValorTotal";
             this.lblValorTotal.Size = new System.Drawing.Size(278, 92);
             this.lblValorTotal.TabIndex = 6;
-            this.lblValorTotal.Text = "R$ 0,00";
+            this.lblValorTotal.Text = "0,00";
             this.lblValorTotal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnGravar
-            // 
-            this.btnGravar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGravar.Location = new System.Drawing.Point(3, 119);
-            this.btnGravar.Name = "btnGravar";
-            this.btnGravar.Size = new System.Drawing.Size(281, 23);
-            this.btnGravar.TabIndex = 4;
-            this.btnGravar.Text = "Fechar Conta";
-            this.btnGravar.UseVisualStyleBackColor = true;
-            this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
             // 
             // txtComanda
             // 
             this.txtComanda.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtComanda.Location = new System.Drawing.Point(3, 25);
+            this.txtComanda.Location = new System.Drawing.Point(21, 39);
             this.txtComanda.Name = "txtComanda";
-            this.txtComanda.Size = new System.Drawing.Size(281, 20);
+            this.txtComanda.Size = new System.Drawing.Size(246, 20);
             this.txtComanda.TabIndex = 1;
             this.txtComanda.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtComanda_KeyDown);
             // 
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(3, 9);
+            this.lblStatus.Location = new System.Drawing.Point(18, 23);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(113, 13);
             this.lblStatus.TabIndex = 0;
@@ -191,28 +185,52 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.imgFecharConta);
+            this.panel2.Controls.Add(this.btnCalcular);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.btnCalcularFechar);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.dataGridView1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(287, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(337, 441);
+            this.panel2.Size = new System.Drawing.Size(603, 497);
             this.panel2.TabIndex = 1;
+            // 
+            // btnCalcularFechar
+            // 
+            this.btnCalcularFechar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCalcularFechar.Location = new System.Drawing.Point(427, 424);
+            this.btnCalcularFechar.Name = "btnCalcularFechar";
+            this.btnCalcularFechar.Size = new System.Drawing.Size(173, 70);
+            this.btnCalcularFechar.TabIndex = 3;
+            this.btnCalcularFechar.UseVisualStyleBackColor = true;
+            this.btnCalcularFechar.Click += new System.EventHandler(this.btnCalcularFechar_Click);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(424, 408);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Fechar Conta";
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Nome,
             this.Valor});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(337, 206);
+            this.dataGridView1.Size = new System.Drawing.Size(603, 388);
             this.dataGridView1.TabIndex = 0;
             // 
             // Nome
@@ -231,22 +249,25 @@
             this.Valor.ReadOnly = true;
             this.Valor.Width = 56;
             // 
-            // label1
+            // btnCalcular
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(112, 274);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Fechar Conta";
+            this.btnCalcular.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCalcular.Location = new System.Drawing.Point(6, 424);
+            this.btnCalcular.Name = "btnCalcular";
+            this.btnCalcular.Size = new System.Drawing.Size(173, 70);
+            this.btnCalcular.TabIndex = 5;
+            this.btnCalcular.UseVisualStyleBackColor = true;
+            this.btnCalcular.Click += new System.EventHandler(this.btnCalcular_Click);
             // 
-            // imgFecharConta
+            // label2
             // 
-            this.imgFecharConta.Location = new System.Drawing.Point(115, 290);
-            this.imgFecharConta.Name = "imgFecharConta";
-            this.imgFecharConta.Size = new System.Drawing.Size(100, 50);
-            this.imgFecharConta.TabIndex = 2;
-            this.imgFecharConta.TabStop = false;
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 408);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(45, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Calcular";
             // 
             // produtoBindingSource
             // 
@@ -260,7 +281,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 441);
+            this.ClientSize = new System.Drawing.Size(890, 497);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "Caixa";
@@ -272,7 +293,6 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgFecharConta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.produtoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemVendaBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -286,7 +306,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn produtoDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource itemVendaBindingSource;
-        private System.Windows.Forms.Button btnGravar;
         private System.Windows.Forms.TextBox txtComanda;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.BindingSource produtoBindingSource;
@@ -298,9 +317,11 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtValorPago;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtDesconto;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.PictureBox imgFecharConta;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnCalcularFechar;
+        private System.Windows.Forms.Button btnCalcular;
+        private System.Windows.Forms.Label label2;
     }
 }
