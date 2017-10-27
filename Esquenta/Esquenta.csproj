@@ -37,6 +37,9 @@
     <ApplicationIcon>esquenta_logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BarcodeLib">
+      <HintPath>..\packages\BarcodeLib.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -75,6 +78,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\TextBoxEnter.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ConnectionService.cs" />
     <Compile Include="Entities\EntradaProduto.cs" />
     <Compile Include="Entities\Interfaces\IBaseEntity.cs" />

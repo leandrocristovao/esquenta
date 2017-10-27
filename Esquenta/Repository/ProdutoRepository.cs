@@ -1,7 +1,9 @@
 ﻿using Esquenta.Entities;
 using Esquenta.Repository.Interfaces;
 using NHibernate;
+using NHibernate.Linq;
 using NHibernate.Util;
+using System.Linq;
 
 namespace Esquenta.Repository
 {
@@ -38,7 +40,7 @@ namespace Esquenta.Repository
                         //controller.SaveOrUpdate(itemVenda);
                         _session.SaveOrUpdate(itemVenda);
                     });
-                    
+
                     _session.Flush();
 
                     transaction.Commit();
@@ -51,6 +53,11 @@ namespace Esquenta.Repository
             }
 
             return entity;
+        }
+
+        public Produto Get(string codigoBarra)
+        {
+            return _session.Query<Produto>().Where(x => x.CodigoBarras.Equals(codigoBarra)).FirstOrDefault();
         }
     }
 }

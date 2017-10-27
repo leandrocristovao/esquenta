@@ -40,7 +40,7 @@ namespace Esquenta.Repository
                         item.Produto.Itens.ForEach(subIten =>
                         {
                             var update = controller.Get(subIten.Produto.Id);
-                            update.Quantidade --;
+                            update.Quantidade -= subIten.Quantidade;
                             controller.SaveOrUpdate(update);
                         });
                     });
