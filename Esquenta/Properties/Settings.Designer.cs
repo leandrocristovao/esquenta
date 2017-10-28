@@ -25,6 +25,7 @@ namespace Esquenta.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2017-01-01")]
         public global::System.DateTime AberturaCaixa {
             get {
                 return ((global::System.DateTime)(this["AberturaCaixa"]));

@@ -29,6 +29,10 @@ namespace Esquenta.Forms.Produto
         private void ReloadList()
         {
             lista = service.GetProdutoRepository().List();
+            lista.ForEach(item =>
+            {
+                //item.Quantidade = (item.Itens.Count > 1 || (item.Itens.Count == 1 && item.Itens[0].Id != item.Id)) ? 456 : item.Quantidade;
+            });
             dataGridView1.DataSource = lista;
         }
 

@@ -38,21 +38,23 @@
             // 
             this.txtDesconto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDesconto.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDesconto.Location = new System.Drawing.Point(12, 22);
+            this.txtDesconto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDesconto.Location = new System.Drawing.Point(12, 33);
             this.txtDesconto.Name = "txtDesconto";
-            this.txtDesconto.Size = new System.Drawing.Size(252, 30);
+            this.txtDesconto.Size = new System.Drawing.Size(160, 29);
             this.txtDesconto.TabIndex = 1;
             this.txtDesconto.Text = "0.0";
+            this.txtDesconto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtDesconto.TextChanged += new System.EventHandler(this.txtDesconto_TextChanged);
             this.txtDesconto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDesconto_KeyDown);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(9, 6);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 13);
+            this.label5.Size = new System.Drawing.Size(90, 24);
             this.label5.TabIndex = 15;
             this.label5.Text = "Desconto";
             // 
@@ -60,21 +62,23 @@
             // 
             this.txtValorPago.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtValorPago.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtValorPago.Location = new System.Drawing.Point(12, 71);
+            this.txtValorPago.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtValorPago.Location = new System.Drawing.Point(13, 105);
             this.txtValorPago.Name = "txtValorPago";
-            this.txtValorPago.Size = new System.Drawing.Size(252, 30);
+            this.txtValorPago.Size = new System.Drawing.Size(159, 29);
             this.txtValorPago.TabIndex = 2;
             this.txtValorPago.Text = "0.0";
+            this.txtValorPago.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtValorPago.TextChanged += new System.EventHandler(this.txtDesconto_TextChanged);
             this.txtValorPago.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtValorPago_KeyDown);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 55);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(10, 78);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(58, 13);
+            this.label3.Size = new System.Drawing.Size(102, 24);
             this.label3.TabIndex = 13;
             this.label3.Text = "Valor pago";
             // 
@@ -82,7 +86,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(272, 120);
+            this.ClientSize = new System.Drawing.Size(184, 157);
             this.Controls.Add(this.txtDesconto);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtValorPago);
@@ -93,7 +97,9 @@
             this.Name = "Calculo";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Calculo";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Calculo_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

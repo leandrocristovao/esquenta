@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NHibernate.Util;
+using System;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -14,31 +15,25 @@ namespace Esquenta.Forms.Relatorios
         private void Vendas_Load(object sender, EventArgs e)
         {
             ConnectionService service = ConnectionService.GetInstance();
-            var lista = service.GetItemVendaRepository().GetVendasDia(Properties.Settings.Default.AberturaCaixa);
-            var itensAgrupados = lista.GroupBy(x => x.Produto.Id).Select(g => new { IDProduto = g.Key, Count = g.Count() }).ToList();
-
-            string nomeProduto = "";
-            int quantidade = 0;
-            long estoque = 0;
-            decimal valorUnidade = 0;
-            decimal valorTotal = 0;
-            decimal valorFinal = 0;
-
-            itensAgrupados.ForEach(item =>
+            var vendas = service.GetVendaRepository().GetVendasDia(Properties.Settings.Default.AberturaCaixa);
+            vendas.ForEach(venda =>
             {
-                var itemVenda = lista.FirstOrDefault(x => x.Produto.Id == item.IDProduto);
-                nomeProduto = itemVenda.Produto.Nome;
-                quantidade = item.Count;
-                estoque = itemVenda.Produto.Quantidade;
-                valorUnidade = itemVenda.Valor;
-                valorTotal = valorUnidade * quantidade;
-                valorFinal += valorTotal;
+                venda.ItemVenda.ForEach(itemVenda =>
+                {
+                    //itemVenda.Produto.Itens.ForEach(produto => {});
+                    var nomeProduto = itemVenda.Produto.Nome;
+                    var quantidade = itemVenda.Quantidade;
+                    var estoque = itemVenda.Produto.Quantidade;
+                    var valorUnidade = itemVenda.Valor;
+                    var valorTotal = valorUnidade * quantidade;
 
-                dataGridView1.Rows.Add(new object[] { nomeProduto, quantidade, valorUnidade, valorTotal, estoque });
+                    dataGridView1.Rows.Add(new object[] { nomeProduto, valorUnidade, quantidade, valorTotal, estoque });
+                });
             });
 
-            lblTotalItens.Text = string.Format("Total de itens vendidos: {0}", itensAgrupados.Sum(x => x.Count));
-            lblTotalVendas.Text = string.Format("Valor Total em vendas: R$ {0}", valorFinal);
+            lblTotalItens.Text = string.Format("Total de itens vendidos: {0}", vendas.Count);
+            lblDesconto.Text = string.Format("Valor Total em vendas: R$ {0}", vendas.Sum(x => x.ValorDesconto));
+            lblTotal.Text = string.Format("Valor Total em vendas: R$ {0}", vendas.Sum(x=>x.ValorFinal));
         }
 
         private void BtnFecharCaixa_Click(object sender, EventArgs e)

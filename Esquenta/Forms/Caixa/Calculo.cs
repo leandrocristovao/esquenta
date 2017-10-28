@@ -44,5 +44,21 @@ namespace Esquenta.Forms.Caixa
         {
             TextBoxEnter.TextChanged(sender, e);
         }
+
+        private void Calculo_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtDesconto.Text))
+            {
+                txtDesconto.Focus();
+                e.Cancel = true;
+            }
+
+            if (string.IsNullOrEmpty(txtValorPago.Text))
+            {
+                txtValorPago.Focus();
+                e.Cancel = true;
+            }
+
+        }
     }
 }

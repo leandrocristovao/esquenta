@@ -28,7 +28,7 @@ namespace Esquenta.Forms.Caixa
 
         private string CodigoBarrasCalcular = "8888888888888";
         private string CodigoBarrasFecharVenda = "9999999999994";
-        private string CodigoBarrasCancelarVenda = "7777777777777";
+        private string CodigoBarrasCancelarVenda = "7777777777772";
 
         public Caixa()
         {
@@ -63,8 +63,13 @@ namespace Esquenta.Forms.Caixa
             lblStatus.Text = "Aguardando comanda";
             lblValorTotal.Text = "0,00";
             lblNomeComanda.Text = "---";
+
+            txtDesconto.Text = "";
+            txtTroco.Text = "";
+            txtValorPago.Text = "";
             txtComanda.Text = "";
             txtComanda.Focus();
+
             valorDesconto = 0;
             valorPago = 0;
             valorVenda = 0;
@@ -131,12 +136,21 @@ namespace Esquenta.Forms.Caixa
                         return;
                     }
 
+                    using (var form = new Quantidade())
+                    {
+                        var result = form.ShowDialog();
+                        if (result == DialogResult.OK)
+                        {
+                            _produto.Quantidade = form.Total;
+                        }
+                    }
+
                     itens.Add(_produto);
 
-                    valorVenda = itens.Sum(x => x.Valor);
+                    valorVenda = itens.Sum(x => x.Valor * x.Quantidade);
                     lblValorTotal.Text = string.Format("{0:N}", valorVenda);
 
-                    dataGridView1.Rows.Add(new String[] { _produto.Nome, _produto.Valor.ToString() });
+                    dataGridView1.Rows.Add(new String[] { _produto.Nome, _produto.Quantidade.ToString(), _produto.Valor.ToString(), (_produto.Valor * _produto.Quantidade).ToString() });
                     //txtComanda.Focus();
                     txtComanda.Clear();
                     break;
@@ -170,10 +184,13 @@ namespace Esquenta.Forms.Caixa
 
                 itens.ForEach(produto =>
                 {
-                    var item = new ItemVenda();
-                    item.Venda = venda;
-                    item.Produto = produto;
-                    item.Valor = produto.Valor;
+                    var item = new ItemVenda
+                    {
+                        Venda = venda,
+                        Produto = produto,
+                        Valor = produto.Valor,
+                        Quantidade = produto.Quantidade
+                    };
 
                     venda.ItemVenda.Add(item);
                 });
@@ -181,7 +198,6 @@ namespace Esquenta.Forms.Caixa
                 service.GetVendaRepository().Save(venda);
 
                 ClearScreen();
-                txtComanda.Focus();
             }
             catch (Exception ex)
             {
@@ -206,16 +222,20 @@ namespace Esquenta.Forms.Caixa
                 var result = form.ShowDialog();
                 if (result == DialogResult.OK)
                 {
+                    valorVenda = itens.Sum(x => x.Valor * x.Quantidade);
                     valorDesconto = form.Desconto;
-                    valorPago = form.Valor;
+                    valorPago = form.Valor > 0 ? form.Valor : valorVenda - valorDesconto;
                     valorVenda -= valorDesconto;
 
                     txtDesconto.Text = string.Format("{0:N}", valorDesconto);
                     txtValorPago.Text = string.Format("{0:N}", valorPago);
                     txtTroco.Text = string.Format("{0:N}", (valorPago - valorVenda));
-                    lblValorTotal.Text = string.Format("{0:N}", (valorVenda - valorDesconto));
+                    lblValorTotal.Text = string.Format("{0:N}", valorVenda);
                 }
             }
+
+            txtComanda.Text = "";
+            txtComanda.Focus();
         }
 
         private void btnCalcular_Click(object sender, EventArgs e)

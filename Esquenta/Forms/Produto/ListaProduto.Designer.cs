@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BtnAdd = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -78,6 +80,14 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoGenerateColumns = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgvID,
@@ -86,6 +96,14 @@
             this.DGVQuantidade,
             this.DGVValor});
             this.dataGridView1.DataSource = this.produtoBindingSource;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
@@ -101,7 +119,7 @@
             this.dgvID.HeaderText = "Id";
             this.dgvID.Name = "dgvID";
             this.dgvID.ReadOnly = true;
-            this.dgvID.Width = 41;
+            this.dgvID.Width = 50;
             // 
             // DGVNome
             // 
@@ -110,7 +128,7 @@
             this.DGVNome.HeaderText = "Nome";
             this.DGVNome.Name = "DGVNome";
             this.DGVNome.ReadOnly = true;
-            this.DGVNome.Width = 60;
+            this.DGVNome.Width = 87;
             // 
             // DGVDescricao
             // 
@@ -127,7 +145,7 @@
             this.DGVQuantidade.HeaderText = "Quantidade";
             this.DGVQuantidade.Name = "DGVQuantidade";
             this.DGVQuantidade.ReadOnly = true;
-            this.DGVQuantidade.Width = 87;
+            this.DGVQuantidade.Width = 133;
             // 
             // DGVValor
             // 
@@ -136,7 +154,7 @@
             this.DGVValor.HeaderText = "Valor";
             this.DGVValor.Name = "DGVValor";
             this.DGVValor.ReadOnly = true;
-            this.DGVValor.Width = 56;
+            this.DGVValor.Width = 79;
             // 
             // produtoBindingSource
             // 
