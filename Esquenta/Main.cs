@@ -87,5 +87,15 @@ namespace Esquenta
             frmListaEntradaProduto.Show();
             frmListaEntradaProduto.WindowState = FormWindowState.Maximized;
         }
+
+        private void Main_KeyUp(object sender, KeyEventArgs e)
+        {
+            //Set KeyPreview:true
+            if (e.KeyCode == Keys.F9)
+            {
+                MessageBox.Show("Function F9");
+            }
+           
+        }
     }
 }

@@ -18,10 +18,14 @@ namespace Esquenta.Repository
             {
                 using (var transaction = _session.BeginTransaction())
                 {
+                    entity.QuantidadeItens = entity.ItemVenda.Count();
                     _session.SaveOrUpdate(entity);
+
                     entity.ItemVenda.ForEach(item =>
                     {
+                        item.ValorTotal = item.Valor * item.Quantidade;
                         item.DataVenda = entity.DataVenda;
+
                         _session.SaveOrUpdate(item);
                     });
 
