@@ -28,17 +28,27 @@ namespace Esquenta.Forms.Produto
             InitializeComponent();
 
             _service = service;
+
+            if (produto != null)
+            {
+                LoadProduto(produto);
+            }
+            else
+            {
+                LoadItens();
+            }
+        }
+
+        private void LoadProduto(Entities.Produto produto)
+        {
             _produto = produto;
 
-            if (_produto != null)
-            {
-                txtCodigoBarra.Text = _produto.CodigoBarras;
-                txtDescricao.Text = _produto.Descricao;
-                txtProduto.Text = _produto.Nome;
-                txtQuantidadeMinima.Text = _produto.QuantidadeMinima.ToString();
-                txtQuantidade.Text = _produto.Quantidade.ToString();
-                txtValor.Text = _produto.Valor.ToString();
-            }
+            txtCodigoBarra.Text = _produto.CodigoBarras;
+            txtDescricao.Text = _produto.Descricao;
+            txtProduto.Text = _produto.Nome;
+            txtQuantidadeMinima.Text = _produto.QuantidadeMinima.ToString();
+            txtQuantidade.Text = _produto.Quantidade.ToString();
+            txtValor.Text = _produto.Valor.ToString();
 
             LoadItens();
         }
@@ -145,6 +155,7 @@ namespace Esquenta.Forms.Produto
 
         private void LoadItens()
         {
+            dataGridView1.Rows.Clear();
             var itens = _service.GetProdutoRepository().List();
             itens.ForEach(item =>
             {
@@ -167,6 +178,15 @@ namespace Esquenta.Forms.Produto
         {
             if (e.KeyCode == Keys.Enter)
             {
+                if (((TextBox)sender).Name.Equals("txtCodigoBarra"))
+                {
+                    var found = _service.GetProdutoRepository().Get(((TextBox)sender).Text);
+                    if (found != null)
+                    {
+                        //Encontrei o item
+                        LoadProduto(found);
+                    }
+                }
                 SendKeys.Send("{TAB}");
             }
         }

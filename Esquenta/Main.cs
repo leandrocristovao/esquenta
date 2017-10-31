@@ -30,8 +30,10 @@ namespace Esquenta
                 frmListaProduto.Close();
                 frmListaProduto = null;
             }
-            frmListaProduto = new ListaProduto();
-            frmListaProduto.MdiParent = this;
+            frmListaProduto = new ListaProduto
+            {
+                MdiParent = this
+            };
             frmListaProduto.Show();
             frmListaProduto.WindowState = FormWindowState.Maximized;
         }
@@ -91,11 +93,53 @@ namespace Esquenta
         private void Main_KeyUp(object sender, KeyEventArgs e)
         {
             //Set KeyPreview:true
-            if (e.KeyCode == Keys.F9)
+            switch (e.KeyCode)
             {
-                MessageBox.Show("Function F9");
+                case Keys.F2:
+                    menuItemCaixa_Click(sender, e);
+                    break;
+
+                case Keys.F3:
+                    menuItemProdutos_Click(sender, e);
+                    break;
+
+                case Keys.F4:
+                    menuItemComandas_Click(sender, e);
+                    break;
+
+                case Keys.F5:
+                    menuItemEntradaProduto_Click(sender, e);
+                    break;
+
+                case Keys.F6:
+                    menuItemLivroCaixa_Click(sender, e);
+                    break;
             }
-           
+        }
+
+        private void btnCaixa_Click(object sender, EventArgs e)
+        {
+            menuItemCaixa_Click(sender, e);
+        }
+
+        private void btnProdutos_Click(object sender, EventArgs e)
+        {
+            menuItemProdutos_Click(sender, e);
+        }
+
+        private void btnComandas_Click(object sender, EventArgs e)
+        {
+            menuItemComandas_Click(sender, e);
+        }
+
+        private void btnEntradaProdutos_Click(object sender, EventArgs e)
+        {
+            menuItemEntradaProduto_Click(sender, e);
+        }
+
+        private void btnRelatorios_Click(object sender, EventArgs e)
+        {
+            menuItemLivroCaixa_Click(sender, e);
         }
     }
 }

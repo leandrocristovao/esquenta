@@ -89,6 +89,12 @@
     <Compile Include="Forms\Caixa\Calculo.Designer.cs">
       <DependentUpon>Calculo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Caixa\Quantidade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Caixa\Quantidade.Designer.cs">
+      <DependentUpon>Quantidade.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Comandas\AddComanda.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,6 +166,9 @@
     <EmbeddedResource Include="Forms\Caixa\Calculo.resx">
       <DependentUpon>Calculo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Caixa\Quantidade.resx">
+      <DependentUpon>Quantidade.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Comandas\AddComanda.resx">
       <DependentUpon>AddComanda.cs</DependentUpon>
     </EmbeddedResource>
@@ -184,6 +193,7 @@
     <EmbeddedResource Include="Forms\Produto\AddProduto.resx">
       <DependentUpon>AddProduto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -211,6 +221,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="database.sql" />
     <Content Include="esquenta_logo.ico" />
   </ItemGroup>
   <ItemGroup>

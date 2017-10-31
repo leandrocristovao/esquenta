@@ -1,7 +1,10 @@
 ﻿using Esquenta.Entities;
 using Esquenta.Repository.Interfaces;
 using NHibernate;
+using NHibernate.Linq;
 using NHibernate.Util;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Esquenta.Repository
@@ -18,14 +21,13 @@ namespace Esquenta.Repository
             {
                 using (var transaction = _session.BeginTransaction())
                 {
-                    entity.QuantidadeItens = entity.ItemVenda.Count();
+                    entity.ValorTotal = entity.ItemVenda.Sum(x => x.Valor * x.Quantidade);
+                    entity.ValorFinal = entity.ValorTotal - entity.ValorDesconto;
                     _session.SaveOrUpdate(entity);
 
                     entity.ItemVenda.ForEach(item =>
                     {
-                        item.ValorTotal = item.Valor * item.Quantidade;
                         item.DataVenda = entity.DataVenda;
-
                         _session.SaveOrUpdate(item);
                     });
 
@@ -44,7 +46,7 @@ namespace Esquenta.Repository
                         item.Produto.Itens.ForEach(subIten =>
                         {
                             var update = controller.Get(subIten.Produto.Id);
-                            update.Quantidade -= subIten.Quantidade;
+                            update.Quantidade -= (subIten.Quantidade * item.Quantidade);
                             controller.SaveOrUpdate(update);
                         });
                     });
@@ -61,6 +63,11 @@ namespace Esquenta.Repository
             }
 
             return entity;
+        }
+
+        public List<Venda> GetVendasDia(DateTime dataInicial)
+        {
+            return _session.Query<Venda>().Where(x => x.DataVenda >= dataInicial).ToList();
         }
     }
 }

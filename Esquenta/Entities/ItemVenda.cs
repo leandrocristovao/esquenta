@@ -12,5 +12,6 @@ namespace Esquenta.Entities
         public virtual int Quantidade { get; set; }
         public virtual Venda Venda { get; set; }
         public virtual Produto Produto { get; set; }
+        public virtual long Quantidade { get; set; }
     }
 }

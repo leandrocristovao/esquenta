@@ -29,15 +29,20 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BtnAdd = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dgvID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DGVNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DGVDescricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DGVQuantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DGVValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CodigoBarras = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estoque = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EstoqueMinimo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.produtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -77,66 +82,85 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dgvID,
-            this.DGVNome,
-            this.DGVDescricao,
-            this.DGVQuantidade,
-            this.DGVValor});
-            this.dataGridView1.DataSource = this.produtoBindingSource;
+            this.Id,
+            this.CodigoBarras,
+            this.dgvProduto,
+            this.Descricao,
+            this.Estoque,
+            this.EstoqueMinimo,
+            this.Valor});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(624, 396);
-            this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
-            // dgvID
+            // Id
             // 
-            this.dgvID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.dgvID.DataPropertyName = "Id";
-            this.dgvID.HeaderText = "Id";
-            this.dgvID.Name = "dgvID";
-            this.dgvID.ReadOnly = true;
-            this.dgvID.Width = 41;
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
             // 
-            // DGVNome
+            // CodigoBarras
             // 
-            this.DGVNome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.DGVNome.DataPropertyName = "Nome";
-            this.DGVNome.HeaderText = "Nome";
-            this.DGVNome.Name = "DGVNome";
-            this.DGVNome.ReadOnly = true;
-            this.DGVNome.Width = 60;
+            this.CodigoBarras.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.CodigoBarras.HeaderText = "Codigo de Barras";
+            this.CodigoBarras.Name = "CodigoBarras";
+            this.CodigoBarras.ReadOnly = true;
+            this.CodigoBarras.Width = 77;
             // 
-            // DGVDescricao
+            // dgvProduto
             // 
-            this.DGVDescricao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DGVDescricao.DataPropertyName = "Descricao";
-            this.DGVDescricao.HeaderText = "Descricao";
-            this.DGVDescricao.Name = "DGVDescricao";
-            this.DGVDescricao.ReadOnly = true;
+            this.dgvProduto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvProduto.HeaderText = "Produto";
+            this.dgvProduto.Name = "dgvProduto";
+            this.dgvProduto.ReadOnly = true;
             // 
-            // DGVQuantidade
+            // Descricao
             // 
-            this.DGVQuantidade.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.DGVQuantidade.DataPropertyName = "Quantidade";
-            this.DGVQuantidade.HeaderText = "Quantidade";
-            this.DGVQuantidade.Name = "DGVQuantidade";
-            this.DGVQuantidade.ReadOnly = true;
-            this.DGVQuantidade.Width = 87;
+            this.Descricao.HeaderText = "Descrição";
+            this.Descricao.Name = "Descricao";
+            this.Descricao.ReadOnly = true;
             // 
-            // DGVValor
+            // Estoque
             // 
-            this.DGVValor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.DGVValor.DataPropertyName = "Valor";
-            this.DGVValor.HeaderText = "Valor";
-            this.DGVValor.Name = "DGVValor";
-            this.DGVValor.ReadOnly = true;
-            this.DGVValor.Width = 56;
+            this.Estoque.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = null;
+            this.Estoque.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Estoque.HeaderText = "Estoque";
+            this.Estoque.Name = "Estoque";
+            this.Estoque.ReadOnly = true;
+            this.Estoque.Width = 71;
+            // 
+            // EstoqueMinimo
+            // 
+            this.EstoqueMinimo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = null;
+            this.EstoqueMinimo.DefaultCellStyle = dataGridViewCellStyle2;
+            this.EstoqueMinimo.HeaderText = "Estoque Mínimo";
+            this.EstoqueMinimo.Name = "EstoqueMinimo";
+            this.EstoqueMinimo.ReadOnly = true;
+            // 
+            // Valor
+            // 
+            this.Valor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.Valor.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Valor.HeaderText = "Valor";
+            this.Valor.Name = "Valor";
+            this.Valor.ReadOnly = true;
+            this.Valor.Width = 56;
             // 
             // produtoBindingSource
             // 
@@ -149,11 +173,13 @@
             this.ClientSize = new System.Drawing.Size(624, 441);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
+            this.KeyPreview = true;
             this.Name = "ListaProduto";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "Listagem de Produtos";
             this.Load += new System.EventHandler(this.ListaProduto_Load);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ListaProduto_KeyUp);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -168,10 +194,12 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DGVNome;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DGVDescricao;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DGVQuantidade;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DGVValor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CodigoBarras;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvProduto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Descricao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Estoque;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EstoqueMinimo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
     }
 }
