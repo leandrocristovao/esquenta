@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Globalization;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace Esquenta.Forms.Caixa
@@ -22,6 +20,7 @@ namespace Esquenta.Forms.Caixa
         private decimal valorVenda = 0;
         private decimal valorPago = 0;
         private decimal valorDesconto = 0;
+        private decimal valorAcrescimo = 0;
 
         private Comanda _comanda;
         private Entities.Produto _produto;
@@ -64,13 +63,16 @@ namespace Esquenta.Forms.Caixa
             lblValorTotal.Text = "0,00";
             lblNomeComanda.Text = "---";
 
-            txtDesconto.Text = "";
-            txtTroco.Text = "";
-            txtValorPago.Text = "";
+            txtDesconto.Text = "0,00";
+            txtAcrescimo.Text = "0,00";
+            txtTroco.Text = "0,00";
+            txtValorPago.Text = "0,00";
+
             txtComanda.Text = "";
             txtComanda.Focus();
 
             valorDesconto = 0;
+            valorAcrescimo = 0;
             valorPago = 0;
             valorVenda = 0;
         }
@@ -147,11 +149,21 @@ namespace Esquenta.Forms.Caixa
 
                     itens.Add(_produto);
 
-                    valorVenda = itens.Sum(x => x.Valor * x.Quantidade);
+                    dataGridView1.Rows.Add(new String[] { _produto.Nome, _produto.Quantidade.ToString(), _produto.Valor.ToString(), (_produto.Valor * _produto.Quantidade).ToString() });
+
+                    decimal valorVenda = 0;
+                    for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                    {
+                        valorVenda += decimal.Parse(dataGridView1.Rows[i].Cells["Valor"].Value.ToString());
+                    }
+
                     lblValorTotal.Text = string.Format("{0:N}", valorVenda);
 
-                    dataGridView1.Rows.Add(new String[] { _produto.Nome, _produto.Quantidade.ToString(), _produto.Valor.ToString(), (_produto.Valor * _produto.Quantidade).ToString() });
-                    //txtComanda.Focus();
+                    txtDesconto.Text = "0,00";
+                    txtAcrescimo.Text = "0,00";
+                    txtTroco.Text = "0,00";
+                    txtValorPago.Text = "0,00";
+
                     txtComanda.Clear();
                     break;
             }
@@ -177,10 +189,13 @@ namespace Esquenta.Forms.Caixa
 
             try
             {
-                var venda = new Venda();
-                venda.Comanda = _comanda;
-                venda.DataVenda = DateTime.Now;
-                venda.ValorDesconto = valorDesconto;
+                var venda = new Venda
+                {
+                    Comanda = _comanda,
+                    DataVenda = DateTime.Now,
+                    ValorDesconto = valorDesconto,
+                    ValorAcrescimo = valorAcrescimo
+                };
 
                 itens.ForEach(produto =>
                 {
@@ -208,7 +223,6 @@ namespace Esquenta.Forms.Caixa
         private void btnCalcularFechar_Click(object sender, EventArgs e)
         {
             FecharVenda();
-
         }
 
         private void Calcular()
@@ -222,12 +236,20 @@ namespace Esquenta.Forms.Caixa
                 var result = form.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    valorVenda = itens.Sum(x => x.Valor * x.Quantidade);
+                    valorVenda = 0;// itens.Select(x => x.Valor * x.Quantidade).Sum();
+                    for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                    {
+                        valorVenda += decimal.Parse(dataGridView1.Rows[i].Cells["Valor"].Value.ToString());
+                    }
+
                     valorDesconto = form.Desconto;
-                    valorPago = form.Valor > 0 ? form.Valor : valorVenda - valorDesconto;
+                    valorAcrescimo = form.Acrescimo;
+                    valorPago = form.Valor > 0 ? form.Valor : valorVenda - valorDesconto + valorAcrescimo;
                     valorVenda -= valorDesconto;
+                    valorVenda += valorAcrescimo;
 
                     txtDesconto.Text = string.Format("{0:N}", valorDesconto);
+                    txtAcrescimo.Text = string.Format("{0:N}", valorAcrescimo);
                     txtValorPago.Text = string.Format("{0:N}", valorPago);
                     txtTroco.Text = string.Format("{0:N}", (valorPago - valorVenda));
                     lblValorTotal.Text = string.Format("{0:N}", valorVenda);
@@ -246,6 +268,28 @@ namespace Esquenta.Forms.Caixa
         private void btnCancelarVenda_Click(object sender, EventArgs e)
         {
             ClearScreen();
+        }
+
+        private void Caixa_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.F7:
+                    Calcular();
+                    break;
+
+                case Keys.F8:
+                    ClearScreen();
+                    break;
+
+                case Keys.F9:
+                    FecharVenda();
+                    break;
+
+                case Keys.Escape:
+                    Close();
+                    break;
+            }
         }
     }
 }

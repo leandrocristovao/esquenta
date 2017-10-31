@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblTotal = new System.Windows.Forms.Label();
             this.lblDesconto = new System.Windows.Forms.Label();
             this.lblTotalItens = new System.Windows.Forms.Label();
             this.BtnFecharCaixa = new System.Windows.Forms.Button();
@@ -42,7 +43,6 @@
             this.Quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ValorTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estoque = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblTotal = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -59,6 +59,16 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(624, 93);
             this.panel2.TabIndex = 6;
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.Location = new System.Drawing.Point(12, 57);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(263, 24);
+            this.lblTotal.TabIndex = 3;
+            this.lblTotal.Text = "Valor total em vendas: R$ 0,00";
             // 
             // lblDesconto
             // 
@@ -172,7 +182,7 @@
             this.ValorTotal.HeaderText = "Valor Total";
             this.ValorTotal.Name = "ValorTotal";
             this.ValorTotal.ReadOnly = true;
-            this.ValorTotal.Width = 125;
+            this.ValorTotal.Width = 114;
             // 
             // Estoque
             // 
@@ -181,17 +191,6 @@
             this.Estoque.Name = "Estoque";
             this.Estoque.ReadOnly = true;
             this.Estoque.Visible = false;
-            this.Estoque.Width = 105;
-            // 
-            // lblTotal
-            // 
-            this.lblTotal.AutoSize = true;
-            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(12, 57);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(263, 24);
-            this.lblTotal.TabIndex = 3;
-            this.lblTotal.Text = "Valor total em vendas: R$ 0,00";
             // 
             // Vendas
             // 
@@ -200,12 +199,14 @@
             this.ClientSize = new System.Drawing.Size(624, 441);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
+            this.KeyPreview = true;
             this.Name = "Vendas";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Relatório de Vendas";
             this.Load += new System.EventHandler(this.Vendas_Load);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Vendas_KeyUp);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);

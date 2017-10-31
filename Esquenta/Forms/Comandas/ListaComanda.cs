@@ -38,5 +38,15 @@ namespace Esquenta.Forms.Comandas
             lista = service.GetComandaRepository().List();
             dataGridView1.DataSource = lista;
         }
+
+        private void ListaComanda_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Escape:
+                    Close();
+                    break;
+            }
+        }
     }
 }

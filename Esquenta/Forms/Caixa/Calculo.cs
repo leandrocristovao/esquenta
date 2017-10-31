@@ -7,6 +7,7 @@ namespace Esquenta.Forms.Caixa
     public partial class Calculo : Form
     {
         public decimal Desconto { get; set; }
+        public decimal Acrescimo { get; set; }
         public decimal Valor { get; set; }
 
         public Calculo()
@@ -18,7 +19,7 @@ namespace Esquenta.Forms.Caixa
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txtValorPago.Focus();
+                txtAcrescimo.Focus();
             }
         }
 
@@ -32,8 +33,12 @@ namespace Esquenta.Forms.Caixa
                 decimal valorPago = 0;
                 decimal.TryParse(txtValorPago.Text, out valorPago);
 
+                decimal valorAcrescimo = 0;
+                decimal.TryParse(txtAcrescimo.Text, out valorAcrescimo);
+
                 Desconto = desconto;
                 Valor = valorPago;
+                Acrescimo = valorAcrescimo;
 
                 DialogResult = DialogResult.OK;
                 Close();
@@ -53,12 +58,25 @@ namespace Esquenta.Forms.Caixa
                 e.Cancel = true;
             }
 
+            if (string.IsNullOrEmpty(txtAcrescimo.Text))
+            {
+                txtAcrescimo.Focus();
+                e.Cancel = true;
+            }
+
             if (string.IsNullOrEmpty(txtValorPago.Text))
             {
                 txtValorPago.Focus();
                 e.Cancel = true;
             }
+        }
 
+        private void txtAcrescimo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtValorPago.Focus();
+            }
         }
     }
 }

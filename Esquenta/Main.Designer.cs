@@ -40,7 +40,17 @@
             this.menuItemComandas = new System.Windows.Forms.ToolStripMenuItem();
             this.relatóriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemLivroCaixa = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnCaixa = new System.Windows.Forms.ToolStripButton();
+            this.btnProdutos = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnComandas = new System.Windows.Forms.ToolStripButton();
+            this.btnEntradaProdutos = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnRelatorios = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.mainMenu.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainMenu
@@ -104,14 +114,14 @@
             // menuItemProdutos
             // 
             this.menuItemProdutos.Name = "menuItemProdutos";
-            this.menuItemProdutos.Size = new System.Drawing.Size(131, 22);
+            this.menuItemProdutos.Size = new System.Drawing.Size(152, 22);
             this.menuItemProdutos.Text = "Produtos";
             this.menuItemProdutos.Click += new System.EventHandler(this.menuItemProdutos_Click);
             // 
             // menuItemComandas
             // 
             this.menuItemComandas.Name = "menuItemComandas";
-            this.menuItemComandas.Size = new System.Drawing.Size(131, 22);
+            this.menuItemComandas.Size = new System.Drawing.Size(152, 22);
             this.menuItemComandas.Text = "Comandas";
             this.menuItemComandas.Click += new System.EventHandler(this.menuItemComandas_Click);
             // 
@@ -130,21 +140,110 @@
             this.menuItemLivroCaixa.Text = "Livro Caixa";
             this.menuItemLivroCaixa.Click += new System.EventHandler(this.menuItemLivroCaixa_Click);
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(64, 64);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnCaixa,
+            this.toolStripSeparator4,
+            this.btnProdutos,
+            this.btnComandas,
+            this.toolStripSeparator2,
+            this.btnEntradaProdutos,
+            this.toolStripSeparator3,
+            this.btnRelatorios});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1008, 25);
+            this.toolStrip1.TabIndex = 7;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnCaixa
+            // 
+            this.btnCaixa.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnCaixa.Image = ((System.Drawing.Image)(resources.GetObject("btnCaixa.Image")));
+            this.btnCaixa.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCaixa.Name = "btnCaixa";
+            this.btnCaixa.Size = new System.Drawing.Size(62, 22);
+            this.btnCaixa.Text = "(F2) Caixa";
+            this.btnCaixa.Click += new System.EventHandler(this.btnCaixa_Click);
+            // 
+            // btnProdutos
+            // 
+            this.btnProdutos.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnProdutos.Image = ((System.Drawing.Image)(resources.GetObject("btnProdutos.Image")));
+            this.btnProdutos.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnProdutos.Name = "btnProdutos";
+            this.btnProdutos.Size = new System.Drawing.Size(82, 22);
+            this.btnProdutos.Text = "(F3) Produtos";
+            this.btnProdutos.Click += new System.EventHandler(this.btnProdutos_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // btnComandas
+            // 
+            this.btnComandas.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnComandas.Image = ((System.Drawing.Image)(resources.GetObject("btnComandas.Image")));
+            this.btnComandas.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnComandas.Name = "btnComandas";
+            this.btnComandas.Size = new System.Drawing.Size(91, 22);
+            this.btnComandas.Text = "(F4) Comandas";
+            this.btnComandas.Click += new System.EventHandler(this.btnComandas_Click);
+            // 
+            // btnEntradaProdutos
+            // 
+            this.btnEntradaProdutos.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnEntradaProdutos.Image = ((System.Drawing.Image)(resources.GetObject("btnEntradaProdutos.Image")));
+            this.btnEntradaProdutos.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEntradaProdutos.Name = "btnEntradaProdutos";
+            this.btnEntradaProdutos.Size = new System.Drawing.Size(141, 22);
+            this.btnEntradaProdutos.Text = "(F5) Entrada de Produtos";
+            this.btnEntradaProdutos.Click += new System.EventHandler(this.btnEntradaProdutos_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // btnRelatorios
+            // 
+            this.btnRelatorios.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnRelatorios.Image = ((System.Drawing.Image)(resources.GetObject("btnRelatorios.Image")));
+            this.btnRelatorios.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnRelatorios.Name = "btnRelatorios";
+            this.btnRelatorios.Size = new System.Drawing.Size(86, 22);
+            this.btnRelatorios.Text = "(F6) Relatórios";
+            this.btnRelatorios.Click += new System.EventHandler(this.btnRelatorios_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.mainMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
+            this.KeyPreview = true;
             this.MainMenuStrip = this.mainMenu;
             this.MinimumSize = new System.Drawing.Size(1024, 736);
             this.Name = "Main";
             this.Text = "Esquenta";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Main_KeyUp);
             this.mainMenu.ResumeLayout(false);
             this.mainMenu.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -162,5 +261,14 @@
         private System.Windows.Forms.ToolStripMenuItem relatóriosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuItemLivroCaixa;
         private System.Windows.Forms.ToolStripMenuItem menuItemEntradaProduto;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton btnCaixa;
+        private System.Windows.Forms.ToolStripButton btnProdutos;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton btnComandas;
+        private System.Windows.Forms.ToolStripButton btnEntradaProdutos;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton btnRelatorios;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
     }
 }

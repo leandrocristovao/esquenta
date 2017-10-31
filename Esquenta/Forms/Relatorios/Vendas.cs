@@ -41,5 +41,15 @@ namespace Esquenta.Forms.Relatorios
             Properties.Settings.Default.AberturaCaixa = DateTime.Now;
             Properties.Settings.Default.Save();
         }
+
+        private void Vendas_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Escape:
+                    Close();
+                    break;
+            }
+        }
     }
 }

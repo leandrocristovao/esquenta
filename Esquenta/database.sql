@@ -1,30 +1,4 @@
-﻿/*    ==Parâmetros de Script==
-
-    Versão do Servidor de Origem : SQL Server 2016 (13.0.4001)
-    Edição do Mecanismo de Banco de Dados de Origem : Microsoft SQL Server Enterprise Edition
-    Tipo do Mecanismo de Banco de Dados de Origem : SQL Server Autônomo
-
-    Versão do Servidor de Destino : SQL Server 2017
-    Edição de Mecanismo de Banco de Dados de Destino : Microsoft SQL Server Standard Edition
-    Tipo de Mecanismo de Banco de Dados de Destino : SQL Server Autônomo
-*/
-
-USE [master]
-GO
-/****** Object:  Database [esquenta]    Script Date: 27/10/2017 21:32:11 ******/
-CREATE DATABASE [esquenta]
- CONTAINMENT = NONE
- ON  PRIMARY 
-( NAME = N'esquenta', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL13.MSSQLSERVER\MSSQL\DATA\esquenta.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
- LOG ON 
-( NAME = N'esquenta_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL13.MSSQLSERVER\MSSQL\DATA\esquenta_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
-GO
-ALTER DATABASE [esquenta] SET COMPATIBILITY_LEVEL = 130
-GO
-IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
-begin
-EXEC [esquenta].[dbo].[sp_fulltext_database] @action = 'enable'
-end
+﻿CREATE DATABASE esquenta
 GO
 ALTER DATABASE [esquenta] SET ANSI_NULL_DEFAULT OFF 
 GO
@@ -213,6 +187,7 @@ CREATE TABLE [dbo].[Venda](
 	[DataVenda] [datetime] NULL,
 	[ValorTotal] [decimal](19, 2) NULL,
 	[ValorDesconto] [decimal](19, 2) NULL,
+	[ValorAcrescimo] [decimal](19, 2) NULL,
 	[ValorFinal] [decimal](19, 2) NULL,
  CONSTRAINT [PK_Venda] PRIMARY KEY CLUSTERED 
 (

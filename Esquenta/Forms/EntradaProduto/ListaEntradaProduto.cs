@@ -42,5 +42,15 @@ namespace Esquenta.Forms.EntradaProduto
                 dataGridView1.Rows.Add(new string[] { id, data, produto, quantidade, valor });
             });
         }
+
+        private void ListaEntradaProduto_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Escape:
+                    Close();
+                    break;
+            }
+        }
     }
 }

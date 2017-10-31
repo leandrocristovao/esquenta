@@ -130,6 +130,7 @@
             this.Name = "AddEntradaProduto";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Adicionar/Editar Entrada de Produto";
             this.Load += new System.EventHandler(this.AddEntradaProduto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
