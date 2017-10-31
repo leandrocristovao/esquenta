@@ -119,7 +119,8 @@ namespace Esquenta
 
         private void btnCaixa_Click(object sender, EventArgs e)
         {
-            menuItemCaixa_Click(sender, e);
+            new Form1().Show();
+            //menuItemCaixa_Click(sender, e);
         }
 
         private void btnProdutos_Click(object sender, EventArgs e)
