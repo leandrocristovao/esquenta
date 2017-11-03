@@ -4,6 +4,7 @@ namespace Esquenta.Repository.Interfaces
 {
     public interface IProdutoRepository : IBaseRepository<Produto>
     {
-        Produto Get(string codigoBarra);
+        Produto GetByCodigoBarra(string codigoBarra);
+        Produto GetByNome(string nome);
     }
 }

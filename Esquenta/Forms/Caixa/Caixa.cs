@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Esquenta.Forms.Caixa
@@ -29,6 +30,8 @@ namespace Esquenta.Forms.Caixa
         private string CodigoBarrasFecharVenda = "9999999999994";
         private string CodigoBarrasCancelarVenda = "7777777777772";
 
+        private List<Entities.Produto> produtosAutoComplete = new List<Entities.Produto>();
+
         public Caixa()
         {
             InitializeComponent();
@@ -47,6 +50,13 @@ namespace Esquenta.Forms.Caixa
             btnCalcularFechar.Image = imgBarCodeFecharVenda;
             btnCalcular.Image = imgBarCodeCalcular;
             btnCancelarVenda.Image = imgBarCodeCancelarVenda;
+
+            produtosAutoComplete = service.GetProdutoRepository().List();
+            produtosAutoComplete.ForEach(produto =>
+            {
+                txtComanda.AutoCompleteCustomSource.Add(produto.Nome);
+            });
+
         }
 
         private void ClearScreen()
@@ -148,6 +158,8 @@ namespace Esquenta.Forms.Caixa
                     }
 
                     itens.Add(_produto);
+                    //var xxx = itens.GroupBy(i => i).Select(c => new { Key = c.Key, total = c.Sum(x => x.Quantidade) });
+                    //var xxx = itens.SelectMany(x=> x.Itens).GroupBy(i => i.Produto).Select(c => new { Key = c.Key, total = c.Sum(x => x.Quantidade) });
 
                     dataGridView1.Rows.Add(new String[] { _produto.Nome, _produto.Quantidade.ToString(), _produto.Valor.ToString(), (_produto.Valor * _produto.Quantidade).ToString() });
 
@@ -176,7 +188,14 @@ namespace Esquenta.Forms.Caixa
 
         private Entities.Produto CheckProduto()
         {
-            var produto = service.GetProdutoRepository().Get(txtComanda.Text);
+            var find = txtComanda.Text;
+            Entities.Produto produto;
+            produto = service.GetProdutoRepository().GetByCodigoBarra(find);
+            if (produto == null)
+            {
+                produto = service.GetProdutoRepository().GetByNome(find);
+            }
+
             return produto;
         }
 

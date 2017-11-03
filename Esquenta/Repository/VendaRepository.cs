@@ -22,7 +22,7 @@ namespace Esquenta.Repository
                 using (var transaction = _session.BeginTransaction())
                 {
                     entity.ValorTotal = entity.ItemVenda.Sum(x => x.Valor * x.Quantidade);
-                    entity.ValorFinal = entity.ValorTotal - entity.ValorDesconto;
+                    entity.ValorFinal = (entity.ValorTotal + entity.ValorAcrescimo) - entity.ValorDesconto;
                     entity.QuantidadeItens = entity.ItemVenda.Count();
                     _session.SaveOrUpdate(entity);
 

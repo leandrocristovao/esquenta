@@ -81,5 +81,13 @@ namespace Esquenta.Forms.Comandas
                 txtNome.Focus();
             }
         }
+
+        private void txtNome_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSalvar.Focus();
+            }
+        }
     }
 }

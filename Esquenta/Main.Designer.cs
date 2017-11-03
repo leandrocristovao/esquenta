@@ -42,13 +42,13 @@
             this.menuItemLivroCaixa = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnCaixa = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.btnProdutos = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnComandas = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnEntradaProdutos = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.btnRelatorios = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.mainMenu.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -114,14 +114,14 @@
             // menuItemProdutos
             // 
             this.menuItemProdutos.Name = "menuItemProdutos";
-            this.menuItemProdutos.Size = new System.Drawing.Size(152, 22);
+            this.menuItemProdutos.Size = new System.Drawing.Size(131, 22);
             this.menuItemProdutos.Text = "Produtos";
             this.menuItemProdutos.Click += new System.EventHandler(this.menuItemProdutos_Click);
             // 
             // menuItemComandas
             // 
             this.menuItemComandas.Name = "menuItemComandas";
-            this.menuItemComandas.Size = new System.Drawing.Size(152, 22);
+            this.menuItemComandas.Size = new System.Drawing.Size(131, 22);
             this.menuItemComandas.Text = "Comandas";
             this.menuItemComandas.Click += new System.EventHandler(this.menuItemComandas_Click);
             // 
@@ -169,6 +169,11 @@
             this.btnCaixa.Text = "(F2) Caixa";
             this.btnCaixa.Click += new System.EventHandler(this.btnCaixa_Click);
             // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
+            // 
             // btnProdutos
             // 
             this.btnProdutos.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -179,11 +184,6 @@
             this.btnProdutos.Text = "(F3) Produtos";
             this.btnProdutos.Click += new System.EventHandler(this.btnProdutos_Click);
             // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
             // btnComandas
             // 
             this.btnComandas.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -193,6 +193,11 @@
             this.btnComandas.Size = new System.Drawing.Size(91, 22);
             this.btnComandas.Text = "(F4) Comandas";
             this.btnComandas.Click += new System.EventHandler(this.btnComandas_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // btnEntradaProdutos
             // 
@@ -219,11 +224,6 @@
             this.btnRelatorios.Text = "(F6) Relatórios";
             this.btnRelatorios.Click += new System.EventHandler(this.btnRelatorios_Click);
             // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -239,6 +239,7 @@
             this.Name = "Main";
             this.Text = "Esquenta";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.Main_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Main_KeyUp);
             this.mainMenu.ResumeLayout(false);
             this.mainMenu.PerformLayout();

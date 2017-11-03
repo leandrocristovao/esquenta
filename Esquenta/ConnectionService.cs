@@ -3,8 +3,6 @@ using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
-using NHibernate.Cfg;
-using NHibernate.Tool.hbm2ddl;
 
 namespace Esquenta
 {
@@ -20,6 +18,7 @@ namespace Esquenta
         private static VendaRepository _vendaRepository = null;
         private static ProdutoItemRepository _produtoItemRepository = null;
         private static EntradaProdutoRepository _entradaProdutoRepository = null;
+        private static PeriodoVendaRepository _periodoVendaRepository = null;
 
         public ConnectionService()
         {
@@ -90,6 +89,15 @@ namespace Esquenta
                 _entradaProdutoRepository = new EntradaProdutoRepository(sessionFactory.OpenSession());
             }
             return _entradaProdutoRepository;
+        }
+
+        public PeriodoVendaRepository GetPeriodoVendaRepository()
+        {
+            if (_periodoVendaRepository == null)
+            {
+                _periodoVendaRepository = new PeriodoVendaRepository(sessionFactory.OpenSession());
+            }
+            return _periodoVendaRepository;
         }
 
         private static ISessionFactory CreateSessionFactory()

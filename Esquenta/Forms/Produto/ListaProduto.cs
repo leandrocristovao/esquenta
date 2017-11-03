@@ -52,7 +52,8 @@ namespace Esquenta.Forms.Produto
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            var produto = lista[e.RowIndex];
+            var id = (int)((DataGridView)sender).CurrentRow.Cells[0].Value;
+            var produto = lista.Find(x => x.Id == id);
             new AddProduto(service, produto).ShowDialog();
             ReloadList();
         }

@@ -53,6 +53,7 @@
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(477, 20);
             this.txtNome.TabIndex = 12;
+            this.txtNome.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNome_KeyDown);
             // 
             // txtCodigoBarra
             // 

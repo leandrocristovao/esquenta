@@ -55,9 +55,14 @@ namespace Esquenta.Repository
             return entity;
         }
 
-        public Produto Get(string codigoBarra)
+        public Produto GetByCodigoBarra(string codigoBarra)
         {
             return _session.Query<Produto>().Where(x => x.CodigoBarras.Equals(codigoBarra)).FirstOrDefault();
+        }
+
+        public Produto GetByNome(string nome)
+        {
+            return _session.Query<Produto>().Where(x => x.Nome.Equals(nome)).FirstOrDefault();
         }
     }
 }

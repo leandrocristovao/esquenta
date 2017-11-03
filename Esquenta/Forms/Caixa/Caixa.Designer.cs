@@ -121,7 +121,7 @@
             this.lblNomeComanda.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNomeComanda.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomeComanda.Location = new System.Drawing.Point(22, 73);
+            this.lblNomeComanda.Location = new System.Drawing.Point(22, 82);
             this.lblNomeComanda.Name = "lblNomeComanda";
             this.lblNomeComanda.Size = new System.Drawing.Size(246, 23);
             this.lblNomeComanda.TabIndex = 13;
@@ -230,9 +230,17 @@
             // 
             this.txtComanda.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtComanda.AutoCompleteCustomSource.AddRange(new string[] {
+            "a",
+            "aa",
+            "aaa",
+            "aaaa"});
+            this.txtComanda.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtComanda.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtComanda.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtComanda.Location = new System.Drawing.Point(22, 50);
             this.txtComanda.Name = "txtComanda";
-            this.txtComanda.Size = new System.Drawing.Size(246, 20);
+            this.txtComanda.Size = new System.Drawing.Size(246, 29);
             this.txtComanda.TabIndex = 1;
             this.txtComanda.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtComanda_KeyDown);
             // 

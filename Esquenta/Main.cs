@@ -1,4 +1,5 @@
-﻿using Esquenta.Forms.Caixa;
+﻿using Esquenta.Entities;
+using Esquenta.Forms.Caixa;
 using Esquenta.Forms.Comandas;
 using Esquenta.Forms.EntradaProduto;
 using Esquenta.Forms.Produto;
@@ -21,6 +22,16 @@ namespace Esquenta
             InitializeComponent();
 
             new ConnectionService();
+
+            var hasPeriodo = ConnectionService.GetInstance().GetPeriodoVendaRepository().List().Count > 0;
+            if (!hasPeriodo)
+            {
+                ConnectionService.GetInstance().GetPeriodoVendaRepository().Save(new PeriodoVenda()
+                {
+                    DataInicial = DateTime.Now,
+                    DataFinal = DateTime.Now
+                });
+            }
         }
 
         private void menuItemProdutos_Click(object sender, EventArgs e)
@@ -119,8 +130,8 @@ namespace Esquenta
 
         private void btnCaixa_Click(object sender, EventArgs e)
         {
-            new Form1().Show();
-            //menuItemCaixa_Click(sender, e);
+            //new Form1().Show();
+            menuItemCaixa_Click(sender, e);
         }
 
         private void btnProdutos_Click(object sender, EventArgs e)
@@ -141,6 +152,10 @@ namespace Esquenta
         private void btnRelatorios_Click(object sender, EventArgs e)
         {
             menuItemLivroCaixa_Click(sender, e);
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
         }
     }
 }

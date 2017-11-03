@@ -180,7 +180,7 @@ namespace Esquenta.Forms.Produto
             {
                 if (((TextBox)sender).Name.Equals("txtCodigoBarra"))
                 {
-                    var found = _service.GetProdutoRepository().Get(((TextBox)sender).Text);
+                    var found = _service.GetProdutoRepository().GetByCodigoBarra(((TextBox)sender).Text);
                     if (found != null)
                     {
                         //Encontrei o item
