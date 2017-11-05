@@ -1,5 +1,6 @@
 ﻿using NHibernate.Util;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -15,24 +16,10 @@ namespace Esquenta.Forms.Relatorios
         private void Vendas_Load(object sender, EventArgs e)
         {
             ConnectionService service = ConnectionService.GetInstance();
-            var vendas = service.GetVendaRepository().GetVendasDia(Properties.Settings.Default.AberturaCaixa.AddMonths(-1));
-            vendas.ForEach(venda =>
-            {
-                var id = venda.Id;
-                var produto = venda.Comanda.Nome;
-                var dataVenda = venda.DataVenda;
-                var valorVendas = venda.ValorTotal;
-                var valorAcrescimo = venda.ValorAcrescimo;
-                var valorDesconto = venda.ValorDesconto;
-                var valorFinal = venda.ValorFinal;
+            var vendas = service.GetVendaRepository().GetVendasDia(Properties.Settings.Default.AberturaCaixa);
+            var consumo = service.GetItemVendaRepository().GetConsumo(Properties.Settings.Default.AberturaCaixa, null);
 
-                dataGridView1.Rows.Add(new object[] { id, produto, dataVenda, valorVendas, valorAcrescimo, valorDesconto, valorFinal });
-            });
-
-            lblTotalItens.Text = string.Format("Total de itens vendidos: {0}", vendas.Count);
-            lblDesconto.Text = string.Format("Valor Total em descontos: R$ {0}", vendas.Sum(x => x.ValorDesconto));
-            lblAcrescimo.Text = string.Format("Valor Total em acréscimo: R$ {0}", vendas.Sum(x => x.ValorAcrescimo));
-            lblTotal.Text = string.Format("Valor Total em vendas: R$ {0}", vendas.Sum(x => x.ValorFinal));
+            CarregaVendas(vendas, consumo);
         }
 
         private void BtnFecharCaixa_Click(object sender, EventArgs e)
@@ -79,6 +66,65 @@ namespace Esquenta.Forms.Relatorios
             });
 
             lblValorTotalVenda.Text = string.Format("Valor total da venda: {0}", venda.ValorFinal);
+        }
+
+        private void mCalendar_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            var start = ((MonthCalendar)sender).SelectionRange.Start;
+            var end = ((MonthCalendar)sender).SelectionRange.End;
+
+            List<Entities.Venda> vendas = new List<Entities.Venda>();
+            List<Entities.ItemVenda> consumo = new List<Entities.ItemVenda>();
+
+            ConnectionService service = ConnectionService.GetInstance();
+
+            if (start == end)
+            {
+                //Apenas um dia
+                var periodo = service.GetPeriodoVendaRepository().GetPeriodoInicial(start);
+                if (periodo != null)
+                {
+                    vendas = service.GetVendaRepository().GetVendasDia(periodo);
+                }
+            }
+            else
+            {
+                //Faixa de dias
+                vendas = service.GetVendaRepository().GetVendasDia(start, end.AddSeconds(59).AddMinutes(59).AddHours(23));
+            }
+            consumo = service.GetItemVendaRepository().GetConsumo(start, end.AddSeconds(59).AddMinutes(59).AddHours(23));
+            CarregaVendas(vendas, consumo);
+        }
+
+        private void CarregaVendas(List<Entities.Venda> vendas, List<Entities.ItemVenda> consumo)
+        {
+            dataGridView2.Rows.Clear();
+            lblValorTotalVenda.Text = "Valor total em vendas: R$ 0,00";
+
+            dataGridView1.Rows.Clear();
+            vendas.ForEach(venda =>
+            {
+                var id = venda.Id;
+                var produto = venda.Comanda.Nome;
+                var dataVenda = venda.DataVenda;
+                var valorVendas = venda.ValorTotal;
+                var valorAcrescimo = venda.ValorAcrescimo;
+                var valorDesconto = venda.ValorDesconto;
+                var valorFinal = venda.ValorFinal;
+
+                dataGridView1.Rows.Add(new object[] { id, produto, dataVenda, valorVendas, valorAcrescimo, valorDesconto, valorFinal });
+            });
+
+            lblTotalItens.Text = string.Format("Total de itens vendidos: {0}", vendas.Count);
+            lblDesconto.Text = string.Format("Valor Total em descontos: R$ {0}", vendas.Sum(x => x.ValorDesconto));
+            lblAcrescimo.Text = string.Format("Valor Total em acréscimo: R$ {0}", vendas.Sum(x => x.ValorAcrescimo));
+            lblTotal.Text = string.Format("Valor Total em vendas: R$ {0}", vendas.Sum(x => x.ValorFinal));
+
+            dgvConsumo.Rows.Clear();
+            consumo.ForEach(item =>
+            {
+                dgvConsumo.Rows.Add(new object[] { item.Produto.Nome, item.Quantidade });
+            });
         }
     }
 }

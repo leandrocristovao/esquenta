@@ -7,5 +7,7 @@ namespace Esquenta.Repository.Interfaces
     public interface IItemVendaRepository : IBaseRepository<ItemVenda>
     {
         List<ItemVenda> GetVendasDia(DateTime dataInicial);
+
+        List<ItemVenda> GetConsumo(DateTime periodoInicial, DateTime? periodoFinal);
     }
 }

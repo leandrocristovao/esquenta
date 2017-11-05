@@ -3,5 +3,6 @@
 namespace Esquenta.Repository.Interfaces
 {
     public interface IProdutoItemRepository : IBaseRepository<ProdutoItem>
-    { }
+    {
+    }
 }

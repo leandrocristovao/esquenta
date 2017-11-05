@@ -168,9 +168,10 @@ namespace Esquenta.Forms.Produto
                     {
                         selecionado = true;
                         quantidade = produtoItem.Quantidade;
+                        dataGridView1.Rows.Add(new object[] { selecionado, item.Id, item.Nome, quantidade });
                     }
                 }
-                dataGridView1.Rows.Add(new object[] { selecionado, item.Id, item.Nome, quantidade });
+                
             });
         }
 
@@ -194,6 +195,23 @@ namespace Esquenta.Forms.Produto
         private void txtValor_TextChanged(object sender, EventArgs e)
         {
             TextBoxEnter.TextChanged(sender, e);
+        }
+
+        private void btnAddItem_Click(object sender, EventArgs e)
+        {
+            using (var form = new SelecionarItem())
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    var codigoBarras = form.CodigoBarras;
+                    var quantidade = form.Quantidade;
+
+                    var item = _service.GetProdutoRepository().GetByCodigoBarra(codigoBarras);
+                    dataGridView1.Rows.Add(new object[] { true, item.Id, item.Nome, quantidade });
+                    //form.Close()
+                }
+            }
         }
     }
 }

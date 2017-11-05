@@ -18,5 +18,16 @@ namespace Esquenta.Repository
         {
             return _session.Query<ItemVenda>().Where(x => x.DataVenda >= dataInicial).ToList();
         }
+
+        public List<ItemVenda> GetConsumo(DateTime periodoInicial, DateTime? periodoFinal)
+        {
+            var query = _session.Query<ItemVenda>().Where(x => x.DataVenda >= periodoInicial && x.Venda.Comanda.Id == 2);
+            if (periodoFinal != null)
+            {
+                query = query.Where(x => x.DataVenda <= periodoFinal);
+            }
+
+            return query.ToList();
+        }
     }
 }

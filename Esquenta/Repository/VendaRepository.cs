@@ -69,7 +69,23 @@ namespace Esquenta.Repository
 
         public List<Venda> GetVendasDia(DateTime dataInicial)
         {
-            return _session.Query<Venda>().Where(x => x.DataVenda >= dataInicial).ToList();
+            return _session.Query<Venda>().Where(x => x.DataVenda >= dataInicial && x.Comanda.Id != 2).ToList();
+        }
+
+        public List<Venda> GetVendasDia(DateTime dataInicial, DateTime? dataFinal)
+        {
+            var query = _session.Query<Venda>().Where(x => x.DataVenda >= dataInicial && x.Comanda.Id != 2);
+            if (dataFinal != null)
+            {
+                query = query.Where(x => x.DataVenda <= dataFinal);
+            }
+
+            return query.ToList();
+        }
+
+        public List<Venda> GetVendasDia(PeriodoVenda periodo)
+        {
+            return GetVendasDia(periodo.DataInicial, periodo.DataFinal);
         }
     }
 }

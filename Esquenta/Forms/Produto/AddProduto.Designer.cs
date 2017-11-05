@@ -47,6 +47,7 @@
             this.Quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtQuantidadeMinima = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.btnAddItem = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,7 +56,7 @@
             this.btnSalvar.Location = new System.Drawing.Point(15, 505);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(75, 23);
-            this.btnSalvar.TabIndex = 6;
+            this.btnSalvar.TabIndex = 8;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
@@ -154,7 +155,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(100, 505);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 7;
+            this.btnCancelar.TabIndex = 9;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -216,12 +217,23 @@
             this.label6.TabIndex = 12;
             this.label6.Text = "Mínimo";
             // 
+            // btnAddItem
+            // 
+            this.btnAddItem.Location = new System.Drawing.Point(417, 190);
+            this.btnAddItem.Name = "btnAddItem";
+            this.btnAddItem.Size = new System.Drawing.Size(75, 23);
+            this.btnAddItem.TabIndex = 7;
+            this.btnAddItem.Text = "Novo Item";
+            this.btnAddItem.UseVisualStyleBackColor = true;
+            this.btnAddItem.Click += new System.EventHandler(this.btnAddItem_Click);
+            // 
             // AddProduto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(504, 540);
+            this.Controls.Add(this.btnAddItem);
             this.Controls.Add(this.txtQuantidadeMinima);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.dataGridView1);
@@ -272,5 +284,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Produto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantidade;
+        private System.Windows.Forms.Button btnAddItem;
     }
 }
