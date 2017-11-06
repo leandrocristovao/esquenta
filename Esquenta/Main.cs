@@ -70,7 +70,7 @@ namespace Esquenta
                 frmCaixa = null;
             }
             frmCaixa = new Caixa();
-            frmCaixa.MdiParent = this;
+            //frmCaixa.MdiParent = this;
             frmCaixa.Show();
             frmCaixa.WindowState = FormWindowState.Maximized;
         }
