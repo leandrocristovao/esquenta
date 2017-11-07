@@ -87,5 +87,10 @@ namespace Esquenta.Repository
         {
             return GetVendasDia(periodo.DataInicial, periodo.DataFinal);
         }
+
+        public Venda GetVendasEmAberto(Comanda comanda)
+        {
+            return _session.Query<Venda>().Where(x => x.EmAberto == true && x.Comanda == comanda).FirstOrDefault();
+        }
     }
 }

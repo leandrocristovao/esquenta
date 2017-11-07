@@ -16,20 +16,17 @@ namespace Esquenta.Repository
         public void FecharPeriodo(DateTime periodoFinal)
         {
             var last = _session.Query<PeriodoVenda>().OrderByDescending(x => x.Id).FirstOrDefault();
+            last.DataFinal = periodoFinal;
+
+            _session.Update(last);
 
             var entity = new PeriodoVenda()
-            {
-                DataInicial = last.DataFinal ?? DateTime.Now,
-                DataFinal = periodoFinal
-            };
-            _session.SaveOrUpdate(entity);
-
-            entity = new PeriodoVenda()
             {
                 DataInicial = periodoFinal,
                 DataFinal = null
             };
-            _session.SaveOrUpdate(entity);
+            _session.Save(entity);
+            _session.Flush();
         }
 
         public PeriodoVenda GetPeriodoInicial(DateTime periodoInicial)

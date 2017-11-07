@@ -10,5 +10,6 @@ namespace Esquenta.Repository.Interfaces
         System.Collections.Generic.List<Venda> GetVendasDia(DateTime dataInicial, DateTime? dataFinal);
 
         System.Collections.Generic.List<Venda> GetVendasDia(PeriodoVenda periodo);
+        Venda GetVendasEmAberto(Comanda comanda);
     }
 }

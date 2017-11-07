@@ -16,5 +16,10 @@ namespace Esquenta.Repository
         {
             return _session.Query<Comanda>().Where(x => x.CodigoBarras.Equals(codigoBarra)).FirstOrDefault();
         }
+
+        public Comanda GetByNome(string nome)
+        {
+            return _session.Query<Comanda>().Where(x => x.Nome.Equals(nome)).FirstOrDefault();
+        }
     }
 }
