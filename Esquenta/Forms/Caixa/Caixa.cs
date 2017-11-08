@@ -373,7 +373,7 @@ namespace Esquenta.Forms.Caixa
                     break;
 
                 case Keys.F8:
-                    ClearScreen();
+                    ClearScreen(true);
                     break;
 
                 case Keys.F9:

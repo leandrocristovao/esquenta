@@ -24,11 +24,24 @@ namespace Esquenta.Forms.Relatorios
 
         private void BtnFecharCaixa_Click(object sender, EventArgs e)
         {
+            ConnectionService service = ConnectionService.GetInstance();
+
+            var emAberto = service.GetVendaRepository().GetVendasEmAberto();
+            if (emAberto.Count > 0)
+            {
+                List<string> comandas = new List<string>();
+                emAberto.ForEach(venda =>
+                {
+                    comandas.Add(string.Format("{0} - {1}", venda.Comanda.CodigoBarras, venda.Comanda.Nome));
+                });
+                MessageBox.Show(string.Format("As comandas:\n\n{0}\n\nestão em aberto. O caixa não pode ser fechado!", string.Join(", ", comandas.ToArray())));
+                return;
+            }
+
             var dateTime = DateTime.Now;
             Properties.Settings.Default.AberturaCaixa = dateTime;
             Properties.Settings.Default.Save();
 
-            ConnectionService service = ConnectionService.GetInstance();
             service.GetPeriodoVendaRepository().FecharPeriodo(dateTime);
         }
 

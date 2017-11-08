@@ -92,5 +92,10 @@ namespace Esquenta.Repository
         {
             return _session.Query<Venda>().Where(x => x.EmAberto == true && x.Comanda == comanda).FirstOrDefault();
         }
+
+        public List<Venda> GetVendasEmAberto()
+        {
+            return _session.Query<Venda>().Where(x => x.EmAberto == true).ToList();
+        }
     }
 }
