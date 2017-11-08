@@ -17,7 +17,10 @@ namespace Esquenta.Forms.Caixa
 
         private State CurrentState = State.AguardandoComanda;
         private ConnectionService service;
-        private List<Entities.Produto> itens = new List<Entities.Produto>();
+
+        //private List<Entities.Produto> itens = new List<Entities.Produto>();
+        private List<Entities.ItemVenda> itens = new List<Entities.ItemVenda>();
+
         private decimal valorVenda = 0;
         private decimal valorPago = 0;
         private decimal valorDesconto = 0;
@@ -61,7 +64,7 @@ namespace Esquenta.Forms.Caixa
             var listaComanda = service.GetComandaRepository().List();
             listaComanda.ForEach(comanda =>
             {
-                comandasAutoComplete.Add(comanda.Nome);
+                comandasAutoComplete.Add(string.Format("{0} - {1}", comanda.Nome, comanda.CodigoBarras));
             });
 
             txtComanda.AutoCompleteCustomSource = comandasAutoComplete;
@@ -169,7 +172,7 @@ namespace Esquenta.Forms.Caixa
                             {
                                 item.Produto.Quantidade = item.Quantidade;
                                 //item.Produto.Valor = item.Valor;
-                                itens.Add(item.Produto);
+                                itens.Add(item);
                                 dataGridView1.Rows.Add(new String[] { item.Produto.Nome, item.Quantidade.ToString(), item.Valor.ToString(), (item.Valor * item.Quantidade).ToString() });
                             });
                             AtualizaCalculo(venda.ValorAcrescimo, venda.ValorDesconto, venda.ValorTotal);
@@ -185,7 +188,7 @@ namespace Esquenta.Forms.Caixa
                         return;
                     }
                     //Recupero Produto
-                    _produto = CheckProduto();
+                    var _produto = CheckProduto();
                     if (_produto == null)
                     {
                         MessageBox.Show("Produto não cadastrado");
@@ -193,20 +196,27 @@ namespace Esquenta.Forms.Caixa
                         return;
                     }
 
+                    var itemVenda = new ItemVenda();
+                    itemVenda.Produto = _produto;
+                    itemVenda.Valor = _produto.Valor;
                     using (var form = new Quantidade())
                     {
                         var result = form.ShowDialog();
                         if (result == DialogResult.OK)
                         {
-                            _produto.Quantidade = form.Total;
+                            //_produto.Quantidade = form.Total;
+                            itemVenda.Quantidade = form.Total;
                         }
                     }
 
-                    itens.Add(_produto);
+                    itemVenda.ValorTotal = itemVenda.Quantidade * itemVenda.Valor;
+                    itens.Add(itemVenda);
+                    //itens.Add(_produto);
+
                     //var xxx = itens.GroupBy(i => i).Select(c => new { Key = c.Key, total = c.Sum(x => x.Quantidade) });
                     //var xxx = itens.SelectMany(x=> x.Itens).GroupBy(i => i.Produto).Select(c => new { Key = c.Key, total = c.Sum(x => x.Quantidade) });
 
-                    dataGridView1.Rows.Add(new String[] { _produto.Nome, _produto.Quantidade.ToString(), _produto.Valor.ToString(), (_produto.Valor * _produto.Quantidade).ToString() });
+                    dataGridView1.Rows.Add(new String[] { itemVenda.Produto.Nome, itemVenda.Quantidade.ToString(), itemVenda.Valor.ToString(), (itemVenda.Valor * itemVenda.Quantidade).ToString() });
 
                     decimal valorVenda = 0;
                     for (int i = 0; i < dataGridView1.Rows.Count; i++)
@@ -288,15 +298,16 @@ namespace Esquenta.Forms.Caixa
 
                 itens.ForEach(produto =>
                 {
-                    var item = new ItemVenda
-                    {
-                        Venda = venda,
-                        Produto = produto,
-                        Valor = produto.Valor,
-                        Quantidade = produto.Quantidade
-                    };
+                    //var item = new ItemVenda
+                    //{
+                    //    Venda = venda,
+                    //    Produto = produto,
+                    //    Valor = produto.Valor,
+                    //    Quantidade = produto.Quantidade
+                    //};
 
-                    venda.ItemVenda.Add(item);
+                    //venda.ItemVenda.Add(item);
+                    venda.ItemVenda.Add(produto);
                 });
 
                 service.GetVendaRepository().Save(venda);
