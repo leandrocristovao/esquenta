@@ -173,7 +173,7 @@ namespace Esquenta.Forms.Caixa
                                 item.Produto.Quantidade = item.Quantidade;
                                 //item.Produto.Valor = item.Valor;
                                 itens.Add(item);
-                                dataGridView1.Rows.Add(new String[] { item.Produto.Nome, item.Quantidade.ToString(), item.Valor.ToString(), (item.Valor * item.Quantidade).ToString() });
+                                dataGridView1.Rows.Add(new String[] { itens.Count.ToString(), item.Produto.Nome, item.Quantidade.ToString(), item.Valor.ToString(), (item.Valor * item.Quantidade).ToString() });
                             });
                             AtualizaCalculo(venda.ValorAcrescimo, venda.ValorDesconto, venda.ValorTotal);
                         }
@@ -216,7 +216,7 @@ namespace Esquenta.Forms.Caixa
                     //var xxx = itens.GroupBy(i => i).Select(c => new { Key = c.Key, total = c.Sum(x => x.Quantidade) });
                     //var xxx = itens.SelectMany(x=> x.Itens).GroupBy(i => i.Produto).Select(c => new { Key = c.Key, total = c.Sum(x => x.Quantidade) });
 
-                    dataGridView1.Rows.Add(new String[] { itemVenda.Produto.Nome, itemVenda.Quantidade.ToString(), itemVenda.Valor.ToString(), (itemVenda.Valor * itemVenda.Quantidade).ToString() });
+                    dataGridView1.Rows.Add(new String[] { itens.Count.ToString(), itemVenda.Produto.Nome, itemVenda.Quantidade.ToString(), itemVenda.Valor.ToString(), (itemVenda.Valor * itemVenda.Quantidade).ToString() });
 
                     decimal valorVenda = 0;
                     for (int i = 0; i < dataGridView1.Rows.Count; i++)
@@ -341,8 +341,10 @@ namespace Esquenta.Forms.Caixa
 
             txtDesconto.Text = string.Format("{0:N}", valorDesconto);
             txtAcrescimo.Text = string.Format("{0:N}", valorAcrescimo);
-            txtValorPago.Text = string.Format("{0:N}", valorPago);
-            txtTroco.Text = string.Format("{0:N}", Math.Max(0, (valorPago - valorVenda)));
+            //txtValorPago.Text = string.Format("{0:N}", valorPago);
+            //txtTroco.Text = string.Format("{0:N}", Math.Max(0, (valorPago - valorVenda)));
+            txtValorPago.Text = string.Format("{0:N}", valor);
+            txtTroco.Text = string.Format("{0:N}", Math.Max(0, (valor - valorVenda)));
             lblValorTotal.Text = string.Format("{0:N}", valorVenda);
         }
 
@@ -365,6 +367,40 @@ namespace Esquenta.Forms.Caixa
             txtComanda.Focus();
         }
 
+        private void CancelarItem()
+        {
+            if (this.itens.Count == 0)
+            {
+                return;
+            }
+
+            using (var form = new RemoverItem())
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    try
+                    {
+                        itens.RemoveAt(--form.NumeroItem);
+
+                        dataGridView1.Rows.Clear();
+                        var index = 0;
+                        itens.ForEach(item =>
+                        {
+                            index++;
+                            dataGridView1.Rows.Add(new String[] { index.ToString(), item.Produto.Nome, item.Quantidade.ToString(), item.Valor.ToString(), (item.Valor * item.Quantidade).ToString() });
+                        });
+                        AtualizaCalculo(0, 0, 0);
+                    }
+                    catch (Exception)
+                    {
+                        //Cliente pode colocar um indice fora da faixa, ignoro erro
+                    }
+                }
+            }
+
+        }
+
         private void btnCalcular_Click(object sender, EventArgs e)
         {
             Calcular();
@@ -377,8 +413,13 @@ namespace Esquenta.Forms.Caixa
 
         private void Caixa_KeyUp(object sender, KeyEventArgs e)
         {
+
             switch (e.KeyCode)
             {
+                case Keys.Delete:
+                    CancelarItem();
+                    break;
+
                 case Keys.F7:
                     Calcular();
                     break;

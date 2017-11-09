@@ -75,7 +75,7 @@ namespace Esquenta.Forms.Relatorios
                 var valorUnidade = itemVenda.Valor;
                 var valorTotal = valorUnidade * quantidade;
 
-                dataGridView2.Rows.Add(new object[] { nomeProduto, valorUnidade, quantidade, valorTotal, estoque });
+                dataGridView2.Rows.Add(new object[] { nomeProduto, quantidade, valorUnidade, valorTotal, estoque });
             });
 
             lblValorTotalVenda.Text = string.Format("Valor total da venda: {0}", venda.ValorFinal);

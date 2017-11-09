@@ -56,12 +56,13 @@
             this.btnCalcularFechar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.produtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.itemVendaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ValorUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.produtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.itemVendaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -346,6 +347,7 @@
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID,
             this.Nome,
             this.Quantidade,
             this.ValorUnitario,
@@ -364,6 +366,22 @@
             this.dataGridView1.Size = new System.Drawing.Size(721, 402);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.TabStop = false;
+            // 
+            // produtoBindingSource
+            // 
+            this.produtoBindingSource.DataSource = typeof(Esquenta.Entities.Produto);
+            // 
+            // itemVendaBindingSource
+            // 
+            this.itemVendaBindingSource.DataSource = typeof(Esquenta.Entities.ItemVenda);
+            // 
+            // ID
+            // 
+            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Width = 52;
             // 
             // Nome
             // 
@@ -405,14 +423,6 @@
             this.Valor.Name = "Valor";
             this.Valor.ReadOnly = true;
             this.Valor.Width = 79;
-            // 
-            // produtoBindingSource
-            // 
-            this.produtoBindingSource.DataSource = typeof(Esquenta.Entities.Produto);
-            // 
-            // itemVendaBindingSource
-            // 
-            this.itemVendaBindingSource.DataSource = typeof(Esquenta.Entities.ItemVenda);
             // 
             // Caixa
             // 
@@ -464,11 +474,12 @@
         private System.Windows.Forms.Button btnCancelarVenda;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblNomeComanda;
+        private System.Windows.Forms.TextBox txtAcrescimo;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantidade;
         private System.Windows.Forms.DataGridViewTextBoxColumn ValorUnitario;
         private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
-        private System.Windows.Forms.TextBox txtAcrescimo;
-        private System.Windows.Forms.Label label7;
     }
 }

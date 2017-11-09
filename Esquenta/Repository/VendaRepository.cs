@@ -69,7 +69,7 @@ namespace Esquenta.Repository
 
         public List<Venda> GetVendasDia(DateTime dataInicial)
         {
-            return _session.Query<Venda>().Where(x => x.DataVenda >= dataInicial && x.Comanda.Id != 2).ToList();
+            return _session.Query<Venda>().Where(x => x.DataVenda >= dataInicial && x.Comanda.Id != 2).OrderByDescending(x=>x.Id).ToList();
         }
 
         public List<Venda> GetVendasDia(DateTime dataInicial, DateTime? dataFinal)
