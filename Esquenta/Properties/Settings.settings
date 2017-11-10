@@ -13,5 +13,8 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=(local);Initial Catalog=esquenta;Persist Security Info=True;Trusted_Connection=True;User ID=sa;Password=$splfiscal10</Value>
     </Setting>
+    <Setting Name="Troco" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

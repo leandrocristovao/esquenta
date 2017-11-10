@@ -1,4 +1,5 @@
-﻿using NHibernate.Util;
+﻿using Esquenta.Components;
+using NHibernate.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ namespace Esquenta.Forms.Relatorios
 {
     public partial class Vendas : Form
     {
+        private List<Entities.Venda> _vendas;
         public Vendas()
         {
             InitializeComponent();
@@ -16,10 +18,13 @@ namespace Esquenta.Forms.Relatorios
         private void Vendas_Load(object sender, EventArgs e)
         {
             ConnectionService service = ConnectionService.GetInstance();
-            var vendas = service.GetVendaRepository().GetVendasDia(Properties.Settings.Default.AberturaCaixa);
+            _vendas = service.GetVendaRepository().GetVendasDia(Properties.Settings.Default.AberturaCaixa);
             var consumo = service.GetItemVendaRepository().GetConsumo(Properties.Settings.Default.AberturaCaixa, null);
 
-            CarregaVendas(vendas, consumo);
+            var troco = Properties.Settings.Default.Troco;
+            txtValorCaixa.Text = troco.ToString();
+
+            CarregaVendas(_vendas, consumo);
         }
 
         private void BtnFecharCaixa_Click(object sender, EventArgs e)
@@ -128,16 +133,44 @@ namespace Esquenta.Forms.Relatorios
                 dataGridView1.Rows.Add(new object[] { id, produto, dataVenda, valorVendas, valorAcrescimo, valorDesconto, valorFinal });
             });
 
-            lblTotalItens.Text = string.Format("Total de itens vendidos: {0}", vendas.Count);
-            lblDesconto.Text = string.Format("Valor Total em descontos: R$ {0}", vendas.Sum(x => x.ValorDesconto));
-            lblAcrescimo.Text = string.Format("Valor Total em acréscimo: R$ {0}", vendas.Sum(x => x.ValorAcrescimo));
-            lblTotal.Text = string.Format("Valor Total em vendas: R$ {0}", vendas.Sum(x => x.ValorFinal));
+            AtualizaCalculos();
 
             dgvConsumo.Rows.Clear();
             consumo.ForEach(item =>
             {
                 dgvConsumo.Rows.Add(new object[] { item.Produto.Nome, item.Quantidade });
             });
+        }
+
+        private void AtualizaCalculos()
+        {
+            var valorVendasFinal = _vendas.Sum(x => x.ValorFinal);
+            var valorAcrescimoFinal = _vendas.Sum(x => x.ValorAcrescimo);
+            var valorDescontoFinal = _vendas.Sum(x => x.ValorDesconto);
+            decimal valorTrocoFinal = 0;
+            decimal.TryParse(txtValorCaixa.Text, out valorTrocoFinal);
+
+            var valorEmCaixa = valorVendasFinal + valorAcrescimoFinal + valorTrocoFinal - valorDescontoFinal;
+
+            lblTotalItens.Text = _vendas.Count.ToString();
+            lblDesconto.Text = string.Format("{0:C}", valorDescontoFinal);
+            lblAcrescimo.Text = string.Format("{0:C}", valorAcrescimoFinal);
+            lblTotal.Text = string.Format("{0:C}", valorVendasFinal);
+            //lblValorTroco.Text = string.Format("{0:C}", valorTrocoFinal);
+            //Total com caixa, vendas, acrescimos e descontos
+            lblValorFinal.Text = string.Format("{0:C}", valorEmCaixa);
+        }
+        private void txtValorCaixa_TextChanged(object sender, EventArgs e)
+        {
+            TextBoxEnter.TextChanged(sender, e);
+
+            decimal valorTrocoFinal = 0;
+            decimal.TryParse(txtValorCaixa.Text, out valorTrocoFinal);
+
+            Properties.Settings.Default.Troco = valorTrocoFinal;
+            Properties.Settings.Default.Save();
+
+            AtualizaCalculos();
         }
     }
 }

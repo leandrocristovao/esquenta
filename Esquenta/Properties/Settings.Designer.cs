@@ -45,5 +45,17 @@ namespace Esquenta.Properties {
                 return ((string)(this["ConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal Troco {
+            get {
+                return ((decimal)(this["Troco"]));
+            }
+            set {
+                this["Troco"] = value;
+            }
+        }
     }
 }

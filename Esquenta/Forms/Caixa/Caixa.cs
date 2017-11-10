@@ -64,7 +64,7 @@ namespace Esquenta.Forms.Caixa
             var listaComanda = service.GetComandaRepository().List();
             listaComanda.ForEach(comanda =>
             {
-                comandasAutoComplete.Add(string.Format("{0} - {1}", comanda.Nome, comanda.CodigoBarras));
+                comandasAutoComplete.Add(comanda.Nome);
             });
 
             txtComanda.AutoCompleteCustomSource = comandasAutoComplete;
