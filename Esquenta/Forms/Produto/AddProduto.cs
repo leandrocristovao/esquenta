@@ -50,6 +50,8 @@ namespace Esquenta.Forms.Produto
             txtQuantidade.Text = _produto.Quantidade.ToString();
             txtValor.Text = _produto.Valor.ToString();
 
+            btnEstoque.Enabled = true;
+
             LoadItens();
         }
 
@@ -171,7 +173,7 @@ namespace Esquenta.Forms.Produto
                         dataGridView1.Rows.Add(new object[] { selecionado, item.Id, item.Nome, quantidade });
                     }
                 }
-                
+
             });
         }
 
@@ -210,6 +212,27 @@ namespace Esquenta.Forms.Produto
                     var item = _service.GetProdutoRepository().GetByCodigoBarra(codigoBarras);
                     dataGridView1.Rows.Add(new object[] { true, item.Id, item.Nome, quantidade });
                     //form.Close()
+                }
+            }
+        }
+
+        private void btnEstoque_Click(object sender, EventArgs e)
+        {
+            using (var form = new AddEntradaEstoque())
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    var quantidade = form.Quantidade;
+                    var valor = form.Valor;
+
+                    _service.GetEntradaProdutoRepository().SaveOrUpdate(new Entities.EntradaProduto
+                    {
+                        Quantidade = quantidade,
+                        Valor = valor,
+                        DataEntrada = DateTime.Now,
+                        Produto = _produto
+                    });
                 }
             }
         }

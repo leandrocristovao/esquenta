@@ -126,6 +126,12 @@
     <Compile Include="Forms\EntradaProduto\ListaEntradaProduto.Designer.cs">
       <DependentUpon>ListaEntradaProduto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Produto\AddEntradaEstoque.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Produto\AddEntradaEstoque.Designer.cs">
+      <DependentUpon>AddEntradaEstoque.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Produto\ListaProduto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EntradaProduto\ListaEntradaProduto.resx">
       <DependentUpon>ListaEntradaProduto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Produto\AddEntradaEstoque.resx">
+      <DependentUpon>AddEntradaEstoque.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Produto\ListaProduto.resx">
       <DependentUpon>ListaProduto.cs</DependentUpon>
