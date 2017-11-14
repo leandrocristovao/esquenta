@@ -43,11 +43,20 @@ namespace Esquenta.Forms.Relatorios
                 return;
             }
 
-            var dateTime = DateTime.Now;
-            Properties.Settings.Default.AberturaCaixa = dateTime;
-            Properties.Settings.Default.Save();
+            var periodoEmAberto = service.GetPeriodoVendaRepository().ChecarPeriodoEmAberto();
+            if (!periodoEmAberto)
+            {
+                //var dateTime = DateTime.Now;
+                //Properties.Settings.Default.AberturaCaixa = dateTime;
+                //Properties.Settings.Default.Save();
 
-            service.GetPeriodoVendaRepository().FecharPeriodo(dateTime);
+                //service.GetPeriodoVendaRepository().FecharPeriodo(dateTime);
+            }
+            else
+            {
+                MessageBox.Show("Periodo já está fechado.");
+            }
+
         }
 
         private void Vendas_KeyUp(object sender, KeyEventArgs e)

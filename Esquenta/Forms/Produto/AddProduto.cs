@@ -233,6 +233,8 @@ namespace Esquenta.Forms.Produto
                         DataEntrada = DateTime.Now,
                         Produto = _produto
                     });
+                    //_produto.Quantidade += quantidade;
+                    txtQuantidade.Text = _produto.Quantidade.ToString();
                 }
             }
         }

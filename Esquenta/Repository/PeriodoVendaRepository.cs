@@ -1,4 +1,5 @@
 ﻿using Esquenta.Entities;
+using Esquenta.Repository.Extensions;
 using Esquenta.Repository.Interfaces;
 using NHibernate;
 using NHibernate.Linq;
@@ -11,6 +12,21 @@ namespace Esquenta.Repository
     {
         public PeriodoVendaRepository(ISession session) : base(session)
         {
+        }
+
+        public bool ChecarPeriodoEmAberto()
+        {
+            var dataAtual = DateTime.Now;
+            var dataInicial = dataAtual.AbsoluteStart();
+            var last = _session.Query<PeriodoVenda>().Where(x => x.DataFinal == null).OrderByDescending(x => x.Id).FirstOrDefault();
+            if (last == null)
+            {
+                return false;
+            }
+
+            //var dataFechamentoInicial = last.DataInicial.AbsoluteStart();
+            //var dataFechamentoFinal = last.DataInicial.AbsoluteEnd();
+            return (last.DataInicial.ToString("MM/yyyy").Equals(dataAtual.ToString("MM/yyyy")));
         }
 
         public void FecharPeriodo(DateTime periodoFinal)

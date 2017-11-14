@@ -5,7 +5,10 @@ namespace Esquenta.Repository.Interfaces
 {
     public interface IPeriodoVendaRepository : IBaseRepository<PeriodoVenda>
     {
-        void FecharPeriodo(DateTime periodoFinal);
+        bool ChecarPeriodoEmAberto();
+
         PeriodoVenda GetPeriodoInicial(DateTime periodoInicial);
+
+        void FecharPeriodo(DateTime periodoFinal);
     }
 }

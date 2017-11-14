@@ -28,15 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.BtnAdd = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataCompra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Produto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BtnAdd = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -59,38 +60,6 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(624, 396);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            // 
-            // DataCompra
-            // 
-            this.DataCompra.HeaderText = "Data da Compra";
-            this.DataCompra.Name = "DataCompra";
-            this.DataCompra.ReadOnly = true;
-            this.DataCompra.Width = 150;
-            // 
-            // Produto
-            // 
-            this.Produto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Produto.HeaderText = "Produto";
-            this.Produto.Name = "Produto";
-            this.Produto.ReadOnly = true;
-            // 
-            // Quantidade
-            // 
-            this.Quantidade.HeaderText = "Quantidade";
-            this.Quantidade.Name = "Quantidade";
-            this.Quantidade.ReadOnly = true;
-            // 
-            // Valor
-            // 
-            this.Valor.HeaderText = "Valor";
-            this.Valor.Name = "Valor";
-            this.Valor.ReadOnly = true;
             // 
             // BtnAdd
             // 
@@ -119,6 +88,43 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(624, 45);
             this.panel2.TabIndex = 6;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            // 
+            // DataCompra
+            // 
+            this.DataCompra.HeaderText = "Data da Compra";
+            this.DataCompra.Name = "DataCompra";
+            this.DataCompra.ReadOnly = true;
+            this.DataCompra.Width = 150;
+            // 
+            // Produto
+            // 
+            this.Produto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Produto.HeaderText = "Produto";
+            this.Produto.Name = "Produto";
+            this.Produto.ReadOnly = true;
+            // 
+            // Quantidade
+            // 
+            this.Quantidade.HeaderText = "Quantidade";
+            this.Quantidade.Name = "Quantidade";
+            this.Quantidade.ReadOnly = true;
+            // 
+            // Valor
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "C2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.Valor.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Valor.HeaderText = "Valor";
+            this.Valor.Name = "Valor";
+            this.Valor.ReadOnly = true;
             // 
             // ListaEntradaProduto
             // 
