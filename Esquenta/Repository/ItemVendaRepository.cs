@@ -1,4 +1,5 @@
 ﻿using Esquenta.Entities;
+using Esquenta.Repository.Extensions;
 using Esquenta.Repository.Interfaces;
 using NHibernate;
 using NHibernate.Linq;
@@ -28,6 +29,12 @@ namespace Esquenta.Repository
             }
 
             return query.ToList();
+        }
+
+        public List<ItemVenda> GetVendasByProduto(Produto produto)
+        {
+            var mes = DateTime.Now.FirstDayOfMonth();
+            return _session.Query<ItemVenda>().Where(x => x.Produto == produto && x.DataVenda >= mes).OrderByDescending(x => x.DataVenda).ToList();
         }
     }
 }

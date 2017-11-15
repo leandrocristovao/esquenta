@@ -34,6 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BtnAdd = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,6 +44,7 @@
             this.Estoque = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EstoqueMinimo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtFilter = new System.Windows.Forms.TextBox();
             this.produtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -62,12 +64,23 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.txtFilter);
             this.panel2.Controls.Add(this.BtnAdd);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(624, 45);
             this.panel2.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(142, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(64, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Filtrar dados";
             // 
             // panel1
             // 
@@ -162,6 +175,14 @@
             this.Valor.ReadOnly = true;
             this.Valor.Width = 56;
             // 
+            // txtFilter
+            // 
+            this.txtFilter.Location = new System.Drawing.Point(212, 15);
+            this.txtFilter.Name = "txtFilter";
+            this.txtFilter.Size = new System.Drawing.Size(236, 20);
+            this.txtFilter.TabIndex = 1;
+            this.txtFilter.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // produtoBindingSource
             // 
             this.produtoBindingSource.DataSource = typeof(Esquenta.Entities.Produto);
@@ -181,6 +202,7 @@
             this.Load += new System.EventHandler(this.ListaProduto_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ListaProduto_KeyUp);
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.produtoBindingSource)).EndInit();
@@ -201,5 +223,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Estoque;
         private System.Windows.Forms.DataGridViewTextBoxColumn EstoqueMinimo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtFilter;
     }
 }

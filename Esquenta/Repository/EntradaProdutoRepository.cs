@@ -1,6 +1,9 @@
-﻿using Esquenta.Entities;
+﻿using System.Collections.Generic;
+using Esquenta.Entities;
 using Esquenta.Repository.Interfaces;
 using NHibernate;
+using NHibernate.Linq;
+using System.Linq;
 
 namespace Esquenta.Repository
 {
@@ -8,6 +11,12 @@ namespace Esquenta.Repository
     {
         public EntradaProdutoRepository(ISession session) : base(session)
         {
+        }
+
+        public List<EntradaProduto> GetByProduto(Produto produto)
+        {
+            var query = _session.Query<EntradaProduto>().Where(x => x.Produto == produto).OrderByDescending(x => x.DataEntrada);
+            return query.ToList();
         }
 
         public override EntradaProduto SaveOrUpdate(EntradaProduto entity)

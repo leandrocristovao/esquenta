@@ -53,6 +53,8 @@ namespace Esquenta.Forms.Produto
             btnEstoque.Enabled = true;
 
             LoadItens();
+            LoadEstoque();
+            LoadVendas();
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -146,12 +148,13 @@ namespace Esquenta.Forms.Produto
             {
                 _service.GetProdutoRepository().Update(_produto);
             }
-
+            DialogResult = DialogResult.OK;
             Close();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            DialogResult = DialogResult.Cancel;
             Close();
         }
 
@@ -173,7 +176,6 @@ namespace Esquenta.Forms.Produto
                         dataGridView1.Rows.Add(new object[] { selecionado, item.Id, item.Nome, quantidade });
                     }
                 }
-
             });
         }
 
@@ -235,8 +237,66 @@ namespace Esquenta.Forms.Produto
                     });
                     //_produto.Quantidade += quantidade;
                     txtQuantidade.Text = _produto.Quantidade.ToString();
+                    LoadEstoque();
                 }
             }
+        }
+
+        private void LoadEstoque()
+        {
+            if (_produto == null)
+            {
+                return;
+            }
+            var estoque = _service.GetEntradaProdutoRepository().GetByProduto(_produto);
+            dgvEstoque.Rows.Clear();
+            estoque.ForEach(item =>
+            {
+                var id = item.Id;
+                var data = item.DataEntrada;
+                var quantidade = item.Quantidade;
+                var valor = item.Valor;
+                dgvEstoque.Rows.Add(new object[] { id, data, quantidade, valor });
+            });
+        }
+
+        private void LoadVendas()
+        {
+            if (_produto == null)
+            {
+                return;
+            }
+            var vendas = _service.GetItemVendaRepository().GetVendasByProduto(_produto);
+            dgvVendas.Rows.Clear();
+
+            var vendasAgrupadas = vendas.GroupBy(x => new
+            {
+                Data = x.DataVenda.ToString("dd/MM/yyyy"),
+                Valor = x.Valor
+            }, (key, group) => new
+            {
+                DataVenda = key.Data,
+                Valor = key.Valor,
+                Quantidade = group.Sum(x => x.Quantidade)
+            }).ToList();
+
+            vendasAgrupadas.ForEach(item =>
+            {
+                var id = 1;
+                var data = item.DataVenda;
+                var quantidade = item.Quantidade;
+                var valor = item.Valor;
+                dgvVendas.Rows.Add(new object[] { id, data, quantidade, valor });
+            });
+            lblVendasTotal.Text = vendasAgrupadas.Sum(x => x.Quantidade).ToString();
+            //vendas.ForEach(item =>
+            //{
+            //    var id = item.Id;
+            //    var data = item.DataVenda;
+            //    var quantidade = item.Quantidade;
+            //    var valor = item.Valor;
+            //    dgvVendas.Rows.Add(new object[] { id, data, quantidade, valor });
+            //});lbl
         }
     }
 }

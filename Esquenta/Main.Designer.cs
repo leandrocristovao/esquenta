@@ -237,6 +237,7 @@
             this.MainMenuStrip = this.mainMenu;
             this.MinimumSize = new System.Drawing.Size(1024, 736);
             this.Name = "Main";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Esquenta";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Main_Load);

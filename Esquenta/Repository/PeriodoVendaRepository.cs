@@ -23,10 +23,11 @@ namespace Esquenta.Repository
             {
                 return false;
             }
-
+            var a = last.DataInicial.ToString("dd/MM/yyyy");
+            var b = dataAtual.ToString("dd/MM/yyyy");
             //var dataFechamentoInicial = last.DataInicial.AbsoluteStart();
             //var dataFechamentoFinal = last.DataInicial.AbsoluteEnd();
-            return (last.DataInicial.ToString("MM/yyyy").Equals(dataAtual.ToString("MM/yyyy")));
+            return (last.DataInicial.ToString("dd/MM/yyyy").Equals(dataAtual.ToString("dd/MM/yyyy")));
         }
 
         public void FecharPeriodo(DateTime periodoFinal)

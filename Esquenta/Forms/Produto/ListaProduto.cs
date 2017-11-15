@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Esquenta.Forms.Produto
 {
     public partial class ListaProduto : Form
     {
-        private List<Entities.Produto> lista;
+        private List<Entities.Produto> _lista;
         private ConnectionService service;
 
         public ListaProduto()
@@ -18,21 +20,31 @@ namespace Esquenta.Forms.Produto
 
         private void ListaProduto_Load(object sender, EventArgs e)
         {
+            _lista = service.GetProdutoRepository().List();
             ReloadList();
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
-            new AddProduto(service).ShowDialog();
-            ReloadList();
+            using (var form = new AddProduto(service))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    _lista = service.GetProdutoRepository().List();
+                    ReloadList();
+                }
+            }
         }
 
         private void ReloadList()
         {
+            List<Entities.Produto> lista = _lista;
+            if (!string.IsNullOrEmpty(txtFilter.Text))
+            {
+                lista = _lista.Where(x => x.Nome.Contains(txtFilter.Text)).ToList();
+            }
             dataGridView1.Rows.Clear();
-            lista = service.GetProdutoRepository().List();
-            //lista.Sort((prod1, prod2) => prod1.Nome.CompareTo(prod2.Nome));
-
             lista.ForEach(item =>
             {
                 //item.Quantidade = (item.Itens.Count > 1 || (item.Itens.Count == 1 && item.Itens[0].Id != item.Id)) ? 456 : item.Quantidade;
@@ -47,15 +59,22 @@ namespace Esquenta.Forms.Produto
                 });
             });
             dataGridView1.Sort(dgvProduto, ListSortDirection.Ascending);
-            //dataGridView1.DataSource = lista;
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             var id = (int)((DataGridView)sender).CurrentRow.Cells[0].Value;
-            var produto = lista.Find(x => x.Id == id);
-            new AddProduto(service, produto).ShowDialog();
-            ReloadList();
+            var produto = _lista.Find(x => x.Id == id);
+
+            using (var form = new AddProduto(service, produto))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    _lista = service.GetProdutoRepository().List();
+                    ReloadList();
+                }
+            }
         }
 
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -72,6 +91,11 @@ namespace Esquenta.Forms.Produto
                     Close();
                     break;
             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            ReloadList();
         }
     }
 }

@@ -8,6 +8,8 @@ namespace Esquenta.Repository.Interfaces
     {
         List<ItemVenda> GetVendasDia(DateTime dataInicial);
 
+        List<ItemVenda> GetVendasByProduto(Produto produto);
+
         List<ItemVenda> GetConsumo(DateTime periodoInicial, DateTime? periodoFinal);
     }
 }

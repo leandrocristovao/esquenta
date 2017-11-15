@@ -9,7 +9,7 @@ namespace Esquenta.Forms.Relatorios
 {
     public partial class Vendas : Form
     {
-        private List<Entities.Venda> _vendas;
+        //private List<Entities.Venda> _vendas;
         public Vendas()
         {
             InitializeComponent();
@@ -18,7 +18,7 @@ namespace Esquenta.Forms.Relatorios
         private void Vendas_Load(object sender, EventArgs e)
         {
             ConnectionService service = ConnectionService.GetInstance();
-            _vendas = service.GetVendaRepository().GetVendasDia(Properties.Settings.Default.AberturaCaixa);
+            var _vendas = service.GetVendaRepository().GetVendasDia(Properties.Settings.Default.AberturaCaixa);
             var consumo = service.GetItemVendaRepository().GetConsumo(Properties.Settings.Default.AberturaCaixa, null);
 
             var troco = Properties.Settings.Default.Troco;
@@ -46,15 +46,24 @@ namespace Esquenta.Forms.Relatorios
             var periodoEmAberto = service.GetPeriodoVendaRepository().ChecarPeriodoEmAberto();
             if (!periodoEmAberto)
             {
-                //var dateTime = DateTime.Now;
-                //Properties.Settings.Default.AberturaCaixa = dateTime;
-                //Properties.Settings.Default.Save();
+                var dateTime = DateTime.Now;
+                Properties.Settings.Default.AberturaCaixa = dateTime;
+                Properties.Settings.Default.Save();
 
-                //service.GetPeriodoVendaRepository().FecharPeriodo(dateTime);
+                service.GetPeriodoVendaRepository().FecharPeriodo(dateTime);
+                var _vendas = service.GetVendaRepository().GetVendasDia(Properties.Settings.Default.AberturaCaixa);
+                var consumo = service.GetItemVendaRepository().GetConsumo(Properties.Settings.Default.AberturaCaixa, null);
+
+                var troco = Properties.Settings.Default.Troco;
+                txtValorCaixa.Text = troco.ToString();
+
+                CarregaVendas(_vendas, consumo);
+
+                MessageBox.Show("Período Encerrado.");
             }
             else
             {
-                MessageBox.Show("Periodo já está fechado.");
+                MessageBox.Show("Período já está fechado.");
             }
 
         }
@@ -142,7 +151,7 @@ namespace Esquenta.Forms.Relatorios
                 dataGridView1.Rows.Add(new object[] { id, produto, dataVenda, valorVendas, valorAcrescimo, valorDesconto, valorFinal });
             });
 
-            AtualizaCalculos();
+            AtualizaCalculos(vendas);
 
             dgvConsumo.Rows.Clear();
             consumo.ForEach(item =>
@@ -151,17 +160,17 @@ namespace Esquenta.Forms.Relatorios
             });
         }
 
-        private void AtualizaCalculos()
+        private void AtualizaCalculos(List<Entities.Venda> vendas)
         {
-            var valorVendasFinal = _vendas.Sum(x => x.ValorFinal);
-            var valorAcrescimoFinal = _vendas.Sum(x => x.ValorAcrescimo);
-            var valorDescontoFinal = _vendas.Sum(x => x.ValorDesconto);
+            var valorVendasFinal = vendas.Sum(x => x.ValorFinal);
+            var valorAcrescimoFinal = vendas.Sum(x => x.ValorAcrescimo);
+            var valorDescontoFinal = vendas.Sum(x => x.ValorDesconto);
             decimal valorTrocoFinal = 0;
             decimal.TryParse(txtValorCaixa.Text, out valorTrocoFinal);
 
             var valorEmCaixa = valorVendasFinal + valorAcrescimoFinal + valorTrocoFinal - valorDescontoFinal;
 
-            lblTotalItens.Text = _vendas.Count.ToString();
+            lblTotalItens.Text = vendas.Count.ToString();
             lblDesconto.Text = string.Format("{0:C}", valorDescontoFinal);
             lblAcrescimo.Text = string.Format("{0:C}", valorAcrescimoFinal);
             lblTotal.Text = string.Format("{0:C}", valorVendasFinal);
@@ -179,7 +188,10 @@ namespace Esquenta.Forms.Relatorios
             Properties.Settings.Default.Troco = valorTrocoFinal;
             Properties.Settings.Default.Save();
 
-            AtualizaCalculos();
+            ConnectionService service = ConnectionService.GetInstance();
+            var vendas = service.GetVendaRepository().GetVendasDia(Properties.Settings.Default.AberturaCaixa);
+            var consumo = service.GetItemVendaRepository().GetConsumo(Properties.Settings.Default.AberturaCaixa, null);
+            AtualizaCalculos(vendas);
         }
     }
 }
