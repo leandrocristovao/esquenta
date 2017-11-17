@@ -1,4 +1,5 @@
 ﻿using Esquenta.Components;
+using Esquenta.Repository.Extensions;
 using NHibernate.Util;
 using System;
 using System.Collections.Generic;
@@ -116,6 +117,14 @@ namespace Esquenta.Forms.Relatorios
 
             if (start == end)
             {
+                //Se o periodo for o da abertura, uso o data de abertura
+                //var a = DateTime.Now.AbsoluteStart();
+                //var b = Properties.Settings.Default.AberturaCaixa.AbsoluteStart();
+                //if (DateTime.Now.AbsoluteStart() > Properties.Settings.Default.AberturaCaixa.AbsoluteStart())
+                //{
+                //    start = Properties.Settings.Default.AberturaCaixa;
+                //}
+
                 //Apenas um dia
                 var periodo = service.GetPeriodoVendaRepository().GetPeriodoInicial(start);
                 if (periodo != null)
@@ -162,9 +171,11 @@ namespace Esquenta.Forms.Relatorios
 
         private void AtualizaCalculos(List<Entities.Venda> vendas)
         {
-            var valorVendasFinal = vendas.Sum(x => x.ValorFinal);
-            var valorAcrescimoFinal = vendas.Sum(x => x.ValorAcrescimo);
-            var valorDescontoFinal = vendas.Sum(x => x.ValorDesconto);
+            var valorVendasEmAberto = vendas.Where(x => x.EmAberto == true).Sum(x => x.ValorFinal);
+
+            var valorVendasFinal = vendas.Where(x=>x.EmAberto == false).Sum(x => x.ValorFinal);
+            var valorAcrescimoFinal = vendas.Where(x => x.EmAberto == false).Sum(x => x.ValorAcrescimo);
+            var valorDescontoFinal = vendas.Where(x => x.EmAberto == false).Sum(x => x.ValorDesconto);
             decimal valorTrocoFinal = 0;
             decimal.TryParse(txtValorCaixa.Text, out valorTrocoFinal);
 
@@ -174,8 +185,7 @@ namespace Esquenta.Forms.Relatorios
             lblDesconto.Text = string.Format("{0:C}", valorDescontoFinal);
             lblAcrescimo.Text = string.Format("{0:C}", valorAcrescimoFinal);
             lblTotal.Text = string.Format("{0:C}", valorVendasFinal);
-            //lblValorTroco.Text = string.Format("{0:C}", valorTrocoFinal);
-            //Total com caixa, vendas, acrescimos e descontos
+            lblTotalEmAberto.Text = string.Format("{0:C}", valorVendasEmAberto);
             lblValorFinal.Text = string.Format("{0:C}", valorEmCaixa);
         }
         private void txtValorCaixa_TextChanged(object sender, EventArgs e)
@@ -192,6 +202,11 @@ namespace Esquenta.Forms.Relatorios
             var vendas = service.GetVendaRepository().GetVendasDia(Properties.Settings.Default.AberturaCaixa);
             var consumo = service.GetItemVendaRepository().GetConsumo(Properties.Settings.Default.AberturaCaixa, null);
             AtualizaCalculos(vendas);
+        }
+
+        private void dataGridView1_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            MessageBox.Show("a");
         }
     }
 }
