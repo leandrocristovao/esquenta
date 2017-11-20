@@ -3,6 +3,7 @@ using Esquenta.Repository.Extensions;
 using NHibernate.Util;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -156,8 +157,9 @@ namespace Esquenta.Forms.Relatorios
                 var valorAcrescimo = venda.ValorAcrescimo;
                 var valorDesconto = venda.ValorDesconto;
                 var valorFinal = venda.ValorFinal;
+                var emAberto = venda.EmAberto;
 
-                dataGridView1.Rows.Add(new object[] { id, produto, dataVenda, valorVendas, valorAcrescimo, valorDesconto, valorFinal });
+                dataGridView1.Rows.Add(new object[] { id, produto, dataVenda, valorVendas, valorAcrescimo, valorDesconto, valorFinal, emAberto });
             });
 
             AtualizaCalculos(vendas);
@@ -173,7 +175,7 @@ namespace Esquenta.Forms.Relatorios
         {
             var valorVendasEmAberto = vendas.Where(x => x.EmAberto == true).Sum(x => x.ValorFinal);
 
-            var valorVendasFinal = vendas.Where(x=>x.EmAberto == false).Sum(x => x.ValorFinal);
+            var valorVendasFinal = vendas.Where(x => x.EmAberto == false).Sum(x => x.ValorFinal);
             var valorAcrescimoFinal = vendas.Where(x => x.EmAberto == false).Sum(x => x.ValorAcrescimo);
             var valorDescontoFinal = vendas.Where(x => x.EmAberto == false).Sum(x => x.ValorDesconto);
             decimal valorTrocoFinal = 0;
@@ -206,7 +208,11 @@ namespace Esquenta.Forms.Relatorios
 
         private void dataGridView1_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
-            MessageBox.Show("a");
+            var emAberto = (bool)dataGridView1.Rows[e.RowIndex].Cells["dgvEmAberto"].Value;
+            if (emAberto)
+            {
+                dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Yellow;
+            }
         }
     }
 }

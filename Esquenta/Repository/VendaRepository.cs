@@ -33,16 +33,9 @@ namespace Esquenta.Repository
                         _session.SaveOrUpdate(item);
                     });
 
+                    //TODO Leandro: remover daqui
                     ConnectionService service = ConnectionService.GetInstance();
                     var controller = service.GetProdutoRepository();
-                    //var itensToUpdate = entity.ItemVenda.GroupBy(x => x.Produto.Id).Select(g => new { IDProduto = g.Key, Count = g.Count() }).ToList();
-                    //itensToUpdate.ForEach(itemID =>
-                    //{
-                    //    var item = controller.Get(itemID.IDProduto);
-                    //    item.Quantidade -= itemID.Count;
-                    //    controller.SaveOrUpdate(item);
-                    //});
-
                     entity.ItemVenda.ForEach(item =>
                     {
                         item.Produto.Itens.ForEach(subIten =>
@@ -69,7 +62,7 @@ namespace Esquenta.Repository
 
         public List<Venda> GetVendasDia(DateTime dataInicial)
         {
-            return _session.Query<Venda>().Where(x => x.DataVenda >= dataInicial && x.Comanda.Id != 2).OrderByDescending(x=>x.Id).ToList();
+            return _session.Query<Venda>().Where(x => x.DataVenda >= dataInicial && x.Comanda.Id != 2).OrderByDescending(x => x.Id).ToList();
         }
 
         public List<Venda> GetVendasDia(DateTime dataInicial, DateTime? dataFinal)
@@ -96,6 +89,36 @@ namespace Esquenta.Repository
         public List<Venda> GetVendasEmAberto()
         {
             return _session.Query<Venda>().Where(x => x.EmAberto == true).ToList();
+        }
+
+        public void BaixarVenda(Venda entity)
+        {
+            if (!_session.Transaction.IsActive)
+            {
+                using (var transaction = _session.BeginTransaction())
+                {
+                    ConnectionService service = ConnectionService.GetInstance();
+                    var controller = service.GetProdutoRepository();
+
+                    entity.ItemVenda.ForEach(item =>
+                    {
+                        item.Produto.Itens.ForEach(subIten =>
+                        {
+                            var update = controller.Get(subIten.Produto.Id);
+                            update.Quantidade -= (subIten.Quantidade * item.Quantidade);
+                            controller.SaveOrUpdate(update);
+                        });
+                    });
+
+                    _session.Flush();
+
+                    transaction.Commit();
+                }
+            }
+            else
+            {
+                throw new Exception("Erro ao baixar estoque: Transaction não disponivel");
+            }
         }
     }
 }

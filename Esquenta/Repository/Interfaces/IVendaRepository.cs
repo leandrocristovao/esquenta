@@ -15,5 +15,6 @@ namespace Esquenta.Repository.Interfaces
         Venda GetVendasEmAberto(Comanda comanda);
 
         List<Venda> GetVendasEmAberto();
+        void BaixarVenda(Venda venda);
     }
 }

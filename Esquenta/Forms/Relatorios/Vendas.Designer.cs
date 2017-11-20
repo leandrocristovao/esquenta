@@ -79,6 +79,7 @@
             this.dvgVendaAcrescimo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dvgVendaDesconto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dvgVendaValorFinal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvEmAberto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvConsumo)).BeginInit();
@@ -448,7 +449,8 @@
             this.dvgVendaValorTotal,
             this.dvgVendaAcrescimo,
             this.dvgVendaDesconto,
-            this.dvgVendaValorFinal});
+            this.dvgVendaValorFinal,
+            this.dgvEmAberto});
             dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
@@ -542,6 +544,13 @@
             this.dvgVendaValorFinal.Name = "dvgVendaValorFinal";
             this.dvgVendaValorFinal.ReadOnly = true;
             // 
+            // dgvEmAberto
+            // 
+            this.dgvEmAberto.HeaderText = "EmAberto";
+            this.dgvEmAberto.Name = "dgvEmAberto";
+            this.dgvEmAberto.ReadOnly = true;
+            this.dgvEmAberto.Visible = false;
+            // 
             // Vendas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -577,13 +586,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dvgVendaID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dvgVendaComanda;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dvgVendaDataHora;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dvgVendaValorTotal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dvgVendaAcrescimo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dvgVendaDesconto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dvgVendaValorFinal;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvDetalheProduto;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvDetalheQuantidade;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvDetalheValorUnitario;
@@ -605,5 +607,13 @@
         private System.Windows.Forms.TextBox txtValorCaixa;
         private System.Windows.Forms.Label lblTotalEmAberto;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dvgVendaID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dvgVendaComanda;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dvgVendaDataHora;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dvgVendaValorTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dvgVendaAcrescimo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dvgVendaDesconto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dvgVendaValorFinal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvEmAberto;
     }
 }
