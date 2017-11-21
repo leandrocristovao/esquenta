@@ -34,17 +34,17 @@ namespace Esquenta.Repository
                     });
 
                     //TODO Leandro: remover daqui
-                    ConnectionService service = ConnectionService.GetInstance();
-                    var controller = service.GetProdutoRepository();
-                    entity.ItemVenda.ForEach(item =>
-                    {
-                        item.Produto.Itens.ForEach(subIten =>
-                        {
-                            var update = controller.Get(subIten.Produto.Id);
-                            update.Quantidade -= (subIten.Quantidade * item.Quantidade);
-                            controller.SaveOrUpdate(update);
-                        });
-                    });
+                    //ConnectionService service = ConnectionService.GetInstance();
+                    //var controller = service.GetProdutoRepository();
+                    //entity.ItemVenda.ForEach(item =>
+                    //{
+                    //    item.Produto.Itens.ForEach(subIten =>
+                    //    {
+                    //        var update = controller.Get(subIten.Produto.Id);
+                    //        update.Quantidade -= (subIten.Quantidade * item.Quantidade);
+                    //        controller.SaveOrUpdate(update);
+                    //    });
+                    //});
 
                     _session.Flush();
 

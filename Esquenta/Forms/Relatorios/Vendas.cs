@@ -41,8 +41,12 @@ namespace Esquenta.Forms.Relatorios
                 {
                     comandas.Add(string.Format("{0} - {1}", venda.Comanda.CodigoBarras, venda.Comanda.Nome));
                 });
-                MessageBox.Show(string.Format("As comandas:\n\n{0}\n\nestão em aberto. O caixa não pode ser fechado!", string.Join(", ", comandas.ToArray())));
-                return;
+                //MessageBox.Show(string.Format("As comandas:\n\n{0}\n\nestão em aberto. O caixa não pode ser fechado!", string.Join(", ", comandas.ToArray())));
+                var fecharCaixa = MessageBox.Show(string.Format("As comandas:\n\n{0}\n\nestão em aberto. Deseja fechar?", string.Join(", ", comandas.ToArray())), "Fechar Venda?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.No;
+                if (!fecharCaixa)
+                {
+                    return;
+                }
             }
 
             var periodoEmAberto = service.GetPeriodoVendaRepository().ChecarPeriodoEmAberto();

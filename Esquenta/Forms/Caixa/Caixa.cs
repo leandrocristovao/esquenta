@@ -298,19 +298,14 @@ namespace Esquenta.Forms.Caixa
 
                 itens.ForEach(produto =>
                 {
-                    //var item = new ItemVenda
-                    //{
-                    //    Venda = venda,
-                    //    Produto = produto,
-                    //    Valor = produto.Valor,
-                    //    Quantidade = produto.Quantidade
-                    //};
-
-                    //venda.ItemVenda.Add(item);
                     venda.ItemVenda.Add(produto);
                 });
 
                 service.GetVendaRepository().Save(venda);
+                if (!EmAberto)
+                {
+                    service.GetVendaRepository().BaixarVenda(venda);
+                }
 
                 ClearScreen();
             }
