@@ -20,6 +20,7 @@ namespace Esquenta.Forms.Relatorios
         private void Vendas_Load(object sender, EventArgs e)
         {
             ConnectionService service = ConnectionService.GetInstance();
+            
             var _vendas = service.GetVendaRepository().GetVendasDia(Properties.Settings.Default.AberturaCaixa);
             var consumo = service.GetItemVendaRepository().GetConsumo(Properties.Settings.Default.AberturaCaixa, null);
 
@@ -46,6 +47,14 @@ namespace Esquenta.Forms.Relatorios
                 if (!fecharCaixa)
                 {
                     return;
+                }
+                else
+                {
+                    emAberto.ForEach(venda =>
+                    {
+                        //service.GetVendaRepository().
+                        service.GetVendaRepository().BaixarVenda(venda);
+                    });
                 }
             }
 

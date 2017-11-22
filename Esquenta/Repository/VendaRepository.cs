@@ -67,7 +67,8 @@ namespace Esquenta.Repository
 
         public List<Venda> GetVendasDia(DateTime dataInicial, DateTime? dataFinal)
         {
-            var query = _session.Query<Venda>().Where(x => x.DataVenda >= dataInicial && x.Comanda.Id != 2);
+            //var query = _session.Query<Venda>().Where(x => x.DataVenda >= dataInicial && x.Comanda.Id != 2);
+            var query = _session.Query<Venda>().Where(x => x.Comanda.Id != 2 && (x.DataVenda >= dataInicial || x.EmAberto == true));
             if (dataFinal != null)
             {
                 query = query.Where(x => x.DataVenda <= dataFinal);
@@ -109,6 +110,10 @@ namespace Esquenta.Repository
                             controller.SaveOrUpdate(update);
                         });
                     });
+
+                    entity.EmAberto = false;
+                    entity.DataVenda = DateTime.Now;
+                    _session.Update(entity);
 
                     _session.Flush();
 

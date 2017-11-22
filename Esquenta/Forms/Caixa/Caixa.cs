@@ -2,7 +2,6 @@
 using NHibernate.Util;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace Esquenta.Forms.Caixa
@@ -27,11 +26,6 @@ namespace Esquenta.Forms.Caixa
         private decimal valorAcrescimo = 0;
 
         private Comanda _comanda;
-        private Entities.Produto _produto;
-
-        private string CodigoBarrasCalcular = "8888888888888";
-        private string CodigoBarrasFecharVenda = "9999999999994";
-        private string CodigoBarrasCancelarVenda = "7777777777772";
 
         private AutoCompleteStringCollection produtosAutoComplete = new AutoCompleteStringCollection();
         private AutoCompleteStringCollection comandasAutoComplete = new AutoCompleteStringCollection();
@@ -44,16 +38,6 @@ namespace Esquenta.Forms.Caixa
             lblStatus.Text = "Aguardando comanda";
             lblAberturaCaixa.Text = "Data de abertura do caixa: " + Properties.Settings.Default.AberturaCaixa;
             txtComanda.Focus();
-
-            BarcodeLib.Barcode b = new BarcodeLib.Barcode();
-
-            Image imgBarCodeCalcular = b.Encode(BarcodeLib.TYPE.EAN13, CodigoBarrasCalcular, Color.Black, Color.White, 100, 50);
-            Image imgBarCodeFecharVenda = b.Encode(BarcodeLib.TYPE.EAN13, CodigoBarrasFecharVenda, Color.Black, Color.White, 100, 50);
-            Image imgBarCodeCancelarVenda = b.Encode(BarcodeLib.TYPE.EAN13, CodigoBarrasCancelarVenda, Color.Black, Color.White, 100, 50);
-
-            btnCalcularFechar.Image = imgBarCodeFecharVenda;
-            btnCalcular.Image = imgBarCodeCalcular;
-            btnCancelarVenda.Image = imgBarCodeCancelarVenda;
 
             var listaProduto = service.GetProdutoRepository().List();
             listaProduto.ForEach(produto =>
@@ -91,7 +75,6 @@ namespace Esquenta.Forms.Caixa
             }
 
             _comanda = null;
-            _produto = null;
 
             lblStatus.Text = "Aguardando comanda";
             lblValorTotal.Text = "0,00";
@@ -126,24 +109,6 @@ namespace Esquenta.Forms.Caixa
 
         private void ProcessState()
         {
-            string comando = txtComanda.Text;
-            if (comando.Equals(CodigoBarrasFecharVenda) && itens.Count > 0)
-            {
-                FecharVenda();
-                return;
-            }
-
-            if (comando.Equals(CodigoBarrasCalcular) && itens.Count > 0)
-            {
-                Calcular();
-                return;
-            }
-            if (comando.Equals(CodigoBarrasCancelarVenda) && itens.Count > 0)
-            {
-                ClearScreen();
-                return;
-            }
-
             switch (CurrentState)
             {
                 case State.AguardandoComanda:
@@ -170,8 +135,7 @@ namespace Esquenta.Forms.Caixa
                         {
                             venda.ItemVenda.ForEach(item =>
                             {
-                                item.Produto.Quantidade = item.Quantidade;
-                                //item.Produto.Valor = item.Valor;
+
                                 itens.Add(item);
                                 dataGridView1.Rows.Add(new String[] { itens.Count.ToString(), item.Produto.Nome, item.Quantidade.ToString(), item.Valor.ToString(), (item.Valor * item.Quantidade).ToString() });
                             });
@@ -393,7 +357,6 @@ namespace Esquenta.Forms.Caixa
                     }
                 }
             }
-
         }
 
         private void btnCalcular_Click(object sender, EventArgs e)
@@ -408,7 +371,6 @@ namespace Esquenta.Forms.Caixa
 
         private void Caixa_KeyUp(object sender, KeyEventArgs e)
         {
-
             switch (e.KeyCode)
             {
                 case Keys.Delete:

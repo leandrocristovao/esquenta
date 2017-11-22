@@ -82,6 +82,7 @@
             this.menuItemEntradaProduto.Name = "menuItemEntradaProduto";
             this.menuItemEntradaProduto.Size = new System.Drawing.Size(181, 22);
             this.menuItemEntradaProduto.Text = "Entrada de Produtos";
+            this.menuItemEntradaProduto.Visible = false;
             this.menuItemEntradaProduto.Click += new System.EventHandler(this.menuItemEntradaProduto_Click);
             // 
             // menuItemCaixa
@@ -114,14 +115,14 @@
             // menuItemProdutos
             // 
             this.menuItemProdutos.Name = "menuItemProdutos";
-            this.menuItemProdutos.Size = new System.Drawing.Size(131, 22);
+            this.menuItemProdutos.Size = new System.Drawing.Size(152, 22);
             this.menuItemProdutos.Text = "Produtos";
             this.menuItemProdutos.Click += new System.EventHandler(this.menuItemProdutos_Click);
             // 
             // menuItemComandas
             // 
             this.menuItemComandas.Name = "menuItemComandas";
-            this.menuItemComandas.Size = new System.Drawing.Size(131, 22);
+            this.menuItemComandas.Size = new System.Drawing.Size(152, 22);
             this.menuItemComandas.Text = "Comandas";
             this.menuItemComandas.Click += new System.EventHandler(this.menuItemComandas_Click);
             // 
@@ -207,6 +208,7 @@
             this.btnEntradaProdutos.Name = "btnEntradaProdutos";
             this.btnEntradaProdutos.Size = new System.Drawing.Size(141, 22);
             this.btnEntradaProdutos.Text = "(F5) Entrada de Produtos";
+            this.btnEntradaProdutos.Visible = false;
             this.btnEntradaProdutos.Click += new System.EventHandler(this.btnEntradaProdutos_Click);
             // 
             // toolStripSeparator3

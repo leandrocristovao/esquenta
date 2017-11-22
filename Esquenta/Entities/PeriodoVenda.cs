@@ -8,5 +8,7 @@ namespace Esquenta.Entities
         public virtual int Id { get; protected set; }
         public virtual DateTime DataInicial { get; set; }
         public virtual DateTime? DataFinal { get; set; }
+        public virtual decimal ValorCaixa { get; set; }
+        public virtual decimal ValorEmAberto { get; set; }
     }
 }

@@ -49,20 +49,17 @@
             this.txtComanda = new System.Windows.Forms.TextBox();
             this.lblStatus = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
             this.btnCancelarVenda = new System.Windows.Forms.Button();
             this.btnCalcular = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.btnCalcularFechar = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.produtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.itemVendaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ValorUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.produtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.itemVendaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -257,28 +254,15 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.btnCancelarVenda);
             this.panel2.Controls.Add(this.btnCalcular);
-            this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.btnCalcularFechar);
-            this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.dataGridView1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(287, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(721, 511);
             this.panel2.TabIndex = 1;
-            // 
-            // label6
-            // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(272, 422);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(104, 13);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "(F8) Cancelar Venda";
             // 
             // btnCancelarVenda
             // 
@@ -287,6 +271,7 @@
             this.btnCancelarVenda.Name = "btnCancelarVenda";
             this.btnCancelarVenda.Size = new System.Drawing.Size(173, 70);
             this.btnCancelarVenda.TabIndex = 3;
+            this.btnCancelarVenda.Text = "(F8) Cancelar Venda";
             this.btnCancelarVenda.UseVisualStyleBackColor = true;
             this.btnCancelarVenda.Click += new System.EventHandler(this.btnCancelarVenda_Click);
             // 
@@ -297,18 +282,9 @@
             this.btnCalcular.Name = "btnCalcular";
             this.btnCalcular.Size = new System.Drawing.Size(173, 70);
             this.btnCalcular.TabIndex = 2;
+            this.btnCalcular.Text = "(F7) Calcular";
             this.btnCalcular.UseVisualStyleBackColor = true;
             this.btnCalcular.Click += new System.EventHandler(this.btnCalcular_Click);
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 422);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "(F7) Calcular";
             // 
             // btnCalcularFechar
             // 
@@ -317,18 +293,9 @@
             this.btnCalcularFechar.Name = "btnCalcularFechar";
             this.btnCalcularFechar.Size = new System.Drawing.Size(173, 70);
             this.btnCalcularFechar.TabIndex = 4;
+            this.btnCalcularFechar.Text = "(F9) Fechar Conta";
             this.btnCalcularFechar.UseVisualStyleBackColor = true;
             this.btnCalcularFechar.Click += new System.EventHandler(this.btnCalcularFechar_Click);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(542, 422);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(92, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "(F9) Fechar Conta";
             // 
             // dataGridView1
             // 
@@ -367,14 +334,6 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.TabStop = false;
             // 
-            // produtoBindingSource
-            // 
-            this.produtoBindingSource.DataSource = typeof(Esquenta.Entities.Produto);
-            // 
-            // itemVendaBindingSource
-            // 
-            this.itemVendaBindingSource.DataSource = typeof(Esquenta.Entities.ItemVenda);
-            // 
             // ID
             // 
             this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
@@ -412,7 +371,7 @@
             this.ValorUnitario.HeaderText = "Valor Unitário";
             this.ValorUnitario.Name = "ValorUnitario";
             this.ValorUnitario.ReadOnly = true;
-            this.ValorUnitario.Width = 147;
+            this.ValorUnitario.Width = 134;
             // 
             // Valor
             // 
@@ -423,6 +382,14 @@
             this.Valor.Name = "Valor";
             this.Valor.ReadOnly = true;
             this.Valor.Width = 79;
+            // 
+            // produtoBindingSource
+            // 
+            this.produtoBindingSource.DataSource = typeof(Esquenta.Entities.Produto);
+            // 
+            // itemVendaBindingSource
+            // 
+            this.itemVendaBindingSource.DataSource = typeof(Esquenta.Entities.ItemVenda);
             // 
             // Caixa
             // 
@@ -441,7 +408,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.produtoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemVendaBindingSource)).EndInit();
@@ -467,12 +433,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtDesconto;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCalcularFechar;
         private System.Windows.Forms.Button btnCalcular;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnCancelarVenda;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblNomeComanda;
         private System.Windows.Forms.TextBox txtAcrescimo;
         private System.Windows.Forms.Label label7;
