@@ -139,7 +139,7 @@ namespace Esquenta.Forms.Caixa
                                 itens.Add(item);
                                 dataGridView1.Rows.Add(new String[] { itens.Count.ToString(), item.Produto.Nome, item.Quantidade.ToString(), item.Valor.ToString(), (item.Valor * item.Quantidade).ToString() });
                             });
-                            AtualizaCalculo(venda.ValorAcrescimo, venda.ValorDesconto, venda.ValorTotal);
+                            AtualizaCalculo(venda.ValorDesconto, venda.ValorAcrescimo, venda.ValorPago);
                         }
                     }
                     break;
@@ -259,6 +259,7 @@ namespace Esquenta.Forms.Caixa
                 venda.ValorDesconto = valorDesconto;
                 venda.ValorAcrescimo = valorAcrescimo;
                 venda.EmAberto = EmAberto;
+                venda.ValorPago = valorPago;
 
                 itens.ForEach(produto =>
                 {
@@ -294,7 +295,7 @@ namespace Esquenta.Forms.Caixa
 
             valorDesconto = desconto;
             valorAcrescimo = acrescimo;
-            valorPago = acrescimo > 0 ? acrescimo : valorVenda - valorDesconto + valorAcrescimo;
+            valorPago = valor; //acrescimo > 0 ? acrescimo : valorVenda - valorDesconto + valorAcrescimo;
             valorVenda -= valorDesconto;
             valorVenda += valorAcrescimo;
 
@@ -303,7 +304,8 @@ namespace Esquenta.Forms.Caixa
             //txtValorPago.Text = string.Format("{0:N}", valorPago);
             //txtTroco.Text = string.Format("{0:N}", Math.Max(0, (valorPago - valorVenda)));
             txtValorPago.Text = string.Format("{0:N}", valor);
-            txtTroco.Text = string.Format("{0:N}", Math.Max(0, (valor - valorVenda)));
+            //txtTroco.Text = string.Format("{0:N}", Math.Max(0, (valor - valorVenda)));
+            txtTroco.Text = string.Format("{0:N}", valor - valorVenda);
             lblValorTotal.Text = string.Format("{0:N}", valorVenda);
         }
 

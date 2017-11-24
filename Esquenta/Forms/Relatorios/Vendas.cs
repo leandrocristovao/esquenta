@@ -11,6 +11,13 @@ namespace Esquenta.Forms.Relatorios
 {
     public partial class Vendas : Form
     {
+        decimal valorVendasEmAberto = 0;
+        decimal valorVendasFinal = 0;
+        decimal valorAcrescimoFinal = 0;
+        decimal valorDescontoFinal = 0;
+        decimal valorTrocoFinal = 0;
+        decimal valorEmCaixa = 0;
+
         //private List<Entities.Venda> _vendas;
         public Vendas()
         {
@@ -20,7 +27,7 @@ namespace Esquenta.Forms.Relatorios
         private void Vendas_Load(object sender, EventArgs e)
         {
             ConnectionService service = ConnectionService.GetInstance();
-            
+
             var _vendas = service.GetVendaRepository().GetVendasDia(Properties.Settings.Default.AberturaCaixa);
             var consumo = service.GetItemVendaRepository().GetConsumo(Properties.Settings.Default.AberturaCaixa, null);
 
@@ -48,14 +55,7 @@ namespace Esquenta.Forms.Relatorios
                 {
                     return;
                 }
-                else
-                {
-                    emAberto.ForEach(venda =>
-                    {
-                        //service.GetVendaRepository().
-                        service.GetVendaRepository().BaixarVenda(venda);
-                    });
-                }
+
             }
 
             var periodoEmAberto = service.GetPeriodoVendaRepository().ChecarPeriodoEmAberto();
@@ -186,15 +186,15 @@ namespace Esquenta.Forms.Relatorios
 
         private void AtualizaCalculos(List<Entities.Venda> vendas)
         {
-            var valorVendasEmAberto = vendas.Where(x => x.EmAberto == true).Sum(x => x.ValorFinal);
+            valorVendasEmAberto = vendas.Where(x => x.EmAberto == true).Sum(x => x.ValorFinal);
 
-            var valorVendasFinal = vendas.Where(x => x.EmAberto == false).Sum(x => x.ValorFinal);
-            var valorAcrescimoFinal = vendas.Where(x => x.EmAberto == false).Sum(x => x.ValorAcrescimo);
-            var valorDescontoFinal = vendas.Where(x => x.EmAberto == false).Sum(x => x.ValorDesconto);
-            decimal valorTrocoFinal = 0;
+            valorVendasFinal = vendas.Where(x => x.EmAberto == false).Sum(x => x.ValorFinal);
+            valorAcrescimoFinal = vendas.Where(x => x.EmAberto == false).Sum(x => x.ValorAcrescimo);
+            valorDescontoFinal = vendas.Where(x => x.EmAberto == false).Sum(x => x.ValorDesconto);
+            valorTrocoFinal = 0;
             decimal.TryParse(txtValorCaixa.Text, out valorTrocoFinal);
 
-            var valorEmCaixa = valorVendasFinal + valorAcrescimoFinal + valorTrocoFinal - valorDescontoFinal;
+            valorEmCaixa = valorVendasFinal + valorAcrescimoFinal + valorTrocoFinal - valorDescontoFinal;
 
             lblTotalItens.Text = vendas.Count.ToString();
             lblDesconto.Text = string.Format("{0:C}", valorDescontoFinal);

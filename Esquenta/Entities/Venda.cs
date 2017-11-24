@@ -17,6 +17,7 @@ namespace Esquenta.Entities
         public virtual decimal ValorTotal { get; set; }
         public virtual decimal ValorDesconto { get; set; }
         public virtual decimal ValorAcrescimo { get; set; }
+        public virtual decimal ValorPago { get; set; }//usado para o caso de pagamento parcial (FIADO)
         public virtual decimal ValorFinal { get; set; }//venda - desconto + acrescimo
         public virtual int QuantidadeItens { get; set; }
         public virtual Comanda Comanda { get; set; }
