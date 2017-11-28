@@ -298,6 +298,7 @@ namespace Esquenta.Forms.Caixa
             valorPago = valor; //acrescimo > 0 ? acrescimo : valorVenda - valorDesconto + valorAcrescimo;
             valorVenda -= valorDesconto;
             valorVenda += valorAcrescimo;
+            var troco = valor - valorVenda;
 
             txtDesconto.Text = string.Format("{0:N}", valorDesconto);
             txtAcrescimo.Text = string.Format("{0:N}", valorAcrescimo);
@@ -305,7 +306,7 @@ namespace Esquenta.Forms.Caixa
             //txtTroco.Text = string.Format("{0:N}", Math.Max(0, (valorPago - valorVenda)));
             txtValorPago.Text = string.Format("{0:N}", valor);
             //txtTroco.Text = string.Format("{0:N}", Math.Max(0, (valor - valorVenda)));
-            txtTroco.Text = string.Format("{0:N}", valor - valorVenda);
+            txtTroco.Text = string.Format("{0:N}", (valor > 0 ? troco : 0));
             lblValorTotal.Text = string.Format("{0:N}", valorVenda);
         }
 

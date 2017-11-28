@@ -1,0 +1,166 @@
+﻿@{
+    ViewData["Title"] = "About";
+}
+<h2>@ViewData["Title"]</h2>
+
+<div class="container">
+    <div class="form-group">
+        <label for="input">Aguardando comanda</label>
+        <input type="text" id="input" name="input" class="form-control text-center" placeholder="Aguardando entrada de dados" aria-describedby="basic-addon2">
+    </div>
+    <div class="form-group">
+        <div class="col-xs-6">
+
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Resumo</div>
+                    <div class="panel-body panel-height">
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="control-label col-sm-4 text-right" for="acrescimo">Acréscimo: </label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="acrescimo" name="acrescimo" value="0,00" readonly class="form-control text-center">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="control-label col-sm-4 text-right" for="desconto">Desconto: </label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="desconto" name="desconto" value="0,00" readonly class="form-control text-center">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="control-label col-sm-4 text-right" for="valor-pago">Valor Pago: </label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="valor-pago" name="valor-pago" value="0,00" readonly class="form-control text-center">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="control-label col-sm-4 text-right" for="troco">Troco: </label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="troco" name="troco" value="0,00" readonly class="form-control text-center">
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="form-group">
+                                <input class="form-control input-lg text-center" id="total" type="text" readonly value="0,00">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Vendas</div>
+                    <div class="panel-body panel-height" style="overflow: scroll">
+                        <div class="row">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Produto</th>
+                                        <th>Quantidade</th>
+                                        <th>Valor Uni.</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Heineken</td>
+                                        <td>2</td>
+                                        <td>4,80</td>
+                                        <td>9,60</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Coca lata</td>
+                                        <td>1</td>
+                                        <td>2,50</td>
+                                        <td>2,50</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Coca lata</td>
+                                        <td>1</td>
+                                        <td>2,50</td>
+                                        <td>2,50</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Coca lata</td>
+                                        <td>1</td>
+                                        <td>2,50</td>
+                                        <td>2,50</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>Coca lata</td>
+                                        <td>1</td>
+                                        <td>2,50</td>
+                                        <td>2,50</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>Coca lata</td>
+                                        <td>1</td>
+                                        <td>2,50</td>
+                                        <td>2,50</td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td>Coca lata</td>
+                                        <td>1</td>
+                                        <td>2,50</td>
+                                        <td>2,50</td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td>Coca lata</td>
+                                        <td>1</td>
+                                        <td>2,50</td>
+                                        <td>2,50</td>
+                                    </tr>
+                                    <tr>
+                                        <td>9</td>
+                                        <td>Coca lata</td>
+                                        <td>1</td>
+                                        <td>2,50</td>
+                                        <td>2,50</td>
+                                    </tr>
+                                    <tr>
+                                        <td>10</td>
+                                        <td>Coca lata</td>
+                                        <td>1</td>
+                                        <td>2,50</td>
+                                        <td>2,50</td>
+                                    </tr>
+                                    <tr>
+                                        <td>11</td>
+                                        <td>Coca lata</td>
+                                        <td>1</td>
+                                        <td>2,50</td>
+                                        <td>2,50</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
