@@ -49,8 +49,13 @@
             this.btnEntradaProdutos = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.btnRelatorios = new System.Windows.Forms.ToolStripButton();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.ttsIP = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuItemSQLServer = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainMenu
@@ -72,6 +77,8 @@
             this.menuItemEntradaProduto,
             this.menuItemCaixa,
             this.toolStripSeparator1,
+            this.menuItemSQLServer,
+            this.toolStripSeparator5,
             this.menuItemSair});
             this.sistemaToolStripMenuItem.Name = "sistemaToolStripMenuItem";
             this.sistemaToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
@@ -80,7 +87,7 @@
             // menuItemEntradaProduto
             // 
             this.menuItemEntradaProduto.Name = "menuItemEntradaProduto";
-            this.menuItemEntradaProduto.Size = new System.Drawing.Size(181, 22);
+            this.menuItemEntradaProduto.Size = new System.Drawing.Size(190, 22);
             this.menuItemEntradaProduto.Text = "Entrada de Produtos";
             this.menuItemEntradaProduto.Visible = false;
             this.menuItemEntradaProduto.Click += new System.EventHandler(this.menuItemEntradaProduto_Click);
@@ -88,19 +95,19 @@
             // menuItemCaixa
             // 
             this.menuItemCaixa.Name = "menuItemCaixa";
-            this.menuItemCaixa.Size = new System.Drawing.Size(181, 22);
+            this.menuItemCaixa.Size = new System.Drawing.Size(190, 22);
             this.menuItemCaixa.Text = "Caixa";
             this.menuItemCaixa.Click += new System.EventHandler(this.menuItemCaixa_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(178, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(187, 6);
             // 
             // menuItemSair
             // 
             this.menuItemSair.Name = "menuItemSair";
-            this.menuItemSair.Size = new System.Drawing.Size(181, 22);
+            this.menuItemSair.Size = new System.Drawing.Size(190, 22);
             this.menuItemSair.Text = "Sair";
             // 
             // cadastrosToolStripMenuItem
@@ -115,14 +122,14 @@
             // menuItemProdutos
             // 
             this.menuItemProdutos.Name = "menuItemProdutos";
-            this.menuItemProdutos.Size = new System.Drawing.Size(152, 22);
+            this.menuItemProdutos.Size = new System.Drawing.Size(131, 22);
             this.menuItemProdutos.Text = "Produtos";
             this.menuItemProdutos.Click += new System.EventHandler(this.menuItemProdutos_Click);
             // 
             // menuItemComandas
             // 
             this.menuItemComandas.Name = "menuItemComandas";
-            this.menuItemComandas.Size = new System.Drawing.Size(152, 22);
+            this.menuItemComandas.Size = new System.Drawing.Size(131, 22);
             this.menuItemComandas.Text = "Comandas";
             this.menuItemComandas.Click += new System.EventHandler(this.menuItemComandas_Click);
             // 
@@ -226,11 +233,40 @@
             this.btnRelatorios.Text = "(F6) Relatórios";
             this.btnRelatorios.Click += new System.EventHandler(this.btnRelatorios_Click);
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ttsIP});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 707);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1008, 22);
+            this.statusStrip1.TabIndex = 9;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // ttsIP
+            // 
+            this.ttsIP.Name = "ttsIP";
+            this.ttsIP.Size = new System.Drawing.Size(23, 17);
+            this.ttsIP.Text = "IP: ";
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(187, 6);
+            // 
+            // menuItemSQLServer
+            // 
+            this.menuItemSQLServer.Name = "menuItemSQLServer";
+            this.menuItemSQLServer.Size = new System.Drawing.Size(190, 22);
+            this.menuItemSQLServer.Text = "Configurar SQL Server";
+            this.menuItemSQLServer.Click += new System.EventHandler(this.menuItemSQLServer_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.mainMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -248,6 +284,8 @@
             this.mainMenu.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -274,5 +312,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton btnRelatorios;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel ttsIP;
+        private System.Windows.Forms.ToolStripMenuItem menuItemSQLServer;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
     }
 }

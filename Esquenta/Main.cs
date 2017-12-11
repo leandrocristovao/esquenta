@@ -1,10 +1,15 @@
-﻿using Esquenta.Entities;
+﻿
+using Esquenta.Entities;
 using Esquenta.Forms.Caixa;
 using Esquenta.Forms.Comandas;
 using Esquenta.Forms.EntradaProduto;
 using Esquenta.Forms.Produto;
 using Esquenta.Forms.Relatorios;
+using SqlConnectionDialog;
 using System;
+using System.Data.SqlClient;
+using System.Net;
+using System.Net.Sockets;
 using System.Windows.Forms;
 
 namespace Esquenta
@@ -20,6 +25,7 @@ namespace Esquenta
         public Main()
         {
             InitializeComponent();
+            ttsIP.Text = string.Format("IP: {0}", GetLocalIPAddress());
 
             new ConnectionService();
 
@@ -33,7 +39,18 @@ namespace Esquenta
                 });
             }
         }
-
+        public static string GetLocalIPAddress()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            throw new Exception("No network adapters with an IPv4 address in the system!");
+        }
         private void menuItemProdutos_Click(object sender, EventArgs e)
         {
             if (frmListaProduto != null)
@@ -157,5 +174,21 @@ namespace Esquenta
         private void Main_Load(object sender, EventArgs e)
         {
         }
+
+        private void menuItemSQLServer_Click(object sender, EventArgs e)
+        {
+            var sql = "";
+            TryGetDataConnectionStringFromUser(out sql);
+        }
+        bool TryGetDataConnectionStringFromUser(out string outConnectionString)
+        {
+
+
+            var factory = new ConnectionStringFactory();
+            var connectionString = factory.BuildConnectionString();
+            outConnectionString = "";
+            return true;
+        }
+
     }
 }
