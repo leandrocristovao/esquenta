@@ -27,7 +27,14 @@ namespace Esquenta
             InitializeComponent();
             ttsIP.Text = string.Format("IP: {0}", GetLocalIPAddress());
 
-            new ConnectionService();
+            try
+            {
+                new ConnectionService();
+            }
+            catch (Exception)
+            {
+                OpenSQLConnection();
+            }            
 
             var hasPeriodo = ConnectionService.GetInstance().GetPeriodoVendaRepository().List().Count > 0;
             if (!hasPeriodo)
@@ -177,18 +184,16 @@ namespace Esquenta
 
         private void menuItemSQLServer_Click(object sender, EventArgs e)
         {
-            var sql = "";
-            TryGetDataConnectionStringFromUser(out sql);
+            OpenSQLConnection();
         }
-        bool TryGetDataConnectionStringFromUser(out string outConnectionString)
+
+        private void OpenSQLConnection()
         {
-
-
             var factory = new ConnectionStringFactory();
-            var connectionString = factory.BuildConnectionString();
-            outConnectionString = "";
-            return true;
-        }
+            var outConnectionString = factory.BuildConnectionString();
 
+            Properties.Settings.Default.ConnectionString = outConnectionString;
+            Properties.Settings.Default.Save();
+        }
     }
 }
