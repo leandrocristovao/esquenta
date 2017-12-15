@@ -125,5 +125,36 @@ namespace Esquenta.Repository
                 throw new Exception("Erro ao baixar estoque: Transaction não disponivel");
             }
         }
+        public void CancelarVenda(Venda entity)
+        {
+            if (!_session.Transaction.IsActive)
+            {
+                using (var transaction = _session.BeginTransaction())
+                {
+                    ConnectionService service = ConnectionService.GetInstance();
+                    var controller = service.GetProdutoRepository();
+
+                    entity.ItemVenda.ForEach(item =>
+                    {
+                        item.Produto.Itens.ForEach(subIten =>
+                        {
+                            var update = controller.Get(subIten.Produto.Id);
+                            update.Quantidade += (subIten.Quantidade * item.Quantidade);
+                            controller.SaveOrUpdate(update);
+                        });
+                    });
+
+                    //_session.Update(entity);
+                    _session.Delete(entity);
+                    _session.Flush();
+
+                    transaction.Commit();
+                }
+            }
+            else
+            {
+                throw new Exception("Erro ao baixar estoque: Transaction não disponivel");
+            }
+        }
     }
 }

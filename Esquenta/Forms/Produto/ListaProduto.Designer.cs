@@ -35,6 +35,7 @@
             this.BtnAdd = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtFilter = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,7 +45,6 @@
             this.Estoque = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EstoqueMinimo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtFilter = new System.Windows.Forms.TextBox();
             this.produtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -82,6 +82,14 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Filtrar dados";
             // 
+            // txtFilter
+            // 
+            this.txtFilter.Location = new System.Drawing.Point(212, 15);
+            this.txtFilter.Name = "txtFilter";
+            this.txtFilter.Size = new System.Drawing.Size(236, 20);
+            this.txtFilter.TabIndex = 1;
+            this.txtFilter.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.dataGridView1);
@@ -106,8 +114,10 @@
             this.Valor});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(624, 396);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
@@ -174,14 +184,6 @@
             this.Valor.Name = "Valor";
             this.Valor.ReadOnly = true;
             this.Valor.Width = 56;
-            // 
-            // txtFilter
-            // 
-            this.txtFilter.Location = new System.Drawing.Point(212, 15);
-            this.txtFilter.Name = "txtFilter";
-            this.txtFilter.Size = new System.Drawing.Size(236, 20);
-            this.txtFilter.TabIndex = 1;
-            this.txtFilter.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // produtoBindingSource
             // 

@@ -34,6 +34,8 @@
             this.menuItemEntradaProduto = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemCaixa = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuItemSQLServer = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItemSair = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemProdutos = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,14 +47,12 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.btnProdutos = new System.Windows.Forms.ToolStripButton();
             this.btnComandas = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnEntradaProdutos = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.btnRelatorios = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.ttsIP = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuItemSQLServer = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.mainMenu.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -103,6 +103,18 @@
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(187, 6);
+            // 
+            // menuItemSQLServer
+            // 
+            this.menuItemSQLServer.Name = "menuItemSQLServer";
+            this.menuItemSQLServer.Size = new System.Drawing.Size(190, 22);
+            this.menuItemSQLServer.Text = "Configurar SQL Server";
+            this.menuItemSQLServer.Click += new System.EventHandler(this.menuItemSQLServer_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(187, 6);
             // 
             // menuItemSair
             // 
@@ -202,11 +214,6 @@
             this.btnComandas.Text = "(F4) Comandas";
             this.btnComandas.Click += new System.EventHandler(this.btnComandas_Click);
             // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
             // btnEntradaProdutos
             // 
             this.btnEntradaProdutos.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -249,17 +256,11 @@
             this.ttsIP.Size = new System.Drawing.Size(23, 17);
             this.ttsIP.Text = "IP: ";
             // 
-            // toolStripSeparator5
+            // toolStripSeparator2
             // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(187, 6);
-            // 
-            // menuItemSQLServer
-            // 
-            this.menuItemSQLServer.Name = "menuItemSQLServer";
-            this.menuItemSQLServer.Size = new System.Drawing.Size(190, 22);
-            this.menuItemSQLServer.Text = "Configurar SQL Server";
-            this.menuItemSQLServer.Click += new System.EventHandler(this.menuItemSQLServer_Click);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator2.Visible = false;
             // 
             // Main
             // 
@@ -306,7 +307,6 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btnCaixa;
         private System.Windows.Forms.ToolStripButton btnProdutos;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton btnComandas;
         private System.Windows.Forms.ToolStripButton btnEntradaProdutos;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
@@ -316,5 +316,6 @@
         private System.Windows.Forms.ToolStripStatusLabel ttsIP;
         private System.Windows.Forms.ToolStripMenuItem menuItemSQLServer;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

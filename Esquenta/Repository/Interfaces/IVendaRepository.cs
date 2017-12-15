@@ -6,15 +6,18 @@ namespace Esquenta.Repository.Interfaces
 {
     public interface IVendaRepository : IBaseRepository<Venda>
     {
-        System.Collections.Generic.List<Venda> GetVendasDia(DateTime dataInicial);
+        List<Venda> GetVendasDia(DateTime dataInicial);
 
-        System.Collections.Generic.List<Venda> GetVendasDia(DateTime dataInicial, DateTime? dataFinal);
+        List<Venda> GetVendasDia(DateTime dataInicial, DateTime? dataFinal);
 
-        System.Collections.Generic.List<Venda> GetVendasDia(PeriodoVenda periodo);
+        List<Venda> GetVendasDia(PeriodoVenda periodo);
+
+        List<Venda> GetVendasEmAberto();
 
         Venda GetVendasEmAberto(Comanda comanda);
 
-        List<Venda> GetVendasEmAberto();
         void BaixarVenda(Venda venda);
+
+        void CancelarVenda(Venda venda);
     }
 }

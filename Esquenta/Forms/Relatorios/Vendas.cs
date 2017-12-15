@@ -227,5 +227,23 @@ namespace Esquenta.Forms.Relatorios
                 dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Yellow;
             }
         }
+
+        private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            var cancel = MessageBox.Show("Deseja cancelar venda?", "Cancelar Venda?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes;
+            if (cancel)
+            {
+                e.Cancel = cancel;
+            }
+            else
+            {
+                var vendaID = (int)((DataGridView)sender).CurrentRow.Cells[0].Value;
+                ConnectionService service = ConnectionService.GetInstance();
+                var venda = service.GetVendaRepository().Get(vendaID);
+                service.GetVendaRepository().CancelarVenda(venda);
+            }
+
+
+        }
     }
 }

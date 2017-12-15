@@ -4,8 +4,18 @@ using System.Windows.Forms;
 
 namespace Esquenta.Forms.Caixa
 {
+    public class CalculoVenda
+    {
+        public decimal Desconto { get; set; }
+        public decimal Acrescimo { get; set; }
+        public decimal ValorCC { get; set; }
+        public decimal ValorCD { get; set; }
+        public decimal ValorD { get; set; }
+        public decimal Valor { get; set; }
+    }
     public partial class Calculo : Form
     {
+
         public decimal Desconto { get; set; }
         public decimal Acrescimo { get; set; }
         public decimal Valor { get; set; }
