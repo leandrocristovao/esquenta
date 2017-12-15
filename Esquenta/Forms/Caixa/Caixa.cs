@@ -2,6 +2,7 @@
 using NHibernate.Util;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Esquenta.Forms.Caixa
@@ -260,6 +261,12 @@ namespace Esquenta.Forms.Caixa
                     venda.ItemVenda.Clear();
                 }
 
+                if (calculo == null)
+                {
+                    calculo = new CalculoVenda();
+                    calculo.ValorD = itens.ToList().Sum(x => x.Quantidade * x.Valor);
+                    calculo.ValorPago = calculo.ValorD;
+                }
                 venda.Comanda = _comanda;
                 venda.ValorAcrescimo = calculo.Acrescimo;
                 venda.ValorDesconto = calculo.Desconto;
@@ -296,10 +303,11 @@ namespace Esquenta.Forms.Caixa
         private void AtualizaCalculo(CalculoVenda calculo)
         {
             decimal valorVenda = 0;// itens.Select(x => x.Valor * x.Quantidade).Sum();
-            for (int i = 0; i < dataGridView1.Rows.Count; i++)
-            {
-                valorVenda += decimal.Parse(dataGridView1.Rows[i].Cells["Valor"].Value.ToString());
-            }
+            //for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            //{
+            //    valorVenda += decimal.Parse(dataGridView1.Rows[i].Cells["Valor"].Value.ToString());
+            //}
+            valorVenda = itens.ToList().Sum(x => x.Quantidade * x.Valor);
 
             var valores = calculo.ValorCC + calculo.ValorCD + calculo.ValorD;
             calculo.ValorPago = valores;

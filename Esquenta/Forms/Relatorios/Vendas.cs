@@ -17,8 +17,6 @@ namespace Esquenta.Forms.Relatorios
         decimal valorDescontoFinal = 0;
         decimal valorTrocoFinal = 0;
         decimal valorEmCaixa = 0;
-
-        //private List<Entities.Venda> _vendas;
         public Vendas()
         {
             InitializeComponent();
@@ -27,9 +25,10 @@ namespace Esquenta.Forms.Relatorios
         private void Vendas_Load(object sender, EventArgs e)
         {
             ConnectionService service = ConnectionService.GetInstance();
+            var dataAbertura = service.GetPeriodoVendaRepository().GetPeriodoAtual();
 
-            var _vendas = service.GetVendaRepository().GetVendasDia(Properties.Settings.Default.AberturaCaixa);
-            var consumo = service.GetItemVendaRepository().GetConsumo(Properties.Settings.Default.AberturaCaixa, null);
+            var _vendas = service.GetVendaRepository().GetVendasDia(dataAbertura.DataInicial);
+            var consumo = service.GetItemVendaRepository().GetConsumo(dataAbertura.DataInicial, null);
 
             var troco = Properties.Settings.Default.Troco;
             txtValorCaixa.Text = troco.ToString();
@@ -62,12 +61,11 @@ namespace Esquenta.Forms.Relatorios
             if (!periodoEmAberto)
             {
                 var dateTime = DateTime.Now;
-                Properties.Settings.Default.AberturaCaixa = dateTime;
-                Properties.Settings.Default.Save();
-
                 service.GetPeriodoVendaRepository().FecharPeriodo(dateTime);
-                var _vendas = service.GetVendaRepository().GetVendasDia(Properties.Settings.Default.AberturaCaixa);
-                var consumo = service.GetItemVendaRepository().GetConsumo(Properties.Settings.Default.AberturaCaixa, null);
+                var dataAbertura = service.GetPeriodoVendaRepository().GetPeriodoAtual();
+
+                var _vendas = service.GetVendaRepository().GetVendasDia(dataAbertura.DataInicial);
+                var consumo = service.GetItemVendaRepository().GetConsumo(dataAbertura.DataInicial, null);
 
                 var troco = Properties.Settings.Default.Troco;
                 txtValorCaixa.Text = troco.ToString();
@@ -131,14 +129,6 @@ namespace Esquenta.Forms.Relatorios
 
             if (start == end)
             {
-                //Se o periodo for o da abertura, uso o data de abertura
-                //var a = DateTime.Now.AbsoluteStart();
-                //var b = Properties.Settings.Default.AberturaCaixa.AbsoluteStart();
-                //if (DateTime.Now.AbsoluteStart() > Properties.Settings.Default.AberturaCaixa.AbsoluteStart())
-                //{
-                //    start = Properties.Settings.Default.AberturaCaixa;
-                //}
-
                 //Apenas um dia
                 var periodo = service.GetPeriodoVendaRepository().GetPeriodoInicial(start);
                 if (periodo != null)
@@ -214,8 +204,10 @@ namespace Esquenta.Forms.Relatorios
             Properties.Settings.Default.Save();
 
             ConnectionService service = ConnectionService.GetInstance();
-            var vendas = service.GetVendaRepository().GetVendasDia(Properties.Settings.Default.AberturaCaixa);
-            var consumo = service.GetItemVendaRepository().GetConsumo(Properties.Settings.Default.AberturaCaixa, null);
+            var dataAbertura = service.GetPeriodoVendaRepository().GetPeriodoAtual();
+
+            var vendas = service.GetVendaRepository().GetVendasDia(dataAbertura.DataInicial);
+            var consumo = service.GetItemVendaRepository().GetConsumo(dataAbertura.DataInicial, null);
             AtualizaCalculos(vendas);
         }
 

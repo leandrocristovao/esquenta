@@ -11,12 +11,20 @@ namespace Esquenta
         private static ConnectionService instance = null;
 
         private ISessionFactory sessionFactory = CreateSessionFactory();
-        private ISession _session;
+
+        private static ComandaRepository _comandaRepository = null;
+        private static ItemVendaRepository _itemVendaRepository = null;
+        private static ProdutoRepository _produtoRepository = null;
+        private static VendaRepository _vendaRepository = null;
+        private static ProdutoItemRepository _produtoItemRepository = null;
+        private static EntradaProdutoRepository _entradaProdutoRepository = null;
+        private static PeriodoVendaRepository _periodoVendaRepository = null;
 
         public ConnectionService()
         {
+            CreateSessionFactory();
+
             instance = this;
-            _session = sessionFactory.OpenSession();
         }
 
         public static ConnectionService GetInstance()
@@ -31,58 +39,65 @@ namespace Esquenta
 
         public ProdutoRepository GetProdutoRepository()
         {
-            _session.Close();
-            _session = sessionFactory.OpenSession();
-
-            return new ProdutoRepository(_session);
+            if (_produtoRepository == null)
+            {
+                _produtoRepository = new ProdutoRepository(sessionFactory.OpenSession());
+            }
+            return _produtoRepository;
         }
 
         public VendaRepository GetVendaRepository()
         {
-            _session.Close();
-            _session = sessionFactory.OpenSession();
-
-            return new VendaRepository(_session);
+            if (_vendaRepository == null)
+            {
+                _vendaRepository = new VendaRepository(sessionFactory.OpenSession());
+            }
+            return _vendaRepository;
         }
 
         public ComandaRepository GetComandaRepository()
         {
-            _session.Close();
-            _session = sessionFactory.OpenSession();
-
-            return new ComandaRepository(_session);
+            if (_comandaRepository == null)
+            {
+                _comandaRepository = new ComandaRepository(sessionFactory.OpenSession());
+            }
+            return _comandaRepository;
         }
 
         public ItemVendaRepository GetItemVendaRepository()
         {
-            _session.Close();
-            _session = sessionFactory.OpenSession();
-
-            return new ItemVendaRepository(_session);
+            if (_itemVendaRepository == null)
+            {
+                _itemVendaRepository = new ItemVendaRepository(sessionFactory.OpenSession());
+            }
+            return _itemVendaRepository;
         }
 
         public ProdutoItemRepository GetProdutoItemRepository()
         {
-            _session.Close();
-            _session = sessionFactory.OpenSession();
-            
-            return new ProdutoItemRepository(_session);
+            if (_produtoItemRepository == null)
+            {
+                _produtoItemRepository = new ProdutoItemRepository(sessionFactory.OpenSession());
+            }
+            return _produtoItemRepository;
         }
 
         public EntradaProdutoRepository GetEntradaProdutoRepository()
         {
-            _session.Close();
-            _session = sessionFactory.OpenSession();
-            
-            return new EntradaProdutoRepository(_session);
+            if (_entradaProdutoRepository == null)
+            {
+                _entradaProdutoRepository = new EntradaProdutoRepository(sessionFactory.OpenSession());
+            }
+            return _entradaProdutoRepository;
         }
 
         public PeriodoVendaRepository GetPeriodoVendaRepository()
         {
-            _session.Close();
-            _session = sessionFactory.OpenSession();
-
-            return new PeriodoVendaRepository(_session);
+            if (_periodoVendaRepository == null)
+            {
+                _periodoVendaRepository = new PeriodoVendaRepository(sessionFactory.OpenSession());
+            }
+            return _periodoVendaRepository;
         }
 
         private static ISessionFactory CreateSessionFactory()
@@ -95,7 +110,6 @@ namespace Esquenta
             return Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2008.ConnectionString(connectionString).ShowSql())
                 .Mappings(m => m.AutoMappings.Add(model))
-                //.Cache(x=>x.Not.UseQueryCache())
                 .BuildSessionFactory();
         }
     }
