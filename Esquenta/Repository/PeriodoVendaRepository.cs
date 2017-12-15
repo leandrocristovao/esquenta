@@ -53,5 +53,9 @@ namespace Esquenta.Repository
 
             return _session.Query<PeriodoVenda>().Where(x => x.DataInicial >= start && x.DataInicial <= end).FirstOrDefault();
         }
+        public PeriodoVenda GetPeriodoAtual()
+        {
+            return _session.Query<PeriodoVenda>().Where(x => x.DataFinal == null).OrderByDescending(x => x.Id).FirstOrDefault();
+        }
     }
 }

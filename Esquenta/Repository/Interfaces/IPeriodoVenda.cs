@@ -7,6 +7,8 @@ namespace Esquenta.Repository.Interfaces
     {
         bool ChecarPeriodoEmAberto();
 
+        PeriodoVenda GetPeriodoAtual();
+
         PeriodoVenda GetPeriodoInicial(DateTime periodoInicial);
 
         void FecharPeriodo(DateTime periodoFinal);

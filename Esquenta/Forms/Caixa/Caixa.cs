@@ -14,29 +14,23 @@ namespace Esquenta.Forms.Caixa
             AguardandoProduto = 2,
         };
 
-        private State CurrentState = State.AguardandoComanda;
-        private ConnectionService service;
-
-        //private List<Entities.Produto> itens = new List<Entities.Produto>();
-        private List<Entities.ItemVenda> itens = new List<Entities.ItemVenda>();
-
-        private decimal valorVenda = 0;
-        private decimal valorPago = 0;
-        private decimal valorDesconto = 0;
-        private decimal valorAcrescimo = 0;
-
-        private Comanda _comanda;
-
-        private AutoCompleteStringCollection produtosAutoComplete = new AutoCompleteStringCollection();
         private AutoCompleteStringCollection comandasAutoComplete = new AutoCompleteStringCollection();
+        private AutoCompleteStringCollection produtosAutoComplete = new AutoCompleteStringCollection();
+        private CalculoVenda calculo;
+        private Comanda _comanda;
+        private ConnectionService service;
+        private List<ItemVenda> itens = new List<Entities.ItemVenda>();
+        private State CurrentState = State.AguardandoComanda;
 
         public Caixa()
         {
             InitializeComponent();
 
             service = ConnectionService.GetInstance();
+
+            var periodo = service.GetPeriodoVendaRepository().GetPeriodoAtual();
             lblStatus.Text = "Aguardando comanda";
-            lblAberturaCaixa.Text = "Data de abertura do caixa: " + Properties.Settings.Default.AberturaCaixa;
+            lblAberturaCaixa.Text = "Data de abertura do caixa: " + periodo.DataInicial;
             txtComanda.Focus();
 
             var listaProduto = service.GetProdutoRepository().List();
@@ -88,10 +82,12 @@ namespace Esquenta.Forms.Caixa
             txtComanda.Text = "";
             txtComanda.Focus();
 
-            valorDesconto = 0;
-            valorAcrescimo = 0;
-            valorPago = 0;
-            valorVenda = 0;
+            calculo.Acrescimo = 0;
+            calculo.Desconto = 0;
+            calculo.ValorCC = 0;
+            calculo.ValorCD = 0;
+            calculo.ValorD = 0;
+            calculo.ValorPago = 0;
 
             txtComanda.AutoCompleteCustomSource = comandasAutoComplete;
         }
@@ -135,11 +131,20 @@ namespace Esquenta.Forms.Caixa
                         {
                             venda.ItemVenda.ForEach(item =>
                             {
-
                                 itens.Add(item);
                                 dataGridView1.Rows.Add(new String[] { itens.Count.ToString(), item.Produto.Nome, item.Quantidade.ToString(), item.Valor.ToString(), (item.Valor * item.Quantidade).ToString() });
                             });
-                            AtualizaCalculo(venda.ValorDesconto, venda.ValorAcrescimo, venda.ValorPago);
+
+                            calculo = new CalculoVenda
+                            {
+                                Acrescimo = venda.ValorAcrescimo,
+                                Desconto = venda.ValorDesconto,
+                                ValorCC = venda.ValorCC,
+                                ValorCD = venda.ValorCD,
+                                ValorD = venda.ValorD,
+                                ValorPago = venda.ValorPago
+                            };
+                            AtualizaCalculo(calculo);
                         }
                     }
                     break;
@@ -256,10 +261,13 @@ namespace Esquenta.Forms.Caixa
                 }
 
                 venda.Comanda = _comanda;
-                venda.ValorDesconto = valorDesconto;
-                venda.ValorAcrescimo = valorAcrescimo;
+                venda.ValorAcrescimo = calculo.Acrescimo;
+                venda.ValorDesconto = calculo.Desconto;
+                venda.ValorCC = calculo.ValorCC;
+                venda.ValorCD = calculo.ValorCD;
+                venda.ValorD = calculo.ValorD;
                 venda.EmAberto = EmAberto;
-                venda.ValorPago = valorPago;
+                venda.ValorPago = calculo.ValorPago;
 
                 itens.ForEach(produto =>
                 {
@@ -285,28 +293,27 @@ namespace Esquenta.Forms.Caixa
             FecharVenda();
         }
 
-        private void AtualizaCalculo(decimal desconto, decimal acrescimo, decimal valor)
+        private void AtualizaCalculo(CalculoVenda calculo)
         {
-            valorVenda = 0;// itens.Select(x => x.Valor * x.Quantidade).Sum();
+            decimal valorVenda = 0;// itens.Select(x => x.Valor * x.Quantidade).Sum();
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
                 valorVenda += decimal.Parse(dataGridView1.Rows[i].Cells["Valor"].Value.ToString());
             }
 
-            valorDesconto = desconto;
-            valorAcrescimo = acrescimo;
-            valorPago = valor; //acrescimo > 0 ? acrescimo : valorVenda - valorDesconto + valorAcrescimo;
-            valorVenda -= valorDesconto;
-            valorVenda += valorAcrescimo;
-            var troco = valor - valorVenda;
+            var valores = calculo.ValorCC + calculo.ValorCD + calculo.ValorD;
+            calculo.ValorPago = valores;
 
-            txtDesconto.Text = string.Format("{0:N}", valorDesconto);
-            txtAcrescimo.Text = string.Format("{0:N}", valorAcrescimo);
-            //txtValorPago.Text = string.Format("{0:N}", valorPago);
-            //txtTroco.Text = string.Format("{0:N}", Math.Max(0, (valorPago - valorVenda)));
-            txtValorPago.Text = string.Format("{0:N}", valor);
-            //txtTroco.Text = string.Format("{0:N}", Math.Max(0, (valor - valorVenda)));
-            txtTroco.Text = string.Format("{0:N}", (valor > 0 ? troco : 0));
+            valorVenda += calculo.Acrescimo;
+            valorVenda -= calculo.Desconto;
+
+            var troco = calculo.ValorPago - valorVenda;
+
+            txtDesconto.Text = string.Format("{0:N}", calculo.Desconto);
+            txtAcrescimo.Text = string.Format("{0:N}", calculo.Acrescimo);
+            txtValorPago.Text = string.Format("{0:N}", calculo.ValorPago);
+            txtTroco.Text = string.Format("{0:N}", (calculo.ValorPago > 0 ? troco : 0));
+
             lblValorTotal.Text = string.Format("{0:N}", valorVenda);
         }
 
@@ -321,7 +328,8 @@ namespace Esquenta.Forms.Caixa
                 var result = form.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    AtualizaCalculo(form.Desconto, form.Acrescimo, form.Valor);
+                    calculo = form.CalculoVenda;
+                    AtualizaCalculo(calculo);
                 }
             }
 
@@ -352,7 +360,9 @@ namespace Esquenta.Forms.Caixa
                             index++;
                             dataGridView1.Rows.Add(new String[] { index.ToString(), item.Produto.Nome, item.Quantidade.ToString(), item.Valor.ToString(), (item.Valor * item.Quantidade).ToString() });
                         });
-                        AtualizaCalculo(0, 0, 0);
+
+                        calculo = new CalculoVenda();
+                        AtualizaCalculo(calculo);
                     }
                     catch (Exception)
                     {
