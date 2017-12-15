@@ -29,7 +29,7 @@ namespace Esquenta.Forms.Caixa
         {
             if (e.KeyCode == Keys.Enter)
             {
-                txtAcrescimo.Focus();
+                SendKeys.Send("{TAB}");
             }
         }
 
@@ -41,7 +41,7 @@ namespace Esquenta.Forms.Caixa
                 decimal.TryParse(txtDesconto.Text, out desconto);
 
                 decimal valorPago = 0;
-                decimal.TryParse(txtValorPago.Text, out valorPago);
+                decimal.TryParse(txtCC.Text, out valorPago);
 
                 decimal valorAcrescimo = 0;
                 decimal.TryParse(txtAcrescimo.Text, out valorAcrescimo);
@@ -74,19 +74,16 @@ namespace Esquenta.Forms.Caixa
                 e.Cancel = true;
             }
 
-            if (string.IsNullOrEmpty(txtValorPago.Text))
+            if (string.IsNullOrEmpty(txtCC.Text))
             {
-                txtValorPago.Focus();
+                txtCC.Focus();
                 e.Cancel = true;
             }
         }
 
         private void txtAcrescimo_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-            {
-                txtValorPago.Focus();
-            }
+
         }
     }
 }

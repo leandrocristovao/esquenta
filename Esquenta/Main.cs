@@ -93,8 +93,10 @@ namespace Esquenta
                 frmCaixa.Close();
                 frmCaixa = null;
             }
-            frmCaixa = new Caixa();
-            frmCaixa.MdiParent = this;
+            frmCaixa = new Caixa
+            {
+                MdiParent = this
+            };
             frmCaixa.Show();
             frmCaixa.WindowState = FormWindowState.Maximized;
         }
@@ -106,8 +108,10 @@ namespace Esquenta
                 frmVendas.Close();
                 frmVendas = null;
             }
-            frmVendas = new Vendas();
-            frmVendas.MdiParent = this;
+            frmVendas = new Vendas
+            {
+                MdiParent = this
+            };
             frmVendas.Show();
             frmVendas.WindowState = FormWindowState.Maximized;
         }
@@ -119,8 +123,10 @@ namespace Esquenta
                 frmListaEntradaProduto.Close();
                 frmListaEntradaProduto = null;
             }
-            frmListaEntradaProduto = new ListaEntradaProduto();
-            frmListaEntradaProduto.MdiParent = this;
+            frmListaEntradaProduto = new ListaEntradaProduto
+            {
+                MdiParent = this
+            };
             frmListaEntradaProduto.Show();
             frmListaEntradaProduto.WindowState = FormWindowState.Maximized;
         }
