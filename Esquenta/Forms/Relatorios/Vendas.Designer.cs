@@ -37,12 +37,15 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTotalEmAberto = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -76,6 +79,9 @@
             this.dvgVendaComanda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dvgVendaDataHora = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dvgVendaValorTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dvgVendaCC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dvgVendaCD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dvgVendaD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dvgVendaAcrescimo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dvgVendaDesconto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dvgVendaValorFinal = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -338,7 +344,7 @@
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvConsumo.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvConsumo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvConsumo.Size = new System.Drawing.Size(478, 204);
+            this.dgvConsumo.Size = new System.Drawing.Size(543, 204);
             this.dgvConsumo.TabIndex = 5;
             // 
             // dgvConsumoProduto
@@ -386,12 +392,12 @@
             this.dgvDetalheQuantidade,
             this.dgvDetalheValorUnitario,
             this.dgvDetalheValorTotal});
-            this.dataGridView2.Location = new System.Drawing.Point(484, 0);
+            this.dataGridView2.Location = new System.Drawing.Point(549, 0);
             this.dataGridView2.MultiSelect = false;
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(594, 316);
+            this.dataGridView2.Size = new System.Drawing.Size(529, 316);
             this.dataGridView2.TabIndex = 2;
             // 
             // dgvDetalheProduto
@@ -450,32 +456,35 @@
             this.dvgVendaComanda,
             this.dvgVendaDataHora,
             this.dvgVendaValorTotal,
+            this.dvgVendaCC,
+            this.dvgVendaCD,
+            this.dvgVendaD,
             this.dvgVendaAcrescimo,
             this.dvgVendaDesconto,
             this.dvgVendaValorFinal,
             this.dgvEmAberto});
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle17;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(478, 151);
+            this.dataGridView1.Size = new System.Drawing.Size(543, 151);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEnter);
             this.dataGridView1.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dataGridView1_RowPrePaint);
@@ -491,10 +500,11 @@
             // 
             // dvgVendaComanda
             // 
-            this.dvgVendaComanda.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dvgVendaComanda.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
             this.dvgVendaComanda.HeaderText = "Comanda";
             this.dvgVendaComanda.Name = "dvgVendaComanda";
             this.dvgVendaComanda.ReadOnly = true;
+            this.dvgVendaComanda.Width = 5;
             // 
             // dvgVendaDataHora
             // 
@@ -516,13 +526,40 @@
             this.dvgVendaValorTotal.ReadOnly = true;
             this.dvgVendaValorTotal.Width = 107;
             // 
+            // dvgVendaCC
+            // 
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle11.Format = "C2";
+            this.dvgVendaCC.DefaultCellStyle = dataGridViewCellStyle11;
+            this.dvgVendaCC.HeaderText = "CC";
+            this.dvgVendaCC.Name = "dvgVendaCC";
+            this.dvgVendaCC.ReadOnly = true;
+            // 
+            // dvgVendaCD
+            // 
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle12.Format = "C2";
+            this.dvgVendaCD.DefaultCellStyle = dataGridViewCellStyle12;
+            this.dvgVendaCD.HeaderText = "CD";
+            this.dvgVendaCD.Name = "dvgVendaCD";
+            this.dvgVendaCD.ReadOnly = true;
+            // 
+            // dvgVendaD
+            // 
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle13.Format = "C2";
+            this.dvgVendaD.DefaultCellStyle = dataGridViewCellStyle13;
+            this.dvgVendaD.HeaderText = "D";
+            this.dvgVendaD.Name = "dvgVendaD";
+            this.dvgVendaD.ReadOnly = true;
+            // 
             // dvgVendaAcrescimo
             // 
             this.dvgVendaAcrescimo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle11.Format = "C2";
-            dataGridViewCellStyle11.NullValue = null;
-            this.dvgVendaAcrescimo.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle14.Format = "C2";
+            dataGridViewCellStyle14.NullValue = null;
+            this.dvgVendaAcrescimo.DefaultCellStyle = dataGridViewCellStyle14;
             this.dvgVendaAcrescimo.HeaderText = "Acréscimo";
             this.dvgVendaAcrescimo.Name = "dvgVendaAcrescimo";
             this.dvgVendaAcrescimo.ReadOnly = true;
@@ -531,10 +568,10 @@
             // dvgVendaDesconto
             // 
             this.dvgVendaDesconto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle12.Format = "C2";
-            dataGridViewCellStyle12.NullValue = null;
-            this.dvgVendaDesconto.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle15.Format = "C2";
+            dataGridViewCellStyle15.NullValue = null;
+            this.dvgVendaDesconto.DefaultCellStyle = dataGridViewCellStyle15;
             this.dvgVendaDesconto.HeaderText = "Desconto";
             this.dvgVendaDesconto.Name = "dvgVendaDesconto";
             this.dvgVendaDesconto.ReadOnly = true;
@@ -542,10 +579,10 @@
             // 
             // dvgVendaValorFinal
             // 
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle13.Format = "C2";
-            dataGridViewCellStyle13.NullValue = null;
-            this.dvgVendaValorFinal.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle16.Format = "C2";
+            dataGridViewCellStyle16.NullValue = null;
+            this.dvgVendaValorFinal.DefaultCellStyle = dataGridViewCellStyle16;
             this.dvgVendaValorFinal.HeaderText = "Valor Final";
             this.dvgVendaValorFinal.Name = "dvgVendaValorFinal";
             this.dvgVendaValorFinal.ReadOnly = true;
@@ -617,6 +654,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dvgVendaComanda;
         private System.Windows.Forms.DataGridViewTextBoxColumn dvgVendaDataHora;
         private System.Windows.Forms.DataGridViewTextBoxColumn dvgVendaValorTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dvgVendaCC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dvgVendaCD;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dvgVendaD;
         private System.Windows.Forms.DataGridViewTextBoxColumn dvgVendaAcrescimo;
         private System.Windows.Forms.DataGridViewTextBoxColumn dvgVendaDesconto;
         private System.Windows.Forms.DataGridViewTextBoxColumn dvgVendaValorFinal;

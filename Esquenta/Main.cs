@@ -1,12 +1,4 @@
-﻿/*
- ALTER TABLE venda ADD ValorCC DECIMAL(19,2);
-ALTER TABLE venda ADD ValorCD DECIMAL(19,2);
-ALTER TABLE venda ADD ValorD DECIMAL(19,2)
-
-UPDATE venda SET valorD = ValorFinal
- */
-
-using Esquenta.Entities;
+﻿using Esquenta.Entities;
 using Esquenta.Forms.Caixa;
 using Esquenta.Forms.Comandas;
 using Esquenta.Forms.EntradaProduto;
@@ -14,7 +6,6 @@ using Esquenta.Forms.Produto;
 using Esquenta.Forms.Relatorios;
 using SqlConnectionDialog;
 using System;
-using System.Data.SqlClient;
 using System.Net;
 using System.Net.Sockets;
 using System.Windows.Forms;
@@ -41,7 +32,7 @@ namespace Esquenta
             catch (Exception)
             {
                 OpenSQLConnection();
-            }            
+            }
 
             var hasPeriodo = ConnectionService.GetInstance().GetPeriodoVendaRepository().List().Count > 0;
             if (!hasPeriodo)
@@ -53,6 +44,7 @@ namespace Esquenta
                 });
             }
         }
+
         public static string GetLocalIPAddress()
         {
             var host = Dns.GetHostEntry(Dns.GetHostName());
@@ -65,6 +57,7 @@ namespace Esquenta
             }
             throw new Exception("No network adapters with an IPv4 address in the system!");
         }
+
         private void menuItemProdutos_Click(object sender, EventArgs e)
         {
             if (frmListaProduto != null)

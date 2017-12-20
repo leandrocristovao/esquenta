@@ -83,6 +83,11 @@ namespace Esquenta.Forms.Caixa
             txtComanda.Text = "";
             txtComanda.Focus();
 
+            if (calculo == null)
+            {
+                calculo = new CalculoVenda();
+            }
+
             calculo.Acrescimo = 0;
             calculo.Desconto = 0;
             calculo.ValorCC = 0;

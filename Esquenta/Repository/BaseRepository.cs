@@ -30,7 +30,10 @@ namespace Esquenta.Repository
         public virtual T Get(int id)
         {
             var obj = _session.Get<T>(id);
-            _session.Refresh(obj);
+            if (obj != null)
+            {
+                _session.Refresh(obj);
+            }
 
             return obj;
         }

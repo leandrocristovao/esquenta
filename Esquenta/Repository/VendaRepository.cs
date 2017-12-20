@@ -83,8 +83,11 @@ namespace Esquenta.Repository
         public Venda GetVendasEmAberto(Comanda comanda)
         {
             var obj = _session.Query<Venda>().Where(x => x.EmAberto == true && x.Comanda == comanda).FirstOrDefault();
-            _session.Refresh(obj);
-
+            if (obj != null)
+            {
+                _session.Refresh(obj);
+            }
+            
             return obj;
         }
 

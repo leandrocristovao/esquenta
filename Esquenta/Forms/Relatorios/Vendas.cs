@@ -157,12 +157,15 @@ namespace Esquenta.Forms.Relatorios
                 var produto = venda.Comanda.Nome;
                 var dataVenda = venda.DataVenda;
                 var valorVendas = venda.ValorTotal;
+                var valorCC = venda.ValorCC;
+                var valorCD = venda.ValorCD;
+                var valorD = venda.ValorD;
                 var valorAcrescimo = venda.ValorAcrescimo;
                 var valorDesconto = venda.ValorDesconto;
                 var valorFinal = venda.ValorFinal;
                 var emAberto = venda.EmAberto;
 
-                dataGridView1.Rows.Add(new object[] { id, produto, dataVenda, valorVendas, valorAcrescimo, valorDesconto, valorFinal, emAberto });
+                dataGridView1.Rows.Add(new object[] { id, produto, dataVenda, valorVendas, valorCC, valorCD, valorD, valorAcrescimo, valorDesconto, valorFinal, emAberto });
             });
 
             AtualizaCalculos(vendas);
@@ -179,6 +182,10 @@ namespace Esquenta.Forms.Relatorios
             valorVendasEmAberto = vendas.Where(x => x.EmAberto == true).Sum(x => x.ValorFinal);
 
             valorVendasFinal = vendas.Where(x => x.EmAberto == false).Sum(x => x.ValorFinal);
+            var valorCC = vendas.Where(x => x.EmAberto == false).Sum(x => x.ValorCC);
+            var valorCD = vendas.Where(x => x.EmAberto == false).Sum(x => x.ValorCD);
+            var valorD = vendas.Where(x => x.EmAberto == false).Sum(x => x.ValorD);
+
             valorAcrescimoFinal = vendas.Where(x => x.EmAberto == false).Sum(x => x.ValorAcrescimo);
             valorDescontoFinal = vendas.Where(x => x.EmAberto == false).Sum(x => x.ValorDesconto);
             valorTrocoFinal = 0;
@@ -189,7 +196,7 @@ namespace Esquenta.Forms.Relatorios
             lblTotalItens.Text = vendas.Count.ToString();
             lblDesconto.Text = string.Format("{0:C}", valorDescontoFinal);
             lblAcrescimo.Text = string.Format("{0:C}", valorAcrescimoFinal);
-            lblTotal.Text = string.Format("{0:C}", valorVendasFinal);
+            lblTotal.Text = string.Format("{0:C} - CC: {1:C} / CD: {2:C} / D:{3:C}", valorVendasFinal, valorCC, valorCD, valorD);
             lblTotalEmAberto.Text = string.Format("{0:C}", valorVendasEmAberto);
             lblValorFinal.Text = string.Format("{0:C}", valorEmCaixa);
         }
