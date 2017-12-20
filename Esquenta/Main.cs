@@ -1,4 +1,11 @@
-﻿
+﻿/*
+ ALTER TABLE venda ADD ValorCC DECIMAL(19,2);
+ALTER TABLE venda ADD ValorCD DECIMAL(19,2);
+ALTER TABLE venda ADD ValorD DECIMAL(19,2)
+
+UPDATE venda SET valorD = ValorFinal
+ */
+
 using Esquenta.Entities;
 using Esquenta.Forms.Caixa;
 using Esquenta.Forms.Comandas;

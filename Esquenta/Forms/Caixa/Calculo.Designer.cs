@@ -38,8 +38,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtD = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtValorPago = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.btnOK = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtDesconto
@@ -158,37 +157,22 @@
             this.label4.TabIndex = 21;
             this.label4.Text = "Dinheiro";
             // 
-            // txtValorPago
+            // btnOK
             // 
-            this.txtValorPago.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtValorPago.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtValorPago.Location = new System.Drawing.Point(9, 324);
-            this.txtValorPago.Name = "txtValorPago";
-            this.txtValorPago.Size = new System.Drawing.Size(290, 29);
-            this.txtValorPago.TabIndex = 6;
-            this.txtValorPago.Text = "0.0";
-            this.txtValorPago.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtValorPago.TextChanged += new System.EventHandler(this.txtDesconto_TextChanged);
-            this.txtValorPago.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtValorPago_KeyDown);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(9, 297);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(102, 24);
-            this.label6.TabIndex = 23;
-            this.label6.Text = "Valor pago";
+            this.btnOK.Location = new System.Drawing.Point(223, 264);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.TabIndex = 6;
+            this.btnOK.Text = "Ok";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // Calculo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(315, 365);
-            this.Controls.Add(this.txtValorPago);
-            this.Controls.Add(this.label6);
+            this.ClientSize = new System.Drawing.Size(315, 294);
+            this.Controls.Add(this.btnOK);
             this.Controls.Add(this.txtD);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtCD);
@@ -225,7 +209,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtD;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtValorPago;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnOK;
     }
 }

@@ -93,6 +93,7 @@
     <Compile Include="Forms\Caixa\Calculo.Designer.cs">
       <DependentUpon>Calculo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Caixa\CalculoVenda.cs" />
     <Compile Include="Forms\Caixa\RemoverItem.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -10,7 +10,8 @@ namespace Esquenta
     {
         private static ConnectionService instance = null;
 
-        private ISessionFactory sessionFactory = CreateSessionFactory();
+        private ISessionFactory _sessionFactory = CreateSessionFactory();
+        private ISession _session;
 
         private static ComandaRepository _comandaRepository = null;
         private static ItemVendaRepository _itemVendaRepository = null;
@@ -22,9 +23,8 @@ namespace Esquenta
 
         public ConnectionService()
         {
-            CreateSessionFactory();
-
             instance = this;
+            _session = _sessionFactory.OpenSession();
         }
 
         public static ConnectionService GetInstance()
@@ -41,7 +41,7 @@ namespace Esquenta
         {
             if (_produtoRepository == null)
             {
-                _produtoRepository = new ProdutoRepository(sessionFactory.OpenSession());
+                _produtoRepository = new ProdutoRepository(_session);
             }
             return _produtoRepository;
         }
@@ -50,7 +50,7 @@ namespace Esquenta
         {
             if (_vendaRepository == null)
             {
-                _vendaRepository = new VendaRepository(sessionFactory.OpenSession());
+                _vendaRepository = new VendaRepository(_session);
             }
             return _vendaRepository;
         }
@@ -59,7 +59,7 @@ namespace Esquenta
         {
             if (_comandaRepository == null)
             {
-                _comandaRepository = new ComandaRepository(sessionFactory.OpenSession());
+                _comandaRepository = new ComandaRepository(_session);
             }
             return _comandaRepository;
         }
@@ -68,7 +68,7 @@ namespace Esquenta
         {
             if (_itemVendaRepository == null)
             {
-                _itemVendaRepository = new ItemVendaRepository(sessionFactory.OpenSession());
+                _itemVendaRepository = new ItemVendaRepository(_session);
             }
             return _itemVendaRepository;
         }
@@ -77,7 +77,7 @@ namespace Esquenta
         {
             if (_produtoItemRepository == null)
             {
-                _produtoItemRepository = new ProdutoItemRepository(sessionFactory.OpenSession());
+                _produtoItemRepository = new ProdutoItemRepository(_session);
             }
             return _produtoItemRepository;
         }
@@ -86,7 +86,7 @@ namespace Esquenta
         {
             if (_entradaProdutoRepository == null)
             {
-                _entradaProdutoRepository = new EntradaProdutoRepository(sessionFactory.OpenSession());
+                _entradaProdutoRepository = new EntradaProdutoRepository(_session);
             }
             return _entradaProdutoRepository;
         }
@@ -95,7 +95,7 @@ namespace Esquenta
         {
             if (_periodoVendaRepository == null)
             {
-                _periodoVendaRepository = new PeriodoVendaRepository(sessionFactory.OpenSession());
+                _periodoVendaRepository = new PeriodoVendaRepository(_session);
             }
             return _periodoVendaRepository;
         }

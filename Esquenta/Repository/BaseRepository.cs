@@ -29,7 +29,10 @@ namespace Esquenta.Repository
 
         public virtual T Get(int id)
         {
-            return _session.Get<T>(id);
+            var obj = _session.Get<T>(id);
+            _session.Refresh(obj);
+
+            return obj;
         }
 
         public virtual List<T> List()

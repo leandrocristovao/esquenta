@@ -47,7 +47,6 @@ namespace Esquenta.Repository
                     //});
 
                     _session.Flush();
-
                     transaction.Commit();
                 }
             }
@@ -83,7 +82,10 @@ namespace Esquenta.Repository
 
         public Venda GetVendasEmAberto(Comanda comanda)
         {
-            return _session.Query<Venda>().Where(x => x.EmAberto == true && x.Comanda == comanda).FirstOrDefault();
+            var obj = _session.Query<Venda>().Where(x => x.EmAberto == true && x.Comanda == comanda).FirstOrDefault();
+            _session.Refresh(obj);
+
+            return obj;
         }
 
         public List<Venda> GetVendasEmAberto()
@@ -115,7 +117,6 @@ namespace Esquenta.Repository
                     _session.Update(entity);
 
                     _session.Flush();
-
                     transaction.Commit();
                 }
             }
