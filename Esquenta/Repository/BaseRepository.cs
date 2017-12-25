@@ -32,7 +32,9 @@ namespace Esquenta.Repository
             var obj = _session.Get<T>(id);
             if (obj != null)
             {
-                _session.Refresh(obj);
+                //todo: deixa lento em rede
+                //e realmente necessario?
+                //_session.Refresh(obj);
             }
 
             return obj;

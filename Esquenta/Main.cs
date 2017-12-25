@@ -23,7 +23,6 @@ namespace Esquenta
         public Main()
         {
             InitializeComponent();
-            ttsIP.Text = string.Format("IP: {0}", GetLocalIPAddress());
 
             try
             {
@@ -43,6 +42,10 @@ namespace Esquenta
                     DataFinal = DateTime.Now
                 });
             }
+
+            ttsIP.Text = string.Format("IP: {0}", GetLocalIPAddress());
+            ttsIPDB.Text = string.Format("IP Banco de Dados: {0}", ConnectionService.GetInstance().GetIPServer());
+            ttsMachineName.Text = string.Format("Terminal: {0}", Environment.MachineName);
         }
 
         public static string GetLocalIPAddress()

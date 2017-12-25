@@ -3,6 +3,7 @@ using Esquenta.Repository.Interfaces;
 using NHibernate;
 using NHibernate.Linq;
 using NHibernate.Util;
+using System;
 using System.Linq;
 
 namespace Esquenta.Repository
@@ -57,12 +58,32 @@ namespace Esquenta.Repository
 
         public Produto GetByCodigoBarra(string codigoBarra)
         {
-            return _session.Query<Produto>().Where(x => x.CodigoBarras.Equals(codigoBarra)).FirstOrDefault();
+            if (!_session.Transaction.IsActive)
+            {
+                using (var transaction = _session.BeginTransaction())
+                {
+                    return _session.Query<Produto>().Where(x => x.CodigoBarras.Equals(codigoBarra)).FirstOrDefault();
+                }
+            }
+            else
+            {
+                throw new Exception("Erro ao baixar estoque: Transaction não disponivel");
+            }
         }
 
         public Produto GetByNome(string nome)
         {
-            return _session.Query<Produto>().Where(x => x.Nome.Equals(nome)).FirstOrDefault();
+            if (!_session.Transaction.IsActive)
+            {
+                using (var transaction = _session.BeginTransaction())
+                {
+                    return _session.Query<Produto>().Where(x => x.Nome.Equals(nome)).FirstOrDefault();
+                }
+            }
+            else
+            {
+                throw new Exception("Erro ao baixar estoque: Transaction não disponivel");
+            }
         }
     }
 }

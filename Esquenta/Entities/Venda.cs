@@ -16,6 +16,7 @@ namespace Esquenta.Entities
         public virtual Comanda Comanda { get; set; }
         public virtual DateTime DataVenda { get; set; }
         public virtual decimal ValorAcrescimo { get; set; }
+        public virtual string Terminal { get; set; }
         public virtual decimal ValorCC { get; set; }//valor pago em cartao de credito
         public virtual decimal ValorCD { get; set; }//valor pago em cartao de debito
         public virtual decimal ValorD { get; set; }//valor pago em dinheiro

@@ -3,6 +3,7 @@ using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
+using System.Data.SqlClient;
 
 namespace Esquenta
 {
@@ -20,13 +21,17 @@ namespace Esquenta
         private static ProdutoItemRepository _produtoItemRepository = null;
         private static EntradaProdutoRepository _entradaProdutoRepository = null;
         private static PeriodoVendaRepository _periodoVendaRepository = null;
+        private static string _IPDB = "";
 
         public ConnectionService()
         {
             instance = this;
             _session = _sessionFactory.OpenSession();
         }
-
+        public string GetIPServer()
+        {
+            return _IPDB;
+        }
         public static ConnectionService GetInstance()
         {
             if (instance == null)
@@ -48,6 +53,11 @@ namespace Esquenta
 
         public VendaRepository GetVendaRepository()
         {
+            //if (!_session.IsConnected)
+            //{
+            //    _session = _sessionFactory.OpenSession();
+            //    _vendaRepository = null;
+            //}
             if (_vendaRepository == null)
             {
                 _vendaRepository = new VendaRepository(_session);
@@ -107,6 +117,10 @@ namespace Esquenta
                        .Where(t => t.Namespace == "Esquenta.Entities");
 
             string connectionString = Properties.Settings.Default.ConnectionString;
+
+            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(connectionString);
+            _IPDB = builder.DataSource;
+
             return Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2008.ConnectionString(connectionString).ShowSql())
                 .Mappings(m => m.AutoMappings.Add(model))

@@ -47,12 +47,14 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.btnProdutos = new System.Windows.Forms.ToolStripButton();
             this.btnComandas = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnEntradaProdutos = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.btnRelatorios = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.ttsIP = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.ttsMachineName = new System.Windows.Forms.ToolStripStatusLabel();
+            this.ttsIPDB = new System.Windows.Forms.ToolStripStatusLabel();
             this.mainMenu.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -214,6 +216,12 @@
             this.btnComandas.Text = "(F4) Comandas";
             this.btnComandas.Click += new System.EventHandler(this.btnComandas_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator2.Visible = false;
+            // 
             // btnEntradaProdutos
             // 
             this.btnEntradaProdutos.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -243,7 +251,9 @@
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ttsIP});
+            this.ttsIP,
+            this.ttsMachineName,
+            this.ttsIPDB});
             this.statusStrip1.Location = new System.Drawing.Point(0, 707);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1008, 22);
@@ -256,11 +266,17 @@
             this.ttsIP.Size = new System.Drawing.Size(23, 17);
             this.ttsIP.Text = "IP: ";
             // 
-            // toolStripSeparator2
+            // ttsMachineName
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            this.toolStripSeparator2.Visible = false;
+            this.ttsMachineName.Name = "ttsMachineName";
+            this.ttsMachineName.Size = new System.Drawing.Size(56, 17);
+            this.ttsMachineName.Text = "Terminal:";
+            // 
+            // ttsIPDB
+            // 
+            this.ttsIPDB.Name = "ttsIPDB";
+            this.ttsIPDB.Size = new System.Drawing.Size(108, 17);
+            this.ttsIPDB.Text = "IP Banco de Dados:";
             // 
             // Main
             // 
@@ -317,5 +333,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuItemSQLServer;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripStatusLabel ttsMachineName;
+        private System.Windows.Forms.ToolStripStatusLabel ttsIPDB;
     }
 }

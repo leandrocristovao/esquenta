@@ -17,24 +17,54 @@ namespace Esquenta.Repository
 
         public List<ItemVenda> GetVendasDia(DateTime dataInicial)
         {
-            return _session.Query<ItemVenda>().Where(x => x.DataVenda >= dataInicial).ToList();
+            if (!_session.Transaction.IsActive)
+            {
+                using (var transaction = _session.BeginTransaction())
+                {
+                    return _session.Query<ItemVenda>().Where(x => x.DataVenda >= dataInicial).ToList();
+                }
+            }
+            else
+            {
+                throw new Exception("Erro ao baixar estoque: Transaction não disponivel");
+            }
         }
 
         public List<ItemVenda> GetConsumo(DateTime periodoInicial, DateTime? periodoFinal)
         {
-            var query = _session.Query<ItemVenda>().Where(x => x.DataVenda >= periodoInicial && x.Venda.Comanda.Id == 2);
-            if (periodoFinal != null)
+            if (!_session.Transaction.IsActive)
             {
-                query = query.Where(x => x.DataVenda <= periodoFinal);
-            }
+                using (var transaction = _session.BeginTransaction())
+                {
+                    var query = _session.Query<ItemVenda>().Where(x => x.DataVenda >= periodoInicial && x.Venda.Comanda.Id == 2);
+                    if (periodoFinal != null)
+                    {
+                        query = query.Where(x => x.DataVenda <= periodoFinal);
+                    }
 
-            return query.ToList();
+                    return query.ToList();
+                }
+            }
+            else
+            {
+                throw new Exception("Erro ao baixar estoque: Transaction não disponivel");
+            }
         }
 
         public List<ItemVenda> GetVendasByProduto(Produto produto)
         {
-            var mes = DateTime.Now.FirstDayOfMonth();
-            return _session.Query<ItemVenda>().Where(x => x.Produto == produto && x.DataVenda >= mes).OrderByDescending(x => x.DataVenda).ToList();
+            if (!_session.Transaction.IsActive)
+            {
+                using (var transaction = _session.BeginTransaction())
+                {
+                    var mes = DateTime.Now.FirstDayOfMonth();
+                    return _session.Query<ItemVenda>().Where(x => x.Produto == produto && x.DataVenda >= mes).OrderByDescending(x => x.DataVenda).ToList();
+                }
+            }
+            else
+            {
+                throw new Exception("Erro ao baixar estoque: Transaction não disponivel");
+            }
         }
     }
 }

@@ -500,11 +500,10 @@
             // 
             // dvgVendaComanda
             // 
-            this.dvgVendaComanda.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
+            this.dvgVendaComanda.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dvgVendaComanda.HeaderText = "Comanda";
             this.dvgVendaComanda.Name = "dvgVendaComanda";
             this.dvgVendaComanda.ReadOnly = true;
-            this.dvgVendaComanda.Width = 5;
             // 
             // dvgVendaDataHora
             // 

@@ -61,18 +61,38 @@ namespace Esquenta.Repository
 
         public List<Venda> GetVendasDia(DateTime dataInicial)
         {
-            return _session.Query<Venda>().Where(x => (x.DataVenda >= dataInicial && x.Comanda.Id != 2) || x.EmAberto == true).OrderByDescending(x => x.Id).ToList();
+            if (!_session.Transaction.IsActive)
+            {
+                using (var transaction = _session.BeginTransaction())
+                {
+                    return _session.Query<Venda>().Where(x => (x.DataVenda >= dataInicial && x.Comanda.Id != 2) || x.EmAberto == true).OrderByDescending(x => x.Id).ToList();
+                }
+            }
+            else
+            {
+                throw new Exception("Erro ao baixar estoque: Transaction não disponivel");
+            }
         }
 
         public List<Venda> GetVendasDia(DateTime dataInicial, DateTime? dataFinal)
         {
-            var query = _session.Query<Venda>().Where(x => x.Comanda.Id != 2 && (x.DataVenda >= dataInicial || x.EmAberto == true));
-            if (dataFinal != null)
+            if (!_session.Transaction.IsActive)
             {
-                query = query.Where(x => x.DataVenda <= dataFinal);
-            }
+                using (var transaction = _session.BeginTransaction())
+                {
+                    var query = _session.Query<Venda>().Where(x => x.Comanda.Id != 2 && (x.DataVenda >= dataInicial || x.EmAberto == true));
+                    if (dataFinal != null)
+                    {
+                        query = query.Where(x => x.DataVenda <= dataFinal);
+                    }
 
-            return query.ToList();
+                    return query.ToList();
+                }
+            }
+            else
+            {
+                throw new Exception("Erro ao baixar estoque: Transaction não disponivel");
+            }
         }
 
         public List<Venda> GetVendasDia(PeriodoVenda periodo)
@@ -82,18 +102,48 @@ namespace Esquenta.Repository
 
         public Venda GetVendasEmAberto(Comanda comanda)
         {
-            var obj = _session.Query<Venda>().Where(x => x.EmAberto == true && x.Comanda == comanda).FirstOrDefault();
-            if (obj != null)
+            //var obj = _session.Query<Venda>().Where(x => x.EmAberto == true && x.Comanda == comanda).FirstOrDefault();
+            //if (obj != null)
+            //{
+            //    _session.Refresh(obj);
+            //}
+
+            //return obj;
+            var connected = _session.IsConnected;
+            var opened = _session.IsOpen;
+            var sessionFactoryClosed = _session.SessionFactory.IsClosed;
+            if (!_session.Transaction.IsActive)
             {
-                _session.Refresh(obj);
+                using (var transaction = _session.BeginTransaction())
+                {
+                    var obj = _session.Query<Venda>().Where(x => x.EmAberto == true && x.Comanda == comanda).FirstOrDefault();
+                    if (obj != null)
+                    {
+                        _session.Refresh(obj);
+                    }
+
+                    return obj;
+                }
             }
-            
-            return obj;
+            else
+            {
+                throw new Exception("Erro ao baixar estoque: Transaction não disponivel");
+            }
         }
 
         public List<Venda> GetVendasEmAberto()
         {
-            return _session.Query<Venda>().Where(x => x.EmAberto == true).ToList();
+            if (!_session.Transaction.IsActive)
+            {
+                using (var transaction = _session.BeginTransaction())
+                {
+                    return _session.Query<Venda>().Where(x => x.EmAberto == true).ToList();
+                }
+            }
+            else
+            {
+                throw new Exception("Erro ao baixar estoque: Transaction não disponivel");
+            }
         }
 
         public void BaixarVenda(Venda entity)
@@ -116,6 +166,7 @@ namespace Esquenta.Repository
                     });
 
                     entity.EmAberto = false;
+                    entity.Terminal = null;
                     entity.DataVenda = DateTime.Now;
                     _session.Update(entity);
 
@@ -128,6 +179,7 @@ namespace Esquenta.Repository
                 throw new Exception("Erro ao baixar estoque: Transaction não disponivel");
             }
         }
+
         public void CancelarVenda(Venda entity)
         {
             if (!_session.Transaction.IsActive)
@@ -149,6 +201,25 @@ namespace Esquenta.Repository
 
                     //_session.Update(entity);
                     _session.Delete(entity);
+                    _session.Flush();
+
+                    transaction.Commit();
+                }
+            }
+            else
+            {
+                throw new Exception("Erro ao baixar estoque: Transaction não disponivel");
+            }
+        }
+
+        public void EntradaTerminal(Venda entity, string terminal)
+        {
+            if (!_session.Transaction.IsActive)
+            {
+                using (var transaction = _session.BeginTransaction())
+                {
+                    entity.Terminal = terminal;
+                    _session.Update(entity);
                     _session.Flush();
 
                     transaction.Commit();

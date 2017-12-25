@@ -19,5 +19,6 @@ namespace Esquenta.Repository.Interfaces
         void BaixarVenda(Venda venda);
 
         void CancelarVenda(Venda venda);
+        void EntradaTerminal(Venda venda, string terminal);
     }
 }

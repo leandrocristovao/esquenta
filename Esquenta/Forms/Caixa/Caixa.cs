@@ -58,14 +58,20 @@ namespace Esquenta.Forms.Caixa
 
             if (_comanda != null && forceDelete && _comanda.Id > 2)
             {
+                var venda = service.GetVendaRepository().GetVendasEmAberto(_comanda);
                 var deletar = MessageBox.Show("Cancelar venda registrada?", "Cancelar Venda?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes;
                 if (deletar)
                 {
-                    var venda = service.GetVendaRepository().GetVendasEmAberto(_comanda);
+
                     if (venda != null)
                     {
                         service.GetVendaRepository().Delete(venda);
                     }
+                }
+                else
+                {
+                    if (venda.Id > 2 && !string.IsNullOrEmpty(venda.Terminal)) ;
+                    service.GetVendaRepository().EntradaTerminal(venda, null);
                 }
             }
 
@@ -132,25 +138,36 @@ namespace Esquenta.Forms.Caixa
                     if (_comanda.Id > 2)
                     {
                         //itens
-                        var venda = service.GetVendaRepository().GetVendasEmAberto(_comanda);
+                        var vendaService = service.GetVendaRepository();
+                        var venda = vendaService.GetVendasEmAberto(_comanda);
+
                         if (venda != null)
                         {
-                            venda.ItemVenda.ForEach(item =>
+                            if (!string.IsNullOrEmpty(venda.Terminal) && !venda.Terminal.Equals(Environment.MachineName))
                             {
-                                itens.Add(item);
-                                dataGridView1.Rows.Add(new String[] { itens.Count.ToString(), item.Produto.Nome, item.Quantidade.ToString(), item.Valor.ToString(), (item.Valor * item.Quantidade).ToString() });
-                            });
+                                MessageBox.Show(string.Format("Comanda aberta no terminal {0}", venda.Terminal));
+                                ClearScreen();
+                            }
+                            else
+                            {
+                                vendaService.EntradaTerminal(venda, Environment.MachineName);
+                                venda.ItemVenda.ForEach(item =>
+                                {
+                                    itens.Add(item);
+                                    dataGridView1.Rows.Add(new String[] { itens.Count.ToString(), item.Produto.Nome, item.Quantidade.ToString(), item.Valor.ToString(), (item.Valor * item.Quantidade).ToString() });
+                                });
 
-                            calculo = new CalculoVenda
-                            {
-                                Acrescimo = venda.ValorAcrescimo,
-                                Desconto = venda.ValorDesconto,
-                                ValorCC = venda.ValorCC,
-                                ValorCD = venda.ValorCD,
-                                ValorD = venda.ValorD,
-                                ValorPago = venda.ValorPago
-                            };
-                            AtualizaCalculo(calculo);
+                                calculo = new CalculoVenda
+                                {
+                                    Acrescimo = venda.ValorAcrescimo,
+                                    Desconto = venda.ValorDesconto,
+                                    ValorCC = venda.ValorCC,
+                                    ValorCD = venda.ValorCD,
+                                    ValorD = venda.ValorD,
+                                    ValorPago = venda.ValorPago
+                                };
+                                AtualizaCalculo(calculo);
+                            }
                         }
                     }
                     break;
@@ -291,6 +308,13 @@ namespace Esquenta.Forms.Caixa
                 {
                     service.GetVendaRepository().BaixarVenda(venda);
                 }
+                else {
+                    if (venda != null)
+                    {
+                        service.GetVendaRepository().EntradaTerminal(venda, null);
+                    }
+                    
+                }
 
                 ClearScreen();
             }
@@ -418,6 +442,20 @@ namespace Esquenta.Forms.Caixa
                 case Keys.Escape:
                     Close();
                     break;
+            }
+        }
+
+        private void Caixa_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+        }
+
+        private void Caixa_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (_comanda != null)
+            {
+                MessageBox.Show("Comanda em aberto no caixa. Finalize a operação");
+                e.Cancel = true;
             }
         }
     }

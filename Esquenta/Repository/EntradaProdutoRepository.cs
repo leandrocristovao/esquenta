@@ -4,6 +4,7 @@ using Esquenta.Repository.Interfaces;
 using NHibernate;
 using NHibernate.Linq;
 using System.Linq;
+using System;
 
 namespace Esquenta.Repository
 {
@@ -15,8 +16,19 @@ namespace Esquenta.Repository
 
         public List<EntradaProduto> GetByProduto(Produto produto)
         {
-            var query = _session.Query<EntradaProduto>().Where(x => x.Produto == produto).OrderByDescending(x => x.DataEntrada);
-            return query.ToList();
+            if (!_session.Transaction.IsActive)
+            {
+                using (var transaction = _session.BeginTransaction())
+                {
+                    var query = _session.Query<EntradaProduto>().Where(x => x.Produto == produto).OrderByDescending(x => x.DataEntrada);
+                    return query.ToList();
+                }
+            }
+            else
+            {
+                throw new Exception("Erro ao baixar estoque: Transaction não disponivel");
+            }
+            
         }
 
         public override EntradaProduto SaveOrUpdate(EntradaProduto entity)
