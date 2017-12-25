@@ -65,41 +65,38 @@ namespace Esquenta
         {
             if (frmListaProduto != null)
             {
-                frmListaProduto.Close();
-                frmListaProduto = null;
+                frmListaProduto = new ListaProduto
+                {
+                    MdiParent = this
+                };
             }
-            frmListaProduto = new ListaProduto
-            {
-                MdiParent = this
-            };
             frmListaProduto.Show();
             frmListaProduto.WindowState = FormWindowState.Maximized;
         }
 
         private void menuItemComandas_Click(object sender, EventArgs e)
         {
-            if (frmListaComanda != null)
+            if (frmListaComanda == null)
             {
-                frmListaComanda.Close();
-                frmListaComanda = null;
+                frmListaComanda = new ListaComanda
+                {
+                    MdiParent = this
+                };
             }
-            frmListaComanda = new ListaComanda();
-            frmListaComanda.MdiParent = this;
             frmListaComanda.Show();
             frmListaComanda.WindowState = FormWindowState.Maximized;
         }
 
         private void menuItemCaixa_Click(object sender, EventArgs e)
         {
-            if (frmCaixa != null)
+            if (frmCaixa == null)
             {
-                frmCaixa.Close();
-                frmCaixa = null;
+                frmCaixa = new Caixa
+                {
+                    MdiParent = this
+                };
             }
-            frmCaixa = new Caixa
-            {
-                MdiParent = this
-            };
+
             frmCaixa.Show();
             frmCaixa.WindowState = FormWindowState.Maximized;
         }
@@ -108,13 +105,12 @@ namespace Esquenta
         {
             if (frmVendas != null)
             {
-                frmVendas.Close();
-                frmVendas = null;
+                frmVendas = new Vendas
+                {
+                    MdiParent = this
+                };
             }
-            frmVendas = new Vendas
-            {
-                MdiParent = this
-            };
+
             frmVendas.Show();
             frmVendas.WindowState = FormWindowState.Maximized;
         }
@@ -123,13 +119,12 @@ namespace Esquenta
         {
             if (frmListaEntradaProduto != null)
             {
-                frmListaEntradaProduto.Close();
-                frmListaEntradaProduto = null;
+                frmListaEntradaProduto = new ListaEntradaProduto
+                {
+                    MdiParent = this
+                };
             }
-            frmListaEntradaProduto = new ListaEntradaProduto
-            {
-                MdiParent = this
-            };
+
             frmListaEntradaProduto.Show();
             frmListaEntradaProduto.WindowState = FormWindowState.Maximized;
         }
