@@ -58,6 +58,7 @@ namespace Esquenta.Repository
                     };
                     _session.Save(entity);
                     _session.Flush();
+                    transaction.Commit();
                 }
             }
             else

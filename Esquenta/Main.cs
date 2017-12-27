@@ -63,7 +63,7 @@ namespace Esquenta
 
         private void menuItemProdutos_Click(object sender, EventArgs e)
         {
-            if (frmListaProduto != null)
+            if (frmListaProduto == null)
             {
                 frmListaProduto = new ListaProduto
                 {
@@ -103,7 +103,7 @@ namespace Esquenta
 
         private void menuItemLivroCaixa_Click(object sender, EventArgs e)
         {
-            if (frmVendas != null)
+            if (frmVendas == null)
             {
                 frmVendas = new Vendas
                 {
@@ -117,7 +117,7 @@ namespace Esquenta
 
         private void menuItemEntradaProduto_Click(object sender, EventArgs e)
         {
-            if (frmListaEntradaProduto != null)
+            if (frmListaEntradaProduto == null)
             {
                 frmListaEntradaProduto = new ListaEntradaProduto
                 {
