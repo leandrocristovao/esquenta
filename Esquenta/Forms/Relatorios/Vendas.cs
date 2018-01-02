@@ -1,5 +1,4 @@
 ﻿using Esquenta.Components;
-using Esquenta.Repository.Extensions;
 using NHibernate.Util;
 using System;
 using System.Collections.Generic;
@@ -11,12 +10,15 @@ namespace Esquenta.Forms.Relatorios
 {
     public partial class Vendas : Form
     {
-        decimal valorVendasEmAberto = 0;
-        decimal valorVendasFinal = 0;
-        decimal valorAcrescimoFinal = 0;
-        decimal valorDescontoFinal = 0;
-        decimal valorTrocoFinal = 0;
-        decimal valorEmCaixa = 0;
+        private decimal valorVendasEmAberto = 0;
+        private decimal valorVendasFinal = 0;
+        private decimal valorAcrescimoFinal = 0;
+        private decimal valorDescontoFinal = 0;
+        private decimal valorTrocoFinal = 0;
+        private decimal valorEmCaixa = 0;
+
+        private ConnectionService _service;
+
         public Vendas()
         {
             InitializeComponent();
@@ -24,11 +26,11 @@ namespace Esquenta.Forms.Relatorios
 
         private void Vendas_Load(object sender, EventArgs e)
         {
-            ConnectionService service = ConnectionService.GetInstance();
-            var dataAbertura = service.GetPeriodoVendaRepository().GetPeriodoAtual();
+            _service = ConnectionService.GetInstance();
+            var dataAbertura = _service.GetPeriodoVendaRepository().GetPeriodoAtual();
 
-            var _vendas = service.GetVendaRepository().GetVendasDia(dataAbertura.DataInicial);
-            var consumo = service.GetItemVendaRepository().GetConsumo(dataAbertura.DataInicial, null);
+            var _vendas = _service.GetVendaRepository().GetVendasDia(dataAbertura.DataInicial);
+            var consumo = _service.GetItemVendaRepository().GetConsumo(dataAbertura.DataInicial, null);
 
             var troco = Properties.Settings.Default.Troco;
             txtValorCaixa.Text = troco.ToString();
@@ -38,9 +40,7 @@ namespace Esquenta.Forms.Relatorios
 
         private void BtnFecharCaixa_Click(object sender, EventArgs e)
         {
-            ConnectionService service = ConnectionService.GetInstance();
-
-            var emAberto = service.GetVendaRepository().GetVendasEmAberto();
+            var emAberto = _service.GetVendaRepository().GetVendasEmAberto();
             if (emAberto.Count > 0)
             {
                 List<string> comandas = new List<string>();
@@ -54,18 +54,17 @@ namespace Esquenta.Forms.Relatorios
                 {
                     return;
                 }
-
             }
 
-            var periodoEmAberto = service.GetPeriodoVendaRepository().ChecarPeriodoEmAberto();
+            var periodoEmAberto = _service.GetPeriodoVendaRepository().ChecarPeriodoEmAberto();
             if (!periodoEmAberto)
             {
                 var dateTime = DateTime.Now;
-                service.GetPeriodoVendaRepository().FecharPeriodo(dateTime);
-                var dataAbertura = service.GetPeriodoVendaRepository().GetPeriodoAtual();
+                _service.GetPeriodoVendaRepository().FecharPeriodo(dateTime);
+                var dataAbertura = _service.GetPeriodoVendaRepository().GetPeriodoAtual();
 
-                var _vendas = service.GetVendaRepository().GetVendasDia(dataAbertura.DataInicial);
-                var consumo = service.GetItemVendaRepository().GetConsumo(dataAbertura.DataInicial, null);
+                var _vendas = _service.GetVendaRepository().GetVendasDia(dataAbertura.DataInicial);
+                var consumo = _service.GetItemVendaRepository().GetConsumo(dataAbertura.DataInicial, null);
 
                 var troco = Properties.Settings.Default.Troco;
                 txtValorCaixa.Text = troco.ToString();
@@ -78,7 +77,6 @@ namespace Esquenta.Forms.Relatorios
             {
                 MessageBox.Show("Período já está fechado.");
             }
-
         }
 
         private void Vendas_KeyUp(object sender, KeyEventArgs e)
@@ -99,19 +97,19 @@ namespace Esquenta.Forms.Relatorios
             }
 
             var id = ((DataGridView)sender).CurrentRow.Cells[0].Value;
-            ConnectionService service = ConnectionService.GetInstance();
-            var venda = service.GetVendaRepository().Get((int)id);
+            var venda = _service.GetVendaRepository().Get((int)id);
 
             dataGridView2.Rows.Clear();
             venda.ItemVenda.ForEach(itemVenda =>
             {
+                var dataVenda = itemVenda.DataVenda;
                 var nomeProduto = itemVenda.Produto.Nome;
                 var quantidade = itemVenda.Quantidade;
                 var estoque = itemVenda.Produto.Quantidade;
                 var valorUnidade = itemVenda.Valor;
                 var valorTotal = valorUnidade * quantidade;
 
-                dataGridView2.Rows.Add(new object[] { nomeProduto, quantidade, valorUnidade, valorTotal, estoque });
+                dataGridView2.Rows.Add(new object[] { dataVenda, nomeProduto, quantidade, valorUnidade, valorTotal, estoque });
             });
 
             lblValorTotalVenda.Text = string.Format("Valor total da venda: {0}", venda.ValorFinal);
@@ -125,23 +123,21 @@ namespace Esquenta.Forms.Relatorios
             List<Entities.Venda> vendas = new List<Entities.Venda>();
             List<Entities.ItemVenda> consumo = new List<Entities.ItemVenda>();
 
-            ConnectionService service = ConnectionService.GetInstance();
-
             if (start == end)
             {
                 //Apenas um dia
-                var periodo = service.GetPeriodoVendaRepository().GetPeriodoInicial(start);
+                var periodo = _service.GetPeriodoVendaRepository().GetPeriodoInicial(start);
                 if (periodo != null)
                 {
-                    vendas = service.GetVendaRepository().GetVendasDia(periodo);
+                    vendas = _service.GetVendaRepository().GetVendasDia(periodo);
                 }
             }
             else
             {
                 //Faixa de dias
-                vendas = service.GetVendaRepository().GetVendasDia(start, end.AddSeconds(59).AddMinutes(59).AddHours(23));
+                vendas = _service.GetVendaRepository().GetVendasDia(start, end.AddSeconds(59).AddMinutes(59).AddHours(23));
             }
-            consumo = service.GetItemVendaRepository().GetConsumo(start, end.AddSeconds(59).AddMinutes(59).AddHours(23));
+            consumo = _service.GetItemVendaRepository().GetConsumo(start, end.AddSeconds(59).AddMinutes(59).AddHours(23));
             CarregaVendas(vendas, consumo);
         }
 
@@ -200,6 +196,7 @@ namespace Esquenta.Forms.Relatorios
             lblTotalEmAberto.Text = string.Format("{0:C}", valorVendasEmAberto);
             lblValorFinal.Text = string.Format("{0:C}", valorEmCaixa);
         }
+
         private void txtValorCaixa_TextChanged(object sender, EventArgs e)
         {
             TextBoxEnter.TextChanged(sender, e);
@@ -210,11 +207,10 @@ namespace Esquenta.Forms.Relatorios
             Properties.Settings.Default.Troco = valorTrocoFinal;
             Properties.Settings.Default.Save();
 
-            ConnectionService service = ConnectionService.GetInstance();
-            var dataAbertura = service.GetPeriodoVendaRepository().GetPeriodoAtual();
+            var dataAbertura = _service.GetPeriodoVendaRepository().GetPeriodoAtual();
 
-            var vendas = service.GetVendaRepository().GetVendasDia(dataAbertura.DataInicial);
-            var consumo = service.GetItemVendaRepository().GetConsumo(dataAbertura.DataInicial, null);
+            var vendas = _service.GetVendaRepository().GetVendasDia(dataAbertura.DataInicial);
+            var consumo = _service.GetItemVendaRepository().GetConsumo(dataAbertura.DataInicial, null);
             AtualizaCalculos(vendas);
         }
 
@@ -237,12 +233,9 @@ namespace Esquenta.Forms.Relatorios
             else
             {
                 var vendaID = (int)((DataGridView)sender).CurrentRow.Cells[0].Value;
-                ConnectionService service = ConnectionService.GetInstance();
-                var venda = service.GetVendaRepository().Get(vendaID);
-                service.GetVendaRepository().CancelarVenda(venda);
+                var venda = _service.GetVendaRepository().Get(vendaID);
+                _service.GetVendaRepository().CancelarVenda(venda);
             }
-
-
         }
     }
 }

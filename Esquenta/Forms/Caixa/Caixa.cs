@@ -62,7 +62,6 @@ namespace Esquenta.Forms.Caixa
                 var deletar = MessageBox.Show("Cancelar venda registrada?", "Cancelar Venda?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes;
                 if (deletar)
                 {
-
                     if (venda != null)
                     {
                         service.GetVendaRepository().Delete(venda);
@@ -188,9 +187,12 @@ namespace Esquenta.Forms.Caixa
                         return;
                     }
 
-                    var itemVenda = new ItemVenda();
-                    itemVenda.Produto = _produto;
-                    itemVenda.Valor = _produto.Valor;
+                    var itemVenda = new ItemVenda
+                    {
+                        Produto = _produto,
+                        Valor = _produto.Valor,
+                        DataVenda = DateTime.Now
+                    };
                     using (var form = new Quantidade())
                     {
                         var result = form.ShowDialog();
@@ -308,12 +310,12 @@ namespace Esquenta.Forms.Caixa
                 {
                     service.GetVendaRepository().BaixarVenda(venda);
                 }
-                else {
+                else
+                {
                     if (venda != null)
                     {
                         service.GetVendaRepository().EntradaTerminal(venda, null);
                     }
-                    
                 }
 
                 ClearScreen();
@@ -447,7 +449,6 @@ namespace Esquenta.Forms.Caixa
 
         private void Caixa_FormClosed(object sender, FormClosedEventArgs e)
         {
-
         }
 
         private void Caixa_FormClosing(object sender, FormClosingEventArgs e)

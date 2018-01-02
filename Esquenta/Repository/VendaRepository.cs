@@ -29,7 +29,6 @@ namespace Esquenta.Repository
                     entity.ItemVenda.ForEach(item =>
                     {
                         item.ValorTotal = item.Valor * item.Quantidade;
-                        item.DataVenda = entity.DataVenda;
                         _session.SaveOrUpdate(item);
                     });
 

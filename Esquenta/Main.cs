@@ -14,12 +14,6 @@ namespace Esquenta
 {
     public partial class Main : Form
     {
-        private ListaEntradaProduto frmListaEntradaProduto;
-        private ListaComanda frmListaComanda;
-        private ListaProduto frmListaProduto;
-        private Caixa frmCaixa;
-        private Vendas frmVendas;
-
         public Main()
         {
             InitializeComponent();
@@ -63,70 +57,47 @@ namespace Esquenta
 
         private void menuItemProdutos_Click(object sender, EventArgs e)
         {
-            if (frmListaProduto == null)
+            var form = new ListaProduto
             {
-                frmListaProduto = new ListaProduto
-                {
-                    MdiParent = this
-                };
-            }
-            frmListaProduto.Show();
-            frmListaProduto.WindowState = FormWindowState.Maximized;
+                WindowState = FormWindowState.Maximized
+            };
+            form.ShowDialog();
         }
 
         private void menuItemComandas_Click(object sender, EventArgs e)
         {
-            if (frmListaComanda == null)
+            var form = new ListaComanda
             {
-                frmListaComanda = new ListaComanda
-                {
-                    MdiParent = this
-                };
-            }
-            frmListaComanda.Show();
-            frmListaComanda.WindowState = FormWindowState.Maximized;
+                WindowState = FormWindowState.Maximized
+            };
+            form.ShowDialog();
         }
 
         private void menuItemCaixa_Click(object sender, EventArgs e)
         {
-            if (frmCaixa == null)
+            var form = new Caixa
             {
-                frmCaixa = new Caixa
-                {
-                    MdiParent = this
-                };
-            }
-
-            frmCaixa.Show();
-            frmCaixa.WindowState = FormWindowState.Maximized;
+                WindowState = FormWindowState.Maximized
+            };
+            form.ShowDialog();
         }
 
         private void menuItemLivroCaixa_Click(object sender, EventArgs e)
         {
-            if (frmVendas == null)
+            var form = new Vendas
             {
-                frmVendas = new Vendas
-                {
-                    MdiParent = this
-                };
-            }
-
-            frmVendas.Show();
-            frmVendas.WindowState = FormWindowState.Maximized;
+                WindowState = FormWindowState.Maximized
+            };
+            form.ShowDialog();
         }
 
         private void menuItemEntradaProduto_Click(object sender, EventArgs e)
         {
-            if (frmListaEntradaProduto == null)
+            var form = new ListaEntradaProduto
             {
-                frmListaEntradaProduto = new ListaEntradaProduto
-                {
-                    MdiParent = this
-                };
-            }
-
-            frmListaEntradaProduto.Show();
-            frmListaEntradaProduto.WindowState = FormWindowState.Maximized;
+                WindowState = FormWindowState.Maximized
+            };
+            form.ShowDialog();
         }
 
         private void Main_KeyUp(object sender, KeyEventArgs e)
