@@ -42,10 +42,12 @@ namespace Esquenta
                     DataFinal = DateTime.Now
                 });
             }
+            var periodoVenda = ConnectionService.GetInstance().GetPeriodoVendaRepository().GetPeriodoAtual();
 
             ttsIP.Text = string.Format("IP: {0}", GetLocalIPAddress());
             ttsIPDB.Text = string.Format("IP Banco de Dados: {0}", ConnectionService.GetInstance().GetIPServer());
             ttsMachineName.Text = string.Format("Terminal: {0}", Environment.MachineName);
+            ttsAberturaCaixa.Text = string.Format("Abertuda do Caixa: {0}", periodoVenda.DataInicial);
         }
 
         public static string GetLocalIPAddress()

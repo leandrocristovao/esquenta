@@ -31,7 +31,6 @@ namespace Esquenta.Forms.Caixa
 
             var periodo = service.GetPeriodoVendaRepository().GetPeriodoAtual();
             lblStatus.Text = "Aguardando comanda";
-            lblAberturaCaixa.Text = "Data de abertura do caixa: " + periodo.DataInicial;
             txtComanda.Focus();
 
             var listaProduto = service.GetProdutoRepository().List();

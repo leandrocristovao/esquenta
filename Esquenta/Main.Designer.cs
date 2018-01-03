@@ -55,6 +55,7 @@
             this.ttsIP = new System.Windows.Forms.ToolStripStatusLabel();
             this.ttsMachineName = new System.Windows.Forms.ToolStripStatusLabel();
             this.ttsIPDB = new System.Windows.Forms.ToolStripStatusLabel();
+            this.ttsAberturaCaixa = new System.Windows.Forms.ToolStripStatusLabel();
             this.mainMenu.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -253,7 +254,8 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ttsIP,
             this.ttsMachineName,
-            this.ttsIPDB});
+            this.ttsIPDB,
+            this.ttsAberturaCaixa});
             this.statusStrip1.Location = new System.Drawing.Point(0, 707);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1008, 22);
@@ -277,6 +279,12 @@
             this.ttsIPDB.Name = "ttsIPDB";
             this.ttsIPDB.Size = new System.Drawing.Size(108, 17);
             this.ttsIPDB.Text = "IP Banco de Dados:";
+            // 
+            // ttsAberturaCaixa
+            // 
+            this.ttsAberturaCaixa.Name = "ttsAberturaCaixa";
+            this.ttsAberturaCaixa.Size = new System.Drawing.Size(104, 17);
+            this.ttsAberturaCaixa.Text = "Abertura do Caixa:";
             // 
             // Main
             // 
@@ -335,5 +343,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripStatusLabel ttsMachineName;
         private System.Windows.Forms.ToolStripStatusLabel ttsIPDB;
+        private System.Windows.Forms.ToolStripStatusLabel ttsAberturaCaixa;
     }
 }
