@@ -55,6 +55,8 @@
             this.ttsIP = new System.Windows.Forms.ToolStripStatusLabel();
             this.ttsMachineName = new System.Windows.Forms.ToolStripStatusLabel();
             this.ttsIPDB = new System.Windows.Forms.ToolStripStatusLabel();
+            this.menuItemBackupPath = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemBackup = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -79,6 +81,8 @@
             this.menuItemEntradaProduto,
             this.menuItemCaixa,
             this.toolStripSeparator1,
+            this.menuItemBackupPath,
+            this.menuItemBackup,
             this.menuItemSQLServer,
             this.toolStripSeparator5,
             this.menuItemSair});
@@ -108,6 +112,7 @@
             // 
             // menuItemSQLServer
             // 
+            this.menuItemSQLServer.Enabled = false;
             this.menuItemSQLServer.Name = "menuItemSQLServer";
             this.menuItemSQLServer.Size = new System.Drawing.Size(190, 22);
             this.menuItemSQLServer.Text = "Configurar SQL Server";
@@ -278,6 +283,20 @@
             this.ttsIPDB.Size = new System.Drawing.Size(108, 17);
             this.ttsIPDB.Text = "IP Banco de Dados:";
             // 
+            // menuItemBackupPath
+            // 
+            this.menuItemBackupPath.Name = "menuItemBackupPath";
+            this.menuItemBackupPath.Size = new System.Drawing.Size(190, 22);
+            this.menuItemBackupPath.Text = "Ajustar Backup";
+            this.menuItemBackupPath.Click += new System.EventHandler(this.menuItemBackupPath_Click);
+            // 
+            // menuItemBackup
+            // 
+            this.menuItemBackup.Name = "menuItemBackup";
+            this.menuItemBackup.Size = new System.Drawing.Size(190, 22);
+            this.menuItemBackup.Text = "Backup";
+            this.menuItemBackup.Click += new System.EventHandler(this.menuItemBackup_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -334,5 +353,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripStatusLabel ttsMachineName;
         private System.Windows.Forms.ToolStripStatusLabel ttsIPDB;
+        private System.Windows.Forms.ToolStripMenuItem menuItemBackupPath;
+        private System.Windows.Forms.ToolStripMenuItem menuItemBackup;
     }
 }
