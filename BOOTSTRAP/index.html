@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3">
+
+                <div class="form-group text-center">
+                    <label for="controller">Aguardando Comanda</label>
+                    <input type="text" class="form-control typeahead" id="controller" aria-describedby="controllerHelp" placeholder="Digite o código/nome da comanda"
+                        data-provide="typeahead">
+                    <small id="controllerHelp" class="form-text text-muted">---</small>
+                </div>
+                <div class="alert alert-dark text-right" role="alert">
+                    Acréscimo:
+                    <span id="lblAcrescimo">R$ 0,00</span>
+                </div>
+                <div class="alert alert-dark text-right" role="alert">
+                    Desconto:
+                    <span id="lblDesconto">R$ 0,25</span>
+                </div>
+                <div class="alert alert-dark text-right" role="alert">
+                    Valor Pago:
+                    <span id="lblValorPago">R$ 20,00</span>
+                </div>
+                <div class="alert alert-dark text-right" role="alert">
+                    Troco:
+                    <span id="lblTroco">R$ 10,00</span>
+                </div>
+                <div class="alert alert-danger text-center" role="alert">
+                    <span id="lblTotal">R$ 100,25</span>
+                </div>
+            </div>
+            <div class="col-9">
+                <table id="table"></table>
+            </div>
+        </div>
+
+        <!-- Botoes -->
+        <div class="row">
+            <div class="col-sm">
+                <button type="button" class="btn btn-primary btn-secondary btn-lg btn-block">(F7) Calcular</button>
+            </div>
+            <div class="col-sm">
+                <button type="button" class="btn btn-primary btn-secondary btn-lg btn-block">(F8) Cancelar Venda</button>
+            </div>
+            <div class="col-sm">
+                <button type="button" class="btn btn-primary btn-secondary btn-lg btn-block">(F9) Fechar Conta</button>
+            </div>
+        </div>
+
+    </div>
+    <!-- Quantidade -->
+    <div class="modal fade" id="quantidadeModal" tabindex="-1" role="dialog" aria-labelledby="quantidadeModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="quantidadeModalLabel">Quantidade</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group text-center">
+                        <input type="text" class="form-control" id="quantidade" aria-describedby="controllerHelp" placeholder="Quantidade">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/tether.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-table.min.js"></script>
+    <script src="js/bootstrap3-typeahead.min.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
