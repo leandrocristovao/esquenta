@@ -3,7 +3,9 @@ using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
+using System;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Esquenta
 {
@@ -108,6 +110,31 @@ namespace Esquenta
                 _periodoVendaRepository = new PeriodoVendaRepository(_session);
             }
             return _periodoVendaRepository;
+        }
+
+        public void MakeBackup()
+        {
+            var connectionString = Properties.Settings.Default.ConnectionString;
+            var backupFolder = Properties.Settings.Default.BackupFolder;
+
+            var sqlConStrBuilder = new SqlConnectionStringBuilder(connectionString);
+
+            var backupFileName = String.Format("{0}\\{1}.bak",
+                backupFolder, sqlConStrBuilder.InitialCatalog);
+
+            using (var connection = new SqlConnection(sqlConStrBuilder.ConnectionString))
+            {
+                var query = String.Format("BACKUP DATABASE {0} TO DISK='{1}'",
+                    sqlConStrBuilder.InitialCatalog, backupFileName);
+
+                using (var command = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            MessageBox.Show("Backup realizado.");
         }
 
         private static ISessionFactory CreateSessionFactory()

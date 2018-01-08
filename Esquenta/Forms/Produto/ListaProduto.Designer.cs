@@ -197,6 +197,8 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.KeyPreview = true;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ListaProduto";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

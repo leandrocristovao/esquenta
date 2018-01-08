@@ -87,10 +87,11 @@ namespace Esquenta.Forms.Caixa
             txtComanda.Text = "";
             txtComanda.Focus();
 
-            if (calculo == null)
-            {
-                calculo = new CalculoVenda();
-            }
+            //if (calculo == null)
+            //{
+            //    calculo = new CalculoVenda();
+            //}
+            calculo = calculo ?? new CalculoVenda();
 
             calculo.Acrescimo = 0;
             calculo.Desconto = 0;
@@ -98,6 +99,7 @@ namespace Esquenta.Forms.Caixa
             calculo.ValorCD = 0;
             calculo.ValorD = 0;
             calculo.ValorPago = 0;
+            calculo.ValorVenda = 0;
 
             txtComanda.AutoCompleteCustomSource = comandasAutoComplete;
         }
@@ -332,32 +334,26 @@ namespace Esquenta.Forms.Caixa
 
         private void AtualizaCalculo(CalculoVenda calculo)
         {
-            decimal valorVenda = 0;// itens.Select(x => x.Valor * x.Quantidade).Sum();
-            //for (int i = 0; i < dataGridView1.Rows.Count; i++)
-            //{
-            //    valorVenda += decimal.Parse(dataGridView1.Rows[i].Cells["Valor"].Value.ToString());
-            //}
-            valorVenda = itens.ToList().Sum(x => x.Quantidade * x.Valor);
-
+            calculo.ValorVenda = itens.ToList().Sum(x => x.Quantidade * x.Valor);
             var valores = calculo.ValorCC + calculo.ValorCD + calculo.ValorD;
             calculo.ValorPago = valores;
 
-            valorVenda += calculo.Acrescimo;
-            valorVenda -= calculo.Desconto;
+            calculo.ValorVenda += calculo.Acrescimo;
+            calculo.ValorVenda -= calculo.Desconto;
 
-            var troco = calculo.ValorPago - valorVenda;
+            var troco = calculo.ValorPago - calculo.ValorVenda;
 
             txtDesconto.Text = string.Format("{0:N}", calculo.Desconto);
             txtAcrescimo.Text = string.Format("{0:N}", calculo.Acrescimo);
             txtValorPago.Text = string.Format("{0:N}", calculo.ValorPago);
             txtTroco.Text = string.Format("{0:N}", (calculo.ValorPago > 0 ? troco : 0));
 
-            lblValorTotal.Text = string.Format("{0:N}", valorVenda);
+            lblValorTotal.Text = string.Format("{0:N}", calculo.ValorVenda);
         }
 
         private void Calcular()
         {
-            if (this.itens.Count == 0)
+            if (itens.Count == 0)
             {
                 return;
             }
@@ -377,7 +373,7 @@ namespace Esquenta.Forms.Caixa
 
         private void CancelarItem()
         {
-            if (this.itens.Count == 0)
+            if (itens.Count == 0)
             {
                 return;
             }

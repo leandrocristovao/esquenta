@@ -361,7 +361,7 @@
             this.ValorUnitario.HeaderText = "Valor Unitário";
             this.ValorUnitario.Name = "ValorUnitario";
             this.ValorUnitario.ReadOnly = true;
-            this.ValorUnitario.Width = 147;
+            this.ValorUnitario.Width = 134;
             // 
             // Valor
             // 
@@ -389,6 +389,8 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.KeyPreview = true;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1024, 550);
             this.Name = "Caixa";
             this.ShowIcon = false;

@@ -6,6 +6,7 @@ using Esquenta.Forms.Produto;
 using Esquenta.Forms.Relatorios;
 using SqlConnectionDialog;
 using System;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Windows.Forms;
@@ -171,6 +172,31 @@ namespace Esquenta
 
             Properties.Settings.Default.ConnectionString = outConnectionString;
             Properties.Settings.Default.Save();
+        }
+
+        private void menuItemBackup_Click(object sender, EventArgs e)
+        {
+            var path = Properties.Settings.Default.BackupFolder;
+            if (!Directory.Exists(path))
+            {
+                menuItemBackupPath_Click(sender, e);
+            }
+            ConnectionService.GetInstance().MakeBackup();
+        }
+
+        private void menuItemBackupPath_Click(object sender, EventArgs e)
+        {
+            using (var fbd = new FolderBrowserDialog())
+            {
+                DialogResult result = fbd.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    Properties.Settings.Default.BackupFolder = fbd.SelectedPath;
+                    Properties.Settings.Default.Save();
+                    MessageBox.Show(String.Format("Backup será salvo na pasta: {0}", fbd.SelectedPath));
+                }
+            }
         }
     }
 }
