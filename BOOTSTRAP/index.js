@@ -72,23 +72,48 @@ $(document).ready(function () {
             valor: itemVenda.Valor,
             quantidade: itemVenda.Quantidade,
             valorTotal: itemVenda.ValorTotal
-        }])
+        }]);
+
         atualizaCalculo();
         $('#quantidadeModal').modal('toggle');
         $('#controller').val('');
         $('#controller').focus();
     });
 
+    $('#btnCalcular').click(function(e){
+        $('#calculadoraModal').modal({ keyboard: true });
+    });
+
+    $('#calculadoraModalOK').click(function(e){
+        alert('az alguma coisa');
+        $('#calculadoraModal').modal('toggle');
+    });
+
+    $('#quantidadeModal').on('shown.bs.modal', function () {
+        $('#quantidadeModalQuantidade').focus();
+        $('#quantidadeModalQuantidade').select();
+    });
+
+    $('#calculadoraModal').on('shown.bs.modal', function () {
+        $('#calculadoraModalDesconto').focus();
+    });
+
+    $('#quantidadeModalQuantidade').keyup(function (e) {
+        if (e.which == 13) {
+            $('#quantidadeModalOK').trigger('click');
+        }
+    });
+
     function showModalQuantidade() {
         $('#quantidadeModalQuantidade').val(1)
         $('#quantidadeModal').modal({ keyboard: true });
-    };
+    }
 
     function findControllerData(value) {
         return $.grep(controllerData, function (n, i) {
             return n.Nome == value;
         });
-    };
+    }
 
     function atualizaCalculo() {
         calculo.total = 0;
@@ -101,16 +126,15 @@ $(document).ready(function () {
         $('#lblTotal').text(calculo.total.toFixed(2));
     }
 
-    $('#quantidadeModal').on('shown.bs.modal', function () {
-        $('#quantidadeModalQuantidade').focus();
-        $('#quantidadeModalQuantidade').select();
+    $('.currency').inputmask("numeric", {
+        radixPoint: ",",
+        groupSeparator: ".",
+        digits: 2,
+        autoGroup: true,
+        rightAlign: true,
+        oncleared: function () { self.Value(''); }
     });
 
-    $('#quantidadeModalQuantidade').keyup(function (e) {
-        if (e.which == 13) {
-            $('#quantidadeModalOK').trigger('click');
-        }
-    });
 });
 
 /**

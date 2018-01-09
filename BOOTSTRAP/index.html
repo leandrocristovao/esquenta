@@ -47,21 +47,21 @@
             </div>
         </div>
         <footer class="fixed-bottom">
-        <!-- Botoes -->
-        <div class="row">
-            <div class="col-sm">
-                <button type="button" class="btn btn-primary btn-secondary btn-lg btn-block">(F7) Calcular</button>
+            <!-- Botoes -->
+            <div class="row">
+                <div class="col-sm">
+                    <button type="button" class="btn btn-primary btn-secondary btn-lg btn-block" id="btnCalcular">(F7) Calcular</button>
+                </div>
+                <div class="col-sm">
+                    <button type="button" class="btn btn-primary btn-secondary btn-lg btn-block">(F8) Cancelar Venda</button>
+                </div>
+                <div class="col-sm">
+                    <button type="button" class="btn btn-primary btn-secondary btn-lg btn-block">(F9) Fechar Conta</button>
+                </div>
             </div>
-            <div class="col-sm">
-                <button type="button" class="btn btn-primary btn-secondary btn-lg btn-block">(F8) Cancelar Venda</button>
-            </div>
-            <div class="col-sm">
-                <button type="button" class="btn btn-primary btn-secondary btn-lg btn-block">(F9) Fechar Conta</button>
-            </div>
-        </div>
-    </footer>
+        </footer>
     </div>
-    <!-- Quantidade -->
+    <!-- Modal Quantidade -->
     <div class="modal fade" id="quantidadeModal" tabindex="-1" role="dialog" aria-labelledby="quantidadeModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -83,6 +83,55 @@
         </div>
     </div>
 
+    <!-- Modal Calculadora -->
+    <div class="modal fade" id="calculadoraModal" tabindex="-1" role="dialog" aria-labelledby="calculadoraModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="calculadoraModalLabel">Calculadora</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Desconto</span>
+                        </div>
+                        <input type="text" class="form-control currency" id="calculadoraModalDesconto" aria-label="Desconto" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Acréscimo</span>
+                        </div>
+                        <input type="text" class="form-control currency" id="calculadoraModalAcrescimo" aria-label="Acréscimo" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Cartão de Crédito</span>
+                        </div>
+                        <input type="text" class="form-control currency" id="calculadoraModalCC" aria-label="Cartão de Crédito" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Cartão de Débito</span>
+                        </div>
+                        <input type="text" class="form-control currency" id="calculadoraModalCD" aria-label="Cartão de Débito" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Dinheiro</span>
+                        </div>
+                        <input type="text" class="form-control currency" id="calculadoraModalD" aria-label="Dinheiro" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="calculadoraModalOK" class="btn btn-primary">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/tether.min.js"></script>
@@ -90,6 +139,7 @@
     <script src="js/bootstrap-table.min.js"></script>
     <script src="js/bootstrap3-typeahead.min.js"></script>
     <script src="node_modules/underscore/underscore-min.js"></script>
+    <script src="node_modules/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
     <script src="index.js"></script>
 </body>
 
