@@ -5,9 +5,11 @@
   "main": "index.js",
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "bootstrap-table": "^1.11.2",
     "commander": "^2.12.2",
     "content-disposition": "^0.5.2",
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {},
   "scripts": {

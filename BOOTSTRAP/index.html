@@ -46,7 +46,7 @@
                 <table id="table"></table>
             </div>
         </div>
-
+        <footer class="fixed-bottom">
         <!-- Botoes -->
         <div class="row">
             <div class="col-sm">
@@ -59,7 +59,7 @@
                 <button type="button" class="btn btn-primary btn-secondary btn-lg btn-block">(F9) Fechar Conta</button>
             </div>
         </div>
-
+    </footer>
     </div>
     <!-- Quantidade -->
     <div class="modal fade" id="quantidadeModal" tabindex="-1" role="dialog" aria-labelledby="quantidadeModalLabel" aria-hidden="true">
@@ -73,12 +73,11 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group text-center">
-                        <input type="text" class="form-control" id="quantidade" aria-describedby="controllerHelp" placeholder="Quantidade">
+                        <input type="text" class="form-control" id="quantidadeModalQuantidade" placeholder="Quantidade">
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">OK</button>
+                    <button type="button" id="quantidadeModalOK" class="btn btn-primary">OK</button>
                 </div>
             </div>
         </div>
@@ -90,6 +89,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-table.min.js"></script>
     <script src="js/bootstrap3-typeahead.min.js"></script>
+    <script src="node_modules/underscore/underscore-min.js"></script>
     <script src="index.js"></script>
 </body>
 
