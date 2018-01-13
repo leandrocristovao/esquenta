@@ -30,10 +30,12 @@ namespace Esquenta
             instance = this;
             _session = _sessionFactory.OpenSession();
         }
+
         public string GetIPServer()
         {
             return _IPDB;
         }
+
         public static ConnectionService GetInstance()
         {
             if (instance == null)
@@ -152,6 +154,15 @@ namespace Esquenta
                 .Database(MsSqlConfiguration.MsSql2008.ConnectionString(connectionString).ShowSql())
                 .Mappings(m => m.AutoMappings.Add(model))
                 .BuildSessionFactory();
+
+            //return Fluently.Configure().Database(MySQLConfiguration.Standard.ConnectionString(
+            //    x => x.Server("localhost").
+            //        Username("root").
+            //        Password("$splfiscal10").
+            //        Database("esquenta")
+            //    ))
+            //    .Mappings(m => m.AutoMappings.Add(model))
+            //    .BuildSessionFactory();
         }
     }
 }
