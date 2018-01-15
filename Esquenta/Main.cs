@@ -42,7 +42,11 @@ namespace Esquenta
             ttsIP.Text = string.Format("IP: {0}", GetLocalIPAddress());
             ttsIPDB.Text = string.Format("IP Banco de Dados: {0}", ConnectionService.GetInstance().GetIPServer());
             ttsMachineName.Text = string.Format("Terminal: {0}", Environment.MachineName);
-            //ttsAberturaCaixa.Text = string.Format("Abertuda do Caixa: {0}", periodoVenda.DataInicial);
+
+            new Forms.Settings.Password().ShowDialog();
+            cadastrosToolStripMenuItem.Enabled = Program.isAdmin;
+            relatoriosToolStripMenuItem.Enabled = Program.isAdmin;
+            configuracoesToolStripMenuItem.Enabled = Program.isAdmin;
         }
 
         public static string GetLocalIPAddress()
@@ -113,19 +117,31 @@ namespace Esquenta
                     break;
 
                 case Keys.F3:
-                    menuItemProdutos_Click(sender, e);
+                    if (Program.isAdmin)
+                    {
+                        menuItemProdutos_Click(sender, e);
+                    }
                     break;
 
                 case Keys.F4:
-                    menuItemComandas_Click(sender, e);
+                    if (Program.isAdmin)
+                    {
+                        menuItemComandas_Click(sender, e);
+                    }
                     break;
 
                 case Keys.F5:
-                    menuItemEntradaProduto_Click(sender, e);
+                    if (Program.isAdmin)
+                    {
+                        menuItemEntradaProduto_Click(sender, e);
+                    }
                     break;
 
                 case Keys.F6:
-                    menuItemLivroCaixa_Click(sender, e);
+                    if (Program.isAdmin)
+                    {
+                        menuItemLivroCaixa_Click(sender, e);
+                    }
                     break;
             }
         }
@@ -197,6 +213,11 @@ namespace Esquenta
                     MessageBox.Show(String.Format("Backup será salvo na pasta: {0}", fbd.SelectedPath));
                 }
             }
+        }
+
+        private void menuItemAlterarSenha_Click(object sender, EventArgs e)
+        {
+            new Forms.Settings.ChangePassword().ShowDialog();
         }
     }
 }

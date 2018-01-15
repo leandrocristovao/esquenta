@@ -71,5 +71,17 @@ namespace Esquenta.Properties {
                 this["BackupFolder"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("esquenta")]
+        public string PWD {
+            get {
+                return ((string)(this["PWD"]));
+            }
+            set {
+                this["PWD"] = value;
+            }
+        }
     }
 }
