@@ -4,7 +4,6 @@ using System.Windows.Forms;
 
 namespace Esquenta.Forms.Caixa
 {
-
     public partial class Calculo : Form
     {
         public CalculoVenda CalculoVenda { get; set; }
@@ -21,8 +20,6 @@ namespace Esquenta.Forms.Caixa
                 SendKeys.Send("{TAB}");
             }
         }
-
-        
 
         private void txtDesconto_TextChanged(object sender, EventArgs e)
         {

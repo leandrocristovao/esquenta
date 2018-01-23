@@ -43,11 +43,11 @@
             this.menuItemBackupPath = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemBackup = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemSQLServer = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemAlterarSenha = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.ttsIP = new System.Windows.Forms.ToolStripStatusLabel();
             this.ttsMachineName = new System.Windows.Forms.ToolStripStatusLabel();
             this.ttsIPDB = new System.Windows.Forms.ToolStripStatusLabel();
-            this.menuItemAlterarSenha = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -93,6 +93,7 @@
             this.menuItemSair.Name = "menuItemSair";
             this.menuItemSair.Size = new System.Drawing.Size(152, 22);
             this.menuItemSair.Text = "Sair";
+            this.menuItemSair.Click += new System.EventHandler(this.menuItemSair_Click);
             // 
             // cadastrosToolStripMenuItem
             // 
@@ -164,6 +165,13 @@
             this.menuItemSQLServer.Text = "Configurar SQL Server";
             this.menuItemSQLServer.Click += new System.EventHandler(this.menuItemSQLServer_Click);
             // 
+            // menuItemAlterarSenha
+            // 
+            this.menuItemAlterarSenha.Name = "menuItemAlterarSenha";
+            this.menuItemAlterarSenha.Size = new System.Drawing.Size(190, 22);
+            this.menuItemAlterarSenha.Text = "Alterar Senha";
+            this.menuItemAlterarSenha.Click += new System.EventHandler(this.menuItemAlterarSenha_Click);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -193,13 +201,6 @@
             this.ttsIPDB.Name = "ttsIPDB";
             this.ttsIPDB.Size = new System.Drawing.Size(108, 17);
             this.ttsIPDB.Text = "IP Banco de Dados:";
-            // 
-            // menuItemAlterarSenha
-            // 
-            this.menuItemAlterarSenha.Name = "menuItemAlterarSenha";
-            this.menuItemAlterarSenha.Size = new System.Drawing.Size(190, 22);
-            this.menuItemAlterarSenha.Text = "Alterar Senha";
-            this.menuItemAlterarSenha.Click += new System.EventHandler(this.menuItemAlterarSenha_Click);
             // 
             // Main
             // 

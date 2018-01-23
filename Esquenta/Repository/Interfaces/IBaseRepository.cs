@@ -19,6 +19,7 @@ namespace Esquenta.Repository.Interfaces
         T Get(int id);
 
         List<T> List();
+
         List<T> List(Expression<Func<T, bool>> filter);
     }
 }

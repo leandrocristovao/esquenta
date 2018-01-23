@@ -43,7 +43,14 @@ namespace Esquenta
             ttsIPDB.Text = string.Format("IP Banco de Dados: {0}", ConnectionService.GetInstance().GetIPServer());
             ttsMachineName.Text = string.Format("Terminal: {0}", Environment.MachineName);
 
-            new Forms.Settings.Password().ShowDialog();
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.PWD))
+            {
+                new Forms.Settings.Password().ShowDialog();
+            }
+            else
+            {
+                Program.isAdmin = true;
+            }
             cadastrosToolStripMenuItem.Enabled = Program.isAdmin;
             relatoriosToolStripMenuItem.Enabled = Program.isAdmin;
             configuracoesToolStripMenuItem.Enabled = Program.isAdmin;
@@ -218,6 +225,11 @@ namespace Esquenta
         private void menuItemAlterarSenha_Click(object sender, EventArgs e)
         {
             new Forms.Settings.ChangePassword().ShowDialog();
+        }
+
+        private void menuItemSair_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

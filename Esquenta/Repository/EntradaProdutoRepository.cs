@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using Esquenta.Entities;
+﻿using Esquenta.Entities;
 using Esquenta.Repository.Interfaces;
 using NHibernate;
 using NHibernate.Linq;
-using System.Linq;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Esquenta.Repository
 {
@@ -28,7 +28,6 @@ namespace Esquenta.Repository
             {
                 throw new Exception("Erro ao baixar estoque: Transaction não disponivel");
             }
-            
         }
 
         public override EntradaProduto SaveOrUpdate(EntradaProduto entity)

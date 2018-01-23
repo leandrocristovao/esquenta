@@ -74,7 +74,7 @@ namespace Esquenta.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("esquenta")]
+        [global::System.Configuration.DefaultSettingValueAttribute("ZXNxdWVudGE=")]
         public string PWD {
             get {
                 return ((string)(this["PWD"]));
