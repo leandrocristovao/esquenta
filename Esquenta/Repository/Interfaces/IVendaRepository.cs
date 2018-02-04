@@ -12,6 +12,8 @@ namespace Esquenta.Repository.Interfaces
 
         List<Venda> GetVendasDia(PeriodoVenda periodo);
 
+        List<Venda> GetVendasMes(DateTime periodo, Comanda comanda);
+
         List<Venda> GetVendasEmAberto();
 
         Venda GetVendasEmAberto(Comanda comanda);
@@ -19,6 +21,7 @@ namespace Esquenta.Repository.Interfaces
         void BaixarVenda(Venda venda);
 
         void CancelarVenda(Venda venda);
+
         void EntradaTerminal(Venda venda, string terminal);
     }
 }

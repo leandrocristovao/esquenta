@@ -231,5 +231,10 @@ namespace Esquenta
         {
             Close();
         }
+
+        private void menuItemConsumo_Click(object sender, EventArgs e)
+        {
+            new Consumo().ShowDialog();
+        }
     }
 }

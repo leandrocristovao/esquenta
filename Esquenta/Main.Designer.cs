@@ -48,6 +48,7 @@
             this.ttsIP = new System.Windows.Forms.ToolStripStatusLabel();
             this.ttsMachineName = new System.Windows.Forms.ToolStripStatusLabel();
             this.ttsIPDB = new System.Windows.Forms.ToolStripStatusLabel();
+            this.menuItemConsumo = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -79,19 +80,19 @@
             // menuItemCaixa
             // 
             this.menuItemCaixa.Name = "menuItemCaixa";
-            this.menuItemCaixa.Size = new System.Drawing.Size(152, 22);
+            this.menuItemCaixa.Size = new System.Drawing.Size(125, 22);
             this.menuItemCaixa.Text = "Caixa (F2)";
             this.menuItemCaixa.Click += new System.EventHandler(this.menuItemCaixa_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(122, 6);
             // 
             // menuItemSair
             // 
             this.menuItemSair.Name = "menuItemSair";
-            this.menuItemSair.Size = new System.Drawing.Size(152, 22);
+            this.menuItemSair.Size = new System.Drawing.Size(125, 22);
             this.menuItemSair.Text = "Sair";
             this.menuItemSair.Click += new System.EventHandler(this.menuItemSair_Click);
             // 
@@ -121,7 +122,8 @@
             // relatoriosToolStripMenuItem
             // 
             this.relatoriosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemLivroCaixa});
+            this.menuItemLivroCaixa,
+            this.menuItemConsumo});
             this.relatoriosToolStripMenuItem.Name = "relatoriosToolStripMenuItem";
             this.relatoriosToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.relatoriosToolStripMenuItem.Text = "Relatórios";
@@ -202,6 +204,13 @@
             this.ttsIPDB.Size = new System.Drawing.Size(108, 17);
             this.ttsIPDB.Text = "IP Banco de Dados:";
             // 
+            // menuItemConsumo
+            // 
+            this.menuItemConsumo.Name = "menuItemConsumo";
+            this.menuItemConsumo.Size = new System.Drawing.Size(154, 22);
+            this.menuItemConsumo.Text = "Consumo";
+            this.menuItemConsumo.Click += new System.EventHandler(this.menuItemConsumo_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -248,5 +257,6 @@
         private System.Windows.Forms.ToolStripMenuItem menuItemBackup;
         private System.Windows.Forms.ToolStripMenuItem configuracoesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuItemAlterarSenha;
+        private System.Windows.Forms.ToolStripMenuItem menuItemConsumo;
     }
 }

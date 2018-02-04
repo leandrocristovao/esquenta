@@ -1,4 +1,5 @@
 ﻿using Esquenta.Entities;
+using Esquenta.Repository.Extensions;
 using Esquenta.Repository.Interfaces;
 using NHibernate;
 using NHibernate.Linq;
@@ -222,6 +223,21 @@ namespace Esquenta.Repository
                     _session.Flush();
 
                     transaction.Commit();
+                }
+            }
+            else
+            {
+                throw new Exception("Erro ao baixar estoque: Transaction não disponivel");
+            }
+        }
+
+        public List<Venda> GetVendasMes(DateTime dataInicial, Comanda comanda)
+        {
+            if (!_session.Transaction.IsActive)
+            {
+                using (var transaction = _session.BeginTransaction())
+                {
+                    return _session.Query<Venda>().Where(x => x.DataVenda >= dataInicial.FirstDayOfMonth() && x.DataVenda <= dataInicial.LastDayOfMonth()).OrderByDescending(x => x.Id).ToList();
                 }
             }
             else
