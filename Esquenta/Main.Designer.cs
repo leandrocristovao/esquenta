@@ -39,6 +39,7 @@
             this.menuItemComandas = new System.Windows.Forms.ToolStripMenuItem();
             this.relatoriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemLivroCaixa = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemConsumo = new System.Windows.Forms.ToolStripMenuItem();
             this.configuracoesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemBackupPath = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemBackup = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,7 +49,6 @@
             this.ttsIP = new System.Windows.Forms.ToolStripStatusLabel();
             this.ttsMachineName = new System.Windows.Forms.ToolStripStatusLabel();
             this.ttsIPDB = new System.Windows.Forms.ToolStripStatusLabel();
-            this.menuItemConsumo = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -131,9 +131,17 @@
             // menuItemLivroCaixa
             // 
             this.menuItemLivroCaixa.Name = "menuItemLivroCaixa";
-            this.menuItemLivroCaixa.Size = new System.Drawing.Size(154, 22);
+            this.menuItemLivroCaixa.Size = new System.Drawing.Size(180, 22);
             this.menuItemLivroCaixa.Text = "Livro Caixa (F6)";
             this.menuItemLivroCaixa.Click += new System.EventHandler(this.menuItemLivroCaixa_Click);
+            // 
+            // menuItemConsumo
+            // 
+            this.menuItemConsumo.Name = "menuItemConsumo";
+            this.menuItemConsumo.Size = new System.Drawing.Size(180, 22);
+            this.menuItemConsumo.Text = "Consumo";
+            this.menuItemConsumo.Visible = false;
+            this.menuItemConsumo.Click += new System.EventHandler(this.menuItemConsumo_Click);
             // 
             // configuracoesToolStripMenuItem
             // 
@@ -203,13 +211,6 @@
             this.ttsIPDB.Name = "ttsIPDB";
             this.ttsIPDB.Size = new System.Drawing.Size(108, 17);
             this.ttsIPDB.Text = "IP Banco de Dados:";
-            // 
-            // menuItemConsumo
-            // 
-            this.menuItemConsumo.Name = "menuItemConsumo";
-            this.menuItemConsumo.Size = new System.Drawing.Size(154, 22);
-            this.menuItemConsumo.Text = "Consumo";
-            this.menuItemConsumo.Click += new System.EventHandler(this.menuItemConsumo_Click);
             // 
             // Main
             // 

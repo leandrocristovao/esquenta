@@ -5,9 +5,7 @@ VisualStudioVersion = 15.0.27004.2008
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Esquenta", "Esquenta\Esquenta.csproj", "{9ECE8FAD-9056-4694-9EAD-1100AD2D1E6D}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{69D93498-2CA6-47A9-B01F-70EA926CED1C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EsquentaWEB", "EsquentaWEB\EsquentaWEB.csproj", "{B7662292-49B2-4EA1-8A7E-365F5FFAD7E5}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "V1-WinForms", "V1-WinForms", "{3F8117E0-FA90-4829-8318-788E56A7A50C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,15 +17,12 @@ Global
 		{9ECE8FAD-9056-4694-9EAD-1100AD2D1E6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9ECE8FAD-9056-4694-9EAD-1100AD2D1E6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9ECE8FAD-9056-4694-9EAD-1100AD2D1E6D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{69D93498-2CA6-47A9-B01F-70EA926CED1C}.Debug|Any CPU.ActiveCfg = Debug
-		{69D93498-2CA6-47A9-B01F-70EA926CED1C}.Release|Any CPU.ActiveCfg = Release
-		{B7662292-49B2-4EA1-8A7E-365F5FFAD7E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B7662292-49B2-4EA1-8A7E-365F5FFAD7E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B7662292-49B2-4EA1-8A7E-365F5FFAD7E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B7662292-49B2-4EA1-8A7E-365F5FFAD7E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9ECE8FAD-9056-4694-9EAD-1100AD2D1E6D} = {3F8117E0-FA90-4829-8318-788E56A7A50C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6058029E-1139-44F2-BB7C-CFECF8A91AE8}
