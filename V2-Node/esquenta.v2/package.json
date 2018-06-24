@@ -2,7 +2,7 @@
   "name": "esquenta.v2",
   "version": "1.0.0",
   "description": "Versao NODE do aplicativo de controle de boteco: Esquenta",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start:dev": "nodemon ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,7 +15,8 @@
     "morgan": "^1.9.0",
     "mysql": "^2.15.0",
     "mysql2": "^1.5.3",
-    "sequelize": "^4.38.0"
+    "sequelize": "^4.38.0",
+    "sqlite3": "^4.0.1"
   },
   "devDependencies": {
     "eslint": "^5.0.0",

@@ -1,5 +1,6 @@
 const todosController = require('../controllers').todos
 const todoItemsController = require('../controllers').todoItems
+const comandaController = require('../controllers').comandas
 
 module.exports = (app) => {
   app.get('/api', (req, res) => res.status(200).send({
@@ -17,6 +18,15 @@ module.exports = (app) => {
   app.delete(
     '/api/todos/:todoId/items/:todoItemId', todoItemsController.destroy
   )
+
+  /**
+   * Comandas
+   */
+  app.post('/api/comandas', comandaController.create)
+  app.get('/api/comandas', comandaController.list)
+  app.get('/api/comandas/:id', comandaController.get)
+  app.put('/api/comandas/:id', comandaController.update)
+  app.delete('/api/comandas/:id', comandaController.destroy)
 
   // For any other request method on todo items, we're going to return "Method Not Allowed"
   app.all('/api/todos/:todoId/items', (req, res) =>

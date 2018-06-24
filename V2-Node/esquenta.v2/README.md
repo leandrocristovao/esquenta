@@ -1,10 +1,10 @@
 ﻿# esquenta.v2
 
 CREATE TABLES
-sequelize model:create --name Comanda --attributes Nome:string,CodigoBarras:string,EmAberto:boolean
-sequelize model:create --name EntradaProduto --attributes Quantidade:integer,Valor:decimal,DataEntrada:date
-sequelize model:create --name ItemVenda --attributes Quantidade:integer,Valor:decimal,DataVenda:date,ValorTotal:decimal
-sequelize model:create --name PeriodoVenda --attributes DataInicial:date,DataFinal:date,DataEntrada:ValorCaixa:decimal,ValorEmAberto:decimal
-sequelize model:create --name Produto --attributes Nome:string,CodigoBarras:string,Descricao:string,Quantidade:integer,QuantidadeMinima:integer,Valor:decimal
-sequelize model:create --name ProdutoItem --attributes Quantidade:integer
-sequelize model:create --name Venda --attributes DataVenda:date,ValorTotal:decimal,ValorDesconto:decimal,ValorFinal:decimal,ValorAcrescimo:decimal,ValorPago:decimal,ValorCC:decimal,ValorCD:decimal:ValorD:decimal,QuantidadeItens:integer,Terminal:string
+sequelize model:create --name comanda --attributes nome:string,codigoBarras:string,emAberto:boolean
+sequelize model:create --name entradaProduto --attributes quantidade:integer,valor:decimal,dataEntrada:date
+sequelize model:create --name itemVenda --attributes quantidade:integer,valor:decimal,dataVenda:date,valorTotal:decimal
+sequelize model:create --name periodoVenda --attributes dataInicial:date,dataFinal:date,dataEntrada:valorCaixa:decimal,valorEmAberto:decimal
+sequelize model:create --name produto --attributes nome:string,codigoBarras:string,descricao:string,quantidade:integer,quantidadeMinima:integer,valor:decimal
+sequelize model:create --name produtoItem --attributes quantidade:integer
+sequelize model:create --name venda --attributes dataVenda:date,valorTotal:decimal,valorDesconto:decimal,valorFinal:decimal,valorAcrescimo:decimal,valorPago:decimal,valorCC:decimal,valorCD:decimal:valorD:decimal,quantidadeItens:integer,terminal:string
