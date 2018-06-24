@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Esquenta", "Esquenta\Esquen
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "V1-WinForms", "V1-WinForms", "{3F8117E0-FA90-4829-8318-788E56A7A50C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "V2-Node", "V2-Node", "{312A2A7D-C504-4F04-9DE3-FAE309E733D9}"
+EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "esquenta.v2", "V2-Node\esquenta.v2\esquenta.v2.njsproj", "{6FAF9280-5951-4084-843A-94AC9FE8AEDF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,12 +21,17 @@ Global
 		{9ECE8FAD-9056-4694-9EAD-1100AD2D1E6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9ECE8FAD-9056-4694-9EAD-1100AD2D1E6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9ECE8FAD-9056-4694-9EAD-1100AD2D1E6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FAF9280-5951-4084-843A-94AC9FE8AEDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FAF9280-5951-4084-843A-94AC9FE8AEDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FAF9280-5951-4084-843A-94AC9FE8AEDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FAF9280-5951-4084-843A-94AC9FE8AEDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9ECE8FAD-9056-4694-9EAD-1100AD2D1E6D} = {3F8117E0-FA90-4829-8318-788E56A7A50C}
+		{6FAF9280-5951-4084-843A-94AC9FE8AEDF} = {312A2A7D-C504-4F04-9DE3-FAE309E733D9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6058029E-1139-44F2-BB7C-CFECF8A91AE8}

@@ -1,0 +1,29 @@
+{
+  "name": "esquenta.v2",
+  "version": "1.0.0",
+  "description": "Versao NODE do aplicativo de controle de boteco: Esquenta",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "nodemon ./bin/www",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Leandro Cristovao <leandrocristovao@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0",
+    "mysql": "^2.15.0",
+    "mysql2": "^1.5.3",
+    "sequelize": "^4.38.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.0.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "nodemon": "^1.17.5"
+  }
+}

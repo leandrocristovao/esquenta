@@ -1,0 +1,24 @@
+{
+  "development": {
+    //"username": "root",
+    //"password": "root",
+    //"database": "esquenta_dev",
+    //"host": "127.0.0.1",
+    "dialect": "sqlite",
+    "storage": "../esquenta_dev.sqlite"
+  },
+  "test": {
+    "username": "root",
+    "password": "root",
+    "database": "esquenta_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "root",
+    "database": "esquenta",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
