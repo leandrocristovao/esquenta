@@ -11,6 +11,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'vendaId',
       onDelete: 'CASCADE'
     })
+
+    itemVenda.belongsTo(models.produto, {
+      foreignKey: 'produtoId',
+      as: 'Item'
+    })
   }
   return itemVenda
 }

@@ -6,7 +6,10 @@ module.exports = (sequelize, DataTypes) => {
     emAberto: DataTypes.BOOLEAN
   }, {})
   comanda.associate = function (models) {
-    // associations can be defined here
+    comanda.hasMany(models.venda, {
+      foreignKey: 'comandaId',
+      as: 'Vendas'
+    })
   }
   return comanda
 }

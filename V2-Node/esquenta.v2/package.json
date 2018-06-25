@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start:dev": "nodemon ./bin/www",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "rebase": "sequelize db:drop esquenta_dev; sequelize db:create esquenta_dev; sequelize db:migrate; sequelize db:seed:all",
+    "rebase:sqlite": "rm esquenta_dev.sqlite ; sequelize db:migrate; sequelize db:seed:all"
   },
   "author": "Leandro Cristovao <leandrocristovao@gmail.com>",
   "license": "ISC",

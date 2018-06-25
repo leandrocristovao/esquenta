@@ -1,9 +1,9 @@
-const todos = require('./todos')
-const todoItems = require('./todoitems')
 const comandas = require('./comandas')
-
+const produtos = require('./produtos')
+const vendas = require('./vendas')
+// TODO: testar import * as models from "../../models";
 module.exports = {
-  todos,
-  todoItems,
-  comandas
+  comandas,
+  produtos,
+  vendas
 }

@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('vendas', {
@@ -29,8 +29,17 @@ module.exports = {
       valorCC: {
         type: Sequelize.DECIMAL
       },
+      valorCD: {
+        type: Sequelize.DECIMAL
+      },
+      valorD: {
+        type: Sequelize.DECIMAL
+      },
       quantidadeItens: {
         type: Sequelize.INTEGER
+      },
+      emAberto: {
+        type: Sequelize.BOOLEAN
       },
       terminal: {
         type: Sequelize.STRING
@@ -43,9 +52,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
+    })
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('vendas');
+    return queryInterface.dropTable('vendas')
   }
-};
+}

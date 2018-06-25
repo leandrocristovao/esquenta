@@ -1,36 +1,36 @@
-const todosController = require('../controllers').todos
-const todoItemsController = require('../controllers').todoItems
 const comandaController = require('../controllers').comandas
-
+const produtoController = require('../controllers').produtos
+const vendaController = require('../controllers').vendas
+// TODO: testar import * as models from "../../models";
 module.exports = (app) => {
   app.get('/api', (req, res) => res.status(200).send({
-    message: 'Welcome to the Todos API!'
+    message: 'Welcome to the Esquenta\'s API!'
   }))
 
-  app.post('/api/todos', todosController.create)
-  app.get('/api/todos', todosController.list)
-  app.get('/api/todos/:todoId', todosController.retrieve)
-  app.put('/api/todos/:todoId', todosController.update)
-  app.delete('/api/todos/:todoId', todosController.destroy)
-
-  app.post('/api/todos/:todoId/items', todoItemsController.create)
-  app.put('/api/todos/:todoId/items/:todoItemId', todoItemsController.update)
-  app.delete(
-    '/api/todos/:todoId/items/:todoItemId', todoItemsController.destroy
-  )
-
   /**
-   * Comandas
-   */
+    * Comandas
+    */
   app.post('/api/comandas', comandaController.create)
   app.get('/api/comandas', comandaController.list)
   app.get('/api/comandas/:id', comandaController.get)
   app.put('/api/comandas/:id', comandaController.update)
   app.delete('/api/comandas/:id', comandaController.destroy)
 
-  // For any other request method on todo items, we're going to return "Method Not Allowed"
-  app.all('/api/todos/:todoId/items', (req, res) =>
-    res.status(405).send({
-      message: 'Method Not Allowed'
-    }))
+  /**
+   * Produtos
+   */
+  app.post('/api/produtos', produtoController.create)
+  app.get('/api/produtos', produtoController.list)
+  app.get('/api/produtos/:id', produtoController.get)
+  app.put('/api/produtos/:id', produtoController.update)
+  app.delete('/api/produtos/:id', produtoController.destroy)
+
+  /**
+   * Vendas
+   */
+  app.post('/api/vendas', vendaController.create)
+  app.get('/api/vendas', vendaController.list)
+  app.get('/api/vendas/:id', vendaController.get)
+  app.put('/api/vendas/:id', vendaController.update)
+  app.delete('/api/vendas/:id', vendaController.destroy)
 }

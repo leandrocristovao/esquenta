@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 module.exports = (sequelize, DataTypes) => {
   var produto = sequelize.define('produto', {
     nome: DataTypes.STRING,
@@ -7,9 +7,12 @@ module.exports = (sequelize, DataTypes) => {
     quantidade: DataTypes.INTEGER,
     quantidadeMinima: DataTypes.INTEGER,
     valor: DataTypes.DECIMAL
-  }, {});
-  produto.associate = function(models) {
-    // associations can be defined here
-  };
-  return produto;
-};
+  }, {})
+  produto.associate = function (models) {
+    produto.hasMany(models.produtoItem, {
+      foreignKey: 'parentId',
+      as: 'Items'
+    })
+  }
+  return produto
+}
