@@ -22,7 +22,7 @@ namespace Esquenta.Forms.Caixa
         private ConnectionService service;
         private List<ItemVenda> itens = new List<Entities.ItemVenda>();
         private State CurrentState = State.AguardandoComanda;
-
+        private Boolean _quantidadeAutomatica = false;
         public Caixa()
         {
             InitializeComponent();
@@ -46,6 +46,7 @@ namespace Esquenta.Forms.Caixa
             });
 
             txtComanda.AutoCompleteCustomSource = comandasAutoComplete;
+            lblQuantidadeItem.Text = "";
         }
 
         private void ClearScreen(bool forceDelete = false)
@@ -102,6 +103,7 @@ namespace Esquenta.Forms.Caixa
             calculo.ValorVenda = 0;
 
             txtComanda.AutoCompleteCustomSource = comandasAutoComplete;
+            lblQuantidadeItem.Text = "";
         }
 
         private void txtComanda_KeyDown(object sender, KeyEventArgs e)
@@ -188,22 +190,31 @@ namespace Esquenta.Forms.Caixa
                         return;
                     }
 
+                    lblQuantidadeItem.Text = _produto.Quantidade <= _produto.QuantidadeMinima ? $@"Produto {_produto.Nome} está com o estoque baixo: {_produto.Quantidade}" : "";
+
                     var itemVenda = new ItemVenda
                     {
                         Produto = _produto,
                         Valor = _produto.Valor,
                         DataVenda = DateTime.Now
                     };
-                    using (var form = new Quantidade())
+
+                    if (!_quantidadeAutomatica)
                     {
-                        var result = form.ShowDialog();
-                        if (result == DialogResult.OK)
+                        using (var form = new Quantidade())
                         {
-                            //_produto.Quantidade = form.Total;
-                            itemVenda.Quantidade = form.Total;
+                            var result = form.ShowDialog();
+                            if (result == DialogResult.OK)
+                            {
+                                //_produto.Quantidade = form.Total;
+                                itemVenda.Quantidade = form.Total;
+                            }
                         }
                     }
-
+                    else
+                    {
+                        itemVenda.Quantidade = 1;
+                    }
                     itemVenda.ValorTotal = itemVenda.Quantidade * itemVenda.Valor;
                     itens.Add(itemVenda);
                     //itens.Add(_produto);
@@ -397,6 +408,7 @@ namespace Esquenta.Forms.Caixa
 
                         calculo = new CalculoVenda();
                         AtualizaCalculo(calculo);
+                        lblQuantidadeItem.Text = "";
                     }
                     catch (Exception)
                     {
@@ -422,6 +434,11 @@ namespace Esquenta.Forms.Caixa
             {
                 case Keys.Delete:
                     CancelarItem();
+                    break;
+
+                case Keys.F6:
+                    _quantidadeAutomatica = !_quantidadeAutomatica;
+                    lblQuantidadeAutomatica.Visible = _quantidadeAutomatica;
                     break;
 
                 case Keys.F7:

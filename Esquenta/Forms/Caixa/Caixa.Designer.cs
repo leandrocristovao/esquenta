@@ -35,6 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblQuantidadeAutomatica = new System.Windows.Forms.Label();
             this.txtAcrescimo = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.lblNomeComanda = new System.Windows.Forms.Label();
@@ -48,6 +49,7 @@
             this.txtComanda = new System.Windows.Forms.TextBox();
             this.lblStatus = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblQuantidadeItem = new System.Windows.Forms.Label();
             this.btnCancelarVenda = new System.Windows.Forms.Button();
             this.btnCalcular = new System.Windows.Forms.Button();
             this.btnCalcularFechar = new System.Windows.Forms.Button();
@@ -68,6 +70,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lblQuantidadeAutomatica);
             this.panel1.Controls.Add(this.txtAcrescimo);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.lblNomeComanda);
@@ -85,6 +88,19 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(287, 511);
             this.panel1.TabIndex = 0;
+            // 
+            // lblQuantidadeAutomatica
+            // 
+            this.lblQuantidadeAutomatica.AutoSize = true;
+            this.lblQuantidadeAutomatica.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblQuantidadeAutomatica.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuantidadeAutomatica.ForeColor = System.Drawing.Color.DarkRed;
+            this.lblQuantidadeAutomatica.Location = new System.Drawing.Point(0, 482);
+            this.lblQuantidadeAutomatica.Name = "lblQuantidadeAutomatica";
+            this.lblQuantidadeAutomatica.Size = new System.Drawing.Size(283, 29);
+            this.lblQuantidadeAutomatica.TabIndex = 16;
+            this.lblQuantidadeAutomatica.Text = "Quantidade Automática";
+            this.lblQuantidadeAutomatica.Visible = false;
             // 
             // txtAcrescimo
             // 
@@ -242,6 +258,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.lblQuantidadeItem);
             this.panel2.Controls.Add(this.btnCancelarVenda);
             this.panel2.Controls.Add(this.btnCalcular);
             this.panel2.Controls.Add(this.btnCalcularFechar);
@@ -251,6 +268,19 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(721, 511);
             this.panel2.TabIndex = 1;
+            // 
+            // lblQuantidadeItem
+            // 
+            this.lblQuantidadeItem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblQuantidadeItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuantidadeItem.ForeColor = System.Drawing.Color.DarkRed;
+            this.lblQuantidadeItem.Location = new System.Drawing.Point(6, 405);
+            this.lblQuantidadeItem.Name = "lblQuantidadeItem";
+            this.lblQuantidadeItem.Size = new System.Drawing.Size(712, 29);
+            this.lblQuantidadeItem.TabIndex = 17;
+            this.lblQuantidadeItem.Text = "...";
+            this.lblQuantidadeItem.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // btnCancelarVenda
             // 
@@ -437,5 +467,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantidade;
         private System.Windows.Forms.DataGridViewTextBoxColumn ValorUnitario;
         private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
+        private System.Windows.Forms.Label lblQuantidadeAutomatica;
+        private System.Windows.Forms.Label lblQuantidadeItem;
     }
 }

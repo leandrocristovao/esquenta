@@ -21,6 +21,8 @@ namespace Esquenta
 
             try
             {
+                //To try connect to server
+                // ReSharper disable once ObjectCreationAsStatement
                 new ConnectionService();
             }
             catch (Exception)
@@ -37,11 +39,10 @@ namespace Esquenta
                     DataFinal = DateTime.Now
                 });
             }
-            var periodoVenda = ConnectionService.GetInstance().GetPeriodoVendaRepository().GetPeriodoAtual();
 
-            ttsIP.Text = string.Format("IP: {0}", GetLocalIPAddress());
-            ttsIPDB.Text = string.Format("IP Banco de Dados: {0}", ConnectionService.GetInstance().GetIPServer());
-            ttsMachineName.Text = string.Format("Terminal: {0}", Environment.MachineName);
+            ttsIP.Text = $@"IP: {GetLocalIpAddress()}";
+            ttsIPDB.Text = $@"IP Banco de Dados: {ConnectionService.GetInstance().GetIPServer()}";
+            ttsMachineName.Text = $@"Terminal: {Environment.MachineName}";
 
             if (!string.IsNullOrEmpty(Properties.Settings.Default.PWD))
             {
@@ -52,11 +53,10 @@ namespace Esquenta
                 Program.isAdmin = true;
             }
             cadastrosToolStripMenuItem.Enabled = Program.isAdmin;
-            relatoriosToolStripMenuItem.Enabled = Program.isAdmin;
             configuracoesToolStripMenuItem.Enabled = Program.isAdmin;
         }
 
-        public static string GetLocalIPAddress()
+        private static string GetLocalIpAddress()
         {
             var host = Dns.GetHostEntry(Dns.GetHostName());
             foreach (var ip in host.AddressList)
@@ -105,7 +105,7 @@ namespace Esquenta
             form.ShowDialog();
         }
 
-        private void menuItemEntradaProduto_Click(object sender, EventArgs e)
+        private void menuItemEntradaProduto_Click()
         {
             var form = new ListaEntradaProduto
             {
@@ -140,7 +140,7 @@ namespace Esquenta
                 case Keys.F5:
                     if (Program.isAdmin)
                     {
-                        menuItemEntradaProduto_Click(sender, e);
+                        menuItemEntradaProduto_Click();
                     }
                     break;
 
@@ -151,32 +151,6 @@ namespace Esquenta
                     }
                     break;
             }
-        }
-
-        private void btnCaixa_Click(object sender, EventArgs e)
-        {
-            //new Form1().Show();
-            menuItemCaixa_Click(sender, e);
-        }
-
-        private void btnProdutos_Click(object sender, EventArgs e)
-        {
-            menuItemProdutos_Click(sender, e);
-        }
-
-        private void btnComandas_Click(object sender, EventArgs e)
-        {
-            menuItemComandas_Click(sender, e);
-        }
-
-        private void btnEntradaProdutos_Click(object sender, EventArgs e)
-        {
-            menuItemEntradaProduto_Click(sender, e);
-        }
-
-        private void btnRelatorios_Click(object sender, EventArgs e)
-        {
-            menuItemLivroCaixa_Click(sender, e);
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -217,7 +191,7 @@ namespace Esquenta
                 {
                     Properties.Settings.Default.BackupFolder = fbd.SelectedPath;
                     Properties.Settings.Default.Save();
-                    MessageBox.Show(String.Format("Backup será salvo na pasta: {0}", fbd.SelectedPath));
+                    MessageBox.Show($@"Backup será salvo na pasta: {fbd.SelectedPath}");
                 }
             }
         }

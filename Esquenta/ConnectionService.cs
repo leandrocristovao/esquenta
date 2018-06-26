@@ -1,57 +1,52 @@
-﻿using Esquenta.Repository;
+﻿using System.Data.SqlClient;
+using System.Reflection;
+using System.Windows.Forms;
+using Esquenta.Properties;
+using Esquenta.Repository;
 using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
-using System;
-using System.Data.SqlClient;
-using System.Windows.Forms;
 
 namespace Esquenta
 {
     public class ConnectionService
     {
-        private static ConnectionService instance = null;
+        private static ConnectionService _instance;
 
-        private ISessionFactory _sessionFactory = CreateSessionFactory();
-        private ISession _session;
+        private static ComandaRepository _comandaRepository;
+        private static ItemVendaRepository _itemVendaRepository;
+        private static ProdutoRepository _produtoRepository;
+        private static VendaRepository _vendaRepository;
+        private static ProdutoItemRepository _produtoItemRepository;
+        private static EntradaProdutoRepository _entradaProdutoRepository;
+        private static PeriodoVendaRepository _periodoVendaRepository;
+        private static string _ipdb = "";
+        private readonly ISession _session;
 
-        private static ComandaRepository _comandaRepository = null;
-        private static ItemVendaRepository _itemVendaRepository = null;
-        private static ProdutoRepository _produtoRepository = null;
-        private static VendaRepository _vendaRepository = null;
-        private static ProdutoItemRepository _produtoItemRepository = null;
-        private static EntradaProdutoRepository _entradaProdutoRepository = null;
-        private static PeriodoVendaRepository _periodoVendaRepository = null;
-        private static string _IPDB = "";
+        private readonly ISessionFactory _sessionFactory = CreateSessionFactory();
 
         public ConnectionService()
         {
-            instance = this;
+            _instance = this;
             _session = _sessionFactory.OpenSession();
         }
 
         public string GetIPServer()
         {
-            return _IPDB;
+            return _ipdb;
         }
 
         public static ConnectionService GetInstance()
         {
-            if (instance == null)
-            {
-                instance = new ConnectionService();
-            }
+            if (_instance == null) _instance = new ConnectionService();
 
-            return instance;
+            return _instance;
         }
 
         public ProdutoRepository GetProdutoRepository()
         {
-            if (_produtoRepository == null)
-            {
-                _produtoRepository = new ProdutoRepository(_session);
-            }
+            if (_produtoRepository == null) _produtoRepository = new ProdutoRepository(_session);
             return _produtoRepository;
         }
 
@@ -62,72 +57,52 @@ namespace Esquenta
             //    _session = _sessionFactory.OpenSession();
             //    _vendaRepository = null;
             //}
-            if (_vendaRepository == null)
-            {
-                _vendaRepository = new VendaRepository(_session);
-            }
+            if (_vendaRepository == null) _vendaRepository = new VendaRepository(_session);
             return _vendaRepository;
         }
 
         public ComandaRepository GetComandaRepository()
         {
-            if (_comandaRepository == null)
-            {
-                _comandaRepository = new ComandaRepository(_session);
-            }
+            if (_comandaRepository == null) _comandaRepository = new ComandaRepository(_session);
             return _comandaRepository;
         }
 
         public ItemVendaRepository GetItemVendaRepository()
         {
-            if (_itemVendaRepository == null)
-            {
-                _itemVendaRepository = new ItemVendaRepository(_session);
-            }
+            if (_itemVendaRepository == null) _itemVendaRepository = new ItemVendaRepository(_session);
             return _itemVendaRepository;
         }
 
         public ProdutoItemRepository GetProdutoItemRepository()
         {
-            if (_produtoItemRepository == null)
-            {
-                _produtoItemRepository = new ProdutoItemRepository(_session);
-            }
+            if (_produtoItemRepository == null) _produtoItemRepository = new ProdutoItemRepository(_session);
             return _produtoItemRepository;
         }
 
         public EntradaProdutoRepository GetEntradaProdutoRepository()
         {
-            if (_entradaProdutoRepository == null)
-            {
-                _entradaProdutoRepository = new EntradaProdutoRepository(_session);
-            }
+            if (_entradaProdutoRepository == null) _entradaProdutoRepository = new EntradaProdutoRepository(_session);
             return _entradaProdutoRepository;
         }
 
         public PeriodoVendaRepository GetPeriodoVendaRepository()
         {
-            if (_periodoVendaRepository == null)
-            {
-                _periodoVendaRepository = new PeriodoVendaRepository(_session);
-            }
+            if (_periodoVendaRepository == null) _periodoVendaRepository = new PeriodoVendaRepository(_session);
             return _periodoVendaRepository;
         }
 
         public void MakeBackup()
         {
-            var connectionString = Properties.Settings.Default.ConnectionString;
-            var backupFolder = Properties.Settings.Default.BackupFolder;
+            var connectionString = Settings.Default.ConnectionString;
+            var backupFolder = Settings.Default.BackupFolder;
 
             var sqlConStrBuilder = new SqlConnectionStringBuilder(connectionString);
 
-            var backupFileName = String.Format("{0}\\{1}.bak",
-                backupFolder, sqlConStrBuilder.InitialCatalog);
+            var backupFileName = $"{backupFolder}\\{sqlConStrBuilder.InitialCatalog}.bak";
 
             using (var connection = new SqlConnection(sqlConStrBuilder.ConnectionString))
             {
-                var query = String.Format("BACKUP DATABASE {0} TO DISK='{1}'",
-                    sqlConStrBuilder.InitialCatalog, backupFileName);
+                var query = $"BACKUP DATABASE {sqlConStrBuilder.InitialCatalog} TO DISK='{backupFileName}'";
 
                 using (var command = new SqlCommand(query, connection))
                 {
@@ -136,19 +111,19 @@ namespace Esquenta
                 }
             }
 
-            MessageBox.Show("Backup realizado.");
+            MessageBox.Show(@"Backup realizado.");
         }
 
         private static ISessionFactory CreateSessionFactory()
         {
-            AutoPersistenceModel model = AutoMap
-                       .Assembly(System.Reflection.Assembly.GetCallingAssembly())
-                       .Where(t => t.Namespace == "Esquenta.Entities");
+            var model = AutoMap
+                .Assembly(Assembly.GetCallingAssembly())
+                .Where(t => t.Namespace == "Esquenta.Entities");
 
-            string connectionString = Properties.Settings.Default.ConnectionString;
+            var connectionString = Settings.Default.ConnectionString;
 
-            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(connectionString);
-            _IPDB = builder.DataSource;
+            var builder = new SqlConnectionStringBuilder(connectionString);
+            _ipdb = builder.DataSource;
 
             return Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2008.ConnectionString(connectionString).ShowSql())
