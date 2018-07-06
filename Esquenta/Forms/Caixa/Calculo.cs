@@ -1,16 +1,29 @@
 ﻿using Esquenta.Components;
 using System;
 using System.Windows.Forms;
+using Esquenta.Entities;
 
 namespace Esquenta.Forms.Caixa
 {
     public partial class Calculo : Form
     {
         public CalculoVenda CalculoVenda { get; set; }
+        private Venda _venda;
 
         public Calculo()
         {
             InitializeComponent();
+        }
+        public Calculo(Venda venda)
+        {
+            InitializeComponent();
+            _venda = venda??new Venda();
+
+            txtAcrescimo.Text = string.Format("{0:N}", _venda.ValorAcrescimo);
+            txtCC.Text = string.Format("{0:N}", _venda.ValorCC);
+            txtCD.Text = string.Format("{0:N}", _venda.ValorCD);
+            txtD.Text = string.Format("{0:N}", _venda.ValorD);
+            txtDesconto.Text = string.Format("{0:N}", _venda.ValorDesconto);
         }
 
         private void txtDesconto_KeyDown(object sender, KeyEventArgs e)

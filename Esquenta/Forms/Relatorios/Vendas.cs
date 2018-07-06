@@ -235,6 +235,8 @@ namespace Esquenta.Forms.Relatorios
                 var vendaID = (int)((DataGridView)sender).CurrentRow.Cells[0].Value;
                 var venda = _service.GetVendaRepository().Get(vendaID);
                 _service.GetVendaRepository().CancelarVenda(venda);
+
+                Vendas_Load(sender, e);
             }
         }
     }

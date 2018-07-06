@@ -23,9 +23,18 @@ namespace Esquenta.Forms.Produto
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtQuantidade.Text) || string.IsNullOrEmpty(txtValor.Text))
+            {
+                return;
+            }
             Quantidade = int.Parse(txtQuantidade.Text);
             Valor = decimal.Parse(txtValor.Text);
 
+            var message = $"Confirmar a quantidade {Quantidade} com o valor {Valor}";
+            var confirmResult = MessageBox.Show(message, "Estoque",
+                MessageBoxButtons.YesNo);
+            //DialogResult = confirmResult == DialogResult.Yes ? DialogResult.OK : DialogResult.Cancel;
+            if (confirmResult != DialogResult.Yes) return;
             DialogResult = DialogResult.OK;
             Close();
         }

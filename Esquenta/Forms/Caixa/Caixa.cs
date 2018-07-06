@@ -19,6 +19,7 @@ namespace Esquenta.Forms.Caixa
         private AutoCompleteStringCollection produtosAutoComplete = new AutoCompleteStringCollection();
         private CalculoVenda calculo;
         private Comanda _comanda;
+        private Venda _venda;
         private ConnectionService service;
         private List<ItemVenda> itens = new List<Entities.ItemVenda>();
         private State CurrentState = State.AguardandoComanda;
@@ -30,14 +31,14 @@ namespace Esquenta.Forms.Caixa
             service = ConnectionService.GetInstance();
 
             var periodo = service.GetPeriodoVendaRepository().GetPeriodoAtual();
-            lblStatus.Text = "Aguardando comanda";
+            lblStatus.Text = @"Aguardando comanda";
             txtComanda.Focus();
 
             var listaProduto = service.GetProdutoRepository().List();
-            listaProduto.ForEach(produto =>
-            {
-                produtosAutoComplete.Add(produto.Nome);
-            });
+            listaProduto.Where(x => x.Valor > 0).ForEach(produto =>
+                {
+                    produtosAutoComplete.Add(produto.Nome);
+                });
 
             var listaComanda = service.GetComandaRepository().List();
             listaComanda.ForEach(comanda =>
@@ -141,19 +142,19 @@ namespace Esquenta.Forms.Caixa
                     {
                         //itens
                         var vendaService = service.GetVendaRepository();
-                        var venda = vendaService.GetVendasEmAberto(_comanda);
+                        _venda = vendaService.GetVendasEmAberto(_comanda);
 
-                        if (venda != null)
+                        if (_venda != null)
                         {
-                            if (!string.IsNullOrEmpty(venda.Terminal) && !venda.Terminal.Equals(Environment.MachineName))
+                            if (!string.IsNullOrEmpty(_venda.Terminal) && !_venda.Terminal.Equals(Environment.MachineName))
                             {
-                                MessageBox.Show(string.Format("Comanda aberta no terminal {0}", venda.Terminal));
+                                MessageBox.Show(string.Format("Comanda aberta no terminal {0}", _venda.Terminal));
                                 ClearScreen();
                             }
                             else
                             {
-                                vendaService.EntradaTerminal(venda, Environment.MachineName);
-                                venda.ItemVenda.ForEach(item =>
+                                vendaService.EntradaTerminal(_venda, Environment.MachineName);
+                                _venda.ItemVenda.ForEach(item =>
                                 {
                                     itens.Add(item);
                                     dataGridView1.Rows.Add(new String[] { itens.Count.ToString(), item.Produto.Nome, item.Quantidade.ToString(), item.Valor.ToString(), (item.Valor * item.Quantidade).ToString() });
@@ -161,12 +162,12 @@ namespace Esquenta.Forms.Caixa
 
                                 calculo = new CalculoVenda
                                 {
-                                    Acrescimo = venda.ValorAcrescimo,
-                                    Desconto = venda.ValorDesconto,
-                                    ValorCC = venda.ValorCC,
-                                    ValorCD = venda.ValorCD,
-                                    ValorD = venda.ValorD,
-                                    ValorPago = venda.ValorPago
+                                    Acrescimo = _venda.ValorAcrescimo,
+                                    Desconto = _venda.ValorDesconto,
+                                    ValorCC = _venda.ValorCC,
+                                    ValorCD = _venda.ValorCD,
+                                    ValorD = _venda.ValorD,
+                                    ValorPago = _venda.ValorPago
                                 };
                                 AtualizaCalculo(calculo);
                             }
@@ -190,7 +191,15 @@ namespace Esquenta.Forms.Caixa
                         return;
                     }
 
-                    lblQuantidadeItem.Text = _produto.Quantidade <= _produto.QuantidadeMinima ? $@"Produto {_produto.Nome} está com o estoque baixo: {_produto.Quantidade}" : "";
+                    var estoque = new List<string>();
+                    _produto.Itens.Where(x => x.Produto.Quantidade <= x.Produto.QuantidadeMinima).ForEach(item =>
+                    {
+                        estoque.Add($@"Produto {item.Produto.Nome} está com o estoque baixo: {item.Produto.Quantidade}");
+                    });
+                    if (estoque.Count > 0)
+                    {
+                        lblQuantidadeItem.Text = string.Join("\n", estoque.ToArray());
+                    }
 
                     var itemVenda = new ItemVenda
                     {
@@ -368,8 +377,9 @@ namespace Esquenta.Forms.Caixa
             {
                 return;
             }
-            using (var form = new Calculo())
+            using (var form = new Calculo(_venda))
             {
+               
                 var result = form.ShowDialog();
                 if (result == DialogResult.OK)
                 {

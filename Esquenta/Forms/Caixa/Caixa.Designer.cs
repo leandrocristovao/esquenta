@@ -275,9 +275,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblQuantidadeItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQuantidadeItem.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblQuantidadeItem.Location = new System.Drawing.Point(6, 405);
+            this.lblQuantidadeItem.Location = new System.Drawing.Point(6, 351);
             this.lblQuantidadeItem.Name = "lblQuantidadeItem";
-            this.lblQuantidadeItem.Size = new System.Drawing.Size(712, 29);
+            this.lblQuantidadeItem.Size = new System.Drawing.Size(712, 83);
             this.lblQuantidadeItem.TabIndex = 17;
             this.lblQuantidadeItem.Text = "...";
             this.lblQuantidadeItem.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -350,7 +350,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(721, 402);
+            this.dataGridView1.Size = new System.Drawing.Size(721, 348);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.TabStop = false;
             // 
