@@ -427,7 +427,6 @@
             this.ShowInTaskbar = false;
             this.Text = "Caixa";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Caixa_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Caixa_FormClosed);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Caixa_KeyUp);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

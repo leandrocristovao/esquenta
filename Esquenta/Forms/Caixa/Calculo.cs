@@ -1,37 +1,38 @@
-﻿using Esquenta.Components;
-using System;
+﻿using System;
+using System.Globalization;
 using System.Windows.Forms;
+using Esquenta.Components;
 using Esquenta.Entities;
 
 namespace Esquenta.Forms.Caixa
 {
     public partial class Calculo : Form
     {
-        public CalculoVenda CalculoVenda { get; set; }
-        private Venda _venda;
+        private readonly Venda _venda;
 
         public Calculo()
         {
             InitializeComponent();
         }
+
         public Calculo(Venda venda)
         {
             InitializeComponent();
-            _venda = venda??new Venda();
+            _venda = venda ?? new Venda();
 
-            txtAcrescimo.Text = string.Format("{0:N}", _venda.ValorAcrescimo);
-            txtCC.Text = string.Format("{0:N}", _venda.ValorCC);
-            txtCD.Text = string.Format("{0:N}", _venda.ValorCD);
-            txtD.Text = string.Format("{0:N}", _venda.ValorD);
-            txtDesconto.Text = string.Format("{0:N}", _venda.ValorDesconto);
+            var culture = new CultureInfo("pt-BR");
+            txtAcrescimo.Text = _venda.ValorAcrescimo.ToString(culture);
+            txtCC.Text = _venda.ValorCC.ToString(culture);
+            txtCD.Text = _venda.ValorCD.ToString(culture);
+            txtD.Text = _venda.ValorD.ToString(culture);
+            txtDesconto.Text = _venda.ValorDesconto.ToString(culture);
         }
+
+        public CalculoVenda CalculoVenda { get; set; }
 
         private void txtDesconto_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-            {
-                SendKeys.Send("{TAB}");
-            }
+            if (e.KeyCode == Keys.Enter) SendKeys.Send("{TAB}");
         }
 
         private void txtDesconto_TextChanged(object sender, EventArgs e)
@@ -62,29 +63,20 @@ namespace Esquenta.Forms.Caixa
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            decimal desconto = 0;
-            decimal.TryParse(txtDesconto.Text, out desconto);
+            decimal.TryParse(txtDesconto.Text, NumberStyles.Any, new CultureInfo("pt-BR"), out var desconto);
+            decimal.TryParse(txtAcrescimo.Text, NumberStyles.Any, new CultureInfo("pt-BR"), out var valorAcrescimo);
+            decimal.TryParse(txtCC.Text, NumberStyles.Any, new CultureInfo("pt-BR"), out var valorCc);
+            decimal.TryParse(txtCD.Text, NumberStyles.Any, new CultureInfo("pt-BR"), out var valorCd);
+            decimal.TryParse(txtD.Text, NumberStyles.Any, new CultureInfo("pt-BR"), out var valorD);
 
-            decimal valorAcrescimo = 0;
-            decimal.TryParse(txtAcrescimo.Text, out valorAcrescimo);
-
-            decimal valorCC = 0;
-            decimal.TryParse(txtCC.Text, out valorCC);
-
-            decimal valorCD = 0;
-            decimal.TryParse(txtCD.Text, out valorCD);
-
-            decimal valorD = 0;
-            decimal.TryParse(txtD.Text, out valorD);
-
-            decimal valorPago = (valorAcrescimo + valorCC + valorCD + valorD) - desconto;
+            var valorPago = valorAcrescimo + valorCc + valorCd + valorD - desconto;
 
             CalculoVenda = new CalculoVenda
             {
                 Acrescimo = valorAcrescimo,
                 Desconto = desconto,
-                ValorCC = valorCC,
-                ValorCD = valorCD,
+                ValorCC = valorCc,
+                ValorCD = valorCd,
                 ValorD = valorD,
                 ValorPago = valorPago
             };

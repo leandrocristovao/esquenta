@@ -3,20 +3,22 @@ using NHibernate.Util;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
+using Esquenta.Entities;
 
 namespace Esquenta.Forms.Relatorios
 {
     public partial class Vendas : Form
     {
-        private decimal valorVendasEmAberto = 0;
-        private decimal valorVendasFinal = 0;
-        private decimal valorAcrescimoFinal = 0;
-        private decimal valorDescontoFinal = 0;
-        private decimal valorTrocoFinal = 0;
-        private decimal valorEmCaixa = 0;
-
+        private decimal _valorVendasEmAberto = 0;
+        private decimal _valorVendasFinal = 0;
+        private decimal _valorAcrescimoFinal = 0;
+        private decimal _valorDescontoFinal = 0;
+        private decimal _valorTrocoFinal = 0;
+        private decimal _valorEmCaixa = 0;
+        private readonly CultureInfo _culture = new CultureInfo("pt-BR");
         private ConnectionService _service;
 
         public Vendas()
@@ -29,13 +31,13 @@ namespace Esquenta.Forms.Relatorios
             _service = ConnectionService.GetInstance();
             var dataAbertura = _service.GetPeriodoVendaRepository().GetPeriodoAtual();
 
-            var _vendas = _service.GetVendaRepository().GetVendasDia(dataAbertura.DataInicial);
+            var vendas = _service.GetVendaRepository().GetVendasDia(dataAbertura.DataInicial);
             var consumo = _service.GetItemVendaRepository().GetConsumo(dataAbertura.DataInicial, null);
 
             var troco = Properties.Settings.Default.Troco;
             txtValorCaixa.Text = troco.ToString();
 
-            CarregaVendas(_vendas, consumo);
+            CarregaVendas(vendas, consumo);
         }
 
         private void BtnFecharCaixa_Click(object sender, EventArgs e)
@@ -109,10 +111,10 @@ namespace Esquenta.Forms.Relatorios
                 var valorUnidade = itemVenda.Valor;
                 var valorTotal = valorUnidade * quantidade;
 
-                dataGridView2.Rows.Add(new object[] { dataVenda, nomeProduto, quantidade, valorUnidade, valorTotal, estoque });
+                dataGridView2.Rows.Add(new object[] { dataVenda, nomeProduto, quantidade, valorUnidade.ToString(_culture), valorTotal.ToString(_culture), estoque });
             });
 
-            lblValorTotalVenda.Text = string.Format("Valor total da venda: {0}", venda.ValorFinal);
+            lblValorTotalVenda.Text = $@"Valor total da venda: {venda.ValorFinal.ToString(_culture)}";
         }
 
         private void mCalendar_DateChanged(object sender, DateRangeEventArgs e)
@@ -120,8 +122,13 @@ namespace Esquenta.Forms.Relatorios
             var start = ((MonthCalendar)sender).SelectionRange.Start;
             var end = ((MonthCalendar)sender).SelectionRange.End;
 
+            //Se for o dia atual, devo pegar o periodo de abertura do caixa
+            if (start == DateTime.Today)
+            {
+                start = _service.GetPeriodoVendaRepository().GetPeriodoAtual().DataInicial;
+            }
+
             List<Entities.Venda> vendas = new List<Entities.Venda>();
-            List<Entities.ItemVenda> consumo = new List<Entities.ItemVenda>();
 
             if (start == end)
             {
@@ -137,14 +144,14 @@ namespace Esquenta.Forms.Relatorios
                 //Faixa de dias
                 vendas = _service.GetVendaRepository().GetVendasDia(start, end.AddSeconds(59).AddMinutes(59).AddHours(23));
             }
-            consumo = _service.GetItemVendaRepository().GetConsumo(start, end.AddSeconds(59).AddMinutes(59).AddHours(23));
+            var consumo = _service.GetItemVendaRepository().GetConsumo(start, end.AddSeconds(59).AddMinutes(59).AddHours(23));
             CarregaVendas(vendas, consumo);
         }
 
         private void CarregaVendas(List<Entities.Venda> vendas, List<Entities.ItemVenda> consumo)
         {
             dataGridView2.Rows.Clear();
-            lblValorTotalVenda.Text = "Valor total em vendas: R$ 0,00";
+            lblValorTotalVenda.Text = @"Valor total em vendas: R$ 0,00";
 
             dataGridView1.Rows.Clear();
             vendas.ForEach(venda =>
@@ -153,15 +160,15 @@ namespace Esquenta.Forms.Relatorios
                 var produto = venda.Comanda.Nome;
                 var dataVenda = venda.DataVenda;
                 var valorVendas = venda.ValorTotal;
-                var valorCC = venda.ValorCC;
-                var valorCD = venda.ValorCD;
+                var valorCc = venda.ValorCC;
+                var valorCd = venda.ValorCD;
                 var valorD = venda.ValorD;
                 var valorAcrescimo = venda.ValorAcrescimo;
                 var valorDesconto = venda.ValorDesconto;
                 var valorFinal = venda.ValorFinal;
                 var emAberto = venda.EmAberto;
 
-                dataGridView1.Rows.Add(new object[] { id, produto, dataVenda, valorVendas, valorCC, valorCD, valorD, valorAcrescimo, valorDesconto, valorFinal, emAberto });
+                dataGridView1.Rows.Add(new object[] { id, produto, dataVenda, valorVendas.ToString(_culture), valorCc.ToString(_culture), valorCd.ToString(_culture), valorD.ToString(_culture), valorAcrescimo.ToString(_culture), valorDesconto.ToString(_culture), valorFinal.ToString(_culture), emAberto });
             });
 
             AtualizaCalculos(vendas);
@@ -175,26 +182,27 @@ namespace Esquenta.Forms.Relatorios
 
         private void AtualizaCalculos(List<Entities.Venda> vendas)
         {
-            valorVendasEmAberto = vendas.Where(x => x.EmAberto == true).Sum(x => x.ValorFinal);
+            _valorVendasEmAberto = vendas.Where(x => x.EmAberto == true).Sum(x => x.ValorFinal);
 
-            valorVendasFinal = vendas.Where(x => x.EmAberto == false).Sum(x => x.ValorFinal);
+            _valorVendasFinal = vendas.Where(x => x.EmAberto == false).Sum(x => x.ValorFinal);
             var valorCC = vendas.Where(x => x.EmAberto == false).Sum(x => x.ValorCC);
             var valorCD = vendas.Where(x => x.EmAberto == false).Sum(x => x.ValorCD);
             var valorD = vendas.Where(x => x.EmAberto == false).Sum(x => x.ValorD);
 
-            valorAcrescimoFinal = vendas.Where(x => x.EmAberto == false).Sum(x => x.ValorAcrescimo);
-            valorDescontoFinal = vendas.Where(x => x.EmAberto == false).Sum(x => x.ValorDesconto);
-            valorTrocoFinal = 0;
-            decimal.TryParse(txtValorCaixa.Text, out valorTrocoFinal);
+            _valorAcrescimoFinal = vendas.Where(x => x.EmAberto == false).Sum(x => x.ValorAcrescimo);
+            _valorDescontoFinal = vendas.Where(x => x.EmAberto == false).Sum(x => x.ValorDesconto);
+            _valorTrocoFinal = 0;
+            decimal.TryParse(txtValorCaixa.Text, out _valorTrocoFinal);
 
-            valorEmCaixa = valorVendasFinal + valorAcrescimoFinal + valorTrocoFinal - valorDescontoFinal;
+            _valorEmCaixa = _valorVendasFinal + _valorAcrescimoFinal + _valorTrocoFinal - _valorDescontoFinal;
 
             lblTotalItens.Text = vendas.Count.ToString();
-            lblDesconto.Text = string.Format("{0:C}", valorDescontoFinal);
-            lblAcrescimo.Text = string.Format("{0:C}", valorAcrescimoFinal);
-            lblTotal.Text = string.Format("{0:C} - CC: {1:C} / CD: {2:C} / D:{3:C}", valorVendasFinal, valorCC, valorCD, valorD);
-            lblTotalEmAberto.Text = string.Format("{0:C}", valorVendasEmAberto);
-            lblValorFinal.Text = string.Format("{0:C}", valorEmCaixa);
+            lblDesconto.Text = _valorDescontoFinal.ToString(_culture);
+            lblAcrescimo.Text = _valorAcrescimoFinal.ToString(_culture);
+            lblTotal.Text =
+                $"{_valorVendasFinal.ToString(_culture):C} - CC: {valorCC.ToString(_culture):C} / CD: {valorCD.ToString(_culture):C} / D:{valorD.ToString(_culture):C}";
+            lblTotalEmAberto.Text = _valorVendasEmAberto.ToString(_culture);
+            lblValorFinal.Text = _valorEmCaixa.ToString(_culture);
         }
 
         private void txtValorCaixa_TextChanged(object sender, EventArgs e)
