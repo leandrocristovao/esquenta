@@ -150,10 +150,10 @@ namespace Esquenta.Forms.Relatorios
 
         private void CarregaVendas(List<Entities.Venda> vendas, List<Entities.ItemVenda> consumo)
         {
+            dataGridView1.Rows.Clear();
             dataGridView2.Rows.Clear();
             lblValorTotalVenda.Text = @"Valor total em vendas: R$ 0,00";
-
-            dataGridView1.Rows.Clear();
+            
             vendas.ForEach(venda =>
             {
                 var id = venda.Id;
@@ -168,7 +168,7 @@ namespace Esquenta.Forms.Relatorios
                 var valorFinal = venda.ValorFinal;
                 var emAberto = venda.EmAberto;
 
-                dataGridView1.Rows.Add(new object[] { id, produto, dataVenda, valorVendas.ToString(_culture), valorCc.ToString(_culture), valorCd.ToString(_culture), valorD.ToString(_culture), valorAcrescimo.ToString(_culture), valorDesconto.ToString(_culture), valorFinal.ToString(_culture), emAberto });
+                dataGridView1.Rows.Add(new object[] { id, produto, dataVenda, valorVendas.ToString("0.00"), valorCc.ToString("0.00"), valorCd.ToString("0.00"), valorD.ToString("0.00"), valorAcrescimo.ToString("0.00"), valorDesconto.ToString("0.00"), valorFinal.ToString("0.00"), emAberto });
             });
 
             AtualizaCalculos(vendas);
@@ -233,15 +233,18 @@ namespace Esquenta.Forms.Relatorios
 
         private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
-            var cancel = MessageBox.Show("Deseja cancelar venda?", "Cancelar Venda?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes;
+            var dataGridViewRow = ((DataGridView)sender).CurrentRow;
+            if (dataGridViewRow == null) return;
+
+            var vendaId = (int)dataGridViewRow.Cells[0].Value;
+            var cancel = MessageBox.Show($@"Deseja cancelar venda {vendaId} ?", @"Cancelar Venda?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes;
             if (cancel)
             {
-                e.Cancel = cancel;
+                e.Cancel = true;
             }
             else
             {
-                var vendaID = (int)((DataGridView)sender).CurrentRow.Cells[0].Value;
-                var venda = _service.GetVendaRepository().Get(vendaID);
+                var venda = _service.GetVendaRepository().Get(vendaId);
                 _service.GetVendaRepository().CancelarVenda(venda);
 
                 Vendas_Load(sender, e);

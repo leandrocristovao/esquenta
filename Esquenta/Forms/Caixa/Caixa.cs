@@ -62,8 +62,6 @@ namespace Esquenta.Forms.Caixa
                 }
             }
 
-            _comanda = null;
-
             lblStatus.Text = @"Aguardando comanda";
             lblValorTotal.Text = @"0,00";
             lblNomeComanda.Text = @"---";
@@ -76,16 +74,8 @@ namespace Esquenta.Forms.Caixa
             txtComanda.Text = "";
             txtComanda.Focus();
 
-            _calculo = new CalculoVenda
-            {
-                Acrescimo = 0,
-                Desconto = 0,
-                ValorCC = 0,
-                ValorCD = 0,
-                ValorD = 0,
-                ValorPago = 0,
-                ValorVenda = 0
-            };
+            _calculo = null;
+            _comanda = null;
             _venda = new Venda();
 
             txtComanda.AutoCompleteCustomSource = _comandasAutoComplete;
