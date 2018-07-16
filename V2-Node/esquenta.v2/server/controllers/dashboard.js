@@ -1,0 +1,28 @@
+const PeriodoVenda = require('../models').periodoVenda
+const Produto = require('../models').produto
+const ProdutoItem = require('../models').produtoItem
+const ItemVenda = require('../models').itemVenda
+
+module.exports = {
+
+  get(req, res) {
+    return PeriodoVenda
+      .findOne({
+        order: [['ID', 'DESC']]
+      })
+      .then(periodo => {
+        ItemVenda.findAll({
+          limit: 10,
+           where: {
+             dataVenda: {
+               [Op.gte]: periodo.dataValues.dataInicial
+             }
+          }
+        })
+          .then(vendas => {
+            return res.status(200).send(vendas)
+          })
+      })
+      .catch(error => res.status(400).send(error))
+  }
+}

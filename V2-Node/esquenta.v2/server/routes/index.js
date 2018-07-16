@@ -1,4 +1,5 @@
 const comandaController = require('../controllers').comandas
+const dashboardController = require('../controllers').dashboard
 const produtoController = require('../controllers').produtos
 const vendaController = require('../controllers').vendas
 // TODO: testar import * as models from "../../models";
@@ -15,6 +16,11 @@ module.exports = (app) => {
   app.get('/api/comandas/:id', comandaController.get)
   app.put('/api/comandas/:id', comandaController.update)
   app.delete('/api/comandas/:id', comandaController.destroy)
+
+  /**
+  * Dashboard
+  */
+  app.get('/api/dashboard', dashboardController.get)
 
   /**
    * Produtos

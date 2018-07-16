@@ -12,9 +12,13 @@ module.exports = {
         type: Sequelize.DATE
       },
       dataFinal: {
+        allowNull: true,
         type: Sequelize.DATE
       },
       valorEmAberto: {
+        type: Sequelize.DECIMAL
+      },
+      valorCaixa: {
         type: Sequelize.DECIMAL
       },
       createdAt: {
@@ -23,7 +27,7 @@ module.exports = {
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       }
     });
   },
