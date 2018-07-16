@@ -1,3 +1,5 @@
+var Sequelize = require('sequelize');
+
 const PeriodoVenda = require('../models').periodoVenda
 const Produto = require('../models').produto
 const ProdutoItem = require('../models').produtoItem
@@ -29,6 +31,7 @@ module.exports = {
   //     .catch(error => res.status(400).send(error))
   // }
   get (req, res) {
+    const Op = Sequelize.Op;
     return PeriodoVenda
       .findOne({
         order: [
