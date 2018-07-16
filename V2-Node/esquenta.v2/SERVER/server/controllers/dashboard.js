@@ -1,4 +1,4 @@
-var Sequelize = require('sequelize');
+var Sequelize = require('sequelize')
 
 const PeriodoVenda = require('../models').periodoVenda
 const Produto = require('../models').produto
@@ -31,7 +31,7 @@ module.exports = {
   //     .catch(error => res.status(400).send(error))
   // }
   get (req, res) {
-    const Op = Sequelize.Op;
+    const Op = Sequelize.Op
     return PeriodoVenda
       .findOne({
         order: [
@@ -39,11 +39,12 @@ module.exports = {
         ]
       })
       .then(periodo => {
+        console.log(periodo.dataValues.dataInicial)
         return ItemVenda.findAll({
           limit: 10,
           where: {
             dataVenda: {
-              [Op.gte]: periodo.dataValues.dataInicial
+              [Op.gte]: '2017-12-01 18:13:20.000'
             }
           }
         })
