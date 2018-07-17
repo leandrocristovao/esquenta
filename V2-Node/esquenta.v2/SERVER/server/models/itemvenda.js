@@ -9,12 +9,13 @@ module.exports = (sequelize, DataTypes) => {
   itemVenda.associate = function (models) {
     itemVenda.belongsTo(models.venda, {
       foreignKey: 'vendaId',
-      onDelete: 'CASCADE'
+      onDelete: 'CASCADE',
+      as: 'Venda'
     })
 
     itemVenda.belongsTo(models.produto, {
       foreignKey: 'produtoId',
-      as: 'Item'
+      as: 'Produto'
     })
   }
   return itemVenda

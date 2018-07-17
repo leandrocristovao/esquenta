@@ -2,49 +2,59 @@ var Sequelize = require('sequelize')
 
 const PeriodoVenda = require('../models').periodoVenda
 const Produto = require('../models').produto
+const Venda = require('../models').venda
 const ProdutoItem = require('../models').produtoItem
 const ItemVenda = require('../models').itemVenda
 
 module.exports = {
 
-  // get (req, res) {
-  //   return PeriodoVenda
-  //     .findOne({
-  //       order: [['ID', 'DESC']]
-  //     })
-  //     .then(periodo => {
-  //       ItemVenda.findAll({
-  //         limit: 10,
-  //         where: {
-  //           dataVenda: {
-  //             [Op.gte]: periodo.dataValues.dataInicial
-  //           }
-  //         }
-  //       })
-  //         .then(vendas => {
-  //           return res.status(200).send(vendas)
-  //         })
-  //     })
-  //     .then(data => {
-  //       return res.status(200).send(data)
-  //     })
-  //     .catch(error => res.status(400).send(error))
-  // }
-  get (req, res) {
+  get2(req, res) {
+    const Op = Sequelize.Op
+      //return ItemVenda.findAll({
+      return ItemVenda.findById(6621, {
+      //include: [{all: true}],
+      include: [{
+        model:Produto, 
+        as: 'Produto'
+      }],
+      attributes: [
+        [Sequelize.col('produtoId'), 'produtoId'],
+        [Sequelize.col('Produto.nome'), 'nome']
+      ],
+      //limit: 1
+    })
+      .then(data => {
+        return res.status(200).send(data)
+      })
+      .catch(error => res.status(400).send(error))
+  },
+
+  get(req, res) {
     const Op = Sequelize.Op
     return PeriodoVenda
       .findOne({
         order: [
-          ['ID', 'DESC']
+          ['id', 'DESC']
         ]
       })
       .then(periodo => {
-        console.log(periodo.dataValues.dataInicial)
+        console.log(periodo.dataValues.dataInicial);
         return ItemVenda.findAll({
+          include: [{
+            model:Produto, 
+            as: 'Produto',
+            attributes:[[Sequelize.col('nome'), 'nome']]
+          }],
+          attributes: [
+            [Sequelize.col('ItemVenda.produtoId'), 'produtoId'],
+            [Sequelize.fn('SUM', Sequelize.col('ItemVenda.quantidade')), 'quantidade']
+          ],
+          order: Sequelize.literal('SUM(ItemVenda.quantidade) DESC'),
+          group: [Sequelize.col('ItemVenda.produtoId'), 'produtoId'],
           limit: 10,
           where: {
             dataVenda: {
-              [Op.gte]: '2017-12-01 18:13:20.000'
+              [Op.gte]: periodo.dataValues.dataInicial
             }
           }
         })
