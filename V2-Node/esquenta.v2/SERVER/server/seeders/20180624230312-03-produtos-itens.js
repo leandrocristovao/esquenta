@@ -2827,6 +2827,1350 @@ module.exports = {
         'quantidade': 1,
         'createdAt': new Date(),
         'updatedAt': new Date()
+      },
+      {
+        'id': 1352,
+        'parentId': 1327,
+        'produtoId': 1327,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1353,
+        'parentId': 1328,
+        'produtoId': 1328,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1354,
+        'parentId': 1329,
+        'produtoId': 1329,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1355,
+        'parentId': 1330,
+        'produtoId': 1330,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1356,
+        'parentId': 1331,
+        'produtoId': 1331,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1357,
+        'parentId': 1332,
+        'produtoId': 1332,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1358,
+        'parentId': 1333,
+        'produtoId': 1333,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1359,
+        'parentId': 1334,
+        'produtoId': 1334,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1360,
+        'parentId': 1335,
+        'produtoId': 1335,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1361,
+        'parentId': 1336,
+        'produtoId': 1336,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1362,
+        'parentId': 1337,
+        'produtoId': 1337,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1363,
+        'parentId': 1338,
+        'produtoId': 1338,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1364,
+        'parentId': 1339,
+        'produtoId': 1339,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1365,
+        'parentId': 1340,
+        'produtoId': 1340,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1366,
+        'parentId': 1341,
+        'produtoId': 1341,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1367,
+        'parentId': 1342,
+        'produtoId': 1342,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1368,
+        'parentId': 1343,
+        'produtoId': 1343,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1369,
+        'parentId': 1344,
+        'produtoId': 1344,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1370,
+        'parentId': 1345,
+        'produtoId': 1345,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1371,
+        'parentId': 1346,
+        'produtoId': 1346,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1372,
+        'parentId': 1347,
+        'produtoId': 1347,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1373,
+        'parentId': 1348,
+        'produtoId': 23,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1374,
+        'parentId': 1348,
+        'produtoId': 57,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1375,
+        'parentId': 1348,
+        'produtoId': 173,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1376,
+        'parentId': 1349,
+        'produtoId': 65,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1377,
+        'parentId': 1349,
+        'produtoId': 57,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1378,
+        'parentId': 1349,
+        'produtoId': 173,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1379,
+        'parentId': 1350,
+        'produtoId': 184,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1380,
+        'parentId': 1350,
+        'produtoId': 57,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1381,
+        'parentId': 1350,
+        'produtoId': 173,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1382,
+        'parentId': 1351,
+        'produtoId': 182,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1383,
+        'parentId': 1351,
+        'produtoId': 57,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1384,
+        'parentId': 1351,
+        'produtoId': 173,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1385,
+        'parentId': 1352,
+        'produtoId': 183,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1386,
+        'parentId': 1352,
+        'produtoId': 173,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1387,
+        'parentId': 1352,
+        'produtoId': 57,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1388,
+        'parentId': 1353,
+        'produtoId': 1353,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1389,
+        'parentId': 1354,
+        'produtoId': 1354,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1390,
+        'parentId': 1355,
+        'produtoId': 1355,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1391,
+        'parentId': 1356,
+        'produtoId': 1356,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1392,
+        'parentId': 1357,
+        'produtoId': 1357,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1393,
+        'parentId': 1358,
+        'produtoId': 1358,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1394,
+        'parentId': 1359,
+        'produtoId': 1359,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1395,
+        'parentId': 1360,
+        'produtoId': 1360,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1396,
+        'parentId': 1361,
+        'produtoId': 1361,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1397,
+        'parentId': 1362,
+        'produtoId': 1362,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1398,
+        'parentId': 1363,
+        'produtoId': 1363,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1399,
+        'parentId': 1364,
+        'produtoId': 1364,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1400,
+        'parentId': 1365,
+        'produtoId': 1365,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1401,
+        'parentId': 1366,
+        'produtoId': 1366,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1402,
+        'parentId': 1367,
+        'produtoId': 1367,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1403,
+        'parentId': 1368,
+        'produtoId': 1368,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1404,
+        'parentId': 1369,
+        'produtoId': 1369,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1405,
+        'parentId': 1370,
+        'produtoId': 1370,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1406,
+        'parentId': 1371,
+        'produtoId': 1371,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1407,
+        'parentId': 1372,
+        'produtoId': 1372,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1408,
+        'parentId': 1373,
+        'produtoId': 1373,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1409,
+        'parentId': 1374,
+        'produtoId': 1374,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1410,
+        'parentId': 1375,
+        'produtoId': 1375,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1411,
+        'parentId': 1376,
+        'produtoId': 1376,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1412,
+        'parentId': 1377,
+        'produtoId': 1377,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1413,
+        'parentId': 1378,
+        'produtoId': 1378,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1414,
+        'parentId': 1379,
+        'produtoId': 1379,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1415,
+        'parentId': 1380,
+        'produtoId': 1380,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1416,
+        'parentId': 1381,
+        'produtoId': 1381,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1417,
+        'parentId': 1382,
+        'produtoId': 1382,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1418,
+        'parentId': 1383,
+        'produtoId': 1383,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1419,
+        'parentId': 1384,
+        'produtoId': 1384,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1420,
+        'parentId': 1385,
+        'produtoId': 1385,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1421,
+        'parentId': 1386,
+        'produtoId': 1386,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1422,
+        'parentId': 1387,
+        'produtoId': 1387,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1423,
+        'parentId': 1388,
+        'produtoId': 1388,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1424,
+        'parentId': 1389,
+        'produtoId': 1389,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1425,
+        'parentId': 1390,
+        'produtoId': 1390,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1426,
+        'parentId': 1391,
+        'produtoId': 1391,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1427,
+        'parentId': 1392,
+        'produtoId': 1392,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1428,
+        'parentId': 1393,
+        'produtoId': 1393,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1429,
+        'parentId': 1394,
+        'produtoId': 1394,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1430,
+        'parentId': 1395,
+        'produtoId': 1395,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1431,
+        'parentId': 1396,
+        'produtoId': 1396,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1432,
+        'parentId': 1397,
+        'produtoId': 1397,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1433,
+        'parentId': 1398,
+        'produtoId': 1398,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1434,
+        'parentId': 1399,
+        'produtoId': 1399,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1435,
+        'parentId': 1400,
+        'produtoId': 1400,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1436,
+        'parentId': 1401,
+        'produtoId': 1401,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1437,
+        'parentId': 1402,
+        'produtoId': 1402,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1438,
+        'parentId': 1403,
+        'produtoId': 1403,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1439,
+        'parentId': 1404,
+        'produtoId': 1404,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1440,
+        'parentId': 1405,
+        'produtoId': 1405,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1441,
+        'parentId': 1406,
+        'produtoId': 1406,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1442,
+        'parentId': 1407,
+        'produtoId': 1407,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1443,
+        'parentId': 1408,
+        'produtoId': 1408,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1444,
+        'parentId': 1409,
+        'produtoId': 1409,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1445,
+        'parentId': 1410,
+        'produtoId': 1410,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1446,
+        'parentId': 1411,
+        'produtoId': 1411,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1447,
+        'parentId': 1412,
+        'produtoId': 1412,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1448,
+        'parentId': 1413,
+        'produtoId': 1413,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1449,
+        'parentId': 1414,
+        'produtoId': 1414,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1450,
+        'parentId': 1415,
+        'produtoId': 1415,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1451,
+        'parentId': 1416,
+        'produtoId': 1416,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 1452,
+        'parentId': 1417,
+        'produtoId': 1417,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 2448,
+        'parentId': 2413,
+        'produtoId': 2413,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 2449,
+        'parentId': 2414,
+        'produtoId': 2414,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 2450,
+        'parentId': 2415,
+        'produtoId': 2415,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 2451,
+        'parentId': 2416,
+        'produtoId': 2416,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 2452,
+        'parentId': 2417,
+        'produtoId': 2417,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 3451,
+        'parentId': 3416,
+        'produtoId': 3416,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 3452,
+        'parentId': 3417,
+        'produtoId': 3417,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 3453,
+        'parentId': 3418,
+        'produtoId': 3418,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 3454,
+        'parentId': 3419,
+        'produtoId': 3419,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 4453,
+        'parentId': 4418,
+        'produtoId': 4418,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 4454,
+        'parentId': 4419,
+        'produtoId': 4419,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 4455,
+        'parentId': 4420,
+        'produtoId': 4420,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 4456,
+        'parentId': 4421,
+        'produtoId': 4421,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 4457,
+        'parentId': 4422,
+        'produtoId': 4422,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 4458,
+        'parentId': 4423,
+        'produtoId': 4423,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 4459,
+        'parentId': 4424,
+        'produtoId': 4424,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 4460,
+        'parentId': 4425,
+        'produtoId': 4425,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 4461,
+        'parentId': 4426,
+        'produtoId': 4426,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 4462,
+        'parentId': 4427,
+        'produtoId': 4427,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 4463,
+        'parentId': 4428,
+        'produtoId': 4428,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 4464,
+        'parentId': 4429,
+        'produtoId': 4429,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 4465,
+        'parentId': 4430,
+        'produtoId': 4430,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 4466,
+        'parentId': 4431,
+        'produtoId': 4431,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 4467,
+        'parentId': 4432,
+        'produtoId': 4432,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 4468,
+        'parentId': 4433,
+        'produtoId': 4433,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 4469,
+        'parentId': 4434,
+        'produtoId': 4434,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 4470,
+        'parentId': 4435,
+        'produtoId': 4435,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 4471,
+        'parentId': 4436,
+        'produtoId': 4436,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 4472,
+        'parentId': 4437,
+        'produtoId': 4437,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 4473,
+        'parentId': 4438,
+        'produtoId': 4438,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 4474,
+        'parentId': 4439,
+        'produtoId': 4439,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 4475,
+        'parentId': 4440,
+        'produtoId': 4440,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 4476,
+        'parentId': 4441,
+        'produtoId': 4441,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 4477,
+        'parentId': 4442,
+        'produtoId': 4442,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 4478,
+        'parentId': 4443,
+        'produtoId': 4443,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 4479,
+        'parentId': 4444,
+        'produtoId': 4444,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 4480,
+        'parentId': 4445,
+        'produtoId': 4445,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 5474,
+        'parentId': 5439,
+        'produtoId': 5439,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 5475,
+        'parentId': 5440,
+        'produtoId': 5440,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 5476,
+        'parentId': 5441,
+        'produtoId': 5441,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 5477,
+        'parentId': 5442,
+        'produtoId': 5442,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 5478,
+        'parentId': 5443,
+        'produtoId': 5443,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 5479,
+        'parentId': 5444,
+        'produtoId': 5444,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 5480,
+        'parentId': 5445,
+        'produtoId': 5445,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 5481,
+        'parentId': 5446,
+        'produtoId': 5446,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 5482,
+        'parentId': 5447,
+        'produtoId': 5447,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 5483,
+        'parentId': 5448,
+        'produtoId': 5448,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 5485,
+        'parentId': 5449,
+        'produtoId': 5449,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 5486,
+        'parentId': 5450,
+        'produtoId': 5450,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 5487,
+        'parentId': 5451,
+        'produtoId': 5451,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 5488,
+        'parentId': 5452,
+        'produtoId': 5452,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 5489,
+        'parentId': 5453,
+        'produtoId': 5453,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 5490,
+        'parentId': 5454,
+        'produtoId': 5454,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 5491,
+        'parentId': 5455,
+        'produtoId': 5455,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 5492,
+        'parentId': 5456,
+        'produtoId': 5456,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 5493,
+        'parentId': 5457,
+        'produtoId': 5457,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 5494,
+        'parentId': 5458,
+        'produtoId': 5458,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 5495,
+        'parentId': 5459,
+        'produtoId': 5459,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 5496,
+        'parentId': 5460,
+        'produtoId': 5460,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 5497,
+        'parentId': 5461,
+        'produtoId': 5461,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 5498,
+        'parentId': 5462,
+        'produtoId': 5462,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 5499,
+        'parentId': 5463,
+        'produtoId': 5463,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 5500,
+        'parentId': 5464,
+        'produtoId': 5464,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 5501,
+        'parentId': 5465,
+        'produtoId': 5465,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 5502,
+        'parentId': 5466,
+        'produtoId': 5466,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 5503,
+        'parentId': 5467,
+        'produtoId': 5467,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
+      },
+      {
+        'id': 5504,
+        'parentId': 5468,
+        'produtoId': 5468,
+        'quantidade': 1,
+        'createdAt': new Date(),
+        'updatedAt': new Date()
       }
     ], {})
   },

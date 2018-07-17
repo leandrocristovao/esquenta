@@ -1,11 +1,11 @@
 import '@progress/kendo-theme-default/dist/all.css';
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+//import { BrowserRouter, Route } from 'react-router-dom';
 
 import Produtos from './components/produtos';
 import MainMenu from './components/menu/MainMenu';
-import AddProduto from './components/forms/produto';
-import Teste from './components/teste';
+//import AddProduto from './components/forms/produto';
+//import Teste from './components/teste';
 
 class App extends React.Component {
 

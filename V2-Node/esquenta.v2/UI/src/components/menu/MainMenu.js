@@ -1,8 +1,8 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom'
 
 import $ from 'jquery';
-import kendo from '@progress/kendo-ui';
+//import kendo from '@progress/kendo-ui';
 import { Menu, MenuItem, SubMenu } from '@progress/kendo-layout-react-wrapper';
 
 class MainMenu extends React.Component {

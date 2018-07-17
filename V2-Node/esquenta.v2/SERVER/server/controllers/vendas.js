@@ -12,8 +12,21 @@ module.exports = {
       .catch(error => res.status(400).send(error))
   },
   list (req, res) {
+    let pageSize = req.query.pageSize
+    let currentPage = req.query.currentPage
+
+    if (pageSize == undefined) {
+      pageSize = 10
+    }
+
+    if (currentPage == undefined) {
+      currentPage = 1
+    }
+
+    let offset = (currentPage * pageSize) - pageSize
+
     return Venda
-      .findAll()
+      .findAndCountAll({offset: offset, limit: pageSize })
       .then(entities => res.status(200).send(entities))
       .catch(error => res.status(400).send(error))
   },
@@ -27,9 +40,10 @@ module.exports = {
             model: ItemVenda,
             as: 'Items',
             include: [
-              { model: Produto, as: 'Item' }
+              { model: Produto, as: 'Produto' }
             ]
-          }]
+          }
+        ]
       })
       .then(entity => {
         if (!entity) {
