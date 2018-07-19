@@ -1,54 +1,47 @@
 import React, { Component } from "react";
+import ReactTable from 'react-table'
+import { ReactTableDefaults } from "react-table";
+
 import { Grid, Row, Col, Table } from "react-bootstrap";
 
 import Card from "components/Card/Card.jsx";
 import { thArray, tdArray } from "variables/Variables.jsx";
+import 'react-table/react-table.css'
+
+Object.assign(ReactTableDefaults, {
+    defaultPageSize: 10,
+    minRows: 1,
+    showPagination:false
+});
 
 export class Produtos extends Component {
     render() {
+        const columns = [
+            {
+                id: 'objProduto',
+                Header: 'Produto',
+                accessor: d => d.Produto.nome
+            },
+            {
+                Header: 'Quantidade',
+                accessor: 'quantidade'
+            }
+        ]
+
+        const data = [{
+            "produtoId": 245,
+            "quantidade": 37,
+            "Produto": {
+                "nome": "gudang avulso"
+            }
+        }]
+
+        
         return (
-            <div className="content">
-                <Grid fluid>
-                    <Row>
-                        <Col md={12}>
-
-                            <h1>{this.props.name}</h1>
-                            <Card
-                                title="Mais vendidos"
-                                category="Produtos mains vendidos"
-                                ctTableFullWidth
-                                ctTableResponsive
-                                content={
-                                    <Table striped hover>
-                                        <thead>
-                                            <tr>
-                                                {this.props.header && this.props.header.map((prop, key) => {
-                                                    return <th key={key}>{prop}</th>;
-                                                })}
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {this.props.content && this.props.content.map((prop, key) => {
-                                                return (
-                                                    <tr key={key}>
-                                                        {Object.keys(prop).map((fields, key) => {
-                                                            return <td>{fields['produtoId']}</td>;
-                                                        })}
-
-                                                        {/* {prop.map((prop, key) => {
-                                                            return <td key={key}>{prop}</td>;
-                                                        })} */}
-                                                    </tr>
-                                                );
-                                            })}
-                                        </tbody>
-                                    </Table>
-                                }
-                            />
-                        </Col>
-                    </Row>
-                </Grid>
-            </div>
+            <ReactTable
+                data={this.props.content}
+                columns={columns}
+            />
         );
     }
 }

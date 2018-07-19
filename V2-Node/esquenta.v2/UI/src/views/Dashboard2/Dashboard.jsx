@@ -4,6 +4,8 @@ import { Produtos } from "./Produtos.jsx";
 import { Status } from "./Status.jsx";
 import { StatsCard } from "components/StatsCard/StatsCard.jsx";
 import { Tasks } from "components/Tasks/Tasks.jsx";
+var reactjsAdminlte = require('adminlte-reactjs');
+//var InfoTile = require('adminlte-reactjs/src/components/info-tile/InfoTile')
 
 
 class Dashboard extends Component {
@@ -38,17 +40,34 @@ class Dashboard extends Component {
       });
   }
   render() {
-    let produtosHeader =  [ "Produto", "Quantidade" ]
+    const columns = [
+      {
+          id: 'objProduto',
+          Header: 'Produto',
+          accessor: d => d.Produto.nome
+      },
+      {
+          Header: 'Quantidade',
+          accessor: 'quantidade'
+      }
+  ]
     
     return (
       <div className="content">
         <Grid fluid>
           <Row>
-            <Status />
+            {/* <Status /> */}
+            <reactjsAdminlte.InfoTile 
+              width = {3} 
+              content = {"teste"} 
+              icon = "fa-envelope-o" 
+              stats = "1,410" 
+              subject = "Messages" 
+              theme = "bg-aqua"/>
           </Row>
           <Row>
             <Col md={6}>
-              <Produtos header={produtosHeader} content={this.state.maisVendidos} />
+              <Produtos content={this.state.maisVendidos} />
             </Col>
 
             <Col md={6}>
