@@ -1,0 +1,6 @@
+{
+  "name": "Vendas",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./Vendas.js"
+}

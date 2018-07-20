@@ -35,6 +35,7 @@ module.exports = (app) => {
    * Vendas
    */
   app.post('/api/vendas', vendaController.create)
+  app.get('/api/vendas/resumoPeriodo', vendaController.resumoPeriodo)
   app.get('/api/vendas', vendaController.list)
   app.get('/api/vendas/:id', vendaController.get)
   app.put('/api/vendas/:id', vendaController.update)

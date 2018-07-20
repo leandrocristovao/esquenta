@@ -7,42 +7,27 @@ const Produto = require('../models').produto
 const Venda = require('../models').venda
 
 module.exports = {
-  get2 (req, res) {
-    return PeriodoVenda
-      .findOne({
-        order: [
-          ['id', 'DESC']
-        ]
-      })
-      .then(data => {
-        return Venda.findAll({
-          attributes: [
-            [Sequelize.fn('SUM', Sequelize.col('valorTotal')), 'ValorTotal'],
-            [Sequelize.fn('SUM', Sequelize.col('valorPago')), 'ValorPago'],
-            [Sequelize.fn('SUM', Sequelize.col('valorCC')), 'ValorCC'],
-            [Sequelize.fn('SUM', Sequelize.col('valorCD')), 'ValorCD']
-          ],
-          where: {
-            dataVenda: {
-              [Sequelize.Op.gte]: data.dataValues.dataInicial
-            }
-          }
-        })
-      })
-      .then(data => {
-        res.status(200).send(data)
-      })
-      .catch(error => res.status(400).send(error))
-  },
-
   get (req, res) {
     var dashboard = {
       periodo: null,
-      totalItensVendidos: 0,
-      valorVendas: 0,
-      valorVendasFormaPagamento: 0,
+      financeiro: 0,
+      resumo: {
+        vendas: 0,
+        dinheiro: 0,
+        itens: 0,
+        comandas: 0
+      },
       maisVendidos: [],
-      comandasEmAberto: []
+      comandas: [],
+      messages: {
+        title: 'Mensagens',
+        header: [],
+        data: [
+          ['Mensagem 1'],
+          ['Mensagem 2'],
+          ['Mensagem 3']
+        ]
+      }
     }
 
     return periodoVenda()
@@ -51,23 +36,75 @@ module.exports = {
         return valorVendas(dashboard)
       })
       .then(data => {
-        dashboard.valorVendas = data
+        dashboard.resumo.dinheiro = data
         return totalItensVendidos(dashboard)
       })
       .then(data => {
-        dashboard.totalItensVendidos = data
+        dashboard.resumo.itens = data
         return maisVendidos(dashboard)
       })
       .then(data => {
-        dashboard.maisVendidos = data
+        var processed = []
+        data.map(function (item) {
+          processed.push([item.Produto.nome, item.quantidade])
+        })
+        dashboard.maisVendidos = {
+          title: 'Mais Vendidos',
+          header: [
+            'Produto',
+            'Quantidade'
+          ],
+          data: processed
+        }
         return comandasEmAberto(dashboard)
       })
       .then(data => {
-        dashboard.comandasEmAberto = data
+        var processed = []
+        data.map(function (item) {
+          processed.push([item.Comanda.nome,
+            item.dataValues.valor])
+        })
+        dashboard.comandas = {
+          title: 'Comandas',
+          header: [
+            'Nome',
+            'valor'
+          ],
+          data: processed
+        }
+        dashboard.resumo.comandas = data.length
         return valorVendasFormaPagamento(dashboard)
       })
       .then(data => {
-        dashboard.valorVendasFormaPagamento = data
+        data = data[0].dataValues
+
+        dashboard.financeiro = {
+          title: 'Financeiro',
+          data: {
+            labels: [
+              'Dinheiro',
+              'Crédito',
+              'Débito'
+            ],
+            datasets: [{
+              data: [data.D, data.CC, data.CD],
+              backgroundColor: [
+                '#FF6384',
+                '#36A2EB',
+                '#FFCE56'
+              ],
+              hoverBackgroundColor: [
+                '#FF6384',
+                '#36A2EB',
+                '#FFCE56'
+              ]
+            }]
+          }
+        }
+        return totalVendas(dashboard)
+      })
+      .then(data => {
+        dashboard.resumo.vendas = data
         res.status(200).send(dashboard)
       })
       .catch(error => res.status(400).send(error))
@@ -97,9 +134,9 @@ function valorVendasFormaPagamento (dashboard) {
   return Venda.findAll({
     attributes: [
       [Sequelize.fn('SUM', Sequelize.col('valorFinal')), 'Total'],
-      [Sequelize.fn('SUM', Sequelize.col('valorD')), 'Dinheiro'],
-      [Sequelize.fn('SUM', Sequelize.col('valorCC')), 'Cartão de Crédito'],
-      [Sequelize.fn('SUM', Sequelize.col('valorCD')), 'Cartão de Débito']
+      [Sequelize.fn('SUM', Sequelize.col('valorD')), 'D'],
+      [Sequelize.fn('SUM', Sequelize.col('valorCC')), 'CC'],
+      [Sequelize.fn('SUM', Sequelize.col('valorCD')), 'CD']
     ],
     where: {
       dataVenda: {
@@ -114,6 +151,16 @@ function totalItensVendidos (dashboard) {
     where: {
       dataVenda: {
         [Sequelize.Op.gt]: dashboard.periodo.dataInicial
+      }
+    }
+  })
+}
+
+function totalVendas (dashboard) {
+  return Venda.count({
+    where: {
+      dataVenda: {
+        [Sequelize.Op.gte]: dashboard.periodo.dataInicial
       }
     }
   })
@@ -144,13 +191,20 @@ function maisVendidos (dashboard) {
 }
 
 function comandasEmAberto (dashboard) {
-  return Comanda.findAll({
+  return Venda.findAll({
+    include: [{
+      model: Comanda,
+      as: 'Comanda',
+      attributes: [
+        [Sequelize.col('nome'), 'nome']
+      ]
+    }],
     attributes: [
-      [Sequelize.col('nome'), 'nome']
+      [Sequelize.col('venda.valorTotal'), 'valor']
     ],
     where: {
       emAberto: true
     },
-    order: [Sequelize.col('nome'), 'nome']
+    order: [Sequelize.col('comanda.nome')]
   })
 }
