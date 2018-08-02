@@ -16,7 +16,9 @@ module.exports = {
   resumoPeriodo (req, res) {
     var resumo = {
       periodo: {},
-      vendas: {}
+      vendas: {},
+      vendasEmAberto: {},
+      listagem: []
     }
     return periodoVenda(req.query.periodo)
       .then(data => {
@@ -25,11 +27,15 @@ module.exports = {
       })
       .then(data => {
         resumo.vendas = data
-        return totalVendas(resumo.periodo.dataInicial)
-        // res.status(200).send(resumo.periodo.dataInicial)
+        return valorVendasEmAberto(resumo.periodo.dataInicial)
       })
       .then(data => {
-        resumo.vendas.totalVendas = data
+        resumo.vendasEmAberto = data
+        return vendas(resumo.periodo.dataInicial)
+      })
+      .then(data => {
+        console.log(data)
+        // resumo.listagem = data
         res.status(200).send(resumo)
       })
       .catch(error => res.status(400).send(error))
@@ -214,42 +220,44 @@ function valorVendas (periodo) {
         [Sequelize.fn('COUNT', Sequelize.col('quantidadeItens')), 'totalVendas']
       ],
       where: {
+        emAberto: false,
         dataVenda: {
           [Sequelize.Op.gt]: periodo
         }
       }
     })
-    .then(data => {
-      return valorVendasEmAberto(data, periodo)
-    })
 }
 
-function valorVendasEmAberto (data, periodo) {
+function valorVendasEmAberto (periodo) {
   return Venda
     .findOne({
       attributes: [
-        [Sequelize.fn('SUM', Sequelize.col('valorTotal')), 'valorTotal']
+        [Sequelize.fn('SUM', Sequelize.col('valorTotal')), 'valorTotal'],
+        [Sequelize.fn('SUM', Sequelize.col('valorDesconto')), 'valorDesconto'],
+        [Sequelize.fn('SUM', Sequelize.col('valorFinal')), 'valorFinal'],
+        [Sequelize.fn('SUM', Sequelize.col('valorAcrescimo')), 'valorAcrescimo'],
+        [Sequelize.fn('SUM', Sequelize.col('valorPago')), 'valorPago'],
+        [Sequelize.fn('SUM', Sequelize.col('valorCC')), 'valorCC'],
+        [Sequelize.fn('SUM', Sequelize.col('valorCD')), 'valorCD'],
+        [Sequelize.fn('SUM', Sequelize.col('valorD')), 'valorD'],
+        [Sequelize.fn('SUM', Sequelize.col('quantidadeItens')), 'quantidadeItens'],
+        [Sequelize.fn('COUNT', Sequelize.col('quantidadeItens')), 'totalVendas']
       ],
       where: {
-        emAberto: 1,
+        emAberto: true,
         dataVenda: {
           [Sequelize.Op.gt]: periodo
         }
       }
     })
-    .then(content => {
-      // console.log(data.dataValues)
-      // console.log(periodo)
-      console.log(content.dataValues)
-    })
 }
 
-function totalVendas (periodo) {
-  return Venda.count({
-    where: {
-      dataVenda: {
-        [Sequelize.Op.gte]: periodo
-      }
-    }
-  })
+function vendas (periodo) {
+  return Venda
+    .fidAll({
+      where: {
+        dataVenda: {
+          [Sequelize.Op.gte]: periodo
+        }
+      }})
 }
