@@ -25,6 +25,10 @@ import {
   Row,
 } from 'reactstrap';
 
+import Comanda from './Comanda.js';
+import Produtos from './Produtos.js';
+import Botoes from './Botoes.js';
+
 class Forms extends Component {
   constructor(props) {
     super(props);
@@ -49,6 +53,28 @@ class Forms extends Component {
   render() {
     return (
       <div className="animated fadeIn">
+
+
+      <Row>
+        <Col xs="12" sm="4">
+          <Comanda></Comanda>
+        </Col>
+        <Col xs="12" sm="8">
+          <Produtos></Produtos>
+        </Col>
+      </Row>
+      <Row>
+        <Col xs="12" sm="12">
+        <Botoes></Botoes>
+        </Col>
+      </Row>
+
+
+
+
+
+
+
         <Row>
           <Col xs="12" sm="6">
             <Card>
