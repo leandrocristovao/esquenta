@@ -32,12 +32,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BtnAdd = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.txtFilter = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.produtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CodigoBarras = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,7 +47,7 @@
             this.Estoque = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EstoqueMinimo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.produtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.PrecoCusto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -111,7 +113,8 @@
             this.Descricao,
             this.Estoque,
             this.EstoqueMinimo,
-            this.Valor});
+            this.Valor,
+            this.PrecoCusto});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.MultiSelect = false;
@@ -121,6 +124,10 @@
             this.dataGridView1.Size = new System.Drawing.Size(624, 396);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
+            // 
+            // produtoBindingSource
+            // 
+            this.produtoBindingSource.DataSource = typeof(Esquenta.Entities.Produto);
             // 
             // Id
             // 
@@ -185,9 +192,16 @@
             this.Valor.ReadOnly = true;
             this.Valor.Width = 56;
             // 
-            // produtoBindingSource
+            // PrecoCusto
             // 
-            this.produtoBindingSource.DataSource = typeof(Esquenta.Entities.Produto);
+            this.PrecoCusto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N2";
+            this.PrecoCusto.DefaultCellStyle = dataGridViewCellStyle4;
+            this.PrecoCusto.HeaderText = "Preço de Custo";
+            this.PrecoCusto.Name = "PrecoCusto";
+            this.PrecoCusto.ReadOnly = true;
+            this.PrecoCusto.Width = 96;
             // 
             // ListaProduto
             // 
@@ -220,6 +234,8 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtFilter;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn CodigoBarras;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvProduto;
@@ -227,7 +243,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Estoque;
         private System.Windows.Forms.DataGridViewTextBoxColumn EstoqueMinimo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtFilter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrecoCusto;
     }
 }

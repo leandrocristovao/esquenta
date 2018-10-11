@@ -15,7 +15,7 @@ namespace Esquenta.Forms.Settings
             //var pwd = Program.Base64Encode(txtCurrentPWD.Text);
             if (!Program.CheckPassword(txtCurrentPWD.Text))
             {
-                MessageBox.Show("Senha atual não confere.");
+                MessageBox.Show(@"Senha atual não confere.");
                 return;
             }
 
@@ -23,11 +23,11 @@ namespace Esquenta.Forms.Settings
             var pwd2 = txtPWD2.Text;
             if (!pwd1.Equals(pwd2))
             {
-                MessageBox.Show("A nova senha e sua confirmação não conferem.");
+                MessageBox.Show(@"A nova senha e sua confirmação não conferem.");
                 return;
             }
             Program.SavePassword(pwd1);
-            MessageBox.Show("Senha alterada com sucesso");
+            MessageBox.Show(@"Senha alterada com sucesso");
             Close();
         }
     }

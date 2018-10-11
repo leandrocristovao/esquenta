@@ -36,13 +36,13 @@ namespace Esquenta.Forms.Comandas
         {
             if (string.IsNullOrEmpty(txtCodigoBarra.Text))
             {
-                MessageBox.Show("O codigo de barras deve ser preenchido.");
+                MessageBox.Show(@"O codigo de barras deve ser preenchido.");
                 return;
             }
 
             if (string.IsNullOrEmpty(txtNome.Text))
             {
-                MessageBox.Show("O nome deve ser preenchido.");
+                MessageBox.Show(@"O nome deve ser preenchido.");
                 return;
             }
 

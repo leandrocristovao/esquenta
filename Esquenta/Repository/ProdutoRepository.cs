@@ -4,7 +4,10 @@ using NHibernate;
 using NHibernate.Linq;
 using NHibernate.Util;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using Produto = Esquenta.Entities.Produto;
 
 namespace Esquenta.Repository
 {
@@ -56,18 +59,22 @@ namespace Esquenta.Repository
             return entity;
         }
 
+        public List<Produto> GetAll(Expression<Func<Produto, bool>> predicate)
+        {
+            if (_session.Transaction.IsActive)
+                throw new Exception("Erro ao recupera produto: Transaction não disponivel");
+            using (_session.BeginTransaction())
+            {
+                return _session.Query<Produto>().Where(predicate).ToList();
+            }
+        }
         public Produto GetByCodigoBarra(string codigoBarra)
         {
-            if (!_session.Transaction.IsActive)
+            if (_session.Transaction.IsActive)
+                throw new Exception("Erro ao recupera produto: Transaction não disponivel");
+            using (_session.BeginTransaction())
             {
-                using (var transaction = _session.BeginTransaction())
-                {
-                    return _session.Query<Produto>().Where(x => x.CodigoBarras.Equals(codigoBarra)).FirstOrDefault();
-                }
-            }
-            else
-            {
-                throw new Exception("Erro ao baixar estoque: Transaction não disponivel");
+                return _session.Query<Produto>().FirstOrDefault(x => x.CodigoBarras.Equals(codigoBarra));
             }
         }
 
@@ -75,9 +82,9 @@ namespace Esquenta.Repository
         {
             if (!_session.Transaction.IsActive)
             {
-                using (var transaction = _session.BeginTransaction())
+                using (_session.BeginTransaction())
                 {
-                    return _session.Query<Produto>().Where(x => x.Nome.Equals(nome)).FirstOrDefault();
+                    return _session.Query<Produto>().FirstOrDefault(x => x.Nome.Equals(nome));
                 }
             }
             else

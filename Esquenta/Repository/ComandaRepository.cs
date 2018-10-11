@@ -19,7 +19,7 @@ namespace Esquenta.Repository
             {
                 using (var transaction = _session.BeginTransaction())
                 {
-                    return _session.Query<Comanda>().Where(x => x.CodigoBarras.Equals(codigoBarra)).FirstOrDefault();
+                    return _session.Query<Comanda>().FirstOrDefault(x => x.CodigoBarras.Equals(codigoBarra));
                 }
             }
             else
@@ -34,7 +34,7 @@ namespace Esquenta.Repository
             {
                 using (var transaction = _session.BeginTransaction())
                 {
-                    return _session.Query<Comanda>().Where(x => x.Nome.Equals(nome)).FirstOrDefault();
+                    return _session.Query<Comanda>().FirstOrDefault(x => x.Nome.Equals(nome));
                 }
             }
             else

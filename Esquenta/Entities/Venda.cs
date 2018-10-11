@@ -24,6 +24,7 @@ namespace Esquenta.Entities
         public virtual decimal ValorFinal { get; set; }//venda - desconto + acrescimo
         public virtual decimal ValorPago { get; set; }//usado para o caso de pagamento parcial (FIADO)
         public virtual decimal ValorTotal { get; set; }
+        public virtual decimal Lucro { get; set; } //Valor total das vendas - preco de custo original. (soma dos itens)
         public virtual int QuantidadeItens { get; set; }
         public virtual IList<ItemVenda> ItemVenda { get; set; }
     }

@@ -127,6 +127,7 @@ CREATE TABLE [dbo].[ItemVenda](
 	[Quantidade] [bigint] NULL,
 	[DataVenda] [datetime] NULL,
 	[Valor] [decimal](19, 2) NULL,
+	[Lucro] [decimal](19, 2) NULL,
 	[ValorTotal] [decimal](19, 2) NULL,
  CONSTRAINT [PK_ItemVenda] PRIMARY KEY CLUSTERED 
 (
@@ -146,6 +147,7 @@ CREATE TABLE [dbo].[Produto](
 	[Quantidade] [bigint] NULL,
 	[CodigoBarras] [varchar](25) NULL,
 	[Valor] [decimal](19, 2) NULL,
+	[PrecoCusto] [decimal](19, 2) NULL,
 	[QuantidadeMinima] [int] NULL,
  CONSTRAINT [PK_Produto] PRIMARY KEY CLUSTERED 
 (
@@ -208,6 +210,7 @@ CREATE TABLE [dbo].[Venda](
 	[ValorDesconto] [decimal](19, 2) NULL,
 	[ValorAcrescimo] [decimal](19, 2) NULL,
 	[ValorFinal] [decimal](19, 2) NULL,
+	[Lucro] [decimal](19, 2) NULL,
 	EmAberto BIT DEFAULT 0,
 	QuantidadeItens INT,
  CONSTRAINT [PK_Venda] PRIMARY KEY CLUSTERED 

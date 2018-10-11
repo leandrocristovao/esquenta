@@ -30,7 +30,7 @@ namespace Esquenta.Forms.Caixa
             txtComanda.Focus();
 
             var listaProduto = _service.GetProdutoRepository().List();
-            listaProduto.Where(x => x.Valor > 0).ForEach(produto => { _produtosAutoComplete.Add(produto.Nome); });
+            listaProduto.Where(x => x.Valor > 0).ToList().ForEach(produto => { _produtosAutoComplete.Add(produto.Nome); });
 
             var listaComanda = _service.GetComandaRepository().List();
             listaComanda.ForEach(comanda => { _comandasAutoComplete.Add(comanda.Nome); });
@@ -121,13 +121,13 @@ namespace Esquenta.Forms.Caixa
                             if (!string.IsNullOrEmpty(_venda.Terminal) &&
                                 !_venda.Terminal.Equals(Environment.MachineName))
                             {
-                                MessageBox.Show(string.Format(@"Comanda aberta no terminal {0}", _venda.Terminal));
+                                MessageBox.Show($@"Comanda aberta no terminal {_venda.Terminal}");
                                 ClearScreen();
                             }
                             else
                             {
                                 vendaService.EntradaTerminal(_venda, Environment.MachineName);
-                                _venda.ItemVenda.ForEach(item =>
+                                _venda.ItemVenda.ToList().ForEach(item =>
                                 {
                                     _itens.Add(item);
                                     dataGridView1.Rows.Add(_itens.Count.ToString(), item.Produto.Nome,
@@ -169,7 +169,7 @@ namespace Esquenta.Forms.Caixa
                     }
 
                     var estoque = new List<string>();
-                    _produto.Itens.Where(x => x.Produto.Quantidade <= x.Produto.QuantidadeMinima).ForEach(item =>
+                    _produto.Itens.Where(x => x.Produto.Quantidade <= x.Produto.QuantidadeMinima).ToList().ForEach(item =>
                     {
                         estoque.Add(
                             $@"Produto {item.Produto.Nome} está com o estoque baixo: {item.Produto.Quantidade}");
@@ -203,7 +203,7 @@ namespace Esquenta.Forms.Caixa
                     for (var i = 0; i < dataGridView1.Rows.Count; i++)
                         valorVenda += decimal.Parse(dataGridView1.Rows[i].Cells["Valor"].Value.ToString());
 
-                    lblValorTotal.Text = string.Format(@"{0:N}", valorVenda);
+                    lblValorTotal.Text = $@"{valorVenda:N}";
 
                     txtDesconto.Text = @"0,00";
                     txtAcrescimo.Text = @"0,00";
@@ -424,7 +424,7 @@ namespace Esquenta.Forms.Caixa
         {
             if (_comanda != null)
             {
-                MessageBox.Show("Comanda em aberto no caixa. Finalize a operação");
+                MessageBox.Show(@"Comanda em aberto no caixa. Finalize a operação");
                 e.Cancel = true;
             }
         }

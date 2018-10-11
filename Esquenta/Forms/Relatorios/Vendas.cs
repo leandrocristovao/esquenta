@@ -14,6 +14,7 @@ namespace Esquenta.Forms.Relatorios
     {
         private decimal _valorVendasEmAberto = 0;
         private decimal _valorVendasFinal = 0;
+        private decimal _lucroVendaFinal = 0;
         private decimal _valorAcrescimoFinal = 0;
         private decimal _valorDescontoFinal = 0;
         private decimal _valorTrocoFinal = 0;
@@ -73,11 +74,11 @@ namespace Esquenta.Forms.Relatorios
 
                 CarregaVendas(_vendas, consumo);
 
-                MessageBox.Show("Período Encerrado.");
+                MessageBox.Show(@"Período Encerrado.");
             }
             else
             {
-                MessageBox.Show("Período já está fechado.");
+                MessageBox.Show(@"Período já está fechado.");
             }
         }
 
@@ -102,7 +103,7 @@ namespace Esquenta.Forms.Relatorios
             var venda = _service.GetVendaRepository().Get((int)id);
 
             dataGridView2.Rows.Clear();
-            venda.ItemVenda.ForEach(itemVenda =>
+            venda.ItemVenda.ToList().ForEach(itemVenda =>
             {
                 var dataVenda = itemVenda.DataVenda;
                 var nomeProduto = itemVenda.Produto.Nome;
@@ -185,6 +186,8 @@ namespace Esquenta.Forms.Relatorios
             _valorVendasEmAberto = vendas.Where(x => x.EmAberto == true).Sum(x => x.ValorFinal);
 
             _valorVendasFinal = vendas.Where(x => x.EmAberto == false).Sum(x => x.ValorFinal);
+            _lucroVendaFinal = vendas.Where(x => x.EmAberto == false).Sum(x => x.Lucro);
+
             var valorCC = vendas.Where(x => x.EmAberto == false).Sum(x => x.ValorCC);
             var valorCD = vendas.Where(x => x.EmAberto == false).Sum(x => x.ValorCD);
             var valorD = vendas.Where(x => x.EmAberto == false).Sum(x => x.ValorD);
@@ -202,7 +205,9 @@ namespace Esquenta.Forms.Relatorios
             lblTotal.Text =
                 $"{_valorVendasFinal.ToString(_culture):C} - CC: {valorCC.ToString(_culture):C} / CD: {valorCD.ToString(_culture):C} / D:{valorD.ToString(_culture):C}";
             lblTotalEmAberto.Text = _valorVendasEmAberto.ToString(_culture);
-            lblValorFinal.Text = _valorEmCaixa.ToString(_culture);
+
+            var percentagemLucro = (_lucroVendaFinal / 100) * _valorEmCaixa;
+            lblValorFinal.Text = $@"{_valorEmCaixa.ToString(_culture)} ({_lucroVendaFinal.ToString(_culture)} / {percentagemLucro.ToString("#.##")}%)";
         }
 
         private void txtValorCaixa_TextChanged(object sender, EventArgs e)

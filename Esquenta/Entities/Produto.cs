@@ -16,6 +16,7 @@ namespace Esquenta.Entities
         public virtual long Quantidade { get; set; }
         public virtual long QuantidadeMinima { get; set; }
         public virtual decimal Valor { get; set; }
+        public virtual decimal PrecoCusto { get; set; }
         public virtual IList<ProdutoItem> Itens { get; set; }
     }
 }

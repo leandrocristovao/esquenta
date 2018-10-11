@@ -67,6 +67,8 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtPrecoCusto = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -126,7 +128,7 @@
             // 
             this.txtCodigoBarra.Location = new System.Drawing.Point(15, 25);
             this.txtCodigoBarra.Name = "txtCodigoBarra";
-            this.txtCodigoBarra.Size = new System.Drawing.Size(477, 20);
+            this.txtCodigoBarra.Size = new System.Drawing.Size(527, 20);
             this.txtCodigoBarra.TabIndex = 1;
             this.txtCodigoBarra.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCodigoBarra_KeyDown);
             // 
@@ -144,7 +146,7 @@
             this.txtDescricao.Location = new System.Drawing.Point(15, 103);
             this.txtDescricao.Multiline = true;
             this.txtDescricao.Name = "txtDescricao";
-            this.txtDescricao.Size = new System.Drawing.Size(477, 70);
+            this.txtDescricao.Size = new System.Drawing.Size(527, 70);
             this.txtDescricao.TabIndex = 3;
             this.txtDescricao.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCodigoBarra_KeyDown);
             // 
@@ -152,7 +154,7 @@
             // 
             this.txtProduto.Location = new System.Drawing.Point(15, 64);
             this.txtProduto.Name = "txtProduto";
-            this.txtProduto.Size = new System.Drawing.Size(477, 20);
+            this.txtProduto.Size = new System.Drawing.Size(527, 20);
             this.txtProduto.TabIndex = 2;
             this.txtProduto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCodigoBarra_KeyDown);
             // 
@@ -161,15 +163,15 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(142, 176);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(31, 13);
+            this.label5.Size = new System.Drawing.Size(65, 13);
             this.label5.TabIndex = 9;
-            this.label5.Text = "Valor";
+            this.label5.Text = "Valor Venda";
             // 
             // txtValor
             // 
             this.txtValor.Location = new System.Drawing.Point(145, 192);
             this.txtValor.Name = "txtValor";
-            this.txtValor.Size = new System.Drawing.Size(59, 20);
+            this.txtValor.Size = new System.Drawing.Size(76, 20);
             this.txtValor.TabIndex = 6;
             this.txtValor.TextChanged += new System.EventHandler(this.txtValor_TextChanged);
             this.txtValor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCodigoBarra_KeyDown);
@@ -206,7 +208,7 @@
             // 
             // btnAddItem
             // 
-            this.btnAddItem.Location = new System.Drawing.Point(299, 189);
+            this.btnAddItem.Location = new System.Drawing.Point(349, 188);
             this.btnAddItem.Name = "btnAddItem";
             this.btnAddItem.Size = new System.Drawing.Size(75, 23);
             this.btnAddItem.TabIndex = 7;
@@ -217,7 +219,7 @@
             // btnEstoque
             // 
             this.btnEstoque.Enabled = false;
-            this.btnEstoque.Location = new System.Drawing.Point(380, 189);
+            this.btnEstoque.Location = new System.Drawing.Point(430, 188);
             this.btnEstoque.Name = "btnEstoque";
             this.btnEstoque.Size = new System.Drawing.Size(112, 23);
             this.btnEstoque.TabIndex = 8;
@@ -233,7 +235,7 @@
             this.tabControl1.Location = new System.Drawing.Point(15, 218);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(477, 281);
+            this.tabControl1.Size = new System.Drawing.Size(527, 281);
             this.tabControl1.TabIndex = 13;
             // 
             // tabPage1
@@ -242,7 +244,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(469, 255);
+            this.tabPage1.Size = new System.Drawing.Size(519, 255);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Itens";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -260,7 +262,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(463, 249);
+            this.dataGridView1.Size = new System.Drawing.Size(513, 249);
             this.dataGridView1.TabIndex = 11;
             // 
             // Add
@@ -424,12 +426,31 @@
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
             // 
+            // txtPrecoCusto
+            // 
+            this.txtPrecoCusto.Location = new System.Drawing.Point(227, 192);
+            this.txtPrecoCusto.Name = "txtPrecoCusto";
+            this.txtPrecoCusto.ReadOnly = true;
+            this.txtPrecoCusto.Size = new System.Drawing.Size(76, 20);
+            this.txtPrecoCusto.TabIndex = 14;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(224, 175);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(80, 13);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "Preço de Custo";
+            // 
             // AddProduto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(504, 540);
+            this.ClientSize = new System.Drawing.Size(554, 540);
+            this.Controls.Add(this.txtPrecoCusto);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnEstoque);
             this.Controls.Add(this.btnAddItem);
@@ -507,5 +528,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.Label lblVendasTotal;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtPrecoCusto;
+        private System.Windows.Forms.Label label8;
     }
 }

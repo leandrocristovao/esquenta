@@ -42,7 +42,7 @@ namespace Esquenta.Forms.Produto
             List<Entities.Produto> lista = _lista;
             if (!string.IsNullOrEmpty(txtFilter.Text))
             {
-                lista = _lista.Where(x => x.Nome.Contains(txtFilter.Text)).ToList();
+                lista = _lista.Where(x => x.Nome.ToUpper().Contains(txtFilter.Text.ToUpper())).ToList();
             }
             dataGridView1.Rows.Clear();
             lista.ForEach(item =>
@@ -55,7 +55,8 @@ namespace Esquenta.Forms.Produto
                     item.Descricao,
                     item.Quantidade,
                     item.QuantidadeMinima,
-                    item.Valor
+                    item.Valor,
+                    item.PrecoCusto
                 });
             });
             dataGridView1.Sort(dgvProduto, ListSortDirection.Ascending);
