@@ -21,6 +21,7 @@ namespace Esquenta.Forms.Relatorios
         private decimal _valorEmCaixa = 0;
         private readonly CultureInfo _culture = new CultureInfo("pt-BR");
         private ConnectionService _service;
+        private Venda venda;
 
         public Vendas()
         {
@@ -100,7 +101,7 @@ namespace Esquenta.Forms.Relatorios
             }
 
             var id = ((DataGridView)sender).CurrentRow.Cells[0].Value;
-            var venda = _service.GetVendaRepository().Get((int)id);
+            venda = _service.GetVendaRepository().Get((int)id);
 
             dataGridView2.Rows.Clear();
             venda.ItemVenda.ToList().ForEach(itemVenda =>
@@ -253,6 +254,14 @@ namespace Esquenta.Forms.Relatorios
                 _service.GetVendaRepository().CancelarVenda(venda);
 
                 Vendas_Load(sender, e);
+            }
+        }
+
+        private void dataGridView1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.PrintScreen && venda!=null)
+            {
+                Utils.Imprimir(venda, "");
             }
         }
     }

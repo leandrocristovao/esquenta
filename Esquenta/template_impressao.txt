@@ -1,0 +1,9 @@
+﻿ÇLIENTE
+	@cliente
+ENDERECO
+	@endereco
+ITENS
+	@itens
+total: @TOTAL
+OBSERVAÇOES
+	@observacoes

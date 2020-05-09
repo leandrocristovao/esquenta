@@ -8,5 +8,6 @@ namespace Esquenta.Entities
         public virtual bool EmAberto { get; set; }
         public virtual string Nome { get; set; }
         public virtual string CodigoBarras { get; set; }
+        public virtual string Endereco { get; set; }
     }
 }

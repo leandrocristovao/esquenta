@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Windows.Forms;
 using Esquenta.Entities;
@@ -22,7 +24,6 @@ namespace Esquenta.Forms.Caixa
         public Caixa()
         {
             InitializeComponent();
-
             _service = ConnectionService.GetInstance();
 
             var periodo = _service.GetPeriodoVendaRepository().GetPeriodoAtual();
@@ -236,16 +237,19 @@ namespace Esquenta.Forms.Caixa
         {
             if (_itens.Count == 0) return;
 
+            var frm = new CaixaObservacao();
             try
             {
+                var observacoes = "";
                 var EmAberto = false;
                 Venda venda = null;
                 //Comanda 1 - Caixa
                 //Comanda 2 - Consumo
                 if (_comanda.Id > 2)
                 {
-                    EmAberto = MessageBox.Show(@"Deseja encerrar venda?", @"Fechar Venda?", MessageBoxButtons.YesNo,
-                                   MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes;
+                    //EmAberto = MessageBox.Show(@"Deseja encerrar venda?", @"Fechar Venda?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes;
+                    EmAberto = frm.ShowDialog() != DialogResult.Yes;
+                    observacoes = frm.Observacoes;
                     venda = _service.GetVendaRepository().GetVendasEmAberto(_comanda);
                 }
 
@@ -278,10 +282,19 @@ namespace Esquenta.Forms.Caixa
                 if (!EmAberto)
                 {
                     _service.GetVendaRepository().BaixarVenda(venda);
+                    if (chk_imprimir.Checked) { 
+                        Utils.Imprimir(venda, observacoes);
+                        var confirmResult = MessageBox.Show("Imprimir segunda via?", "Imprimir", MessageBoxButtons.YesNo);
+                        if (confirmResult == DialogResult.Yes)
+                            Utils.Imprimir(venda, observacoes);
+                    }
                 }
                 else
                 {
-                    if (venda != null) _service.GetVendaRepository().EntradaTerminal(venda, null);
+                    if (venda != null) {
+                        _service.GetVendaRepository().EntradaTerminal(venda, null);
+                        
+                    }
                 }
 
                 ClearScreen();
@@ -397,6 +410,11 @@ namespace Esquenta.Forms.Caixa
                     CancelarItem();
                     break;
 
+
+                case Keys.F2:
+                    chk_imprimir.Checked = !chk_imprimir.Checked;
+                        break;
+
                 case Keys.F6:
                     _quantidadeAutomatica = !_quantidadeAutomatica;
                     lblQuantidadeAutomatica.Visible = _quantidadeAutomatica;
@@ -428,6 +446,8 @@ namespace Esquenta.Forms.Caixa
                 e.Cancel = true;
             }
         }
+
+        
 
         private enum State
         {

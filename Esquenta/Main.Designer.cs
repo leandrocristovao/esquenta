@@ -49,6 +49,8 @@
             this.ttsIP = new System.Windows.Forms.ToolStripStatusLabel();
             this.ttsMachineName = new System.Windows.Forms.ToolStripStatusLabel();
             this.ttsIPDB = new System.Windows.Forms.ToolStripStatusLabel();
+            this.menuItemImpressora = new System.Windows.Forms.ToolStripMenuItem();
+            this.ttsImpressora = new System.Windows.Forms.ToolStripStatusLabel();
             this.mainMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -80,19 +82,19 @@
             // menuItemCaixa
             // 
             this.menuItemCaixa.Name = "menuItemCaixa";
-            this.menuItemCaixa.Size = new System.Drawing.Size(125, 22);
+            this.menuItemCaixa.Size = new System.Drawing.Size(126, 22);
             this.menuItemCaixa.Text = "Caixa (F2)";
             this.menuItemCaixa.Click += new System.EventHandler(this.menuItemCaixa_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(122, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(123, 6);
             // 
             // menuItemSair
             // 
             this.menuItemSair.Name = "menuItemSair";
-            this.menuItemSair.Size = new System.Drawing.Size(125, 22);
+            this.menuItemSair.Size = new System.Drawing.Size(126, 22);
             this.menuItemSair.Text = "Sair";
             this.menuItemSair.Click += new System.EventHandler(this.menuItemSair_Click);
             // 
@@ -131,14 +133,14 @@
             // menuItemLivroCaixa
             // 
             this.menuItemLivroCaixa.Name = "menuItemLivroCaixa";
-            this.menuItemLivroCaixa.Size = new System.Drawing.Size(180, 22);
+            this.menuItemLivroCaixa.Size = new System.Drawing.Size(155, 22);
             this.menuItemLivroCaixa.Text = "Livro Caixa (F6)";
             this.menuItemLivroCaixa.Click += new System.EventHandler(this.menuItemLivroCaixa_Click);
             // 
             // menuItemConsumo
             // 
             this.menuItemConsumo.Name = "menuItemConsumo";
-            this.menuItemConsumo.Size = new System.Drawing.Size(180, 22);
+            this.menuItemConsumo.Size = new System.Drawing.Size(155, 22);
             this.menuItemConsumo.Text = "Consumo";
             this.menuItemConsumo.Visible = false;
             this.menuItemConsumo.Click += new System.EventHandler(this.menuItemConsumo_Click);
@@ -147,9 +149,10 @@
             // 
             this.configuracoesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemBackupPath,
+            this.menuItemAlterarSenha,
             this.menuItemBackup,
             this.menuItemSQLServer,
-            this.menuItemAlterarSenha});
+            this.menuItemImpressora});
             this.configuracoesToolStripMenuItem.Name = "configuracoesToolStripMenuItem";
             this.configuracoesToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
             this.configuracoesToolStripMenuItem.Text = "Configurações";
@@ -187,7 +190,8 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ttsIP,
             this.ttsMachineName,
-            this.ttsIPDB});
+            this.ttsIPDB,
+            this.ttsImpressora});
             this.statusStrip1.Location = new System.Drawing.Point(0, 707);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1008, 22);
@@ -203,7 +207,7 @@
             // ttsMachineName
             // 
             this.ttsMachineName.Name = "ttsMachineName";
-            this.ttsMachineName.Size = new System.Drawing.Size(56, 17);
+            this.ttsMachineName.Size = new System.Drawing.Size(55, 17);
             this.ttsMachineName.Text = "Terminal:";
             // 
             // ttsIPDB
@@ -211,6 +215,19 @@
             this.ttsIPDB.Name = "ttsIPDB";
             this.ttsIPDB.Size = new System.Drawing.Size(108, 17);
             this.ttsIPDB.Text = "IP Banco de Dados:";
+            // 
+            // menuItemImpressora
+            // 
+            this.menuItemImpressora.Name = "menuItemImpressora";
+            this.menuItemImpressora.Size = new System.Drawing.Size(190, 22);
+            this.menuItemImpressora.Text = "Impressora";
+            this.menuItemImpressora.Click += new System.EventHandler(this.menuItemImpressora_Click);
+            // 
+            // ttsImpressora
+            // 
+            this.ttsImpressora.Name = "ttsImpressora";
+            this.ttsImpressora.Size = new System.Drawing.Size(68, 17);
+            this.ttsImpressora.Text = "Impressora:";
             // 
             // Main
             // 
@@ -259,5 +276,7 @@
         private System.Windows.Forms.ToolStripMenuItem configuracoesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuItemAlterarSenha;
         private System.Windows.Forms.ToolStripMenuItem menuItemConsumo;
+        private System.Windows.Forms.ToolStripMenuItem menuItemImpressora;
+        private System.Windows.Forms.ToolStripStatusLabel ttsImpressora;
     }
 }

@@ -31,6 +31,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -45,8 +47,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTotalEmAberto = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -67,6 +67,8 @@
             this.BtnFecharCaixa = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dgvConsumo = new System.Windows.Forms.DataGridView();
+            this.dgvConsumoProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvConsumoQuantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblValorTotalVenda = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dgvDetalheDataHora = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -86,8 +88,6 @@
             this.dvgVendaDesconto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dvgVendaValorFinal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvEmAberto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvConsumoProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvConsumoQuantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvConsumo)).BeginInit();
@@ -349,6 +349,27 @@
             this.dgvConsumo.Size = new System.Drawing.Size(543, 204);
             this.dgvConsumo.TabIndex = 5;
             // 
+            // dgvConsumoProduto
+            // 
+            this.dgvConsumoProduto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.NullValue = null;
+            this.dgvConsumoProduto.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvConsumoProduto.HeaderText = "Produto";
+            this.dgvConsumoProduto.Name = "dgvConsumoProduto";
+            this.dgvConsumoProduto.ReadOnly = true;
+            // 
+            // dgvConsumoQuantidade
+            // 
+            this.dgvConsumoQuantidade.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.NullValue = null;
+            this.dgvConsumoQuantidade.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvConsumoQuantidade.HeaderText = "Quantidade";
+            this.dgvConsumoQuantidade.Name = "dgvConsumoQuantidade";
+            this.dgvConsumoQuantidade.ReadOnly = true;
+            this.dgvConsumoQuantidade.Width = 87;
+            // 
             // lblValorTotalVenda
             // 
             this.lblValorTotalVenda.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -479,6 +500,7 @@
             this.dataGridView1.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEnter);
             this.dataGridView1.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dataGridView1_RowPrePaint);
             this.dataGridView1.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridView1_UserDeletingRow);
+            this.dataGridView1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyUp);
             // 
             // dvgVendaID
             // 
@@ -583,27 +605,6 @@
             this.dgvEmAberto.Name = "dgvEmAberto";
             this.dgvEmAberto.ReadOnly = true;
             this.dgvEmAberto.Visible = false;
-            // 
-            // dgvConsumoProduto
-            // 
-            this.dgvConsumoProduto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.NullValue = null;
-            this.dgvConsumoProduto.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvConsumoProduto.HeaderText = "Produto";
-            this.dgvConsumoProduto.Name = "dgvConsumoProduto";
-            this.dgvConsumoProduto.ReadOnly = true;
-            // 
-            // dgvConsumoQuantidade
-            // 
-            this.dgvConsumoQuantidade.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.NullValue = null;
-            this.dgvConsumoQuantidade.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvConsumoQuantidade.HeaderText = "Quantidade";
-            this.dgvConsumoQuantidade.Name = "dgvConsumoQuantidade";
-            this.dgvConsumoQuantidade.ReadOnly = true;
-            this.dgvConsumoQuantidade.Width = 87;
             // 
             // Vendas
             // 

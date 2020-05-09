@@ -90,6 +90,7 @@ GO
 CREATE TABLE [dbo].[Comanda](
 	[ID] [int] IDENTITY(1,1) NOT NULL,
 	[Nome] [varchar](255) NULL,
+	[Endereco] [text] NULL,
 	[CodigoBarras] [varchar](25) NULL,
 	EmAberto BIT DEFAULT 0,
  CONSTRAINT [PK_Comanda] PRIMARY KEY CLUSTERED 

@@ -43,6 +43,7 @@ namespace Esquenta
             ttsIP.Text = $@"IP: {GetLocalIpAddress()}";
             ttsIPDB.Text = $@"IP Banco de Dados: {ConnectionService.GetInstance().GetIPServer()}";
             ttsMachineName.Text = $@"Terminal: {Environment.MachineName}";
+            ttsImpressora.Text = $@"Impressora: {Properties.Settings.Default.Impressora}";
 
             if (!string.IsNullOrEmpty(Properties.Settings.Default.PWD))
             {
@@ -209,6 +210,11 @@ namespace Esquenta
         private void menuItemConsumo_Click(object sender, EventArgs e)
         {
             new Consumo().ShowDialog();
+        }
+
+        private void menuItemImpressora_Click(object sender, EventArgs e)
+        {
+            new Forms.Settings.Impressora().ShowDialog();
         }
     }
 }

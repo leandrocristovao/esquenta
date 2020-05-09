@@ -29,6 +29,7 @@ namespace Esquenta.Forms.Comandas
             {
                 txtCodigoBarra.Text = _comanda.CodigoBarras;
                 txtNome.Text = _comanda.Nome;
+                txtEndereco.Text = _comanda.Endereco;
             }
         }
 
@@ -55,6 +56,7 @@ namespace Esquenta.Forms.Comandas
 
             _comanda.CodigoBarras = txtCodigoBarra.Text;
             _comanda.Nome = txtNome.Text;
+            _comanda.Endereco = txtEndereco.Text;
 
             //TODO Leandro: Mudar para SaveOrUpdate
             if (isNew)

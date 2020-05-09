@@ -21,7 +21,11 @@ namespace Esquenta
 
             Application.Run(new Main());
         }
-
+        public static void SaveImpressora(string impressora)
+        {
+            //Properties.Settings.Default.Impressora = impressora;
+            Properties.Settings.Default.Save();
+        }
         public static void SavePassword(string newPWD)
         {
             Properties.Settings.Default.PWD = Base64Encode(newPWD);

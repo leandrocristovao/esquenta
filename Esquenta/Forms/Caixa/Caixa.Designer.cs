@@ -35,6 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.chk_imprimir = new System.Windows.Forms.CheckBox();
             this.lblQuantidadeAutomatica = new System.Windows.Forms.Label();
             this.txtAcrescimo = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -70,6 +71,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.chk_imprimir);
             this.panel1.Controls.Add(this.lblQuantidadeAutomatica);
             this.panel1.Controls.Add(this.txtAcrescimo);
             this.panel1.Controls.Add(this.label7);
@@ -88,6 +90,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(287, 511);
             this.panel1.TabIndex = 0;
+            // 
+            // chk_imprimir
+            // 
+            this.chk_imprimir.AutoSize = true;
+            this.chk_imprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chk_imprimir.Location = new System.Drawing.Point(22, 458);
+            this.chk_imprimir.Name = "chk_imprimir";
+            this.chk_imprimir.Size = new System.Drawing.Size(231, 28);
+            this.chk_imprimir.TabIndex = 18;
+            this.chk_imprimir.Text = "Imprimir comprovante";
+            this.chk_imprimir.UseVisualStyleBackColor = true;
             // 
             // lblQuantidadeAutomatica
             // 
@@ -135,7 +148,7 @@
             this.lblNomeComanda.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNomeComanda.Location = new System.Drawing.Point(22, 82);
             this.lblNomeComanda.Name = "lblNomeComanda";
-            this.lblNomeComanda.Size = new System.Drawing.Size(246, 23);
+            this.lblNomeComanda.Size = new System.Drawing.Size(246, 25);
             this.lblNomeComanda.TabIndex = 13;
             this.lblNomeComanda.Text = "---";
             this.lblNomeComanda.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -468,5 +481,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
         private System.Windows.Forms.Label lblQuantidadeAutomatica;
         private System.Windows.Forms.Label lblQuantidadeItem;
+        private System.Windows.Forms.CheckBox chk_imprimir;
     }
 }

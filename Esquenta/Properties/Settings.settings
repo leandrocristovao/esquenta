@@ -6,7 +6,7 @@
       <Value Profile="(Default)">2017-01-01</Value>
     </Setting>
     <Setting Name="ConnectionString" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Data Source=localhost;Initial Catalog=esquenta;Persist Security Info=True;User ID=sa;Password=$splfiscal10</Value>
+      <Value Profile="(Default)">Data Source=localhost;Initial Catalog=esquenta_02;Persist Security Info=True;User ID=sa;Password=$splfiscal10</Value>
     </Setting>
     <Setting Name="Troco" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -17,5 +17,8 @@
     <Setting Name="PWD" Type="System.String" Scope="User">
       <Value Profile="(Default)">ZXNxdWVudGE=</Value>
     </Setting>
+    <Setting Name="Impressora" Type="System.String" Scope="User">
+      <Value Profile="(Default)">aa</Value>
+    </Setting>    
   </Settings>
 </SettingsFile>
