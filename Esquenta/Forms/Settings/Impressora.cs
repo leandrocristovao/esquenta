@@ -12,7 +12,7 @@ namespace Esquenta.Forms.Settings
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            Program.SaveImpressora(cbImpressora.SelectedItem.ToString());
+            Program.SaveImpressora(cbImpressora.SelectedItem.ToString(), txtMensagem.Text, int.Parse(txtLinha.Text));
             Close();
         }
 
@@ -23,6 +23,10 @@ namespace Esquenta.Forms.Settings
             {
                 cbImpressora.Items.Add(printer);
             }
+
+            txtFonte.Text = ""+Properties.Settings.Default.ImpressoraFontSize;
+            txtLinha.Text = Properties.Settings.Default.ImpressoraLinha.ToString();
+            txtMensagem.Text = Properties.Settings.Default.ImpressoraMensagem;
         }
     }
 }

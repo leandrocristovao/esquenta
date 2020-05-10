@@ -10,6 +10,7 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace Esquenta
 {
@@ -39,7 +40,6 @@ namespace Esquenta
                     DataFinal = DateTime.Now
                 });
             }
-
             ttsIP.Text = $@"IP: {GetLocalIpAddress()}";
             ttsIPDB.Text = $@"IP Banco de Dados: {ConnectionService.GetInstance().GetIPServer()}";
             ttsMachineName.Text = $@"Terminal: {Environment.MachineName}";

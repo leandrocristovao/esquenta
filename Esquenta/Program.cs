@@ -21,9 +21,11 @@ namespace Esquenta
 
             Application.Run(new Main());
         }
-        public static void SaveImpressora(string impressora)
+        public static void SaveImpressora(string impressora, string rodape, int tamanho)
         {
-            //Properties.Settings.Default.Impressora = impressora;
+            Properties.Settings.Default.Impressora = impressora;
+            Properties.Settings.Default.ImpressoraMensagem = rodape;
+            Properties.Settings.Default.ImpressoraLinha = tamanho;
             Properties.Settings.Default.Save();
         }
         public static void SavePassword(string newPWD)

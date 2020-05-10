@@ -22,5 +22,10 @@ namespace Esquenta.Forms.Caixa
         {
             Observacoes = txtNotas.Text;
         }
+
+        private void CaixaObservacao_Load(object sender, EventArgs e)
+        {
+            txtNotas.Focus();
+        }
     }
 }

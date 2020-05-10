@@ -86,13 +86,48 @@ namespace Esquenta.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("aa")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string Impressora {
             get {
                 return ((string)(this["Impressora"]));
             }
             set {
                 this["Impressora"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ImpressoraMensagem {
+            get {
+                return ((string)(this["ImpressoraMensagem"]));
+            }
+            set {
+                this["ImpressoraMensagem"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public int ImpressoraLinha {
+            get {
+                return ((int)(this["ImpressoraLinha"]));
+            }
+            set {
+                this["ImpressoraLinha"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("6")]
+        public int ImpressoraFontSize {
+            get {
+                return ((int)(this["ImpressoraFontSize"]));
+            }
+            set {
+                this["ImpressoraFontSize"] = value;
             }
         }
     }

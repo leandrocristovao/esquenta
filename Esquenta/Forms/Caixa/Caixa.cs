@@ -247,7 +247,6 @@ namespace Esquenta.Forms.Caixa
                 //Comanda 2 - Consumo
                 if (_comanda.Id > 2)
                 {
-                    //EmAberto = MessageBox.Show(@"Deseja encerrar venda?", @"Fechar Venda?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes;
                     EmAberto = frm.ShowDialog() != DialogResult.Yes;
                     observacoes = frm.Observacoes;
                     venda = _service.GetVendaRepository().GetVendasEmAberto(_comanda);
@@ -434,6 +433,11 @@ namespace Esquenta.Forms.Caixa
 
                 case Keys.Escape:
                     Close();
+                    break;
+
+                case Keys.PrintScreen:
+                    if(_venda != null)
+                        Utils.Imprimir(_venda, "");
                     break;
             }
         }

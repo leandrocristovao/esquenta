@@ -30,17 +30,18 @@ namespace Esquenta.Forms
                 if (printDocument != null)
                 {
                     //CABECALHO
-                    //Image i = Image.FromFile(@"Resources/jpg.jpg");
-                    //e.Graphics.DrawImage(i, e.PageBounds);
-
+                    Image i = Image.FromFile(@"Resources\jpg.jpg");
+                    e.Graphics.DrawImage(i, 0, 0,i.Width, i.Height);
+                    
                     var font = new Font(FontFamily.GenericMonospace, 11);
                     var brush = new SolidBrush(Color.Black);
+                    /*
                     e.Graphics.DrawString(
                             "ESQUENTA BEBIDAS II\n\n",
                             font,
                             brush,
-                            new RectangleF(0, 0, printDocument.DefaultPageSettings.PrintableArea.Width, printDocument.DefaultPageSettings.PrintableArea.Height));
-
+                            new RectangleF(0, i.Height, printDocument.DefaultPageSettings.PrintableArea.Width, printDocument.DefaultPageSettings.PrintableArea.Height));
+                            */
                     //Cliente
                     String endereco = venda.Comanda.Endereco;
                     //verifico se a primeira linha comeca com o caracter #. Se sim, considero como endereco
@@ -53,6 +54,7 @@ namespace Esquenta.Forms
                         observacoes = string.Join("\n", linhas.Skip(1));
                     }
 
+                    //endereco = "um endereco bem grande para validar a quebra de linha de uma string grande";
                     var toPrint = $"CLIENTE: {venda.Comanda.Nome}\n" +
                         $"ENDEREÇO: {endereco}\n\n" +
                         "ITENS\n";
@@ -62,6 +64,7 @@ namespace Esquenta.Forms
                     var valorTotalMaximo = string.Format("{0:N}", venda.ItemVenda.Max(x => x.ValorTotal)).Length;
 
                     int count = 0;
+                    int lineSize = Properties.Settings.Default.ImpressoraLinha;
                     venda.ItemVenda.ToList().ForEach(item =>
                     {
                         count++;
@@ -71,7 +74,7 @@ namespace Esquenta.Forms
                         string valorTotalFormatado = string.Format("{0:N}", item.ValorTotal).PadLeft(valorTotalMaximo, ' ');
 
                         string msg = $"{$"{count:D2}"} @ {valorFormatado} {quantidadeFormatada} {valorTotalFormatado}";
-                        int size = 35 - msg.Length;
+                        int size = lineSize - msg.Length;
 
                         string produto = item.Produto.Nome.Substring(0, Math.Min(size, item.Produto.Nome.Length));
                         produto = produto.PadRight(size, ' ');
@@ -80,16 +83,18 @@ namespace Esquenta.Forms
                     });
                     toPrint += $"TOTAL: {string.Format("{0:N}", venda.ValorTotal)}\n";
 
+                    //observacoes = "Uma observação grande para checar se a quebra de linha funciona de acordo com o esperado. Se não funcionar, FODEU.";
                     if (!string.IsNullOrEmpty(observacoes))
                         toPrint += $"\nOBSERVACOES: {observacoes}";
 
-                    toPrint += $"\n\n";
-                    font = new Font(FontFamily.GenericMonospace, 6);
+                    toPrint += $"\n\n\n{Properties.Settings.Default.ImpressoraMensagem}\n\n";
+                    int fontSize = Properties.Settings.Default.ImpressoraFontSize;
+                    font = new Font(FontFamily.GenericMonospace, fontSize);
                     e.Graphics.DrawString(
                             toPrint,
                             font,
                             brush,
-                            new RectangleF(0, 20, printDocument.DefaultPageSettings.PrintableArea.Width, printDocument.DefaultPageSettings.PrintableArea.Height));
+                            new RectangleF(0, i.Height, printDocument.DefaultPageSettings.PrintableArea.Width, printDocument.DefaultPageSettings.PrintableArea.Height));
 
 
                 }

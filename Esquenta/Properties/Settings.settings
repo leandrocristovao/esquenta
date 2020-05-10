@@ -18,7 +18,16 @@
       <Value Profile="(Default)">ZXNxdWVudGE=</Value>
     </Setting>
     <Setting Name="Impressora" Type="System.String" Scope="User">
-      <Value Profile="(Default)">aa</Value>
+      <Value Profile="(Default)"></Value>
+    </Setting>
+    <Setting Name="ImpressoraMensagem" Type="System.String" Scope="User">
+      <Value Profile="(Default)"></Value>
+    </Setting>
+    <Setting Name="ImpressoraLinha" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)"></Value>
+    </Setting>
+    <Setting Name="ImpressoraFontSize" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">6</Value>
     </Setting>    
   </Settings>
 </SettingsFile>
